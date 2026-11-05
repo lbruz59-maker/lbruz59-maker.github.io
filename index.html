@@ -407,7 +407,24 @@ $('mu').addEventListener('click',()=>{musOn^=1;$('mu').style.opacity=musOn?1:.4;
 $('sf').addEventListener('click',()=>{vm^=1;if(vm&&window.speechSynthesis)speechSynthesis.cancel();$('sf').style.opacity=vm?.4:1;if(master)master.gain.value=vm?0:.9});
 document.querySelectorAll('.st[data-t]').forEach(b=>b.onclick=()=>{tr=+b.dataset.t;document.querySelectorAll('.st[data-t]').forEach(x=>x.classList.toggle('sel',x==b))});
 $('ui-key').onclick=()=>{inputMode='keyboard';applyInputMode()};$('ui-pad').onclick=()=>{inputMode='controller';applyInputMode()};$('ui-touch').onclick=()=>{inputMode='touch';applyInputMode()};applyInputMode();
-function startGame(){applyInputMode();if(inputMode==='controller'&&!(navigator.getGamepads&&[...navigator.getGamepads()].some(g=>g&&g.connected)))toast('Aucune manette détectée. Connecte une manette ou choisis Clavier / Tactile.');$('menu').style.display='none';initAudio();pos=0;px=0;pxVel=0;carTurn=0;speed=0;gear=0;drift=0;driftSide=0;driftHold=0;brakeWasDown=0;driftMarkClock=0;driftTrail.length=0;time=DF[dfi].t;score=0;chaseHits=0;chaseCircuitsDone=0;bnd=null;musk=0;stage=1;cid=MODE==4?15:0;cposk=0;forkRoute=-1;forkRouteBy='';outrunVisited=MODE===0?[0]:[];outrunTurnChoices=[];crash=0;forkSaid=0;lowSaid=0;saved=0;item=boost=star=0;loopA=inLoop=0;slip=mini=gun=0;wxSalt=NET()?0:Math.random()*1e5|0;MP=0;if(NET()&&(window.DUEL||mpRaces)){MP=1;if(MODE!=3)MODE0=MODE;RL=window.DUEL?3:5;raceNo=1;raceT=0;rts=[];mpStartAt=0;mpRaceStartAt=0}buildCourse(MODE==4?15:0);if(wx=='snow'&&MODE!=2)time*=1.1;if(NET())gridStart();if(NET()){state='wait';waitT=0;rdyT=Date.now();mpStartAt=0;mpRaceStartAt=0}else{if(MODE==2)startBrief();else{state='count';cd=3.9;countShown=0}}}
+/* Android: request true browser fullscreen from the user's Play tap. */
+function crRequestAndroidFullscreen(){
+ try{
+  const ua=navigator.userAgent||'';
+  const isAndroid=/Android/i.test(ua);
+  if(!isAndroid)return;
+  const root=document.documentElement;
+  if(document.fullscreenElement||document.webkitFullscreenElement)return;
+  const request=root.requestFullscreen||root.webkitRequestFullscreen;
+  if(request){
+   const result=request.call(root);
+   if(result&&typeof result.catch==='function')result.catch(()=>{});
+  }
+ }catch(e){}
+}
+document.addEventListener('fullscreenchange',()=>{try{window.dispatchEvent(new Event('resize'))}catch(e){}});
+document.addEventListener('webkitfullscreenchange',()=>{try{window.dispatchEvent(new Event('resize'))}catch(e){}});
+function startGame(){crRequestAndroidFullscreen();applyInputMode();if(inputMode==='controller'&&!(navigator.getGamepads&&[...navigator.getGamepads()].some(g=>g&&g.connected)))toast('Aucune manette détectée. Connecte une manette ou choisis Clavier / Tactile.');$('menu').style.display='none';initAudio();pos=0;px=0;pxVel=0;carTurn=0;speed=0;gear=0;drift=0;driftSide=0;driftHold=0;brakeWasDown=0;driftMarkClock=0;driftTrail.length=0;time=DF[dfi].t;score=0;chaseHits=0;chaseCircuitsDone=0;bnd=null;musk=0;stage=1;cid=MODE==4?15:0;cposk=0;forkRoute=-1;forkRouteBy='';outrunVisited=MODE===0?[0]:[];outrunTurnChoices=[];crash=0;forkSaid=0;lowSaid=0;saved=0;item=boost=star=0;loopA=inLoop=0;slip=mini=gun=0;wxSalt=NET()?0:Math.random()*1e5|0;MP=0;if(NET()&&(window.DUEL||mpRaces)){MP=1;if(MODE!=3)MODE0=MODE;RL=window.DUEL?3:5;raceNo=1;raceT=0;rts=[];mpStartAt=0;mpRaceStartAt=0}buildCourse(MODE==4?15:0);if(wx=='snow'&&MODE!=2)time*=1.1;if(NET())gridStart();if(NET()){state='wait';waitT=0;rdyT=Date.now();mpStartAt=0;mpRaceStartAt=0}else{if(MODE==2)startBrief();else{state='count';cd=3.9;countShown=0}}}
 $('go').onclick=startGame;
 // ---- AUDIO (compositions originales)
 const TR=[{bpm:140,q:'mMMMmMMM',r:[45,41,48,43,45,41,43,40],L:[[69,8],[72,4],[76,4],[77,6],[76,2],[72,8],[67,4],[72,4],[76,4],[79,4],[74,8],[71,4],[67,4],[69,4],[72,4],[76,4],[81,4],[79,6],[77,2],[72,8],[71,4],[74,4],[79,4],[77,4],[76,12],[0,4]]},
