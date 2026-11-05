@@ -1844,7 +1844,7 @@ function saveScore(){try{const a=JSON.parse(localStorage.getItem('cr_scores')||'
 showHS();
 $('md').onclick=()=>{MODE=(MODE+1)%5;if(MODE!==3)MODE0=MODE;$('md').textContent='Mode : '+['OUTRUN (5 étapes, fourches)','GRAND TOUR (15 circuits)','CHASE H.Q. (police)','COURSE LIBRE','TOUR DU MONDE (10 capitales)'][MODE];if(window.__crSyncMenuArtwork)window.__crSyncMenuArtwork()};
 if($('pn')){$('pn').value=/^J[A-Z0-9]{3}$/.test(myName)?'':myName;$('pn').oninput=()=>{const v=$('pn').value.replace(/[^A-Za-z0-9 _-]/g,'').toUpperCase().slice(0,10);if(v){myName=v;try{localStorage.setItem('cr_name',v)}catch(e){}}}}
-let autoG=isTV?1:0,autoGas=isTV?1:0,tapAx=0,tapT=0;$('ag').textContent='Boîte : '+(autoG?'AUTO':'MANUELLE');$('gz').textContent='Gaz : '+(autoGas?'AUTO':'MANUEL');$('gz').onclick=()=>{autoGas^=1;$('gz').textContent='Gaz : '+(autoGas?'AUTO':'MANUEL')};
+let autoG=1,autoGas=isTV?1:0,tapAx=0,tapT=0;$('ag').textContent='Boîte : '+(autoG?'AUTO':'MANUELLE');$('gz').textContent='Gaz : '+(autoGas?'AUTO':'MANUEL');$('gz').onclick=()=>{autoGas^=1;$('gz').textContent='Gaz : '+(autoGas?'AUTO':'MANUEL')};
 $('ag').onclick=()=>{autoG^=1;$('ag').textContent='Boîte : '+(autoG?'AUTO':'MANUELLE')};
 $('mr').onclick=()=>{mpRaces^=1;$('mr').textContent='Multi : '+(mpRaces?'COURSES + PODIUMS (bêta)':'COURSE LIBRE')};
 $('bn').onclick=()=>{useItems^=1;$('bn').textContent='Bonus : '+(useItems?'ON':'OFF');if(!useItems)item=0};
