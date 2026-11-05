@@ -206,7 +206,8 @@ body.route-map-active .b,body.route-map-active #pauseBtn{display:none!important;
 /* Hitboxes recalées sur les 7 lignes réellement visibles dans menu-start.jpg.
    L'image affiche MULTIJOUEUR, MODE DE JEU, GARAGE, CARRIÈRE,
    CLASSEMENT, COMMANDES, QUITTER (dans cet ordre). */
-#crMenuHotspots .play{display:none!important;pointer-events:none!important}
+/* JOUER : zone active sur le bouton déjà dessiné dans l'illustration, en bas à gauche. */
+#crMenuHotspots .play{display:block!important;left:25.5%;top:84.0%;width:23.0%;height:10.5%;z-index:7;pointer-events:auto!important;background:transparent!important;border:0!important;box-shadow:none!important;clip-path:none!important}
 #crMenuHotspots .multiplayer{left:80.0%;top:21.8%;width:18.0%;height:7.0%}
 /* Zone transparente exactement sur le bouton MODE DE JEU déjà dessiné dans le visuel. */
 #crMenuHotspots .mode{left:80.0%;top:25.5%;width:18.0%;height:7.0%;z-index:6;border:0!important;border-radius:0!important;background:transparent!important;color:transparent!important;box-shadow:none!important;clip-path:none!important;font-size:0!important;text-shadow:none!important}
@@ -229,7 +230,11 @@ body.route-map-active .b,body.route-map-active #pauseBtn{display:none!important;
 #crMenuHotspots .music .cr-status,#crMenuHotspots .sound .cr-status{display:none!important}
 #crMenuHotspots .music[aria-pressed="true"],#crMenuHotspots .sound[aria-pressed="true"]{background:rgba(0,225,255,.38)!important;border:0!important;border-radius:0!important;box-shadow:inset 0 0 24px rgba(0,238,255,.55)!important}
 #crMenuHotspots .music[aria-pressed="false"],#crMenuHotspots .sound[aria-pressed="false"]{background:transparent!important;border:0!important;border-radius:0!important;box-shadow:none!important}
-#crMenuHotspots::after{content:'CHOISIS TON MODE AVEC LE BOUTON MODE DE JEU';position:absolute;left:28.5%;top:84.0%;width:48.5%;height:11.5%;display:flex;align-items:center;justify-content:center;box-sizing:border-box;border:1px solid #57dfff88;border-radius:14px;background:linear-gradient(145deg,rgba(3,18,42,.96),rgba(4,12,30,.96));color:#c5efff;font:900 clamp(8px,1vw,13px) system-ui;letter-spacing:.06em;text-align:center;text-shadow:0 0 8px #00cfff;pointer-events:none}
+/* Audio : remplissage intérieur des deux cases originales, sans badge ni contrôle ajouté. */
+#crMenuHotspots .music[aria-pressed="true"],#crMenuHotspots .sound[aria-pressed="true"]{background:rgba(0,225,255,.52)!important;box-shadow:inset 0 0 0 999px rgba(0,225,255,.20),inset 0 0 24px rgba(0,238,255,.9)!important}
+#crMenuHotspots .music[aria-pressed="false"],#crMenuHotspots .sound[aria-pressed="false"]{background:transparent!important;box-shadow:none!important}
+#crMenuHotspots .music .cr-status,#crMenuHotspots .sound .cr-status{display:none!important}
+#crMenuHotspots::after{content:none!important;display:none!important}
 @media(max-aspect-ratio:4/3){#menu{background-size:100% 100%!important}}
 /* V104 — interactive artwork labels and visible option state. */
 #crMenuHotspots button{appearance:none;-webkit-appearance:none;overflow:visible}
