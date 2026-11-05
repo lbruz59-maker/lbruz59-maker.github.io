@@ -349,6 +349,22 @@ body.route-map-active .b,body.route-map-active #pauseBtn{display:none!important;
  #crProfileTeam{top:88.3%!important}
  #crProfileVehicle{top:91.7%!important}
 }
+
+/* V112 — landscape: enlarge values to match the visual weight of the capsules. */
+@media screen and (orientation:landscape){
+ #crProfileFields span{
+  left:22.1%!important;width:10.3%!important;height:2.6%!important;
+  padding:0 2px!important;display:flex!important;align-items:center!important;
+  justify-content:center!important;text-align:center!important;
+  font-family:system-ui,sans-serif!important;
+  font-size:clamp(10px,1.25vw,17px)!important;
+  font-weight:800!important;line-height:1!important;
+  white-space:nowrap!important;overflow:hidden!important;text-overflow:clip!important;
+ }
+ #crProfilePseudo{top:84.9%!important}
+ #crProfileTeam{top:88.3%!important}
+ #crProfileVehicle{top:91.7%!important}
+}
 </style></head><body><div id="crPerfHud">FPS -- | RAF -- ms</div>
 <button id="pauseBtn" type="button" aria-label="Mettre le jeu en pause">Ⅱ</button><div id="pauseLayer" role="dialog" aria-modal="true" aria-label="Jeu en pause"><div id="pauseCard"><h2>PAUSE</h2><p>La course est arrêtée.</p><button id="resumeBtn" type="button">▶ REPRENDRE</button><button id="pauseMonitorBtn" type="button">TÉMOINS : OFF</button><button id="pauseMenuBtn" type="button">⌂ RETOUR AU MENU</button></div></div>
 <div id="w"><canvas id="c" width="320" height="224"></canvas></div>
