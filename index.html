@@ -2002,7 +2002,7 @@ function update(dt){const N=segs.length,ps=segs[Math.floor((pos+playerZ)/segL)%N
   const driftTarget=driftHold>0&&state=='play'?1:0;
   drift+=(driftTarget-drift)*Math.min(1,dt*(driftTarget?7.0:2.5));
   drift=Math.max(0,Math.min(1,drift));
-  if(drift<.025){driftSide=0;driftMarkClock=0}if(state=='play'&&Math.abs(st)>.18&&speed>MAX*.12&&Math.random()<dt*10){__crEmitSmoke(W/2-sw*.28,H-22,(Math.random()-.5)*8);__crEmitSmoke(W/2+sw*.28,H-22,(Math.random()-.5)*8)}
+  if(drift<.025){driftSide=0;driftMarkClock=0}if(state=='play'&&Math.abs(st)>.18&&speed>MAX*.12&&Math.random()<dt*10){__crEmitSmoke(W/2-VW[myV]*100,H-22,(Math.random()-.5)*8);__crEmitSmoke(W/2+VW[myV]*100,H-22,(Math.random()-.5)*8)}
   if(ac&&window.__driftSqueal){const squeal=drift>.12?Math.min(.15,.012+drift*.115):0;window.__driftSqueal.gain.setTargetAtTime(squeal,ac.currentTime,.09)}
   if(braking&&!driftStart)speed-=MAX*(drift>.15?.10:.9)*(.5+.5*gripF)*dt;
   if(offRoad()&&speed>MAX*.25)speed-=MAX*.7*dt;
