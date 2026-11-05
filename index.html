@@ -1431,7 +1431,8 @@ function loop(t){
  const crMakeLayer=(title,width='min(90vw,440px)')=>{
   host.classList.add('cr-modal-open');
   const layer=document.createElement('div');layer.className='crMenuLayer';layer.style.cssText='position:absolute;inset:0;z-index:50;display:flex;align-items:center;justify-content:center;background:rgba(1,8,22,.92);padding:max(10px,env(safe-area-inset-top)) 10px max(10px,env(safe-area-inset-bottom));box-sizing:border-box;overflow:auto;pointer-events:auto';
-  const close=()=>{layer.remove();host.classList.remove('cr-modal-open');};
+  let onEsc=null;
+  const close=()=>{layer.remove();host.classList.remove('cr-modal-open');if(onEsc)document.removeEventListener('keydown',onEsc);};
   layer.addEventListener('click',e=>{if(e.target===layer)close()});
   const card=document.createElement('div');card.style.cssText='width:'+width+';max-height:90%;overflow:auto;padding:clamp(15px,3vw,24px);border:2px solid #78eaff;border-radius:18px;background:linear-gradient(145deg,#17395d,#10142c);box-shadow:0 14px 44px #000d;color:white;font:bold 15px system-ui;text-align:center;box-sizing:border-box';
   const h=document.createElement('h2');h.textContent=title;h.style.cssText='margin:0 0 16px;color:#9cecff;font-size:clamp(22px,5vw,30px);letter-spacing:.06em';
@@ -1440,8 +1441,8 @@ function loop(t){
   const btn=(label,fn,primary=false)=>{const b=document.createElement('button');b.type='button';b.textContent=label;b.style.cssText='flex:1;min-width:115px;padding:12px 10px;border:1px solid #b9f4ff;border-radius:11px;background:'+(primary?'linear-gradient(135deg,#247fa5,#18516f)':'#35435f')+';color:white;font:bold 14px system-ui;touch-action:manipulation';b.onclick=fn;return b};
   const back=btn('← RETOUR AU MENU',close,true);back.classList.add('cr-modal-back');
   actions.append(back);card.append(actions);layer.append(card);host.append(layer);
-  const onEsc=e=>{if(e.key==='Escape'||e.key==='BrowserBack'){e.preventDefault();close();}};
-  document.addEventListener('keydown',onEsc,{once:true});
+  onEsc=e=>{if(e.key==='Escape'||e.key==='BrowserBack'){e.preventDefault();close();}};
+  document.addEventListener('keydown',onEsc);
   return {layer,card,actions,btn,close};
  };
  const crShowModes=()=>{
