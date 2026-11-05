@@ -285,6 +285,20 @@ body.route-map-active .b,body.route-map-active #pauseBtn{display:none!important;
  #crProfileTeam{top:88.3%!important}
  #crProfileVehicle{top:91.9%!important}
 }
+/* V109 — final portrait capsule alignment, after previous rules. */
+@media (orientation:portrait){
+ #crProfileFields span{
+  left:20.3%!important;width:10.3%!important;height:2.6%!important;
+  padding:0 1px!important;display:flex!important;align-items:center!important;
+  justify-content:center!important;text-align:center!important;
+  font:700 clamp(7px,1.1vw,10px)/1 system-ui,sans-serif!important;
+  white-space:nowrap!important;overflow:hidden!important;text-overflow:clip!important;
+  text-shadow:0 1px 2px #000!important;
+ }
+ #crProfilePseudo{top:85.0%!important}
+ #crProfileTeam{top:88.4%!important}
+ #crProfileVehicle{top:91.8%!important}
+}
 /* V106 — responsive typography, hit targets and pause/monitor controls. */
 :root{--cr-ui-font:clamp(12px,1.7vmin,18px);--cr-ui-hit:clamp(42px,6.2vmin,58px)}
 #pauseCard{width:min(92vw, min(520px, calc(100vw - 24px)));max-height:min(88dvh,720px);overflow:auto;box-sizing:border-box;padding:clamp(14px,3.2vmin,28px);gap:clamp(8px,1.5vmin,14px)}
