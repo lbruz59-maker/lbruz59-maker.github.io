@@ -383,7 +383,8 @@ let crManualPaused=false;
 function crClearDriveInput(){for(const k in inp)inp[k]=0;document.querySelectorAll('[data-k]').forEach(b=>b.classList.remove('on'));}
 function crPauseGame(){if(crManualPaused||state==='menu'||state==='over'||state==='win'||state==='podium'||state==='mega')return;crManualPaused=true;crClearDriveInput();$('pauseLayer').style.display='flex';$('pauseBtn').style.display='none';try{if(ac&&ac.state==='running')ac.suspend()}catch(e){}}
 function crResumeGame(){if(!crManualPaused)return;crManualPaused=false;$('pauseLayer').style.display='none';$('pauseBtn').style.display=(state!=='menu'&&state!=='over'&&state!=='win'&&state!=='podium'&&state!=='mega')?'flex':'none';last=0;try{if(ac&&ac.state==='suspended'&&!document.hidden)ac.resume()}catch(e){}}
-function crSetMonitoring(on){window.__CR_PERF_VISIBLE__=!!on;if(crHud)crHud.style.display=window.__CR_PERF_VISIBLE__&&(state==='play'||crManualPaused)?'block':'none';const p=$('pauseMonitorBtn');if(p)p.textContent='TÉMOINS : '+(window.__CR_PERF_VISIBLE__?'ON':'OFF');}\n$('pauseBtn').addEventListener('click',crPauseGame);$('resumeBtn').addEventListener('click',crResumeGame);$('pauseMonitorBtn').addEventListener('click',()=>crSetMonitoring(!window.__CR_PERF_VISIBLE__));$('pauseMenuBtn').addEventListener('click',()=>{crManualPaused=false;$('pauseLayer').style.display='none';$('pauseBtn').style.display='none';toMenu()});
+function crSetMonitoring(on){window.__CR_PERF_VISIBLE__=!!on;if(crHud)crHud.style.display=window.__CR_PERF_VISIBLE__&&(state==='play'||crManualPaused)?'block':'none';const p=$('pauseMonitorBtn');if(p)p.textContent='TÉMOINS : '+(window.__CR_PERF_VISIBLE__?'ON':'OFF');}
+$('pauseBtn').addEventListener('click',crPauseGame);$('resumeBtn').addEventListener('click',crResumeGame);$('pauseMonitorBtn').addEventListener('click',()=>crSetMonitoring(!window.__CR_PERF_VISIBLE__));$('pauseMenuBtn').addEventListener('click',()=>{crManualPaused=false;$('pauseLayer').style.display='none';$('pauseBtn').style.display='none';toMenu()});
 addEventListener('keydown',e=>{if((e.key==='p'||e.key==='P')&&state!=='menu'){e.preventDefault();crManualPaused?crResumeGame():crPauseGame()}else if(e.key==='Escape'&&crManualPaused){e.preventDefault();e.stopImmediatePropagation();crResumeGame()}},true);
 const inp={l:0,r:0,g:0,b:0};
 const K={ArrowLeft:'l',a:'l',ArrowRight:'r',d:'r',ArrowUp:'g',w:'g',ArrowDown:'b',s:'b'};
@@ -1603,7 +1604,8 @@ function loop(t){
   row('Accélérateur','Gestion de l’accélération',['Automatique','Manuel'],()=>autoGas?0:1,v=>{autoGas=v===0?1:0;$('gz').textContent='Gaz : '+(autoGas?'AUTO':'MANUEL')});
   row('Commandes','Type d’interface',['Tactile','Clavier','Manette'],()=>({touch:0,keyboard:1,controller:2}[inputMode]??0),v=>{inputMode=['touch','keyboard','controller'][v];applyInputMode()});
   row('Bonus','Objets et bonus en course',['Activés','Désactivés'],()=>useItems?0:1,v=>{useItems=v===0?1:0;$('bn').textContent='Bonus : '+(useItems?'ON':'OFF')});
-  row('Difficulté','Niveau de pilotage',['Facile','Normal','Difficile'],()=>dfi,v=>{dfi=v;$('df').textContent='Difficulté : '+DF[dfi].n});\n  row('Monitoring','Affichage des témoins de performances',['OFF','ON'],()=>window.__CR_PERF_VISIBLE__?1:0,v=>crSetMonitoring(v===1));
+  row('Difficulté','Niveau de pilotage',['Facile','Normal','Difficile'],()=>dfi,v=>{dfi=v;$('df').textContent='Difficulté : '+DF[dfi].n});
+  row('Monitoring','Affichage des témoins de performances',['OFF','ON'],()=>window.__CR_PERF_VISIBLE__?1:0,v=>crSetMonitoring(v===1));
   const help=document.createElement('p');help.textContent='Tactile : boutons à l’écran. Clavier : flèches ou ZQSD, Espace pour les rapports, X pour le bonus, H pour le klaxon. Manette : stick ou croix directionnelle. Bouton BACK/SELECT (8) : pause/reprise. Bouton START (9) : valider.';help.style.cssText='font:12px/1.5 system-ui;color:#cce8fa;text-align:left;margin-top:12px';card.insertBefore(help,actions);
  };
  const statusFor=cls=>{
