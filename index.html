@@ -747,7 +747,7 @@ function outrunLeaderId(){const ids=[myId].concat(remotes.filter(r=>r.presence&&
 }
 function finishRace(){if(MP&&mpRaceStartAt>0)raceT=Math.max(0,(Date.now()-mpRaceStartAt)/1000);rts[raceNo-1]=raceT;state='podium';podT=0;say('Race complete!',1.5,1.1);jingle()}
 function nextRace(){raceNo++;raceT=0;stage++;cid=stage-1;buildCourse(cid);forkSaid=0;gridStart();state='wait';waitT=0;rdyT=Date.now();mpStartAt=0;mpRaceStartAt=0;msg='COURSE '+raceNo+' / '+NR();msgT=3}
-function toMenu(){if(window.DUEL){parent.postMessage({t:'duelend'},'*');return}crManualPaused=false;$('pauseLayer').style.display='none';$('pauseBtn').style.display='none';MODE=MODE0;MP=0;state='menu';$('menu').style.display='flex';$('md').textContent='Mode : '+['OUTRUN (5 étapes, fourches)','GRAND TOUR (15 circuits)','CHASE H.Q. (police)','COURSE LIBRE','TOUR DU MONDE (10 capitales)'][MODE];if(window.__crSyncMenuArtwork)window.__crSyncMenuArtwork();try{speechSynthesis.cancel()}catch(e){}}
+function toMenu(){if(window.DUEL){parent.postMessage({t:'duelend'},'*');return}crManualPaused=false;$('pauseLayer').style.display='none';$('pauseBtn').style.display='none';MODE=MODE0;MP=0;state='menu';$('menu').style.display='flex';$('md').textContent='Mode : '+['OUTRUN (5 étapes, fourches)','GRAND TOUR (15 circuits)','CHASE H.Q. (police)','COURSE LIBRE','TOUR DU MONDE (10 capitales)'][MODE];if(window.__crSyncMenuArtwork)window.__crSyncMenuArtwork();if(window.__crRefreshProfileFields)window.__crRefreshProfileFields();try{speechSynthesis.cancel()}catch(e){}}
 function drawPodium(L,title,t,mega){const g=ctx.createLinearGradient(0,0,0,H);g.addColorStop(0,mega?'#2a0a4a':'#0a1a3a');g.addColorStop(1,mega?'#7a2a6a':'#1a3a6a');ctx.fillStyle=g;ctx.fillRect(0,0,W,H);
  ctx.save();ctx.translate((W-320)/2,0);for(let i=0;i<3;i++){const cx=70+i*90+Math.sin(t*.8+i)*10,gr=ctx.createLinearGradient(cx,0,cx,190);gr.addColorStop(0,'#ffffff55');gr.addColorStop(1,'#ffffff00');ctx.fillStyle=gr;ctx.beginPath();ctx.moveTo(cx-6,0);ctx.lineTo(cx+6,0);ctx.lineTo(cx+60,190);ctx.lineTo(cx-60,190);ctx.fill()}
  ctx.fillStyle='#14143a';ctx.fillRect(-W,190,W*3,H);const sl=[[1,160,70],[0,90,52],[2,230,36]];
@@ -1460,20 +1460,17 @@ function loop(t){
   if(!panel){
    panel=document.createElement('div');panel.id='crProfileFields';
    panel.style.cssText='position:absolute;z-index:9;inset:0;pointer-events:none';
-   const make=(id,top,placeholder)=>{const input=document.createElement('input');input.id=id;input.type='text';input.placeholder=placeholder;input.autocomplete='off';input.spellcheck=false;input.maxLength=id==='crProfilePseudo'?10:14;input.style.cssText='position:absolute;left:47.5%;top:'+top+'%;width:44%;height:3.1%;min-height:18px;box-sizing:border-box;padding:0 8px;border:1px solid #62cfff;border-radius:9px;background:rgba(0,10,30,.55);color:#fff;font:800 clamp(10px,1.7vh,17px) system-ui;text-shadow:0 1px 2px #000;outline:none;pointer-events:auto';input.addEventListener('focus',()=>input.style.boxShadow='0 0 9px #00dfff');input.addEventListener('blur',()=>input.style.boxShadow='none');panel.appendChild(input);return input};
-   const pseudo=make('crProfilePseudo',84.3,'Pseudo');const team=make('crProfileTeam',88.1,'Team');const vehicle=make('crProfileVehicle',91.9,'Véhicule');
-   pseudo.value=localStorage.getItem('cr_name')||(/^J[A-Z0-9]{3}$/.test(myName)?'':myName||'');
-   team.value=window.crTeam||'';
-   window.crVehicleLabel=localStorage.getItem('cr_vehicle_label')||((VEH&&VEH[myV])?VEH[myV]:'');
-   vehicle.value=window.crVehicleLabel;
-   pseudo.addEventListener('input',()=>{myName=pseudo.value.trim().toUpperCase().slice(0,10);try{localStorage.setItem('cr_name',myName)}catch(e){}});
-   team.addEventListener('input',()=>{window.crTeam=team.value.trim().toUpperCase().slice(0,14);try{localStorage.setItem('cr_team',window.crTeam)}catch(e){}});
-   vehicle.addEventListener('input',()=>{window.crVehicleLabel=vehicle.value.trim().slice(0,14);try{localStorage.setItem('cr_vehicle_label',window.crVehicleLabel)}catch(e){}});
+   const make=(id,top)=>{const span=document.createElement('span');span.id=id;span.style.cssText='position:absolute;left:48%;top:'+top+'%;width:42%;height:3.1%;display:flex;align-items:center;overflow:hidden;box-sizing:border-box;padding:0 8px;color:#fff;font:900 clamp(9px,1.6vh,16px) system-ui;text-shadow:0 1px 3px #000;white-space:nowrap;text-overflow:ellipsis';panel.appendChild(span);return span};
+   make('crProfilePseudo',84.3);make('crProfileTeam',88.1);make('crProfileVehicle',91.9);
    $('menu').appendChild(panel);
   }
-  const v=document.getElementById('crProfileVehicle');if(v&&!v.value)v.value=window.crVehicleLabel||((VEH&&VEH[myV])?VEH[myV]:'');
- };
- crProfileTag();
+  const name=document.getElementById('crProfilePseudo');
+  const team=document.getElementById('crProfileTeam');
+  const vehicle=document.getElementById('crProfileVehicle');
+  if(name)name.textContent=(myName&&!/^J[A-Z0-9]{3}$/.test(myName))?myName:'';
+  if(team)team.textContent=window.crTeam||'';
+  if(vehicle)vehicle.textContent=(VEH&&VEH[myV])?VEH[myV]:'';
+ };window.__crRefreshProfileFields=crProfileTag;crProfileTag();
  const crMakeLayer=(title,width='min(90vw,440px)')=>{
   host.classList.add('cr-modal-open');
   const layer=document.createElement('div');layer.className='crMenuLayer';layer.style.cssText='position:absolute;inset:0;z-index:50;display:flex;align-items:center;justify-content:center;background:rgba(1,8,22,.92);padding:max(10px,env(safe-area-inset-top)) 10px max(10px,env(safe-area-inset-bottom));box-sizing:border-box;overflow:auto;pointer-events:auto';
@@ -1553,6 +1550,7 @@ function loop(t){
   if(!ranking.length){const p=document.createElement('p');p.textContent='Le classement se remplit avec les courses terminées sur cet appareil.';card.insertBefore(p,actions)}
  };
  const crShowMultiplayer=()=>{
+  if(!window.__crRoomJoinedAt)window.__crRoomJoinedAt=Date.now();
   const {layer,card,actions,btn}=crMakeLayer('MULTIJOUEUR · SALLE','min(94vw,720px)');
   const roomInput=document.createElement('input');roomInput.value=curRoom||'ARCADE';roomInput.maxLength=12;roomInput.placeholder='Nom de la salle';roomInput.style.cssText='width:100%;box-sizing:border-box;padding:12px;margin:6px 0;border:1px solid #8beaff;border-radius:9px;background:#07152b;color:white;font:bold 17px system-ui;text-transform:uppercase';card.insertBefore(roomInput,actions);
   const status=document.createElement('div');status.style.cssText='color:#c9eaff;font:12px system-ui;text-align:left;margin:8px 0';card.insertBefore(status,actions);
@@ -1563,8 +1561,9 @@ function loop(t){
   ['OUTRUN','GRAND TOUR','CHASE H.Q.','CONTRE-LA-MONTRE','VOYAGE'].forEach((v,i)=>{const o=document.createElement('option');o.value=String([0,1,2,3,4][i]);o.textContent=v;modeSelect.appendChild(o)});modeSelect.value=String(MODE);modeWrap.appendChild(modeSelect);
   let joined=false,host=false;
   const refresh=()=>{
-   const activeIds=[myId,...remotes.map(r=>r.peer)].filter(Boolean).map(String).sort((a,b)=>a.localeCompare(b));
-   const electedHost=activeIds[0]||myId;
+   const candidates=[{id:myId,at:Number(window.__crRoomJoinedAt)||Date.now()},...remotes.map(r=>({id:r.peer,at:Number(r.presence&&r.presence.jAt)||Date.now()}))].filter(x=>x.id);
+   candidates.sort((a,b)=>a.at-b.at||String(a.id).localeCompare(String(b.id)));
+   const electedHost=candidates[0]&&candidates[0].id||myId;
    host=joined&&electedHost===myId;
    window.__crRoomHost=host;
    const hostPeer=remotes.find(r=>r.peer===electedHost);
@@ -1580,7 +1579,7 @@ function loop(t){
    if(!remotes.length){const p=document.createElement('div');p.textContent='En attente d’autres joueurs dans '+(curRoom||'la salle')+'…';p.style.cssText='color:#a9cde2;font:12px system-ui;padding:10px';players.appendChild(p)}
   };
   modeSelect.onchange=()=>{if(!host)return;MODE=+modeSelect.value;MODE0=MODE;try{localStorage.setItem('cr_room_mode_'+curRoom,String(MODE))}catch(e){}};
-  const join=btn('REJOINDRE / CRÉER LA SALLE',()=>{curRoom=(roomInput.value||'ARCADE').toUpperCase().replace(/[^A-Z0-9_-]/g,'').slice(0,12)||'ARCADE';$('room').value=curRoom;if(!window.__crRoomJoinedAt)window.__crRoomJoinedAt=Date.now();joined=true;try{const saved=localStorage.getItem('cr_room_mode_'+curRoom);if(saved!==null)MODE=+saved}catch(e){}modeSelect.value=String(MODE);$('mp').click();refresh();toast('Salle '+curRoom+' : connexion en cours')},true);actions.insertBefore(join,actions.firstChild);
+  const join=btn('REJOINDRE / CRÉER LA SALLE',()=>{curRoom=(roomInput.value||'ARCADE').toUpperCase().replace(/[^A-Z0-9_-]/g,'').slice(0,12)||'ARCADE';$('room').value=curRoom;joined=true;try{const saved=localStorage.getItem('cr_room_mode_'+curRoom);if(saved!==null)MODE=+saved}catch(e){}modeSelect.value=String(MODE);$('mp').click();refresh();toast('Salle '+curRoom+' : connexion en cours')},true);actions.insertBefore(join,actions.firstChild);
   actions.insertBefore(btn('DÉMARRER LA COURSE',()=>{if(!joined){toast('Rejoins une salle avant de démarrer');return}refresh();close();safeClick('go')},false),actions.children[1]||null);
   refresh();const poll=setInterval(()=>{if(!layer.isConnected){clearInterval(poll);return}refresh()},900);
  };
