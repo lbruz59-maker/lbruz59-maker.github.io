@@ -266,8 +266,21 @@ body.route-map-active .b,body.route-map-active #pauseBtn{display:none!important;
 @media(max-width:700px){#crMenuHotspots .cr-status{font-size:7px;padding:1px 3px;border-radius:3px}}
 
 
+
+/* V106 — responsive typography, hit targets and pause/monitor controls. */
+:root{--cr-ui-font:clamp(12px,1.7vmin,18px);--cr-ui-hit:clamp(42px,6.2vmin,58px)}
+#pauseCard{width:min(92vw, min(520px, calc(100vw - 24px)));max-height:min(88dvh,720px);overflow:auto;box-sizing:border-box;padding:clamp(14px,3.2vmin,28px);gap:clamp(8px,1.5vmin,14px)}
+#pauseCard p{font-size:clamp(12px,1.8vmin,16px)}
+#pauseCard button,#crMenuHotspots .crMenuLayer button{box-sizing:border-box;min-height:var(--cr-ui-hit);font-size:var(--cr-ui-font);line-height:1.2;padding:clamp(9px,1.5vmin,15px) clamp(10px,2vw,18px);white-space:normal;overflow-wrap:anywhere;max-width:100%}
+#crMenuHotspots .crMenuLayer>div{box-sizing:border-box;width:min(94vw,760px)!important;max-width:calc(100vw - 16px)!important;max-height:88dvh!important;overflow:auto!important;padding:clamp(12px,2.4vmin,24px)!important}
+#crMenuHotspots .crMenuLayer{font-size:var(--cr-ui-font)}
+#crMenuHotspots .crMenuLayer input,#crMenuHotspots .crMenuLayer select{box-sizing:border-box;max-width:100%;min-width:0;font-size:clamp(12px,1.6vmin,17px)}
+#crMenuHotspots>button{box-sizing:border-box;min-width:0;min-height:clamp(34px,5.5vmin,58px);font-size:clamp(10px,1.5vmin,17px);line-height:1.12;overflow-wrap:anywhere;touch-action:manipulation}
+#pauseBtn{width:clamp(42px,7vmin,54px);height:clamp(42px,7vmin,54px);font-size:clamp(18px,3vmin,26px)}
+@media(max-width:600px){#pauseCard{width:calc(100vw - 24px)}#crMenuHotspots .crMenuLayer button{min-height:44px}#crMenuHotspots .crMenuLayer>div{max-height:84dvh!important}}
+@media(orientation:landscape) and (max-height:500px){#pauseCard{max-height:92dvh;padding:10px 14px}#pauseCard button{margin:4px 0;min-height:38px}#crMenuHotspots .crMenuLayer>div{max-height:92dvh!important}}
 </style></head><body><div id="crPerfHud">FPS -- | RAF -- ms</div>
-<button id="pauseBtn" type="button" aria-label="Mettre le jeu en pause">Ⅱ</button><div id="pauseLayer" role="dialog" aria-modal="true" aria-label="Jeu en pause"><div id="pauseCard"><h2>PAUSE</h2><p>La course est arrêtée.</p><button id="resumeBtn" type="button">▶ REPRENDRE</button><button id="pauseMenuBtn" type="button">⌂ RETOUR AU MENU</button></div></div>
+<button id="pauseBtn" type="button" aria-label="Mettre le jeu en pause">Ⅱ</button><div id="pauseLayer" role="dialog" aria-modal="true" aria-label="Jeu en pause"><div id="pauseCard"><h2>PAUSE</h2><p>La course est arrêtée.</p><button id="resumeBtn" type="button">▶ REPRENDRE</button><button id="pauseMonitorBtn" type="button">TÉMOINS : OFF</button><button id="pauseMenuBtn" type="button">⌂ RETOUR AU MENU</button></div></div>
 <div id="w"><canvas id="c" width="320" height="224"></canvas></div>
 <div class="b drive-control" id="l" data-k="l">◀</div><div class="b drive-control" id="r" data-k="r">▶</div>
 <div class="b drive-control" id="g" data-k="g">GAZ</div><div class="b drive-control" id="br" data-k="b">FREIN</div>
@@ -370,7 +383,7 @@ let crManualPaused=false;
 function crClearDriveInput(){for(const k in inp)inp[k]=0;document.querySelectorAll('[data-k]').forEach(b=>b.classList.remove('on'));}
 function crPauseGame(){if(crManualPaused||state==='menu'||state==='over'||state==='win'||state==='podium'||state==='mega')return;crManualPaused=true;crClearDriveInput();$('pauseLayer').style.display='flex';$('pauseBtn').style.display='none';try{if(ac&&ac.state==='running')ac.suspend()}catch(e){}}
 function crResumeGame(){if(!crManualPaused)return;crManualPaused=false;$('pauseLayer').style.display='none';$('pauseBtn').style.display=(state!=='menu'&&state!=='over'&&state!=='win'&&state!=='podium'&&state!=='mega')?'flex':'none';last=0;try{if(ac&&ac.state==='suspended'&&!document.hidden)ac.resume()}catch(e){}}
-$('pauseBtn').addEventListener('click',crPauseGame);$('resumeBtn').addEventListener('click',crResumeGame);$('pauseMenuBtn').addEventListener('click',()=>{crManualPaused=false;$('pauseLayer').style.display='none';$('pauseBtn').style.display='none';toMenu()});
+function crSetMonitoring(on){window.__CR_PERF_VISIBLE__=!!on;if(crHud)crHud.style.display=window.__CR_PERF_VISIBLE__&&(state==='play'||crManualPaused)?'block':'none';const p=$('pauseMonitorBtn');if(p)p.textContent='TÉMOINS : '+(window.__CR_PERF_VISIBLE__?'ON':'OFF');}\n$('pauseBtn').addEventListener('click',crPauseGame);$('resumeBtn').addEventListener('click',crResumeGame);$('pauseMonitorBtn').addEventListener('click',()=>crSetMonitoring(!window.__CR_PERF_VISIBLE__));$('pauseMenuBtn').addEventListener('click',()=>{crManualPaused=false;$('pauseLayer').style.display='none';$('pauseBtn').style.display='none';toMenu()});
 addEventListener('keydown',e=>{if((e.key==='p'||e.key==='P')&&state!=='menu'){e.preventDefault();crManualPaused?crResumeGame():crPauseGame()}else if(e.key==='Escape'&&crManualPaused){e.preventDefault();e.stopImmediatePropagation();crResumeGame()}},true);
 const inp={l:0,r:0,g:0,b:0};
 const K={ArrowLeft:'l',a:'l',ArrowRight:'r',d:'r',ArrowUp:'g',w:'g',ArrowDown:'b',s:'b'};
@@ -1424,7 +1437,7 @@ function drawOutrunMap(t){
 // ---- LOGIQUE + DIAGNOSTIC DE CADENCE NATIF/WEBVIEW
 let last=0,ema=.016,perfT=0,__crLoadBad=0,__crLoadGood=0,crFrames=0,crWindowStart=0,crFps=0,crUpdateMs=0,crRenderMs=0,crPollMs=0,crHudAt=0,crLastRaf=0,crRafSum=0,crRafCount=0,crRafMax=0,crNativeStats={},crFrameSamples=new Array(180),crFrameSampleCount=0,crFrameSampleWrite=0,crUpdateSamples=new Array(180),crRenderSamples=new Array(180),crWorkSampleCount=0,crWorkSampleWrite=0,crLongFrames=0;
 window.__COAST_RUSH_PERF__={fps:0,rafAvgMs:0,rafMaxMs:0,pollMs:0,updateMs:0,renderMs:0,idleMs:0,refreshHz:0,nativeFps:0,nativeAvgMs:0,nativeMaxMs:0,nativeDropped:0,decoCacheHits:0,decoCacheMisses:0,decoCacheEntries:0,decoCacheMB:0,routeThumbs:0,shadeCacheEntries:0,fogCacheEntries:0,gradientCacheEntries:0,radialCacheEntries:0,activeCarSegments:0};window.__COAST_RUSH_PERF__.renderAllocStrategy='reused projection records; scalar loops; shared fork sprite';
-window.__CR_PERF_VISIBLE__=true;addEventListener('keydown',e=>{if(e.key==='F3'){window.__CR_PERF_VISIBLE__=!window.__CR_PERF_VISIBLE__;if(crHud)crHud.style.display=window.__CR_PERF_VISIBLE__&&state==='play'?'block':'none';e.preventDefault();}});
+window.__CR_PERF_VISIBLE__=false;addEventListener('keydown',e=>{if(e.key==='F3'){window.__CR_PERF_VISIBLE__=!window.__CR_PERF_VISIBLE__;if(crHud)crHud.style.display=window.__CR_PERF_VISIBLE__&&(state==='play'||crManualPaused)?'block':'none';e.preventDefault();}});
 const crHud=document.getElementById('crPerfHud');
 function crReadNativeFrames(){try{if(typeof CoastRushFrameStats!=='undefined'&&CoastRushFrameStats&&typeof CoastRushFrameStats.getStats==='function')crNativeStats=JSON.parse(CoastRushFrameStats.getStats()||'{}');else crNativeStats={bridge:'absent'}}catch(e){crNativeStats={bridge:'error',bridgeError:String(e&&e.message||e)}}}
 let __crRouteMapClassState=null,__crPauseButtonVisible=null;
@@ -1590,8 +1603,8 @@ function loop(t){
   row('Accélérateur','Gestion de l’accélération',['Automatique','Manuel'],()=>autoGas?0:1,v=>{autoGas=v===0?1:0;$('gz').textContent='Gaz : '+(autoGas?'AUTO':'MANUEL')});
   row('Commandes','Type d’interface',['Tactile','Clavier','Manette'],()=>({touch:0,keyboard:1,controller:2}[inputMode]??0),v=>{inputMode=['touch','keyboard','controller'][v];applyInputMode()});
   row('Bonus','Objets et bonus en course',['Activés','Désactivés'],()=>useItems?0:1,v=>{useItems=v===0?1:0;$('bn').textContent='Bonus : '+(useItems?'ON':'OFF')});
-  row('Difficulté','Niveau de pilotage',['Facile','Normal','Difficile'],()=>dfi,v=>{dfi=v;$('df').textContent='Difficulté : '+DF[dfi].n});
-  const help=document.createElement('p');help.textContent='Tactile : boutons à l’écran. Clavier : flèches ou ZQSD, Espace pour les rapports, X pour le bonus, H pour le klaxon. Manette : stick ou croix directionnelle.';help.style.cssText='font:12px/1.5 system-ui;color:#cce8fa;text-align:left;margin-top:12px';card.insertBefore(help,actions);
+  row('Difficulté','Niveau de pilotage',['Facile','Normal','Difficile'],()=>dfi,v=>{dfi=v;$('df').textContent='Difficulté : '+DF[dfi].n});\n  row('Monitoring','Affichage des témoins de performances',['OFF','ON'],()=>window.__CR_PERF_VISIBLE__?1:0,v=>crSetMonitoring(v===1));
+  const help=document.createElement('p');help.textContent='Tactile : boutons à l’écran. Clavier : flèches ou ZQSD, Espace pour les rapports, X pour le bonus, H pour le klaxon. Manette : stick ou croix directionnelle. Bouton BACK/SELECT (8) : pause/reprise. Bouton START (9) : valider.';help.style.cssText='font:12px/1.5 system-ui;color:#cce8fa;text-align:left;margin-top:12px';card.insertBefore(help,actions);
  };
  const statusFor=cls=>{
   if(cls==='music')return musOn?'ON':'OFF';
@@ -1736,7 +1749,7 @@ function pollPad(){if(inputMode!=='controller'){gpad.g=gpad.b=0;padAx=0;return}c
  if(!gp){gpad.g=gpad.b=0;padAx=0;return}const B=i=>gp.buttons[i]&&gp.buttons[i].pressed,ax0=gp.axes[0]||0,ay0=gp.axes[1]||0;
  if(state=='menu'&&$('menu').style.display!='none'){const dn=B(13)||B(15)||ay0>.6||ax0>.6,up=B(12)||B(14)||ay0<-.6||ax0<-.6,ok=B(0);if(dn&&!pp[20])navFocus(1);if(up&&!pp[21])navFocus(-1);if(ok&&!pp[22]){const el=document.activeElement;if(el&&el!==document.body&&el.click)el.click()}pp[20]=dn;pp[21]=up;pp[22]=ok;gpad.g=gpad.b=0;padAx=0;return}
  gpad.g=B(0)||B(7)||B(12)?1:0;gpad.b=B(1)||B(6)||B(13)?1:0;const v=ax0+(B(15)?1:0)-(B(14)?1:0);padAx=Math.abs(v)>.15?Math.max(-1,Math.min(1,v)):0;
- if(B(2)&&!pp[2])useItem();if((B(3)||B(5))&&!pp[3])toggleGear();if(B(4)&&!pp[4])horn();if(B(0)&&!pp[0])confirmAct();if(B(9)&&!pp[9])confirmAct();if(B(8)&&!pp[8]&&state!='menu')toMenu();
+ if(B(2)&&!pp[2])useItem();if((B(3)||B(5))&&!pp[3])toggleGear();if(B(4)&&!pp[4])horn();if(B(0)&&!pp[0])confirmAct();if(B(9)&&!pp[9])confirmAct();if(B(8)&&!pp[8]&&state!='menu'){if(crManualPaused)crResumeGame();else crPauseGame();}
  pp[0]=B(0);pp[2]=B(2);pp[3]=B(3)||B(5);pp[4]=B(4);pp[8]=B(8);pp[9]=B(9)}
 const verWarn={};function netTick(dt){if(!NET())return;for(const r of remotes){const q=r.presence;if(q&&q.ver!==VER&&!verWarn[r.peer]){verWarn[r.peer]=1;toast('Joueur '+(q.n||'?')+' : version différente ('+(q.ver||'ancienne')+' / '+VER+')')}}
  if(flash-lastSend>.2){lastSend=flash;netSend({cid,pos:Math.round(pos+playerZ),px:+px.toFixed(2),sp:Math.round(speed),fr:forkRoute,fb:forkRouteBy,n:myName,tm:window.crTeam||'',vn:window.crVehicleLabel||((VEH&&VEH[myV])||''),jAt:window.__crRoomJoinedAt||0,roomMode:MODE,c:myCol,rdy:rdyT,goAt:mpStartAt,stg:stage,sc:Math.floor(score),st:state,v:myV,mp:MP,rts:rts,rr:(state=='podium'||state=='mega')?raceNo-1:raceNo,bn:objs.filter(o=>o.k=='b'||o.k=='o').slice(-3).map(o=>[Math.round(o.z),+o.o.toFixed(2),o.id,o.k=='o'?1:0]),sh:myShell,ea:eatQ.slice(-4),at:atq.slice(-8),ch:chaseHits,bh:bnd?bnd.hp:null,cpk:cposk,mk:musk>0?1:0})}
