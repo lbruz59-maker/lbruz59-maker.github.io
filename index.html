@@ -208,7 +208,8 @@ body.route-map-active .b,body.route-map-active #pauseBtn{display:none!important;
    CLASSEMENT, COMMANDES, QUITTER (dans cet ordre). */
 #crMenuHotspots .play{display:none!important;pointer-events:none!important}
 #crMenuHotspots .multiplayer{left:80.0%;top:21.8%;width:18.0%;height:7.0%}
-#crMenuHotspots .mode{left:80.0%;top:29.6%;width:18.0%;height:7.0%;z-index:6;border:1px solid #5deaff!important;border-radius:22px!important;background:linear-gradient(145deg,#0a2447,#06152c)!important;color:#fff!important;box-shadow:0 0 12px #00dfff!important;clip-path:none!important;font:bold clamp(8px,1.05vw,15px) system-ui!important;text-shadow:0 0 6px #00cfff}
+/* Zone transparente exactement sur le bouton MODE DE JEU déjà dessiné dans le visuel. */
+#crMenuHotspots .mode{left:80.0%;top:25.5%;width:18.0%;height:7.0%;z-index:6;border:0!important;border-radius:0!important;background:transparent!important;color:transparent!important;box-shadow:none!important;clip-path:none!important;font-size:0!important;text-shadow:none!important}
 #crMenuHotspots .garage{left:80.0%;top:37.7%;width:18.0%;height:7.0%}
 #crMenuHotspots .career{left:80.0%;top:45.7%;width:18.0%;height:7.0%}
 #crMenuHotspots .leaderboard{left:80.0%;top:53.7%;width:18.0%;height:7.0%}
@@ -1543,7 +1544,6 @@ function loop(t){
   const help=document.createElement('p');help.textContent='Tactile : boutons à l’écran. Clavier : flèches ou ZQSD, Espace pour les rapports, X pour le bonus, H pour le klaxon. Manette : stick ou croix directionnelle.';help.style.cssText='font:12px/1.5 system-ui;color:#cce8fa;text-align:left;margin-top:12px';card.insertBefore(help,actions);
  };
  const statusFor=cls=>{
-  if(cls==='mode')return ['OUTRUN','GRAND TOUR','CHASE H.Q.','COURSE LIBRE','TOUR DU MONDE'][MODE]||'OUTRUN';
   if(cls==='music')return musOn?'ON':'OFF';
   if(cls==='sound')return vm?'OFF':'ON';
   if(cls==='tilt')return tiltMode===0?'OFF':tiltMode===1?'ON':'INVERSÉ';
@@ -1571,7 +1571,7 @@ function loop(t){
   });
  };
  defs.forEach(([cls,label,fn])=>{
-  const b=document.createElement('button');b.type='button';b.className=cls;if(cls==='mode')b.textContent='MODE DE JEU';
+  const b=document.createElement('button');b.type='button';b.className=cls;
   b.setAttribute('aria-label',label);b.title=label;
   b.addEventListener('click',e=>{e.preventDefault();e.stopPropagation();try{fn()}catch(err){toast('Action indisponible : '+(err&&err.message||err))}sync()});
   host.appendChild(b);
