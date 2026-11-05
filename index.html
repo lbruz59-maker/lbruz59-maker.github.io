@@ -1841,10 +1841,11 @@ function update(dt){const N=segs.length,ps=segs[Math.floor((pos+playerZ)/segL)%N
  if(state=='brief'){briefT+=dt;if(briefT>BL){state=MODE==2?'play':'count';if(MODE!=2)cd=3.9;else{speed=MAX*.35;msg='POURSUITE !';msgT=2}}}
  if(state=='arrest'){arT+=dt;if(arT>3.8){state='play';endCourse()}}
  if(state=='escape'){escT+=dt;if(escT>3.6){bnd.hp=0;state='over';winT=0;msg='RETOUR À LA CIRCULATION';sayF('Échec de mission. Vous êtes rétrogradé à la circulation.')}}
- if(state=='wait'){waitT+=dt;const R=remotes.filter(r=>r.presence&&(MP?r.presence.mp:r.presence.cid!==undefined));if(waitT>14||(waitT>1.5&&R.every(r=>MP?(r.presence.rr||0)>=raceNo:r.presence.rdy>0))){state='count';cd=3.9}}
+ if(state=='wait'){waitT+=dt;speed=0;pxVel=0;const R=remotes.filter(r=>r.presence&&(MP?r.presence.mp:r.presence.cid!==undefined));if(waitT>14||(waitT>1.5&&R.every(r=>MP?(r.presence.rr||0)>=raceNo:r.presence.rdy>0))){state='count';cd=3.9;speed=0;pxVel=0;inp.g=0;gpad.g=0;autoGas=0}}
  if(state=='podium'){podT+=dt;if(podEntries(raceNo-1).every(e=>e.t!=null)&&podT>8||podT>30){if(raceNo>=NR()){state='mega';podT=0}else nextRace()}}
  if(state=='mega')podT+=dt;
- if(state=='count'){const o=Math.ceil(cd);cd-=dt;const n=Math.ceil(cd);if(n!=o&&n>0){beep(440);say(String(n),1.5,1.2)}if(cd<=0){state='play';beep(880);say('Go!',1.4,1.2)}}
+ if(state=='count'){// Verrouillage moteur : aucune accélération ni déplacement avant la fin du compte à rebours.
+  speed=0;pxVel=0;const o=Math.ceil(cd);cd=Math.max(0,cd-dt);const n=Math.ceil(cd);if(n!=o&&n>0){beep(440);say(String(n),1.5,1.2)}if(cd<=0){speed=0;pxVel=0;state='play';beep(880);say('Go!',1.4,1.2)}}
  cv.style.transform=(shake>0||crash>0)?'translate('+((Math.random()-.5)*8)+'px,'+((Math.random()-.5)*8)+'px)':'';
  if(state=='play'){if(fk()&&MP&&forkRoute<0&&isOutrunLeader()&&ps.i>=N-FORK+12&&Math.abs(px)>.22){forkRoute=px<0?0:1;forkRouteBy=myId;remoteLeaderRoute=forkRoute;}
    if(fk()&&MP&&forkRoute>=0&&!isOutrunLeader()&&ps.i>=N-FORK+7){
