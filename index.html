@@ -208,6 +208,22 @@ body.route-map-active .b,body.route-map-active #pauseBtn{display:none!important;
    CLASSEMENT, COMMANDES, QUITTER (dans cet ordre). */
 /* JOUER : zone active sur le bouton déjà dessiné dans l'illustration, en bas à gauche. */
 #crMenuHotspots .play{display:block!important;left:25.5%;top:84.0%;width:23.0%;height:10.5%;z-index:7;pointer-events:auto!important;background:transparent!important;border:0!important;box-shadow:none!important;clip-path:none!important}
+/* Hitboxes responsives sur le visuel étiré plein écran. */
+#crMenuHotspots button{clip-path:none!important}
+#crMenuHotspots .multiplayer{left:80%;top:21.8%;width:18%;height:7%}
+#crMenuHotspots .mode{left:80%;top:29.8%;width:18%;height:7%}
+#crMenuHotspots .garage{left:80%;top:37.7%;width:18%;height:7%}
+#crMenuHotspots .career{left:80%;top:45.7%;width:18%;height:7%}
+#crMenuHotspots .leaderboard{left:80%;top:53.7%;width:18%;height:7%}
+#crMenuHotspots .commands{left:80%;top:61.6%;width:18%;height:7%}
+#crMenuHotspots .quit{left:80%;top:69.6%;width:18%;height:7%}
+#crMenuHotspots .music{left:80%;top:3.5%;width:17.5%;height:5.4%}
+#crMenuHotspots .sound{left:80%;top:9%;width:17.5%;height:5.4%}
+@media (orientation:portrait){#crProfileFields input{left:47.5%;width:44%;height:3.1%;font-size:clamp(10px,1.7vh,17px)}}
+@media (orientation:landscape){
+ #crProfileFields input{left:22%;width:28%;height:4.1%;font-size:clamp(9px,2.1vh,16px)}
+ #crProfilePseudo{top:85%}#crProfileTeam{top:89%}#crProfileVehicle{top:93%}
+}
 #crMenuHotspots .multiplayer{left:80.0%;top:21.8%;width:18.0%;height:7.0%}
 /* Zone transparente exactement sur le bouton MODE DE JEU déjà dessiné dans le visuel. */
 #crMenuHotspots .mode{left:80.0%;top:25.5%;width:18.0%;height:7.0%;z-index:6;border:0!important;border-radius:0!important;background:transparent!important;color:transparent!important;box-shadow:none!important;clip-path:none!important;font-size:0!important;text-shadow:none!important}
@@ -1440,12 +1456,19 @@ function loop(t){
  };
  crEnsureProfile();
  const crProfileTag=()=>{
-  let tag=document.getElementById('crProfileTag');
-  if(!tag){tag=document.createElement('div');tag.id='crProfileTag';tag.style.cssText='position:absolute;z-index:8;left:10.0%;bottom:6.0%;width:13.5%;height:7.5%;display:flex;flex-direction:column;justify-content:center;gap:2px;padding:2px 4px;box-sizing:border-box;border:0;border-radius:0;background:transparent;color:#fff;font:900 clamp(7px,.78vw,11px)/1.05 system-ui,sans-serif;text-align:left;text-shadow:0 1px 3px #000;pointer-events:none';$('menu').appendChild(tag)}
-  const name=(myName&&!/^J[A-Z0-9]{3}$/.test(myName))?myName:'NON RENSEIGNÉ';
-  const team=window.crTeam||'NON RENSEIGNÉ';
-  const vehicle=(VEH&&VEH[myV])?VEH[myV]:'Véhicule '+(myV+1);
-  tag.innerHTML='<span>👤 '+name.replace(/[&<>\"]/g,'')+'</span><span>🏁 TEAM : '+team.replace(/[&<>\"]/g,'')+'</span><span>🚗 '+String(vehicle).replace(/[&<>\"]/g,'')+'</span>';
+  let panel=document.getElementById('crProfileFields');
+  if(!panel){
+   panel=document.createElement('div');panel.id='crProfileFields';
+   panel.style.cssText='position:absolute;z-index:9;inset:0;pointer-events:none';
+   const make=(id,top,placeholder)=>{const input=document.createElement('input');input.id=id;input.type='text';input.placeholder=placeholder;input.autocomplete='off';input.spellcheck=false;input.maxLength=id==='crProfilePseudo'?10:14;input.style.cssText='position:absolute;left:47.5%;top:'+top+'%;width:44%;height:3.1%;min-height:18px;box-sizing:border-box;padding:0 8px;border:1px solid #62cfff;border-radius:9px;background:rgba(0,10,30,.55);color:#fff;font:800 clamp(10px,1.7vh,17px) system-ui;text-shadow:0 1px 2px #000;outline:none;pointer-events:auto';input.addEventListener('focus',()=>input.style.boxShadow='0 0 9px #00dfff');input.addEventListener('blur',()=>input.style.boxShadow='none');panel.appendChild(input);return input};
+   const pseudo=make('crProfilePseudo',84.3,'Pseudo');const team=make('crProfileTeam',88.1,'Team');const vehicle=make('crProfileVehicle',91.9,'Véhicule');vehicle.readOnly=true;vehicle.setAttribute('aria-label','Véhicule sélectionné');
+   pseudo.value=localStorage.getItem('cr_name')||(/^J[A-Z0-9]{3}$/.test(myName)?'':myName||'');
+   team.value=window.crTeam||'';vehicle.value=(VEH&&VEH[myV])?VEH[myV]:'';
+   pseudo.addEventListener('input',()=>{myName=pseudo.value.trim().toUpperCase().slice(0,10);try{localStorage.setItem('cr_name',myName)}catch(e){}});
+   team.addEventListener('input',()=>{window.crTeam=team.value.trim().toUpperCase().slice(0,14);try{localStorage.setItem('cr_team',window.crTeam)}catch(e){}});
+   $('menu').appendChild(panel);
+  }
+  const v=document.getElementById('crProfileVehicle');if(v)v.value=(VEH&&VEH[myV])?VEH[myV]:'';
  };
  crProfileTag();
  const crMakeLayer=(title,width='min(90vw,440px)')=>{
@@ -1549,9 +1572,8 @@ function loop(t){
    status.textContent=!joined?'Rejoins la salle pour connaître ton rôle.':(host?'👑 HÔTE : tu choisis le mode. Tous les joueurs démarrent.':'🔒 Hôte : '+((hostPeer&&hostPeer.presence&&hostPeer.presence.n)||'joueur connecté')+' · mode verrouillé. Tu peux démarrer.');
    players.replaceChildren();
    const add=(name,isHost)=>{const p=document.createElement('div');p.textContent='🟢 👤 '+name+(isHost?' · HÔTE':' · CONNECTÉ');p.style.cssText='padding:12px;border:1px solid '+(isHost?'#ffd45b':'#56e6a5')+';border-radius:10px;background:'+(isHost?'#443817':'#0c3a36')+';color:white;font:bold 12px system-ui';players.appendChild(p)};
-   const hostName=host?(myName||'Toi'):((hostPeer&&hostPeer.presence&&hostPeer.presence.n)||'Hôte');
-   add(hostName,true);
-   remotes.filter(r=>r.peer!==electedHost).forEach(r=>add((r.presence&&r.presence.n)||'Joueur',false));
+   add(myName||'Toi',host);
+   remotes.forEach(r=>add((r.presence&&r.presence.n)||'Joueur',r.peer===electedHost));
    if(!remotes.length){const p=document.createElement('div');p.textContent='En attente d’autres joueurs dans '+(curRoom||'la salle')+'…';p.style.cssText='color:#a9cde2;font:12px system-ui;padding:10px';players.appendChild(p)}
   };
   modeSelect.onchange=()=>{if(!host)return;MODE=+modeSelect.value;MODE0=MODE;try{localStorage.setItem('cr_room_mode_'+curRoom,String(MODE))}catch(e){}};
@@ -1715,7 +1737,7 @@ function pollPad(){if(inputMode!=='controller'){gpad.g=gpad.b=0;padAx=0;return}c
  if(B(2)&&!pp[2])useItem();if((B(3)||B(5))&&!pp[3])toggleGear();if(B(4)&&!pp[4])horn();if(B(0)&&!pp[0])confirmAct();if(B(9)&&!pp[9])confirmAct();if(B(8)&&!pp[8]&&state!='menu')toMenu();
  pp[0]=B(0);pp[2]=B(2);pp[3]=B(3)||B(5);pp[4]=B(4);pp[8]=B(8);pp[9]=B(9)}
 const verWarn={};function netTick(dt){if(!NET())return;for(const r of remotes){const q=r.presence;if(q&&q.ver!==VER&&!verWarn[r.peer]){verWarn[r.peer]=1;toast('Joueur '+(q.n||'?')+' : version différente ('+(q.ver||'ancienne')+' / '+VER+')')}}
- if(flash-lastSend>.2){lastSend=flash;netSend({cid,pos:Math.round(pos+playerZ),px:+px.toFixed(2),sp:Math.round(speed),fr:forkRoute,fb:forkRouteBy,n:myName,c:myCol,rdy:rdyT,goAt:mpStartAt,stg:stage,sc:Math.floor(score),st:state,v:myV,mp:MP,rts:rts,rr:(state=='podium'||state=='mega')?raceNo-1:raceNo,bn:objs.filter(o=>o.k=='b'||o.k=='o').slice(-3).map(o=>[Math.round(o.z),+o.o.toFixed(2),o.id,o.k=='o'?1:0]),sh:myShell,ea:eatQ.slice(-4),at:atq.slice(-8),ch:chaseHits,bh:bnd?bnd.hp:null,cpk:cposk,mk:musk>0?1:0})}
+ if(flash-lastSend>.2){lastSend=flash;netSend({cid,pos:Math.round(pos+playerZ),px:+px.toFixed(2),sp:Math.round(speed),fr:forkRoute,fb:forkRouteBy,n:myName,tm:window.crTeam||'',vn:(VEH&&VEH[myV])||'',jAt:window.__crRoomJoinedAt||0,roomMode:MODE,c:myCol,rdy:rdyT,goAt:mpStartAt,stg:stage,sc:Math.floor(score),st:state,v:myV,mp:MP,rts:rts,rr:(state=='podium'||state=='mega')?raceNo-1:raceNo,bn:objs.filter(o=>o.k=='b'||o.k=='o').slice(-3).map(o=>[Math.round(o.z),+o.o.toFixed(2),o.id,o.k=='o'?1:0]),sh:myShell,ea:eatQ.slice(-4),at:atq.slice(-8),ch:chaseHits,bh:bnd?bnd.hp:null,cpk:cposk,mk:musk>0?1:0})}
  for(const r of remotes){const q=r.presence;if(!q)continue;let c=prox[r.peer];if(!c){c=prox[r.peer]={rp:1,k:'r',peer:r.peer,z:-1e9,o:0,w:.18,sp:0,c:'#fff',nm:'?',hit:0};cars.push(c)}
   (q.ea||[]).forEach(id=>{const i=objs.findIndex(o=>o.id==id);if(i>=0)objs.splice(i,1)});
   if(q.cid!==cid||q.st=='over'){c.z=-1e9;continue}if(MODE===0&&MP&&forkRoute<0&&r.peer===outrunLeaderId()&&Number.isInteger(q.fr)&&q.fr>=0&&q.fr<=1){forkRoute=q.fr;forkRouteBy=r.peer;remoteLeaderRoute=q.fr;}if(MODE==2&&bnd&&q.bh!=null)bnd.hp=Math.min(bnd.hp,q.bh);for(const a of(q.at||[])){if(a.to===myId&&!seenAt[a.id]){seenAt[a.id]=1;if(state=='play'&&star<=0){crash=Math.max(crash,.55);speed*=.82;bang();shake=.35}}}
