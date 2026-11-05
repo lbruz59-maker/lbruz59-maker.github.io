@@ -267,6 +267,17 @@ body.route-map-active .b,body.route-map-active #pauseBtn{display:none!important;
 
 
 
+/* V107 — profile values aligned to the three drawn input slots in menu artwork. */
+#crProfileFields span{left:17.2%!important;width:13.6%!important;height:3.1%!important;padding:0 3px!important;justify-content:flex-start!important;text-align:left!important;font-size:clamp(8px,1.35vmin,14px)!important;line-height:1!important}
+#crProfilePseudo{top:84.8%!important}
+#crProfileTeam{top:88.2%!important}
+#crProfileVehicle{top:91.6%!important}
+@media (orientation:landscape){
+ #crProfileFields span{left:24.5%!important;width:11.3%!important;font-size:clamp(8px,1.55vmin,14px)!important}
+ #crProfilePseudo{top:84.7%!important}
+ #crProfileTeam{top:88.3%!important}
+ #crProfileVehicle{top:91.9%!important}
+}
 /* V106 — responsive typography, hit targets and pause/monitor controls. */
 :root{--cr-ui-font:clamp(12px,1.7vmin,18px);--cr-ui-hit:clamp(42px,6.2vmin,58px)}
 #pauseCard{width:min(92vw, min(520px, calc(100vw - 24px)));max-height:min(88dvh,720px);overflow:auto;box-sizing:border-box;padding:clamp(14px,3.2vmin,28px);gap:clamp(8px,1.5vmin,14px)}
