@@ -182,6 +182,17 @@ body.route-map-active .b,body.route-map-active #pauseBtn{display:none!important;
 #menu{background:#06152a url("https://raw.githubusercontent.com/lbruz59-maker/Coast-Rush/main/android-app/app/src/main/assets/menu-start.jpg") center/100% 100% no-repeat!important;overflow:hidden!important}
 #mc{display:none!important}
 #crMenuHotspots{position:absolute;inset:0;z-index:5;pointer-events:none}
+#crMenuHotspots.cr-modal-open{pointer-events:auto;z-index:40}
+#crMenuHotspots.cr-modal-open>button{visibility:hidden!important;pointer-events:none!important}
+#crMenuHotspots .crMenuLayer{pointer-events:auto!important;z-index:50;isolation:isolate}
+#crMenuHotspots .crMenuLayer *{pointer-events:auto}
+#crMenuHotspots .crMenuLayer>div{max-width:100%;overscroll-behavior:contain}
+#crMenuHotspots .crMenuLayer button{min-height:44px;touch-action:manipulation}
+#crMenuHotspots .crMenuLayer .cr-modal-actions{position:sticky;bottom:0;z-index:3;padding-top:10px;background:linear-gradient(transparent,#10142c 18%)}
+#crMenuHotspots .crMenuLayer .cr-modal-back{font-weight:900;border:2px solid #b9f4ff!important;box-shadow:0 0 12px #00dfff88}
+#crMenuHotspots .crMenuLayer input,#crMenuHotspots .crMenuLayer select{font-size:16px!important;max-width:100%}
+#crMenuHotspots .crMenuLayer table{display:block;max-width:100%;overflow-x:auto}
+#crMenuHotspots .crMenuLayer{overscroll-behavior:contain}
 #crMenuHotspots button{position:absolute;display:block;pointer-events:auto;margin:0;padding:0;border:0!important;border-radius:0!important;background:transparent!important;color:transparent!important;box-shadow:none!important;cursor:pointer;touch-action:manipulation;clip-path:polygon(7% 0,95% 0,100% 78%,93% 100%,0 100%,3% 22%)}
 #crMenuHotspots button:focus,#crMenuHotspots button.cr-active{outline:none!important;background:rgba(0,238,255,.10)!important;box-shadow:inset 0 0 0 3px #fff,0 0 13px #00eaff,0 0 24px #00eaff!important}
 /* V108 — menu principal : un bouton MODE DE JEU dédié, aucune zone active sur les modes dessinés en bas. */
@@ -195,8 +206,7 @@ body.route-map-active .b,body.route-map-active #pauseBtn{display:none!important;
 #crMenuHotspots .quit{left:78.5%;top:73.0%;width:18.5%;height:7.1%}
 #crMenuHotspots .music{left:80.0%;top:3.5%;width:17.5%;height:5.4%}
 #crMenuHotspots .sound{left:80.0%;top:9.0%;width:17.5%;height:5.4%}
-#crMenuHotspots .profile{left:1.5%;top:84.0%;width:24.0%;height:12.0%}
-#crMenuHotspots .progress{left:73.0%;top:84.0%;width:24.0%;height:12.0%}
+#crMenuHotspots .profile,#crMenuHotspots .progress{display:none!important;pointer-events:none!important}
 #crMenuHotspots .score{left:2.0%;top:4.0%;width:20.0%;height:10.0%}
 #crMenuHotspots .timeTrial,#crMenuHotspots .travel{display:none!important}
 #crMenuHotspots .cr-status{pointer-events:none}
@@ -1419,15 +1429,20 @@ function loop(t){
  };
  crProfileTag();
  const crMakeLayer=(title,width='min(90vw,440px)')=>{
-  const layer=document.createElement('div');layer.className='crMenuLayer';layer.style.cssText='position:absolute;inset:0;z-index:30;display:flex;align-items:center;justify-content:center;background:rgba(1,8,22,.88);padding:14px;box-sizing:border-box;overflow:auto';
+  host.classList.add('cr-modal-open');
+  const layer=document.createElement('div');layer.className='crMenuLayer';layer.style.cssText='position:absolute;inset:0;z-index:50;display:flex;align-items:center;justify-content:center;background:rgba(1,8,22,.92);padding:max(10px,env(safe-area-inset-top)) 10px max(10px,env(safe-area-inset-bottom));box-sizing:border-box;overflow:auto;pointer-events:auto';
+  const close=()=>{layer.remove();host.classList.remove('cr-modal-open');};
+  layer.addEventListener('click',e=>{if(e.target===layer)close()});
   const card=document.createElement('div');card.style.cssText='width:'+width+';max-height:90%;overflow:auto;padding:clamp(15px,3vw,24px);border:2px solid #78eaff;border-radius:18px;background:linear-gradient(145deg,#17395d,#10142c);box-shadow:0 14px 44px #000d;color:white;font:bold 15px system-ui;text-align:center;box-sizing:border-box';
   const h=document.createElement('h2');h.textContent=title;h.style.cssText='margin:0 0 16px;color:#9cecff;font-size:clamp(22px,5vw,30px);letter-spacing:.06em';
   card.append(h);
-  const actions=document.createElement('div');actions.style.cssText='display:flex;gap:10px;margin-top:16px;flex-wrap:wrap';
+  const actions=document.createElement('div');actions.className='cr-modal-actions';actions.style.cssText='display:flex;gap:10px;margin-top:16px;flex-wrap:wrap';
   const btn=(label,fn,primary=false)=>{const b=document.createElement('button');b.type='button';b.textContent=label;b.style.cssText='flex:1;min-width:115px;padding:12px 10px;border:1px solid #b9f4ff;border-radius:11px;background:'+(primary?'linear-gradient(135deg,#247fa5,#18516f)':'#35435f')+';color:white;font:bold 14px system-ui;touch-action:manipulation';b.onclick=fn;return b};
-  const back=btn('← RETOUR AU MENU',()=>layer.remove(),true);
+  const back=btn('← RETOUR AU MENU',close,true);back.classList.add('cr-modal-back');
   actions.append(back);card.append(actions);layer.append(card);host.append(layer);
-  return {layer,card,actions,btn};
+  const onEsc=e=>{if(e.key==='Escape'||e.key==='BrowserBack'){e.preventDefault();close();}};
+  document.addEventListener('keydown',onEsc,{once:true});
+  return {layer,card,actions,btn,close};
  };
  const crShowModes=()=>{
   const {layer,card,actions,btn}=crMakeLayer('CHOISIR LE MODE DE JEU','min(94vw,760px)');
@@ -1441,7 +1456,7 @@ function loop(t){
   const grid=document.createElement('div');grid.style.cssText='display:grid;grid-template-columns:repeat(auto-fit,minmax(185px,1fr));gap:12px';
   card.insertBefore(grid,actions);
   options.forEach(([ico,name,desc,id])=>{
-   const b=btn('',()=>{MODE=id;MODE0=id;try{$('md').textContent='Mode : '+name}catch(e){}layer.remove();safeClick('go')},false);
+   const b=btn('',()=>{MODE=id;MODE0=id;try{$('md').textContent='Mode : '+name}catch(e){}close();safeClick('go')},false);
    b.style.cssText+=';min-height:138px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;background:linear-gradient(145deg,#102c4c,#07172d);border:1px solid #61dfff;box-shadow:inset 0 0 18px #16b8ff22';
    const art=document.createElement('canvas');art.width=300;art.height=116;art.style.cssText='display:block;width:100%;height:86px;border-radius:10px;border:1px solid #64dfff66;background:#09203a';const g=art.getContext('2d');const sky=g.createLinearGradient(0,0,0,116);sky.addColorStop(0,['#ffb347','#153c75','#171d42','#102c54','#103d62'][options.indexOf(options.find(o=>o[1]===name))]||'#12345a');sky.addColorStop(1,'#06152b');g.fillStyle=sky;g.fillRect(0,0,300,116);g.fillStyle='#ffd65a';g.beginPath();g.arc(235,28,18,0,Math.PI*2);g.fill();g.fillStyle='#15466b';g.beginPath();g.moveTo(0,78);g.lineTo(70,35);g.lineTo(125,78);g.lineTo(180,42);g.lineTo(245,82);g.lineTo(300,50);g.lineTo(300,116);g.lineTo(0,116);g.fill();g.fillStyle='#091321';g.beginPath();g.moveTo(80,116);g.lineTo(125,76);g.lineTo(175,76);g.lineTo(220,116);g.fill();g.strokeStyle='#ffe8a0';g.lineWidth=2;g.setLineDash([10,8]);g.beginPath();g.moveTo(150,85);g.lineTo(150,116);g.stroke();g.setLineDash([]);g.fillStyle='#fff';g.font='bold 28px sans-serif';g.fillText(ico,12,38);
    const title=document.createElement('strong');title.textContent=name;title.style.cssText='font-size:15px;color:#fff';
@@ -1462,7 +1477,7 @@ function loop(t){
   const paint=()=>{const g=preview.getContext('2d'),old=ctx;ctx=g;try{g.clearRect(0,0,720,300);const gr=g.createLinearGradient(0,0,0,300);gr.addColorStop(0,'#193a5b');gr.addColorStop(1,'#071426');g.fillStyle=gr;g.fillRect(0,0,720,300);g.strokeStyle='#9bdcff55';g.lineWidth=3;g.beginPath();g.moveTo(25,255);g.lineTo(695,255);g.stroke();drawVeh(360,250,260,myCol,myV,0,0,1)}finally{ctx=old}label.textContent=(VEH[myV]||'Véhicule')+' · '+myCol};
   const buttons=[];VEH.forEach((v,i)=>{const x=btn(v,()=>{myV=i;try{localStorage.setItem('cr_veh',String(i))}catch(e){}if(gameButtons[i])gameButtons[i].click();buttons.forEach((z,j)=>z.style.background=j===i?'#176a83':'#263c5a');paint()},false);x.style.minHeight='44px';buttons.push(x);choices.appendChild(x)});
   colors.forEach(color=>{const x=document.createElement('button');x.type='button';x.title='Couleur '+color;x.style.cssText='width:38px;height:38px;border-radius:50%;border:3px solid '+(myCol===color?'white':'#8bcfe8')+';background:'+color+';touch-action:manipulation';x.onclick=()=>{myCol=color;try{localStorage.setItem('cr_color',color)}catch(e){}Array.from(palette.children).forEach(z=>z.style.outline='none');x.style.outline='3px solid #fff';paint()};palette.appendChild(x)});
-  actions.insertBefore(btn('VALIDER ET RETOUR AU MENU',()=>{try{localStorage.setItem('cr_veh',String(myV));localStorage.setItem('cr_color',myCol)}catch(e){}crProfileTag();layer.remove();toast('Véhicule et couleur enregistrés')},true),actions.firstChild);
+  actions.insertBefore(btn('VALIDER ET RETOUR AU MENU',()=>{try{localStorage.setItem('cr_veh',String(myV));localStorage.setItem('cr_color',myCol)}catch(e){}crProfileTag();close();toast('Véhicule et couleur enregistrés')},true),actions.firstChild);
   paint();
  };
  const crReadHistory=()=>{try{let h=JSON.parse(localStorage.getItem('cr_race_history')||'[]');if(!h.length){const old=JSON.parse(localStorage.getItem('cr_scores')||'[]');h=old.map(r=>({date:r.d||'Ancienne course',mode:'OUTRUN',score:r.s||0,stage:r.st||1,vehicle:'—',name:myName||'Pilote',players:[]}));if(h.length)localStorage.setItem('cr_race_history',JSON.stringify(h))}return h}catch(e){return []}};
@@ -1501,7 +1516,7 @@ function loop(t){
   const refresh=()=>{const candidates=[{id:myId,at:window.__crRoomJoinedAt||Date.now()},...remotes.map(r=>({id:r.peer,at:r.presence&&r.presence.jAt||0}))].sort((a,b)=>a.at-b.at||String(a.id).localeCompare(String(b.id)));host=!candidates.length||candidates[0].id===myId;window.__crRoomHost=host;if(!host){const h=remotes.find(r=>r.presence&&r.presence.host);if(h&&Number.isFinite(+h.presence.roomMode)){MODE=+h.presence.roomMode;modeSelect.value=String(MODE)}}modeSelect.disabled=!host;modeSelect.style.opacity=host?'1':'.42';status.textContent=(joined?'Salle '+curRoom+' · ':'')+(host?'👑 Tu es l’hôte : tu choisis le mode.':'🔒 Mode défini par l’hôte · choix verrouillé');players.replaceChildren();const add=(name,isHost)=>{const p=document.createElement('div');p.textContent='🟢 👤 '+name+(isHost?' · HÔTE':' · CONNECTÉ');p.style.cssText='padding:12px;border:1px solid #56e6a5;border-radius:10px;background:#0c3a36;color:white;font:bold 12px system-ui';players.appendChild(p)};add(myName||'Toi',host);remotes.forEach(r=>add((r.presence&&r.presence.n)||'Joueur',r.presence&&r.presence.host));if(!remotes.length){const p=document.createElement('div');p.textContent='En attente d’autres joueurs…';p.style.cssText='color:#a9cde2;font:12px system-ui;padding:10px';players.appendChild(p)}};
   modeSelect.onchange=()=>{if(!host)return;MODE=+modeSelect.value;MODE0=MODE;try{localStorage.setItem('cr_room_mode_'+curRoom,String(MODE))}catch(e){}};
   const join=btn('REJOINDRE / CRÉER LA SALLE',()=>{curRoom=(roomInput.value||'ARCADE').toUpperCase().replace(/[^A-Z0-9_-]/g,'').slice(0,12)||'ARCADE';$('room').value=curRoom;if(!window.__crRoomJoinedAt)window.__crRoomJoinedAt=Date.now();joined=true;try{const saved=localStorage.getItem('cr_room_mode_'+curRoom);if(saved!==null)MODE=+saved}catch(e){}modeSelect.value=String(MODE);$('mp').click();refresh();toast('Salle '+curRoom+' : connexion en cours')},true);actions.insertBefore(join,actions.firstChild);
-  actions.insertBefore(btn('DÉMARRER LA COURSE',()=>{if(!joined){toast('Rejoins une salle avant de démarrer');return}refresh();if(!host){toast('Seul l’hôte peut lancer la course');return}layer.remove();safeClick('go')},false),actions.children[1]||null);
+  actions.insertBefore(btn('DÉMARRER LA COURSE',()=>{if(!joined){toast('Rejoins une salle avant de démarrer');return}refresh();if(!host){toast('Seul l’hôte peut lancer la course');return}close();safeClick('go')},false),actions.children[1]||null);
   refresh();const poll=setInterval(()=>{if(!layer.isConnected){clearInterval(poll);return}refresh()},900);
  };
  const crShowCommands=()=>{
