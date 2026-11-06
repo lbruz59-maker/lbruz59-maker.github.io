@@ -1024,7 +1024,7 @@ const s=sc*(t==='c'?73600:t==='l'?80000:t==='a'?100000:3200*H/2);if('ptacl'.incl
  ctx.lineTo(x+w*4.0,y-w*4.8);ctx.lineTo(x+w*5.2,y-w*5.5);
  ctx.lineTo(x+w*7,y-w*4.35);ctx.lineTo(x+w*7,y);ctx.closePath();
  // Découpe de l'ouverture : le relief encadre le tunnel au lieu de le boucher.
- ctx.moveTo(x-k,y);ctx.lineTo(x-k,y-hh);ctx.arc(x,y-hh,k,Math.PI,0);ctx.lineTo(x+k,y);ctx.closePath();
+ ctx.moveTo(x-k,y);ctx.lineTo(x-k,y-hh);ctx.arc(x,y-hh,k,Math.PI,0,true);ctx.lineTo(x+k,y);ctx.closePath();
  ctx.fillStyle=ridge;ctx.fill('evenodd');
  // Versants éclairés, dessinés en aplats 2D de part et d'autre du portail.
  ctx.fillStyle=sp.port?'#817365':'#46566a';
@@ -1033,10 +1033,10 @@ const s=sc*(t==='c'?73600:t==='l'?80000:t==='a'?100000:3200*H/2);if('ptacl'.incl
  ctx.beginPath();ctx.moveTo(x+k*1.05,y);ctx.lineTo(x+w*1.35,y-w*4.7);ctx.lineTo(x+w*2.8,y-w*5.65);ctx.lineTo(x+w*4.0,y-w*4.8);ctx.lineTo(x+w*5.2,y-w*5.5);ctx.lineTo(x+w*7,y-w*4.35);ctx.lineTo(x+k,y);ctx.closePath();ctx.fill();
  // Tunnel cylindrique resserré sur la chaussée, placé derrière le cadre.
  const barrel=ctx.createLinearGradient(x-k,0,x+k,0);barrel.addColorStop(0,'#111827');barrel.addColorStop(.5,'#252b38');barrel.addColorStop(1,'#101725');
- ctx.beginPath();ctx.moveTo(x-k,y-hh*.32);ctx.lineTo(x-k,y-hh);ctx.arc(x,y-hh,k,Math.PI,0);ctx.lineTo(x+k,y-hh*.32);ctx.closePath();ctx.fillStyle=barrel;ctx.fill();
+ ctx.beginPath();ctx.moveTo(x-k,y-hh*.32);ctx.lineTo(x-k,y-hh);ctx.arc(x,y-hh,k,Math.PI,0,true);ctx.lineTo(x+k,y-hh*.32);ctx.closePath();ctx.fillStyle=barrel;ctx.fill();
  ctx.restore();
  if(sp.port){
-  ctx.strokeStyle='#b9ad98';ctx.lineWidth=Math.max(1,w*.13);ctx.beginPath();ctx.moveTo(x-k,y);ctx.lineTo(x-k,y-hh);ctx.arc(x,y-hh,k,Math.PI,0);ctx.lineTo(x+k,y);ctx.stroke();
+  ctx.strokeStyle='#b9ad98';ctx.lineWidth=Math.max(1,w*.13);ctx.beginPath();ctx.moveTo(x-k,y);ctx.lineTo(x-k,y-hh);ctx.arc(x,y-hh,k,Math.PI,0,true);ctx.lineTo(x+k,y);ctx.stroke();
   ctx.strokeStyle='#eee4cf';ctx.lineWidth=Math.max(.8,w*.045);ctx.beginPath();ctx.moveTo(x-k*.91,y);ctx.lineTo(x-k*.91,y-hh);ctx.arc(x,y-hh,k*.91,Math.PI,0);ctx.lineTo(x+k*.91,y);ctx.stroke();
   // Alternating safety blocks at the two feet of the portal.
   for(let side of[-1,1])for(let n=0;n<4;n++){ctx.fillStyle=n%2?'#e7e2d6':'#c83c42';ctx.fillRect(x+side*(k*.78+n*w*.18),y-w*.16,w*.15,w*.16)}
