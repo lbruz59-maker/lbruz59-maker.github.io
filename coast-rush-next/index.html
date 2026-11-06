@@ -633,7 +633,7 @@ function applyInputMode(){const touch=inputMode==='touch';document.querySelector
 
 window.addEventListener('error',e=>{try{let b=document.getElementById('errb');if(!b){b=document.createElement('div');b.id='errb';b.style.cssText='position:fixed;left:0;right:0;bottom:0;z-index:50;background:#600d;color:#fff;font:11px monospace;padding:3px 6px;pointer-events:none';document.body.appendChild(b)}b.textContent='Erreur : '+(e.message||e)+' ('+(e.lineno||'?')+')'}catch(x){}});const segL=200,roadW=2000,camH=1000,camD=1/Math.tan(50*Math.PI/180),playerZ=camH*camD;
 // Unites internes conservees pour le rendu : conversion physique recalibree par circuit.
-let METERS_PER_UNIT=.02,MAX=(290/3.6)/METERS_PER_UNIT;
+let METERS_PER_UNIT=.02,MAX=(290/3.6);
 const lerp=(a,b,p)=>a+(b-a)*p,eIn=(a,b,p)=>a+(b-a)*p*p,eOut=(a,b,p)=>a+(b-a)*(1-(1-p)*(1-p)),eIO=(a,b,p)=>a+(b-a)*(-Math.cos(p*Math.PI)/2+.5);
 const segs=[];let trackLen;
 // Reuse only segments that actually received cars/objects this frame.
@@ -679,7 +679,7 @@ function buildCourse(id){pickTrack();const R=rng(id*7919+13);th=TH[THI[id]];cons
  road(15,20,15,0,-lastY()/segL);road(0,FORK+8,0,0,0);
  const N=segs.length;trackLen=N*segL;
  // Chaque circuit mesure exactement 10 km en distance physique, sans changer l'echelle de rendu.
- METERS_PER_UNIT=10000/trackLen;MAX=(290/3.6)/METERS_PER_UNIT;
+ METERS_PER_UNIT=10000/trackLen;MAX=(290/3.6);
  segs.forEach(s=>s.loop=loopS>=0&&s.i>=loopS&&s.i<loopE);
  // Deux tunnels : budget cumulé plafonné à 9 % du circuit.
  const tunnelRanges=[],tunnelCount=2;
