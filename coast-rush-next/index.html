@@ -633,7 +633,7 @@ function applyInputMode(){const touch=inputMode==='touch';document.querySelector
 
 window.addEventListener('error',e=>{try{let b=document.getElementById('errb');if(!b){b=document.createElement('div');b.id='errb';b.style.cssText='position:fixed;left:0;right:0;bottom:0;z-index:50;background:#600d;color:#fff;font:11px monospace;padding:3px 6px;pointer-events:none';document.body.appendChild(b)}b.textContent='Erreur : '+(e.message||e)+' ('+(e.lineno||'?')+')'}catch(x){}});const segL=200,roadW=2000,camH=1000,camD=1/Math.tan(50*Math.PI/180),playerZ=camH*camD;
 // Unites internes conservees pour le rendu : conversion physique recalibree par circuit.
-let METERS_PER_UNIT=.02,MAX=(290/3.6);
+let METERS_PER_UNIT=.02,MAX=(290/3.6)/METERS_PER_UNIT;
 const lerp=(a,b,p)=>a+(b-a)*p,eIn=(a,b,p)=>a+(b-a)*p*p,eOut=(a,b,p)=>a+(b-a)*(1-(1-p)*(1-p)),eIO=(a,b,p)=>a+(b-a)*(-Math.cos(p*Math.PI)/2+.5);
 const segs=[];let trackLen;
 // Reuse only segments that actually received cars/objects this frame.
@@ -679,7 +679,7 @@ function buildCourse(id){pickTrack();const R=rng(id*7919+13);th=TH[THI[id]];cons
  road(15,20,15,0,-lastY()/segL);road(0,FORK+8,0,0,0);
  const N=segs.length;trackLen=N*segL;
  // Chaque circuit mesure exactement 10 km en distance physique, sans changer l'echelle de rendu.
- METERS_PER_UNIT=10000/trackLen;MAX=(290/3.6);
+ METERS_PER_UNIT=10000/trackLen;MAX=(290/3.6)/METERS_PER_UNIT;
  segs.forEach(s=>s.loop=loopS>=0&&s.i>=loopS&&s.i<loopE);
  // Deux tunnels : budget cumulé plafonné à 9 % du circuit.
  const tunnelRanges=[],tunnelCount=2;
@@ -2111,7 +2111,7 @@ requestAnimationFrame(loop);
   if(!driveDiag){driveDiag=document.createElement('div');driveDiag.id='crDriveDiag';driveDiag.style.cssText='position:fixed;left:6px;top:6px;z-index:9999;max-width:calc(100vw - 12px);padding:5px 7px;border:1px solid #6deaff;border-radius:5px;background:#061323e8;color:#eaffff;font:10px/1.35 monospace;pointer-events:none;white-space:pre-wrap';document.body.appendChild(driveDiag)}
   const diagActive=state!=='menu'&&state!=='over'&&state!=='win'&&state!=='podium'&&state!=='mega';
   driveDiag.style.display=diagActive?'block':'none';
-  if(diagActive)driveDiag.textContent='CR DIAG | '+state.toUpperCase()+' | VIT '+Math.round(speed)+' | POS '+Math.round(pos)+' | GAZ '+(inp.g?1:0)+' | PAD '+(gpad.g?1:0)+' | AUTO '+(autoGas?1:0)+' | CD '+Number(cd||0).toFixed(1);
+  if(diagActive)driveDiag.textContent='CR DIAG | '+state.toUpperCase()+' | VIT '+Math.floor(speed/MAX*290)+' km/h | POS '+Math.round(pos*METERS_PER_UNIT)+' m | UNIT '+METERS_PER_UNIT.toFixed(4)+' | GAZ '+(inp.g?1:0)+' | PAD '+(gpad.g?1:0)+' | AUTO '+(autoGas?1:0)+' | CD '+Number(cd||0).toFixed(1);
   const r0=performance.now();if(state!=='menu')render();crRenderMs=performance.now()-r0;crUpdateSamples[crWorkSampleWrite]=crUpdateMs;crRenderSamples[crWorkSampleWrite]=crRenderMs;crWorkSampleWrite=(crWorkSampleWrite+1)%180;if(crWorkSampleCount<180)crWorkSampleCount++;
   if(state==='play'&&t-crWindowStart>=1000){
    const span=t-crWindowStart,rafAvg=crRafCount?crRafSum/crRafCount:0,rafMax=crRafMax;
