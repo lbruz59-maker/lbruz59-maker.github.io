@@ -631,7 +631,9 @@ window.__coastRushLifecycle=function(kind){
 let inputMode=isTV?'controller':(('ontouchstart' in window||navigator.maxTouchPoints>0)?'touch':'keyboard');
 function applyInputMode(){const touch=inputMode==='touch';document.querySelectorAll('.drive-control').forEach(el=>{el.classList.toggle('input-touch',touch);el.style.display=touch?'flex':'none'});[['ui-key','keyboard'],['ui-pad','controller'],['ui-touch','touch']].forEach(([id,m])=>{const el=document.getElementById(id);if(el)el.classList.toggle('sel',inputMode===m)});const hint=document.getElementById('input-hint');if(hint)hint.textContent=inputMode==='keyboard'?'Clavier : flèches / WASD':inputMode==='controller'?'Manette : stick gauche, gâchette / boutons':'Tactile : commandes affichées à l’écran'}
 
-window.addEventListener('error',e=>{try{let b=document.getElementById('errb');if(!b){b=document.createElement('div');b.id='errb';b.style.cssText='position:fixed;left:0;right:0;bottom:0;z-index:50;background:#600d;color:#fff;font:11px monospace;padding:3px 6px;pointer-events:none';document.body.appendChild(b)}b.textContent='Erreur : '+(e.message||e)+' ('+(e.lineno||'?')+')'}catch(x){}});const segL=200,roadW=2000,camH=1000,camD=1/Math.tan(50*Math.PI/180),playerZ=camH*camD,MAX=segL*60;
+window.addEventListener('error',e=>{try{let b=document.getElementById('errb');if(!b){b=document.createElement('div');b.id='errb';b.style.cssText='position:fixed;left:0;right:0;bottom:0;z-index:50;background:#600d;color:#fff;font:11px monospace;padding:3px 6px;pointer-events:none';document.body.appendChild(b)}b.textContent='Erreur : '+(e.message||e)+' ('+(e.lineno||'?')+')'}catch(x){}});const segL=200,roadW=2000,camH=1000,camD=1/Math.tan(50*Math.PI/180),playerZ=camH*camD;
+// Unites internes conservees pour le rendu : conversion physique recalibree par circuit.
+let METERS_PER_UNIT=.02,MAX=(290/3.6)/METERS_PER_UNIT;
 const lerp=(a,b,p)=>a+(b-a)*p,eIn=(a,b,p)=>a+(b-a)*p*p,eOut=(a,b,p)=>a+(b-a)*(1-(1-p)*(1-p)),eIO=(a,b,p)=>a+(b-a)*(-Math.cos(p*Math.PI)/2+.5);
 const segs=[];let trackLen;
 // Reuse only segments that actually received cars/objects this frame.
@@ -675,7 +677,10 @@ function buildCourse(id){pickTrack();const R=rng(id*7919+13);th=TH[THI[id]];cons
  road(0,50,0,0,0);
  loopS=-1;for(let k=0;k<32;k++){road(10+R()*15|0,20+R()*30|0,10+R()*15|0,R()<Math.max(.05,.3-.015*stage)?0:Math.round((R()-.5)*12*(th.cv||1)*dif),Math.round((R()-.5)*60*(th.hl||1)*dif));if(k==14&&id%3!=0){road(0,45,0,0,0);loopS=segs.length;road(25,40,25,5,55);road(25,40,25,-5,-55);loopE=segs.length;road(0,12,0,0,0)}}
  road(15,20,15,0,-lastY()/segL);road(0,FORK+8,0,0,0);
- const N=segs.length;trackLen=N*segL;segs.forEach(s=>s.loop=loopS>=0&&s.i>=loopS&&s.i<loopE);
+ const N=segs.length;trackLen=N*segL;
+ // Chaque circuit mesure exactement 10 km en distance physique, sans changer l'echelle de rendu.
+ METERS_PER_UNIT=10000/trackLen;MAX=(290/3.6)/METERS_PER_UNIT;
+ segs.forEach(s=>s.loop=loopS>=0&&s.i>=loopS&&s.i<loopE);
  // Deux tunnels : budget cumulé plafonné à 9 % du circuit.
  const tunnelRanges=[],tunnelCount=2;
  const tunnelBudget=Math.max(20,Math.floor((N-FORK-100)*.09));
@@ -706,10 +711,10 @@ function buildCourse(id){pickTrack();const R=rng(id*7919+13);th=TH[THI[id]];cons
   if(i>=N-FORK&&i%12==0){if(!fk()&&!isLast()){s.sp.push({t:'S',o:-1.3,txt:'CHECK',bg:'#ffd400'});s.sp.push({t:'S',o:1.3,txt:'CHECK',bg:'#ffd400'})}else if(fk()){s.sp.push({t:'S',o:0,txt:'◀  ▶',bg:'#3ddc6a'})}else{s.sp.push({t:'S',o:-1.3,txt:'GOAL',bg:'#fff'});s.sp.push({t:'S',o:1.3,txt:'GOAL',bg:'#fff'})}}});
  
  //// Groupes d'arches : longueur cumulée plafonnée à 6 % du circuit (tunnels + arches <= 15 %).
-  const archGroupCount=1,archZones=[],ARCH_SPACING_M=7*segL;
+  const archGroupCount=1,archZones=[],ARCH_SPACING_UNITS=7*segL;
   const archMin=100,archMax=N-FORK-45,archGap=6;
-  // Un seul groupe d'arches, limité à 3 km entre la première et la dernière.
-  const archLen=Math.max(1,Math.floor(3000/segL));
+  // Un seul groupe : 3 km physiques entre la première et la dernière arche.
+  const archLen=Math.max(1,Math.floor(3000/(segL*METERS_PER_UNIT)));
   for(let ag=0;ag<archGroupCount;ag++){
    const spanSegments=archLen;let placed=false;
    for(let attempt=0;attempt<96&&!placed;attempt++){
@@ -718,7 +723,7 @@ function buildCourse(id){pickTrack();const R=rng(id*7919+13);th=TH[THI[id]];cons
     let valid=true;for(let ai=start;ai<=end;ai++){const g=segs[ai];if(!g||g.tun||g.loop){valid=false;break}}
     if(!valid)continue;
     const startZ=start*segL,endZ=(start+spanSegments)*segL;
-    for(let z=startZ;z<=endZ+0.001;z+=ARCH_SPACING_M){
+    for(let z=startZ;z<=endZ+0.001;z+=ARCH_SPACING_UNITS){
      const si=Math.floor(z/segL),fraction=(z-si*segL)/segL,g=segs[si];
      if(g){if(!g.archFractions)g.archFractions=[];g.archFractions.push(fraction)}
     }
