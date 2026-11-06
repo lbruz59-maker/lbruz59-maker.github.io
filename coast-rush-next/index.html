@@ -1481,7 +1481,7 @@ function render(){
   const a=__crProjectPoint(s.__crA||(s.__crA={}),0,s.y1,z1,cx-x,cy),b=__crProjectPoint(s.__crB||(s.__crB={}),0,s.y2,z2,cx-x-dx,cy);x+=dx;dx+=s.curve;
   s.clip=maxY;s.v=0;if(z1<=camD||b.y>=a.y||b.y>=maxY)continue;
   s.v=1;s.a=a;s.b=b;fogC=s.tun?'#0a0a12':curSky[1];s.ft=Math.min(1,(n/drawN)**2*FM+(s.tun?.4:0));vis.push(s);const ft=s.ft,by=b.y-.6;const d=(s.i/3|0)%2;
- __crPoly4(fg(curG[d?0:1],ft),0,by,W,by,W,a.y,0,a.y);
+ if(s.tun){const tunnelBg=ctx.createLinearGradient(0,by,0,a.y);tunnelBg.addColorStop(0,'#111923');tunnelBg.addColorStop(.55,'#202a36');tunnelBg.addColorStop(1,'#30333a');ctx.fillStyle=tunnelBg;ctx.fillRect(0,by,W,a.y-by)}else __crPoly4(fg(curG[d?0:1],ft),0,by,W,by,W,a.y,0,a.y);
  if(s.sea){const l1=a.x-a.w*1.8,l2=b.x-b.w*1.8;__crPoly4(fg(d?'#1f8fe0':'#2a9cef',ft),0,a.y,l1,a.y,l2,by,0,by);__crPoly4('#fff8',l1,a.y,l1+a.w*.12,a.y,l2+b.w*.12,by,l2,by)}
  const fF=forkActive&&s.i>=N-FORK,fa=fF?Math.min(1,(s.i-(N-FORK))/FORK):0,fb=fF?Math.min(1,(s.i+1-(N-FORK))/FORK):0,rl=!fF&&!s.tun&&((s.i/90|0)%3==1);
  if(fF)__crPoly4(fg('#2f9a3a',ft),a.x-a.w*.9*fa,a.y,a.x+a.w*.9*fa,a.y,b.x+b.w*.9*fb,by,b.x-b.w*.9*fb,by);
