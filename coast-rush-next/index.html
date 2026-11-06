@@ -192,7 +192,7 @@ body.route-map-active .b,body.route-map-active #pauseBtn{display:none!important;
 /* V102 — exact artwork hit areas; no duplicate focus layers. */
 #menu{background:#06152a url("https://raw.githubusercontent.com/lbruz59-maker/Coast-Rush/main/android-app/app/src/main/assets/menu-start.jpg") center/100% 100% no-repeat!important;overflow:hidden!important}
 #mc{display:none!important}
-#crMenuHotspots{position:absolute;inset:0;z-index:5;pointer-events:none}
+#crMenuHotspots{position:absolute;inset:0;z-index:2147483000;pointer-events:auto!important;isolation:isolate}
 #crMenuHotspots.cr-modal-open{pointer-events:auto;z-index:40}
 #crMenuHotspots.cr-modal-open>button{visibility:hidden!important;pointer-events:none!important}
 #crMenuHotspots .crMenuLayer{pointer-events:auto!important;z-index:50;isolation:isolate}
@@ -1806,7 +1806,7 @@ function loop(t){
 /* V104: one accessible, interactive hit layer over the menu artwork. */
 (function(){
  if(document.getElementById('crMenuHotspots'))return;
- const host=document.createElement('div');host.id='crMenuHotspots';
+ const host=document.createElement('div');host.id='crMenuHotspots';host.style.cssText='position:absolute;inset:0;width:100%;height:100%;z-index:2147483000;pointer-events:auto;isolation:isolate;';
  const safeClick=id=>{const el=$(id);if(el&&typeof el.click==='function')el.click()};
  const defs=[
   ['play','Jouer',()=>safeClick('go')],
@@ -1996,7 +1996,7 @@ function loop(t){
   });
  };
  defs.forEach(([cls,label,fn])=>{
-  const b=document.createElement('button');b.type='button';b.className=cls;
+  const b=document.createElement('button');b.type='button';b.className=cls;b.style.position='absolute';b.style.display='block';b.style.pointerEvents='auto';b.style.touchAction='manipulation';
   b.setAttribute('aria-label',label);b.title=label;
   b.addEventListener('click',e=>{e.preventDefault();e.stopPropagation();try{fn()}catch(err){toast('Action indisponible : '+(err&&err.message||err))}sync()});
   host.appendChild(b);
