@@ -1240,7 +1240,7 @@ const s=sc*(t==='c'?73600:t==='l'?80000:t==='a'?100000:3200*H/2);if('ptacl'.incl
    ctx.strokeStyle='#b5a58b';ctx.lineWidth=Math.max(1,w*.035);outer();ctx.stroke();ctx.strokeStyle='#292d35';ctx.lineWidth=Math.max(1,w*.018);inner();ctx.stroke();
    // Fond rocheux continu : l'ouverture n'est plus transparente sur le paysage.
    // On conserve une bande basse libre pour que la chaussée reste visible.
-   ctx.save();inner();ctx.clip();const tunnelWall=ctx.createLinearGradient(x-k,y-hh,x+k,y);tunnelWall.addColorStop(0,'#101720');tunnelWall.addColorStop(.5,'#202a35');tunnelWall.addColorStop(1,'#0b1119');ctx.fillStyle=tunnelWall;ctx.fillRect(x-k,y-hh,k*2,hh*.22);ctx.restore();
+   ctx.save();inner();ctx.clip();const tunnelWall=ctx.createLinearGradient(x-k,y-hh,x+k,y);tunnelWall.addColorStop(0,'#101720');tunnelWall.addColorStop(.5,'#202a35');tunnelWall.addColorStop(1,'#0b1119');ctx.fillStyle=tunnelWall;ctx.fillRect(x-k,y-hh,k*2,hh*.84);ctx.restore();
    // Les anciens petits traits transversaux sont retirés : ils ressemblaient à des sprites parasites.
 
    if(sp.port){ctx.strokeStyle='#d0c1a5';ctx.lineWidth=Math.max(2,w*.11);outer();ctx.stroke();ctx.strokeStyle='#eee3cd';ctx.lineWidth=Math.max(1,w*.025);outer();ctx.stroke();
