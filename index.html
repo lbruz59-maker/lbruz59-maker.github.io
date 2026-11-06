@@ -1229,7 +1229,7 @@ function __crDrawSkyMountains(){
    // Les étoiles nocturnes sont statiques par pas de défilement : elles rejoignent
    // la couche de ciel pré-rendue au lieu de générer 45 rectangles à chaque frame.
    if(th.night){ctx.fillStyle='#fff';for(let i=0;i<45;i++)ctx.fillRect((i*83+off*.2)%W,(i*37)%(H/2-14),1,1)}
-   for(let L=0;L<(th.bg?0:2);L++){ctx.fillStyle=th.m[L];ctx.beginPath();ctx.moveTo(0,H/2);for(let x=0;x<=W;x+=2){const o=off*(L?1.6:1)+L*90;ctx.lineTo(x,H/2-(L?8:14)-(L?10:18)*Math.abs(Math.sin((x+o)*.025))-6*Math.sin((x+o)*.1))}ctx.lineTo(W,H/2);ctx.fill()}
+   for(let L=0;L<(th.bg?0:2);L++){const base=H/2,depth=L?13:22,shift=off*(L?1.6:1)+L*90;const shade=L?'#46566a':'#34465b',grad=ctx.createLinearGradient(0,base-depth-12,0,base);grad.addColorStop(0,shade);grad.addColorStop(1,th.m[L]||shade);ctx.fillStyle=grad;ctx.beginPath();ctx.moveTo(0,base);for(let x=0;x<=W;x+=4){const u=(x+shift)*.012,peak=Math.pow(Math.max(0,Math.sin(u*1.7)+.28*Math.sin(u*3.1)),1.35);ctx.lineTo(x,base-depth*(.25+peak*.75)-Math.abs(Math.sin(u*.55))*4)}ctx.lineTo(W,base);ctx.closePath();ctx.fill()}
   }finally{ctx=live}
   __crSkyLayerKey=key;
  }
@@ -1255,7 +1255,7 @@ function render(){
  for(let n=0;n<drawN&&bs.i+n<N;n++){const s=segs[bs.i+n],lz=0,z1=s.i*segL+lz-pos,z2=z1+segL,cx=px*roadW;
   const a=__crProjectPoint(s.__crA||(s.__crA={}),0,s.y1,z1,cx-x,cy),b=__crProjectPoint(s.__crB||(s.__crB={}),0,s.y2,z2,cx-x-dx,cy);x+=dx;dx+=s.curve;
   s.clip=maxY;s.v=0;if(z1<=camD||b.y>=a.y||b.y>=maxY)continue;
-  s.v=1;s.a=a;s.b=b;fogC=s.tun?'#171c29':curSky[1];s.ft=Math.min(1,(n/drawN)**2*FM+(s.tun?.12:0));vis.push(s);const ft=s.ft,by=b.y-.6;const d=(s.i/3|0)%2;
+  s.v=1;s.a=a;s.b=b;fogC=s.tun?'#202b3b':curSky[1];const roadFog=(n/drawN)**2*FM;s.ft=s.tun?Math.min(.20,roadFog*.28+.025):Math.min(1,roadFog);vis.push(s);const ft=s.ft,by=b.y-.6;const d=(s.i/3|0)%2;
  __crPoly4(fg(curG[d?0:1],ft),0,by,W,by,W,a.y,0,a.y);
  if(s.sea){const l1=a.x-a.w*1.8,l2=b.x-b.w*1.8;__crPoly4(fg(d?'#1f8fe0':'#2a9cef',ft),0,a.y,l1,a.y,l2,by,0,by);__crPoly4('#fff8',l1,a.y,l1+a.w*.12,a.y,l2+b.w*.12,by,l2,by)}
  const fF=forkActive&&s.i>=N-FORK,fa=fF?Math.min(1,(s.i-(N-FORK))/FORK):0,fb=fF?Math.min(1,(s.i+1-(N-FORK))/FORK):0,rl=!fF&&!s.tun&&((s.i/90|0)%3==1);
@@ -1267,7 +1267,7 @@ function render(){
   ctx.fillStyle='#00000012';ctx.beginPath();
   for(let oi=0;oi<2;oi++){const o=oi===0?-.45:.45;ctx.moveTo(ax+aw*(o-.13),a.y);ctx.lineTo(ax+aw*(o+.13),a.y);ctx.lineTo(bx+bw*(o+.13),by);ctx.lineTo(bx+bw*(o-.13),by);ctx.closePath()}
   ctx.fill();
-  if(d||s.tun){const l1=aw*.025,l2=bw*.025;ctx.fillStyle=fg('#fff',ft);ctx.beginPath();const markCount=fF?2:4;for(let mi=0;mi<markCount;mi++){const o=fF?(mi===0?-.5:.5):(mi===0?-.34:mi===1?.34:mi===2?-.96:.96);ctx.moveTo(ax+aw*o-l1,a.y);ctx.lineTo(ax+aw*o+l1,a.y);ctx.lineTo(bx+bw*o+l2,by);ctx.lineTo(bx+bw*o-l2,by);ctx.closePath()}ctx.fill()}
+  if(d||s.tun){const l1=aw*(s.tun?.038:.025),l2=bw*(s.tun?.038:.025);ctx.fillStyle=s.tun?'#fff8df':fg('#fff',ft);ctx.beginPath();const marks=fF?[-.5,.5]:(s.tun?[-.34,.34,-.96,.96]:[-.34,.34,-.96,.96]);for(const o of marks){ctx.moveTo(ax+aw*o-l1,a.y);ctx.lineTo(ax+aw*o+l1,a.y);ctx.lineTo(bx+bw*o+l2,by);ctx.lineTo(bx+bw*o-l2,by);ctx.closePath()}ctx.fill()}
   if(s.shd&&!fF&&th.d!='h'&&!s.tun){ctx.fillStyle='#00000024';ctx.beginPath();for(let ei=0;ei<2;ei++){const e=ei===0?-1:1;ctx.moveTo(ax+e*aw,a.y);ctx.lineTo(ax+e*(aw-aw*s.shd),a.y);ctx.lineTo(bx+e*(bw-bw*s.shd),by);ctx.lineTo(bx+e*bw,by);ctx.closePath()}ctx.fill()}
   if(rl)for(let ei=0;ei<2;ei++){const e=ei===0?-1:1,xa=ax+e*(aw+r1*1.6),xb=bx+e*(bw+r2*1.6),ha=aw*.1,hb=bw*.1;__crPoly4(fg('#aeb4c0',ft),xa,a.y,xa,a.y-ha,xb,by-hb,xb,by);__crPoly4(fg('#eef2f8',ft),xa,a.y-ha,xa,a.y-ha*.8,xb,by-hb*.8,xb,by-hb)}}
  maxY=b.y}
@@ -1287,7 +1287,7 @@ function render(){
  ctx.save();const cxp=W/2,cyp=H-6,sw=320*(MODE==2?.18:VW[myV])*1.2*(mini>0?.62:1);
  if(crash>0){ctx.translate(cxp,cyp-15);ctx.rotate(ang);ctx.translate(-cxp,-(cyp-15))}
  const bump=speed>0?(Math.floor(pos/90)%2):0;inTunnel=!!ps.tun;if(ac&&tunnelLP&&tunnelWet){const now=ac.currentTime;tunnelLP.frequency.setTargetAtTime(inTunnel?1050:19000,now,.22);tunnelWet.gain.setTargetAtTime(inTunnel?.24:0,now,.22)}BRK=(inp.b||gpad.b)&&speed>0?1:0;BOOSTF=boost>0?1:0;
- if(inTunnel){ctx.save();ctx.globalAlpha=.18;ctx.fillStyle='#e9a34b';ctx.fillRect(0,0,W,H);ctx.globalAlpha=.32;const beam=ctx.createLinearGradient(0,H*.48,0,H);beam.addColorStop(0,'rgba(255,184,91,0)');beam.addColorStop(1,'rgba(255,174,78,.22)');ctx.fillStyle=beam;ctx.fillRect(0,H*.42,W,H*.58);ctx.restore();ctx.save();ctx.globalAlpha=.28;ctx.fillStyle='#fff0c2';ctx.beginPath();ctx.moveTo(W*.47,H*.91);ctx.lineTo(W*.34,H*.43);ctx.lineTo(W*.66,H*.43);ctx.lineTo(W*.53,H*.91);ctx.closePath();ctx.fill();ctx.restore()}
+ if(inTunnel){ctx.save();ctx.globalCompositeOperation='screen';for(let side of[-1,1]){const hx=W/2+side*sw*.235,hy=H*.91,ex=W/2+side*W*.105,ey=H*.48;const beam=ctx.createLinearGradient(hx,hy,ex,ey);beam.addColorStop(0,'rgba(255,239,190,.19)');beam.addColorStop(.38,'rgba(255,224,160,.10)');beam.addColorStop(1,'rgba(255,220,150,0)');ctx.fillStyle=beam;ctx.beginPath();ctx.moveTo(hx-side*W*.012,hy);ctx.lineTo(ex-side*W*.075,ey);ctx.lineTo(ex+side*W*.035,ey);ctx.lineTo(hx+side*W*.012,hy);ctx.closePath();ctx.fill();const glow=ctx.createRadialGradient(hx,hy-2,1,hx,hy-2,W*.075);glow.addColorStop(0,'rgba(255,244,210,.25)');glow.addColorStop(1,'rgba(255,220,150,0)');ctx.fillStyle=glow;ctx.fillRect(hx-W*.08,hy-W*.08,W*.16,W*.12)}ctx.restore()}
  {const slide=drift*driftSide*28+Math.max(-6,Math.min(6,pxVel*2));
   if(musk>0)drawMuskCraft(cxp+slide,cyp-bump-38,sw,flash);
   else drawVehPose(cxp+slide,cyp-bump,sw,star>0&&flash%.2<.1?'#ffd400':(MODE==2?'#f2f2f2':myCol),MODE==2?-1:myV,drift>.15?(driftSide<0?4:3):(carTurn<-.08?2:carTurn>.08?1:0),Math.floor(pos/70)%2)}if(musk>0){ctx.save();ctx.globalAlpha=.9;for(let fi=0;fi<2;fi++){const dx=fi===0?-13:13,ex=cxp+dx,ey=cyp-18;const flame=ctx.createLinearGradient(ex,ey,ex,ey+48);flame.addColorStop(0,'#dffaff');flame.addColorStop(.35,'#42dfff');flame.addColorStop(1,'#ff8a32');ctx.fillStyle=flame;ctx.beginPath();ctx.moveTo(ex-4,ey);ctx.lineTo(ex+4,ey);ctx.lineTo(ex+2+Math.sin(flash*18+dx)*3,ey+44);ctx.lineTo(ex-2,ey+44);ctx.fill()}ctx.restore()}ctx.restore();
