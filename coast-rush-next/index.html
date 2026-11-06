@@ -1238,9 +1238,7 @@ const s=sc*(t==='c'?73600:t==='l'?80000:t==='a'?100000:3200*H/2);if('ptacl'.incl
    const inner=()=>{const ik=k*(1-thick),ih=hh*(1-thick*.9);ctx.beginPath();ctx.moveTo(x-ik,y);ctx.lineTo(x-ik,y-ih*.48);ctx.quadraticCurveTo(x-ik*.94,y-ih,x,y-ih*1.02);ctx.quadraticCurveTo(x+ik*.94,y-ih,x+ik,y-ih*.48);ctx.lineTo(x+ik,y);ctx.closePath()};
    ctx.save();ctx.fillStyle=sp.port?'#8e806b':((sp.k%2)?'#45413c':'#514a40');outer();inner();ctx.fill('evenodd');
    ctx.strokeStyle='#b5a58b';ctx.lineWidth=Math.max(1,w*.035);outer();ctx.stroke();ctx.strokeStyle='#292d35';ctx.lineWidth=Math.max(1,w*.018);inner();ctx.stroke();
-   // Fond rocheux continu : l'ouverture n'est plus transparente sur le paysage.
-   // On conserve une bande basse libre pour que la chaussée reste visible.
-   ctx.save();inner();ctx.clip();const tunnelWall=ctx.createLinearGradient(x-k,y-hh,x+k,y);tunnelWall.addColorStop(0,'#080e17');tunnelWall.addColorStop(.48,'#17212d');tunnelWall.addColorStop(1,'#080e17');ctx.fillStyle=tunnelWall;ctx.fillRect(x-k,y-hh,k*2,hh*1.08);const tunnelRoad=ctx.createLinearGradient(0,y-hh*.28,0,y);tunnelRoad.addColorStop(0,'#343943');tunnelRoad.addColorStop(.45,'#292e37');tunnelRoad.addColorStop(1,'#20252d');ctx.fillStyle=tunnelRoad;ctx.beginPath();ctx.moveTo(x-w*.17,y-hh*.28);ctx.lineTo(x+w*.17,y-hh*.28);ctx.lineTo(x+w*.55,y);ctx.lineTo(x-w*.55,y);ctx.closePath();ctx.fill();ctx.strokeStyle='#d7d4c8';ctx.lineWidth=Math.max(1,w*.012);ctx.beginPath();ctx.moveTo(x-w*.17,y-hh*.28);ctx.lineTo(x-w*.55,y);ctx.moveTo(x+w*.17,y-hh*.28);ctx.lineTo(x+w*.55,y);ctx.stroke();ctx.restore();
+   // Le sprite T ne dessine que l'anneau de roche : le moteur de route dessine seul la chaussée et l'intérieur.
    // Les anciens petits traits transversaux sont retirés : ils ressemblaient à des sprites parasites.
 
    if(sp.port){ctx.strokeStyle='#d0c1a5';ctx.lineWidth=Math.max(2,w*.11);outer();ctx.stroke();ctx.strokeStyle='#eee3cd';ctx.lineWidth=Math.max(1,w*.025);outer();ctx.stroke();
@@ -1321,7 +1319,7 @@ const s=sc*(t==='c'?73600:t==='l'?80000:t==='a'?100000:3200*H/2);if('ptacl'.incl
 // V42 — cache de sprites de décor statiques (rendu local, indépendant de la caméra).
 // Les objets animés/contextuels restent dessinés en direct. Le cache est borné en mémoire.
 const __crDecoCache=new Map();
-const __crDecoCacheable=new Set(['p','c','t','h','l','r','a','n','R','A','sk','bs','gs','py','cl','T','sm','ap','sc','rt','cf','ht','ho','ec','X','P','B','W','u','S']); // décors fixes, bâtiments et signalétique pré-rendus
+const __crDecoCacheable=new Set(['p','c','t','h','l','r','a','n','R','A','sk','bs','gs','py','cl','sm','ap','sc','rt','cf','ht','ho','ec','X','P','B','W','u','S']); // décors fixes, bâtiments et signalétique pré-rendus
 const __crDecoDynamic=new Set(['I','F','G','C']);
 let __crDecoCacheHits=0,__crDecoCacheMisses=0,__crDecoCacheBytes=0;
 const __crDecoTypeHits=Object.create(null),__crDecoTypeMisses=Object.create(null);
@@ -1481,7 +1479,7 @@ function render(){
   const a=__crProjectPoint(s.__crA||(s.__crA={}),0,s.y1,z1,cx-x,cy),b=__crProjectPoint(s.__crB||(s.__crB={}),0,s.y2,z2,cx-x-dx,cy);x+=dx;dx+=s.curve;
   s.clip=maxY;s.v=0;if(z1<=camD||b.y>=a.y||b.y>=maxY)continue;
   s.v=1;s.a=a;s.b=b;fogC=s.tun?'#0a0a12':curSky[1];s.ft=Math.min(1,(n/drawN)**2*FM+(s.tun?.4:0));vis.push(s);const ft=s.ft,by=b.y-.6;const d=(s.i/3|0)%2;
- if(s.tun){const tunnelBg=ctx.createLinearGradient(0,by,0,a.y);tunnelBg.addColorStop(0,'#111923');tunnelBg.addColorStop(.55,'#202a36');tunnelBg.addColorStop(1,'#30333a');ctx.fillStyle=tunnelBg;ctx.fillRect(0,by,W,a.y-by)}else __crPoly4(fg(curG[d?0:1],ft),0,by,W,by,W,a.y,0,a.y);
+ if(s.tun){const tunnelBg=ctx.createLinearGradient(0,by,0,a.y);tunnelBg.addColorStop(0,'#080e17');tunnelBg.addColorStop(.5,'#172330');tunnelBg.addColorStop(1,'#28313c');ctx.fillStyle=tunnelBg;ctx.fillRect(0,by,W,a.y-by)}else __crPoly4(fg(curG[d?0:1],ft),0,by,W,by,W,a.y,0,a.y);
  if(s.sea){const l1=a.x-a.w*1.8,l2=b.x-b.w*1.8;__crPoly4(fg(d?'#1f8fe0':'#2a9cef',ft),0,a.y,l1,a.y,l2,by,0,by);__crPoly4('#fff8',l1,a.y,l1+a.w*.12,a.y,l2+b.w*.12,by,l2,by)}
  const fF=forkActive&&s.i>=N-FORK,fa=fF?Math.min(1,(s.i-(N-FORK))/FORK):0,fb=fF?Math.min(1,(s.i+1-(N-FORK))/FORK):0,rl=!fF&&!s.tun&&((s.i/90|0)%3==1);
  if(fF)__crPoly4(fg('#2f9a3a',ft),a.x-a.w*.9*fa,a.y,a.x+a.w*.9*fa,a.y,b.x+b.w*.9*fb,by,b.x-b.w*.9*fb,by);
