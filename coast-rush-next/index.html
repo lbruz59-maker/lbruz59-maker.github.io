@@ -714,7 +714,7 @@ function buildCourse(id){pickTrack();const R=rng(id*7919+13);th=TH[THI[id]];cons
   const archGroupCount=1,archZones=[],ARCH_SPACING_UNITS=7*segL;
   const archMin=100,archMax=N-FORK-45,archGap=6;
   // Un seul groupe : 3 km physiques entre la première et la dernière arche.
-  const archLen=Math.max(1,Math.floor(3000/(segL*METERS_PER_UNIT)));
+  const archLen=Math.max(1,Math.floor(1000/(segL*METERS_PER_UNIT)));
   for(let ag=0;ag<archGroupCount;ag++){
    const spanSegments=archLen;let placed=false;
    for(let attempt=0;attempt<96&&!placed;attempt++){
