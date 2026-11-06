@@ -683,23 +683,43 @@ function buildCourse(id){pickTrack();const R=rng(id*7919+13);th=TH[THI[id]];cons
  segs.forEach(s=>s.loop=loopS>=0&&s.i>=loopS&&s.i<loopE);
  // Deux tunnels : budget cumulé plafonné à 9 % du circuit.
  const tunnelRanges=[],tunnelCount=2;
- const tunnelBudget=Math.max(20,Math.floor((N-FORK-100)*.09));
- const tunnelLen=Math.max(10,Math.floor(tunnelBudget/tunnelCount));
+ // Deux tunnels longs, dimensionnes en metres reels sur le circuit calibre a 10 km.
+ // Garder une marge pour les arches, les virages et la ligne d'arrivee.
+ const segmentMeters=segL*METERS_PER_UNIT;
+ const tunnelTargetMeters=1600+R()*400;
+ const tunnelLen=Math.max(10,Math.ceil(tunnelTargetMeters/segmentMeters));
  for(let ti=0;ti<tunnelCount;ti++){
-  const len=tunnelLen;
   let placed=false;
-  for(let attempt=0;attempt<96&&!placed;attempt++){
-   const min=90,max=N-FORK-len-35;if(max<=min)break;
-   const start=min+(R()*(max-min+1)|0),end=start+len;
+  for(let attempt=0;attempt<120&&!placed;attempt++){
+   const min=90,max=N-FORK-tunnelLen-35;if(max<=min)break;
+   const start=min+(R()*(max-min+1)|0),end=start+tunnelLen;
    if(loopS>=0&&start<loopE+24&&end>loopS-24)continue;
    if(tunnelRanges.some(q=>start<q.end+8&&end>q.start-8))continue;
-   tunnelRanges.push({start,end,len});placed=true;
+   tunnelRanges.push({start,end,len:tunnelLen});placed=true;
   }
  }
  tunnelRanges.sort((a,b)=>a.start-b.start);
  segs.forEach(s=>{const tr=tunnelRanges.find(q=>s.i>=q.start&&s.i<q.end);s.tun=!!tr;s.tS=tr?tr.start:-1;s.tEnd=tr?tr.end:-1;s.tunBlend=tr?1:0;
   if(!tr)for(const q of tunnelRanges){if(s.i>=q.start-2&&s.i<q.start)s.tunBlend=Math.max(s.tunBlend,(s.i-(q.start-2))/2);else if(s.i>=q.end&&s.i<q.end+2)s.tunBlend=Math.max(s.tunBlend,1-(s.i-q.end+1)/2)}
  });
+ // Une longue section d'arches, avec un entraxe physique regulier de 10 metres.
+ const archGroupCount=1,archZones=[],ARCH_SPACING_M=10;
+ const archMin=100,archMax=N-FORK-45,archGap=8;
+ const requestedLength=3000+R()*1000,archSpanSegments=Math.ceil(requestedLength/segmentMeters);
+ let archPlaced=false;
+ for(let attempt=0;attempt<120&&!archPlaced;attempt++){
+  const start=archMin+(R()*Math.max(1,archMax-archMin-archSpanSegments)|0),end=start+archSpanSegments;
+  if(end>=archMax||archZones.some(q=>start<q.end+archGap&&end>q.start-archGap))continue;
+  let valid=true;
+  for(let ai=start;ai<=end;ai++){const g=segs[ai];if(!g||g.tun||g.loop){valid=false;break}}
+  if(!valid)continue;
+  const startZ=start*segL,lastZ=startZ+requestedLength/METERS_PER_UNIT;
+  for(let z=startZ;z<=lastZ+0.001;z+=ARCH_SPACING_M/METERS_PER_UNIT){
+   const si=Math.floor(z/segL),fraction=(z-si*segL)/segL,g=segs[si];
+   if(g){if(!g.archFractions)g.archFractions=[];g.archFractions.push(fraction)}
+  }
+  archZones.push({start,end});archPlaced=true;
+ }
  segs.forEach(s=>{s.sea=th.w&&((s.i/400|0)%3!=2);const i=s.i,f=i>=N-FORK-8;if(stage==1&&i<72){if(i==26)s.sp.push({t:'G',o:0});if(i==15)s.sp.push({t:'F',o:-.8});if(i>8&&i%11==5)s.sp.push({t:'P',o:(i%2?-1:1)*(1.65+R()*.3)});if(i>=3&&i%2==0)for(let k=0;k<3;k++)s.sp.push({t:'C',o:(k==1?1:-1)*(1.5+R()*.9),c:cols[R()*7|0],ph:R()*6})}
   if(s.loop&&i%10==0)s.sp.push({t:'R',o:0});if(i==loopS-40){s.sp.push({t:'S',o:-1.3,txt:'LOOP',bg:'#2a6aff'});s.sp.push({t:'S',o:1.3,txt:'LOOP',bg:'#2a6aff'})}
   if(useItems&&i%(DF[dfi].b*3)==((DF[dfi].b*3)>>1)&&!f&&!s.loop)s.sp.push({t:'I',o:[-.5,0,.5][R()*3|0],k:R()<.4?0:1+(R()*6|0)});
