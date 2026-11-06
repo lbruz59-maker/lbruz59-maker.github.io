@@ -703,8 +703,8 @@ function buildCourse(id){pickTrack();const R=rng(id*7919+13);th=TH[THI[id]];cons
   if(fk()&&i==N-FORK-6){const L1=TH[THI[(stage+1)*stage/2+cposk]],R1=TH[THI[(stage+1)*stage/2+cposk+1]];s.sp.push({t:'S',o:-1.5,txt:'◀ '+L1.n,bg:'#3ddc6a'});s.sp.push({t:'S',o:1.5,txt:R1.n+' ▶',bg:'#3ddc6a'})}
   if(i>=N-FORK&&i%12==0){if(!fk()&&!isLast()){s.sp.push({t:'S',o:-1.3,txt:'CHECK',bg:'#ffd400'});s.sp.push({t:'S',o:1.3,txt:'CHECK',bg:'#ffd400'})}else if(fk()){s.sp.push({t:'S',o:0,txt:'◀  ▶',bg:'#3ddc6a'})}else{s.sp.push({t:'S',o:-1.3,txt:'GOAL',bg:'#fff'});s.sp.push({t:'S',o:1.3,txt:'GOAL',bg:'#fff'})}}});
  
- //// Groupes d'arches : entraxe exact de 20 m, sans modifier la résolution de route.
-  const archGroupCount=1+(R()<.48?1:0),archZones=[],ARCH_SPACING_M=20;
+ //// Groupes d'arches : entraxe identique au rythme des palmiers (7 segments), sans modifier la résolution de route.
+  const archGroupCount=1+(R()<.48?1:0),archZones=[],ARCH_SPACING_M=7*segL;
   const archMin=100,archMax=N-FORK-45,archGap=6;
   for(let ag=0;ag<archGroupCount;ag++){
    const requestedLength=3000+R()*3000,spanSegments=Math.ceil(requestedLength/segL);let placed=false;
