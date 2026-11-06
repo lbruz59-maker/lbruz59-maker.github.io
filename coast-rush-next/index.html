@@ -676,10 +676,10 @@ function buildCourse(id){pickTrack();const R=rng(id*7919+13);th=TH[THI[id]];cons
  loopS=-1;for(let k=0;k<32;k++){road(10+R()*15|0,20+R()*30|0,10+R()*15|0,R()<Math.max(.05,.3-.015*stage)?0:Math.round((R()-.5)*12*(th.cv||1)*dif),Math.round((R()-.5)*60*(th.hl||1)*dif));if(k==14&&id%3!=0){road(0,45,0,0,0);loopS=segs.length;road(25,40,25,5,55);road(25,40,25,-5,-55);loopE=segs.length;road(0,12,0,0,0)}}
  road(15,20,15,0,-lastY()/segL);road(0,FORK+8,0,0,0);
  const N=segs.length;trackLen=N*segL;segs.forEach(s=>s.loop=loopS>=0&&s.i>=loopS&&s.i<loopE);
- // Deux tunnels par parcours, allongés de 2 à 6 km, arrondis au segment moteur de 200 m.
+ // Deux tunnels par parcours : longueur multipliée par 10 (20 à 60 km), segment moteur de 200 m.
  const tunnelRanges=[],tunnelCount=2;
  for(let ti=0;ti<tunnelCount;ti++){
-  const requestedLength=2000+R()*4000,len=Math.max(10,Math.min(30,Math.round(requestedLength/segL)));
+  const requestedLength=(2000+R()*4000)*10,len=Math.max(10,Math.round(requestedLength/segL));
   let placed=false;
   for(let attempt=0;attempt<64&&!placed;attempt++){
    const min=90,max=N-FORK-len-35;if(max<=min)break;
@@ -707,7 +707,7 @@ function buildCourse(id){pickTrack();const R=rng(id*7919+13);th=TH[THI[id]];cons
   const archGroupCount=1+(R()<.48?1:0),archZones=[],ARCH_SPACING_M=7*segL;
   const archMin=100,archMax=N-FORK-45,archGap=6;
   for(let ag=0;ag<archGroupCount;ag++){
-   const requestedLength=3000+R()*3000,spanSegments=Math.ceil(requestedLength/segL);let placed=false;
+   const requestedLength=(3000+R()*3000)*4,spanSegments=Math.ceil(requestedLength/segL);let placed=false;
    for(let attempt=0;attempt<64&&!placed;attempt++){
     const start=archMin+(R()*Math.max(1,archMax-archMin-spanSegments)|0),end=start+spanSegments;
     if(end>=archMax||archZones.some(z=>start<z.end+archGap&&end>z.start-archGap))continue;
@@ -1502,12 +1502,19 @@ function render(){
   const tunnelBg=ctx.createLinearGradient(0,topLA,0,a.y);
   tunnelBg.addColorStop(0,'#71899a');tunnelBg.addColorStop(.55,'#526b7c');tunnelBg.addColorStop(1,'#344b5b');
   ctx.fillStyle=tunnelBg;ctx.beginPath();
-  ctx.moveTo(a.x-a.w*1.14,topLA);ctx.lineTo(a.x+a.w*1.14,topRA);
-  ctx.lineTo(b.x+b.w*1.14,topRB);ctx.lineTo(b.x-b.w*1.14,topLB);
+  ctx.moveTo(a.x-a.w*1.14,a.y-roofA*.34);
+  ctx.quadraticCurveTo(a.x,a.y-roofA*1.02,a.x+a.w*1.14,a.y-roofA*.34);
+  ctx.lineTo(b.x+b.w*1.14,by-roofB*.34);
+  ctx.quadraticCurveTo(b.x,by-roofB*1.02,b.x-b.w*1.14,by-roofB*.34);
   ctx.closePath();ctx.fill();
   const roof=ctx.createLinearGradient(0,topLA,0,a.y);
   roof.addColorStop(0,'#435665');roof.addColorStop(.7,'#657d8d');roof.addColorStop(1,'#91a7b4');
-  ctx.fillStyle=roof;ctx.beginPath();ctx.moveTo(lxA,topLA);ctx.lineTo(rxA,topRA);ctx.lineTo(rxB,topRB);ctx.lineTo(lxB,topLB);ctx.closePath();ctx.fill();
+  ctx.fillStyle=roof;ctx.beginPath();
+  ctx.moveTo(lxA,a.y-roofA*.34);
+  ctx.quadraticCurveTo(a.x,a.y-roofA*1.18,rxA,a.y-roofA*.34);
+  ctx.lineTo(rxB,by-roofB*.34);
+  ctx.quadraticCurveTo(b.x,by-roofB*1.18,lxB,by-roofB*.34);
+  ctx.closePath();ctx.fill();
   const leftWall=ctx.createLinearGradient(lxA,0,a.x-a.w,0);
   leftWall.addColorStop(0,'#536b7a');leftWall.addColorStop(1,'#a0b3bd');
   ctx.fillStyle=leftWall;ctx.beginPath();ctx.moveTo(lxA,topLA);ctx.lineTo(a.x-a.w,a.y);ctx.lineTo(b.x-b.w,by);ctx.lineTo(lxB,topLB);ctx.closePath();ctx.fill();
@@ -1556,7 +1563,12 @@ function render(){
   const topLA=a.y-roofA,topLB=by-roofB;
   const roof=ctx.createLinearGradient(0,topLA,0,a.y);
   roof.addColorStop(0,'#9bb4c2');roof.addColorStop(.7,'#b5cbd5');roof.addColorStop(1,'#d4e2e8');
-  ctx.fillStyle=roof;ctx.beginPath();ctx.moveTo(lxA,topLA);ctx.lineTo(rxA,topLA);ctx.lineTo(rxB,topLB);ctx.lineTo(lxB,topLB);ctx.closePath();ctx.fill();
+  ctx.fillStyle=roof;ctx.beginPath();
+  ctx.moveTo(lxA,a.y-roofA*.34);
+  ctx.quadraticCurveTo(a.x,a.y-roofA*1.18,rxA,a.y-roofA*.34);
+  ctx.lineTo(rxB,by-roofB*.34);
+  ctx.quadraticCurveTo(b.x,by-roofB*1.18,lxB,by-roofB*.34);
+  ctx.closePath();ctx.fill();
   const leftWall=ctx.createLinearGradient(lxA,0,a.x-a.w,0);
   leftWall.addColorStop(0,'#9bb4c2');leftWall.addColorStop(1,'#d0dfe5');
   ctx.fillStyle=leftWall;ctx.beginPath();ctx.moveTo(lxA,topLA);ctx.lineTo(a.x-a.w,a.y);ctx.lineTo(b.x-b.w,by);ctx.lineTo(lxB,topLB);ctx.closePath();ctx.fill();
