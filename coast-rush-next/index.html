@@ -679,7 +679,7 @@ function buildCourse(id){pickTrack();const R=rng(id*7919+13);th=TH[THI[id]];cons
  road(15,20,15,0,-lastY()/segL);road(0,FORK+8,0,0,0);
  const N=segs.length;trackLen=N*segL;
  // Chaque circuit mesure exactement 10 km en distance physique, sans changer l'echelle de rendu.
- METERS_PER_UNIT=10000/trackLen;MAX=(290/3.6)/METERS_PER_UNIT;
+ METERS_PER_UNIT=10000/trackLen;MAX=(360/3.6)/METERS_PER_UNIT;
  segs.forEach(s=>s.loop=loopS>=0&&s.i>=loopS&&s.i<loopE);
  // Deux tunnels : budget cumulé plafonné à 9 % du circuit.
  const tunnelRanges=[],tunnelCount=2;
