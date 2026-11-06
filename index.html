@@ -1292,6 +1292,7 @@ function render(){
  for(const p of driftTrail){ctx.globalAlpha=.28*(1-p.t/1.25);ctx.strokeStyle='#17191d';ctx.lineWidth=2.2;ctx.lineCap='round';ctx.beginPath();ctx.moveTo(p.x,p.y+p.t*34);ctx.lineTo(p.x-p.side*1.2,p.y+18+p.t*34);ctx.stroke()}for(const p of smoke){ctx.globalAlpha=.6*(1-p.t/.7);ctx.fillStyle='#ddd';ctx.beginPath();ctx.arc(p.x,p.y,3+p.t*10,0,7);ctx.fill()}ctx.globalAlpha=1;BRK=0;BOOSTF=0;if(gun>0&&Math.floor(flash*24)%2){ctx.fillStyle='#fff3a0';for(const dx of[-9,9]){ctx.beginPath();ctx.arc(W/2+dx,H-34,3+Math.random()*2,0,7);ctx.fill()}}
  ctx.restore();
  {const vk=W+'x'+H;if(vk!==__crVignetteKey){__crVignetteKey=vk;__crVignette=ctx.createRadialGradient(W/2,H/2,H*.4,W/2,H/2,W*.62);__crVignette.addColorStop(0,'#0000');__crVignette.addColorStop(1,'#0007')}ctx.fillStyle=__crVignette;ctx.fillRect(0,0,W,H)}
+}
 
 function drawCoastRushRouteBackdrop(){
  const g=ctx.createLinearGradient(0,0,0,H);g.addColorStop(0,'#10243a');g.addColorStop(.58,'#173d55');g.addColorStop(1,'#34566a');ctx.fillStyle=g;ctx.fillRect(0,0,W,H);
