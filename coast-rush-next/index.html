@@ -1232,11 +1232,14 @@ const s=sc*(t==='c'?73600:t==='l'?80000:t==='a'?100000:3200*H/2);if('ptacl'.incl
   for(let i=0;i<5;i++)for(let j=0;j<4;j++){ctx.fillStyle=(i+j)%2?'#111':'#fff';ctx.fillRect(q+wv*h*.08+i*h*.105+Math.sin(flash*8+i)*h*.025,pt+j*h*.085,h*.105,h*.085)}}
  else if(t=='T'){
    // Voûte arrondie : anneaux de pierre épais, jointifs sur toute la longueur.
-   const w=sc*roadW*160,k=w*1.08,hh=w*.84,thick=.19;
+   const w=sc*roadW*160,k=w*1.08,hh=w*.84,thick=.30;
    const outer=()=>{ctx.beginPath();ctx.moveTo(x-k,y);ctx.lineTo(x-k,y-hh*.48);ctx.quadraticCurveTo(x-k*.94,y-hh,x,y-hh*1.02);ctx.quadraticCurveTo(x+k*.94,y-hh,x+k,y-hh*.48);ctx.lineTo(x+k,y);ctx.closePath()};
    const inner=()=>{const ik=k*(1-thick),ih=hh*(1-thick*.9);ctx.beginPath();ctx.moveTo(x-ik,y);ctx.lineTo(x-ik,y-ih*.48);ctx.quadraticCurveTo(x-ik*.94,y-ih,x,y-ih*1.02);ctx.quadraticCurveTo(x+ik*.94,y-ih,x+ik,y-ih*.48);ctx.lineTo(x+ik,y);ctx.closePath()};
    ctx.save();ctx.fillStyle=sp.port?'#8e806b':((sp.k%2)?'#45413c':'#514a40');outer();inner();ctx.fill('evenodd');
    ctx.strokeStyle='#b5a58b';ctx.lineWidth=Math.max(1,w*.035);outer();ctx.stroke();ctx.strokeStyle='#292d35';ctx.lineWidth=Math.max(1,w*.018);inner();ctx.stroke();
+   // Fond rocheux continu : l'ouverture n'est plus transparente sur le paysage.
+   // On conserve une bande basse libre pour que la chaussée reste visible.
+   ctx.save();inner();ctx.clip();const tunnelWall=ctx.createLinearGradient(x-k,y-hh,x+k,y);tunnelWall.addColorStop(0,'#101720');tunnelWall.addColorStop(.5,'#202a35');tunnelWall.addColorStop(1,'#0b1119');ctx.fillStyle=tunnelWall;ctx.fillRect(x-k,y-hh,k*2,hh*.79);ctx.restore();
    ctx.strokeStyle='#746956';ctx.lineWidth=Math.max(1,w*.012);
    for(let j=1;j<5;j++){const q=j/5,yy=y-hh*(.24+q*.55),dx=k*Math.sqrt(Math.max(.08,1-Math.pow((yy-(y-hh))/hh,2)));ctx.beginPath();ctx.moveTo(x-dx,yy);ctx.lineTo(x-dx+Math.max(1,w*.025),yy);ctx.moveTo(x+dx,yy);ctx.lineTo(x+dx-Math.max(1,w*.025),yy);ctx.stroke()}
    if(sp.port){ctx.strokeStyle='#d0c1a5';ctx.lineWidth=Math.max(2,w*.11);outer();ctx.stroke();ctx.strokeStyle='#eee3cd';ctx.lineWidth=Math.max(1,w*.025);outer();ctx.stroke();
