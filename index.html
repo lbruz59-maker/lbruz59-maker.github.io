@@ -2141,4 +2141,15 @@ $('du').onclick=startDuel;
 applyInputMode();
 try{$('go').focus()}catch(e){}
 requestAnimationFrame(loop);
-</script><script>if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}))}</script></body></html>
+</script><script>
+if('serviceWorker' in navigator){
+ const refreshKey='cr-sw-auto-refresh-v9';
+ navigator.serviceWorker.addEventListener('controllerchange',()=>{
+  try{if(sessionStorage.getItem(refreshKey)==='1')return;sessionStorage.setItem(refreshKey,'1')}catch(e){}
+  location.reload();
+ });
+ window.addEventListener('load',()=>{
+  navigator.serviceWorker.register('./sw.js',{updateViaCache:'none'}).then(reg=>reg.update()).catch(()=>{});
+ });
+}
+</script></body></html>
