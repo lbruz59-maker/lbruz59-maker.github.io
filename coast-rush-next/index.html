@@ -676,8 +676,8 @@ function buildCourse(id){pickTrack();const R=rng(id*7919+13);th=TH[THI[id]];cons
  loopS=-1;for(let k=0;k<32;k++){road(10+R()*15|0,20+R()*30|0,10+R()*15|0,R()<Math.max(.05,.3-.015*stage)?0:Math.round((R()-.5)*12*(th.cv||1)*dif),Math.round((R()-.5)*60*(th.hl||1)*dif));if(k==14&&id%3!=0){road(0,45,0,0,0);loopS=segs.length;road(25,40,25,5,55);road(25,40,25,-5,-55);loopE=segs.length;road(0,12,0,0,0)}}
  road(15,20,15,0,-lastY()/segL);road(0,FORK+8,0,0,0);
  const N=segs.length;trackLen=N*segL;segs.forEach(s=>s.loop=loopS>=0&&s.i>=loopS&&s.i<loopE);
- const tunnelRanges=[],tunnelCount=2+(R()<.65?1:0);
-  for(let ti=0;ti<tunnelCount;ti++){const lengthM=300+R()*4700,len=Math.max(2,Math.ceil(lengthM/segL));let placed=false;
+ const tunnelRanges=[],tunnelCount=2;
+  for(let ti=0;ti<tunnelCount;ti++){const lengthM=10000+R()*5000,len=Math.max(50,Math.ceil(lengthM/segL));let placed=false;
    for(let attempt=0;attempt<48&&!placed;attempt++){const min=90,max=N-FORK-len-35;if(max<=min)break;const start=min+(R()*(max-min+1)|0),end=start+len;
     if(loopS>=0&&start<loopE+24&&end>loopS-24)continue;if(tunnelRanges.some(q=>start<q.end+4&&end>q.start-4))continue;
     tunnelRanges.push({start,end,len,lengthM});placed=true;
@@ -700,8 +700,8 @@ function buildCourse(id){pickTrack();const R=rng(id*7919+13);th=TH[THI[id]];cons
  //// Groupes d'arches : le nombre est calculé selon la longueur, sans limite fixe.
   // Chaque groupe fait au moins 600 m ; entraxe historique conservé : 600 m.
   const archGroupCount=1+(R()<.48?1:0),archZones=[];
-  const archMin=100,archMax=N-FORK-45,archStep=3,archGap=6;
-  for(let ag=0;ag<archGroupCount;ag++){const requestedLength=600+R()*4400,count=Math.ceil(requestedLength/(archStep*segL))+1,span=(count-1)*archStep;let placed=false;
+  const archMin=100,archMax=N-FORK-45,archStep=1,archGap=6;
+  for(let ag=0;ag<archGroupCount;ag++){const requestedLength=3000+R()*3000,count=Math.ceil(requestedLength/(archStep*segL))+1,span=(count-1)*archStep;let placed=false;
    for(let attempt=0;attempt<48&&!placed;attempt++){const start=archMin+(R()*Math.max(1,archMax-archMin-span)|0),end=start+span;
     if(end>=archMax||archZones.some(z=>start<z.end+archGap&&end>z.start-archGap))continue;
     let valid=true;for(let ai=start;ai<=end;ai+=archStep){const g=segs[ai];if(!g||g.tun||g.loop){valid=false;break}}
@@ -1240,7 +1240,7 @@ const s=sc*(t==='c'?73600:t==='l'?80000:t==='a'?100000:3200*H/2);if('ptacl'.incl
    ctx.strokeStyle='#b5a58b';ctx.lineWidth=Math.max(1,w*.035);outer();ctx.stroke();ctx.strokeStyle='#292d35';ctx.lineWidth=Math.max(1,w*.018);inner();ctx.stroke();
    // Fond rocheux continu : l'ouverture n'est plus transparente sur le paysage.
    // On conserve une bande basse libre pour que la chaussée reste visible.
-   ctx.save();inner();ctx.clip();const tunnelWall=ctx.createLinearGradient(x-k,y-hh,x+k,y);tunnelWall.addColorStop(0,'#101720');tunnelWall.addColorStop(.5,'#202a35');tunnelWall.addColorStop(1,'#0b1119');ctx.fillStyle=tunnelWall;ctx.fillRect(x-k,y-hh,k*2,hh*.84);ctx.restore();
+   ctx.save();inner();ctx.clip();const tunnelWall=ctx.createLinearGradient(x-k,y-hh,x+k,y);tunnelWall.addColorStop(0,'#080e17');tunnelWall.addColorStop(.48,'#17212d');tunnelWall.addColorStop(1,'#080e17');ctx.fillStyle=tunnelWall;ctx.fillRect(x-k,y-hh,k*2,hh*1.08);const tunnelRoad=ctx.createLinearGradient(0,y-hh*.28,0,y);tunnelRoad.addColorStop(0,'#343943');tunnelRoad.addColorStop(.45,'#292e37');tunnelRoad.addColorStop(1,'#20252d');ctx.fillStyle=tunnelRoad;ctx.beginPath();ctx.moveTo(x-w*.17,y-hh*.28);ctx.lineTo(x+w*.17,y-hh*.28);ctx.lineTo(x+w*.55,y);ctx.lineTo(x-w*.55,y);ctx.closePath();ctx.fill();ctx.strokeStyle='#d7d4c8';ctx.lineWidth=Math.max(1,w*.012);ctx.beginPath();ctx.moveTo(x-w*.17,y-hh*.28);ctx.lineTo(x-w*.55,y);ctx.moveTo(x+w*.17,y-hh*.28);ctx.lineTo(x+w*.55,y);ctx.stroke();ctx.restore();
    // Les anciens petits traits transversaux sont retirés : ils ressemblaient à des sprites parasites.
 
    if(sp.port){ctx.strokeStyle='#d0c1a5';ctx.lineWidth=Math.max(2,w*.11);outer();ctx.stroke();ctx.strokeStyle='#eee3cd';ctx.lineWidth=Math.max(1,w*.025);outer();ctx.stroke();
