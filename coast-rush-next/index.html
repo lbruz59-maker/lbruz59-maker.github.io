@@ -633,7 +633,7 @@ function applyInputMode(){const touch=inputMode==='touch';document.querySelector
 
 window.addEventListener('error',e=>{try{let b=document.getElementById('errb');if(!b){b=document.createElement('div');b.id='errb';b.style.cssText='position:fixed;left:0;right:0;bottom:0;z-index:50;background:#600d;color:#fff;font:11px monospace;padding:3px 6px;pointer-events:none';document.body.appendChild(b)}b.textContent='Erreur : '+(e.message||e)+' ('+(e.lineno||'?')+')'}catch(x){}});const segL=200,roadW=2000,camH=1000,camD=1/Math.tan(50*Math.PI/180),playerZ=camH*camD;
 // Unites internes conservees pour le rendu : conversion physique recalibree par circuit.
-let METERS_PER_UNIT=.02,MAX=(290/3.6)/METERS_PER_UNIT;
+let METERS_PER_UNIT=.02,MAX=(360/3.6)/METERS_PER_UNIT;
 const lerp=(a,b,p)=>a+(b-a)*p,eIn=(a,b,p)=>a+(b-a)*p*p,eOut=(a,b,p)=>a+(b-a)*(1-(1-p)*(1-p)),eIO=(a,b,p)=>a+(b-a)*(-Math.cos(p*Math.PI)/2+.5);
 const segs=[];let trackLen;
 // Reuse only segments that actually received cars/objects this frame.
@@ -679,7 +679,7 @@ function buildCourse(id){pickTrack();const R=rng(id*7919+13);th=TH[THI[id]];cons
  road(15,20,15,0,-lastY()/segL);road(0,FORK+8,0,0,0);
  const N=segs.length;trackLen=N*segL;
  // Chaque circuit mesure exactement 10 km en distance physique, sans changer l'echelle de rendu.
- METERS_PER_UNIT=10000/trackLen;MAX=(290/3.6)/METERS_PER_UNIT;
+ METERS_PER_UNIT=10000/trackLen;MAX=(360/3.6)/METERS_PER_UNIT;
  segs.forEach(s=>s.loop=loopS>=0&&s.i>=loopS&&s.i<loopE);
  // Deux tunnels : budget cumulé plafonné à 9 % du circuit.
  const tunnelRanges=[],tunnelCount=2;
@@ -1614,7 +1614,7 @@ function render(){
  T('SCORE',110,16,'#ffd400');T(String(Math.floor(score)).padStart(7,'0'),110,32,'#fff');T('STAGE '+stage,215,16,'#7fe0ff');if(MODE==2){const rank=1+remotes.filter(r=>r.presence&&(+r.presence.ch||0)>chaseHits).length;T('COUPS '+chaseHits+(MP?' · POS '+rank:'')+' · GRADE '+(chaseRank+1),8,48,'#ffd400');}T(th.n+' '+WXI[wx],215,64,'#ffd');if(NET()){let rk=1,tot=1;const me=stage*1e6+pos+playerZ;for(const r of remotes){const q=r.presence;if(q&&q.cid>=0&&q.stg){tot++;if(q.stg*1e6+q.pos>me)rk++}}T('POS '+rk+'/'+tot,110,48,'#7fe0ff')}
  if(NET()){const NS=MODE==1||MODE==3?15:MODE==4?10:5,fr=(st,p)=>Math.max(0,Math.min(1,((st-1)+Math.max(0,Math.min(1,p/trackLen)))/NS)),dot=(f,col,r,tag)=>{const xx=10+f*(300);ctx.fillStyle=col;ctx.beginPath();ctx.arc(xx,9,r,0,7);ctx.fill();ctx.fillStyle='#fff';ctx.font='6px "Arial Black",Impact,sans-serif';ctx.textAlign='center';ctx.fillText(tag,xx,5)};
   ctx.fillStyle='#fff6';ctx.fillRect(10,8,300,2);for(const r of remotes){const q=r.presence;if(q&&q.stg&&q.cid>=0)dot(fr(q.stg,q.pos),q.c||'#0f0',3,(q.n||'').slice(0,3))}dot(fr(stage,pos+playerZ),'#ff2a2a',4,'MOI');ctx.textAlign='left'}
- T(String(Math.floor(speed/MAX*290)).padStart(3,'0')+' km/h',215,32,'#fff');T(gear?'HI':'LO',215,48,gear?'#3ddc6a':'#ff8800');
+ T(String(Math.floor(speed/MAX*360)).padStart(3,'0')+' km/h',215,32,'#fff');T(gear?'HI':'LO',215,48,gear?'#3ddc6a':'#ff8800');
  if((state=='count'||state=='wait')&&MODE!=2){ctx.textAlign='center';ctx.font='bold 44px "Arial Black",Impact,sans-serif';T(state=='wait'?'...':String(Math.max(1,Math.ceil(cd))),160,100,'#ffd400');if(state=='wait'){ctx.font='12px "Arial Black",Impact,sans-serif';T('En attente des joueurs',160,120,'#fff')}ctx.textAlign='left'}
  if(ac&&ac.state!='running'){ctx.font='10px "Arial Black",Impact,sans-serif';T('SON : touche l\'écran',90,216,'#ff4d6d')}
  if(MODE==2&&bnd&&state!='menu'){const f=Math.max(0,bnd.hp)/(bnd.mx||3+stage);if(state=='play'){ctx.fillStyle=(Math.floor(flash*6)%2)?'#f003':'#06f3';ctx.fillRect(-OXh,0,5,H);ctx.fillRect(W-5-OXh,0,5,H)}ctx.fillStyle='#000a';ctx.fillRect(105,68,110,10);ctx.fillStyle=f>.5?'#3d3':f>.25?'#fd2':'#f33';ctx.fillRect(107,70,106*f,6);ctx.fillStyle='#fff';ctx.font='8px "Arial Black",Impact,sans-serif';ctx.textAlign='center';ctx.fillText(['COUPÉ','FOURGON','MUSCLE CAR','SUPERCAR','PICK-UP'][bnd.vt|0]+'  '+Math.round((bnd.z-(pos+playerZ))/segL*2)+' m',160,66);ctx.textAlign='left'}
@@ -2111,7 +2111,7 @@ requestAnimationFrame(loop);
   if(!driveDiag){driveDiag=document.createElement('div');driveDiag.id='crDriveDiag';driveDiag.style.cssText='position:fixed;left:6px;top:6px;z-index:9999;max-width:calc(100vw - 12px);padding:5px 7px;border:1px solid #6deaff;border-radius:5px;background:#061323e8;color:#eaffff;font:10px/1.35 monospace;pointer-events:none;white-space:pre-wrap';document.body.appendChild(driveDiag)}
   const diagActive=state!=='menu'&&state!=='over'&&state!=='win'&&state!=='podium'&&state!=='mega';
   driveDiag.style.display=diagActive?'block':'none';
-  if(diagActive)driveDiag.textContent='CR DIAG | '+state.toUpperCase()+' | VIT '+Math.floor(speed/MAX*290)+' km/h | POS '+Math.round(pos*METERS_PER_UNIT)+' m | UNIT '+METERS_PER_UNIT.toFixed(4)+' | GAZ '+(inp.g?1:0)+' | PAD '+(gpad.g?1:0)+' | AUTO '+(autoGas?1:0)+' | CD '+Number(cd||0).toFixed(1);
+  if(diagActive)driveDiag.textContent='CR DIAG | '+state.toUpperCase()+' | VIT '+Math.floor(speed/MAX*360)+' km/h | POS '+Math.round(pos*METERS_PER_UNIT)+' m | UNIT '+METERS_PER_UNIT.toFixed(4)+' | GAZ '+(inp.g?1:0)+' | PAD '+(gpad.g?1:0)+' | AUTO '+(autoGas?1:0)+' | CD '+Number(cd||0).toFixed(1);
   const r0=performance.now();if(state!=='menu')render();crRenderMs=performance.now()-r0;crUpdateSamples[crWorkSampleWrite]=crUpdateMs;crRenderSamples[crWorkSampleWrite]=crRenderMs;crWorkSampleWrite=(crWorkSampleWrite+1)%180;if(crWorkSampleCount<180)crWorkSampleCount++;
   if(state==='play'&&t-crWindowStart>=1000){
    const span=t-crWindowStart,rafAvg=crRafCount?crRafSum/crRafCount:0,rafMax=crRafMax;
