@@ -676,8 +676,23 @@ function buildCourse(id){pickTrack();const R=rng(id*7919+13);th=TH[THI[id]];cons
  loopS=-1;for(let k=0;k<32;k++){road(10+R()*15|0,20+R()*30|0,10+R()*15|0,R()<Math.max(.05,.3-.015*stage)?0:Math.round((R()-.5)*12*(th.cv||1)*dif),Math.round((R()-.5)*60*(th.hl||1)*dif));if(k==14&&id%3!=0){road(0,45,0,0,0);loopS=segs.length;road(25,40,25,5,55);road(25,40,25,-5,-55);loopE=segs.length;road(0,12,0,0,0)}}
  road(15,20,15,0,-lastY()/segL);road(0,FORK+8,0,0,0);
  const N=segs.length;trackLen=N*segL;segs.forEach(s=>s.loop=loopS>=0&&s.i>=loopS&&s.i<loopE);
- // Tunnels désactivés : aucun segment ne reçoit d'effet tunnel.
- segs.forEach(s=>{s.tun=false;s.tS=-1;s.tEnd=-1;s.tunBlend=0});
+ // Deux tunnels par parcours, de 500 m à 3 km, arrondis au segment moteur de 200 m.
+ const tunnelRanges=[],tunnelCount=2;
+ for(let ti=0;ti<tunnelCount;ti++){
+  const requestedLength=500+R()*2500,len=Math.max(3,Math.min(15,Math.round(requestedLength/segL)));
+  let placed=false;
+  for(let attempt=0;attempt<64&&!placed;attempt++){
+   const min=90,max=N-FORK-len-35;if(max<=min)break;
+   const start=min+(R()*(max-min+1)|0),end=start+len;
+   if(loopS>=0&&start<loopE+24&&end>loopS-24)continue;
+   if(tunnelRanges.some(q=>start<q.end+8&&end>q.start-8))continue;
+   tunnelRanges.push({start,end,len});placed=true;
+  }
+ }
+ tunnelRanges.sort((a,b)=>a.start-b.start);
+ segs.forEach(s=>{const tr=tunnelRanges.find(q=>s.i>=q.start&&s.i<q.end);s.tun=!!tr;s.tS=tr?tr.start:-1;s.tEnd=tr?tr.end:-1;s.tunBlend=tr?1:0;
+  if(!tr)for(const q of tunnelRanges){if(s.i>=q.start-2&&s.i<q.start)s.tunBlend=Math.max(s.tunBlend,(s.i-(q.start-2))/2);else if(s.i>=q.end&&s.i<q.end+2)s.tunBlend=Math.max(s.tunBlend,1-(s.i-q.end+1)/2)}
+ });
  segs.forEach(s=>{s.sea=th.w&&((s.i/400|0)%3!=2);const i=s.i,f=i>=N-FORK-8;if(stage==1&&i<72){if(i==26)s.sp.push({t:'G',o:0});if(i==15)s.sp.push({t:'F',o:-.8});if(i>8&&i%11==5)s.sp.push({t:'P',o:(i%2?-1:1)*(1.65+R()*.3)});if(i>=3&&i%2==0)for(let k=0;k<3;k++)s.sp.push({t:'C',o:(k==1?1:-1)*(1.5+R()*.9),c:cols[R()*7|0],ph:R()*6})}
   if(s.loop&&i%10==0)s.sp.push({t:'R',o:0});if(i==loopS-40){s.sp.push({t:'S',o:-1.3,txt:'LOOP',bg:'#2a6aff'});s.sp.push({t:'S',o:1.3,txt:'LOOP',bg:'#2a6aff'})}
   if(useItems&&i%(DF[dfi].b*3)==((DF[dfi].b*3)>>1)&&!f&&!s.loop)s.sp.push({t:'I',o:[-.5,0,.5][R()*3|0],k:R()<.4?0:1+(R()*6|0)});
@@ -688,15 +703,22 @@ function buildCourse(id){pickTrack();const R=rng(id*7919+13);th=TH[THI[id]];cons
   if(fk()&&i==N-FORK-6){const L1=TH[THI[(stage+1)*stage/2+cposk]],R1=TH[THI[(stage+1)*stage/2+cposk+1]];s.sp.push({t:'S',o:-1.5,txt:'◀ '+L1.n,bg:'#3ddc6a'});s.sp.push({t:'S',o:1.5,txt:R1.n+' ▶',bg:'#3ddc6a'})}
   if(i>=N-FORK&&i%12==0){if(!fk()&&!isLast()){s.sp.push({t:'S',o:-1.3,txt:'CHECK',bg:'#ffd400'});s.sp.push({t:'S',o:1.3,txt:'CHECK',bg:'#ffd400'})}else if(fk()){s.sp.push({t:'S',o:0,txt:'◀  ▶',bg:'#3ddc6a'})}else{s.sp.push({t:'S',o:-1.3,txt:'GOAL',bg:'#fff'});s.sp.push({t:'S',o:1.3,txt:'GOAL',bg:'#fff'})}}});
  
- //// Groupes d'arches : le nombre est calculé selon la longueur, sans limite fixe.
-  // Chaque groupe fait au moins 600 m ; entraxe historique conservé : 600 m.
-  const archGroupCount=1+(R()<.48?1:0),archZones=[];
-  const archMin=100,archMax=N-FORK-45,archStep=1,archGap=6;
-  for(let ag=0;ag<archGroupCount;ag++){const requestedLength=3000+R()*3000,count=Math.ceil(requestedLength/(archStep*segL))+1,span=(count-1)*archStep;let placed=false;
-   for(let attempt=0;attempt<48&&!placed;attempt++){const start=archMin+(R()*Math.max(1,archMax-archMin-span)|0),end=start+span;
+ //// Groupes d'arches : entraxe exact de 5 m, sans modifier la résolution de route.
+  const archGroupCount=1+(R()<.48?1:0),archZones=[],ARCH_SPACING_M=5;
+  const archMin=100,archMax=N-FORK-45,archGap=6;
+  for(let ag=0;ag<archGroupCount;ag++){
+   const requestedLength=3000+R()*3000,spanSegments=Math.ceil(requestedLength/segL);let placed=false;
+   for(let attempt=0;attempt<64&&!placed;attempt++){
+    const start=archMin+(R()*Math.max(1,archMax-archMin-spanSegments)|0),end=start+spanSegments;
     if(end>=archMax||archZones.some(z=>start<z.end+archGap&&end>z.start-archGap))continue;
-    let valid=true;for(let ai=start;ai<=end;ai+=archStep){const g=segs[ai];if(!g||g.tun||g.loop){valid=false;break}}
-    if(!valid)continue;for(let ai=start;ai<=end;ai+=archStep)segs[ai].sp.push({t:'A',o:0});archZones.push({start,end});placed=true;
+    let valid=true;for(let ai=start;ai<=end;ai++){const g=segs[ai];if(!g||g.tun||g.loop){valid=false;break}}
+    if(!valid)continue;
+    const startZ=start*segL,endZ=startZ+requestedLength;
+    for(let z=startZ;z<=endZ+0.001;z+=ARCH_SPACING_M){
+     const si=Math.floor(z/segL),fraction=(z-si*segL)/segL,g=segs[si];
+     if(g){if(!g.archFractions)g.archFractions=[];g.archFractions.push(fraction)}
+    }
+    archZones.push({start,end});placed=true;
    }
   }
  segs.forEach(s=>{if(s.tun||s.loop||s.i>=N-FORK||s.i<80)return;const i=s.i;if(i%5==2)s.sp.push({t:'u',o:(i%2?-1:1)*(1.3+R()*.5),c:HC2[R()*5|0]});if(s.sea&&i%27==7){s.sp.push({t:'W',o:-(3.2+R()*2.8),ph:R()*6});if(i%54==7)s.sp.push({t:'W',o:3.4+R()*2.4,ph:R()*6})}if(!s.sea&&i%(th.urb?31:97)==17)s.sp.push({t:UR[R()*UR.length|0],o:(R()<.5?-1:1)*(2.05+R()*.3),c:['#fff','#f5c76b','#6fc8e8'][R()*3|0],ph:R()*6});if(!s.sea&&th.n=='LE CAIRE'&&i%71==9)s.sp.push({t:'py',o:(R()<.5?-1:1)*(3+R()*2)});if(!s.sea&&th.n=='ROME'&&i%37==5)s.sp.push({t:'cl',o:(R()<.5?-1:1)*(1.9+R()*.4)})});
@@ -1465,7 +1487,7 @@ function render(){
  if(!segs.length)return;ctx.setTransform(RS,0,0,RS,0,0);ctx.save();if(loopA){const c=Math.abs(Math.cos(loopA)),n=Math.abs(Math.sin(loopA)),k=Math.max(W/H*n+c,c+H/W*n)+.03;ctx.translate(W/2,H/2);ctx.rotate(loopA);ctx.scale(k,k);ctx.translate(-W/2,-H/2)}
  renderBackdrop();
  const N=segs.length,bs=segs[Math.floor(pos/segL)%segs.length],bp=(pos%segL)/segL,ps=segs[Math.floor((pos+playerZ)/segL)%segs.length],pp=((pos+playerZ)%segL)/segL;
- const tunnelMix=0;const cy=camH+lerp(ps.y1,ps.y2,pp);let x=0,dx=-bs.curve*bp,maxY=H;const vis=__crRenderVisible,forkActive=fk();vis.length=0;
+ const nextPs=segs[(ps.i+1)%N],tunnelMix=lerp(ps.tunBlend||0,nextPs?.tunBlend||0,pp);const cy=camH+lerp(ps.y1,ps.y2,pp);let x=0,dx=-bs.curve*bp,maxY=H;const vis=__crRenderVisible,forkActive=fk();vis.length=0;
  for(let n=0;n<drawN&&bs.i+n<N;n++){const s=segs[bs.i+n],lz=0,z1=s.i*segL+lz-pos,z2=z1+segL,cx=px*roadW;
   const a=__crProjectPoint(s.__crA||(s.__crA={}),0,s.y1,z1,cx-x,cy),b=__crProjectPoint(s.__crB||(s.__crB={}),0,s.y2,z2,cx-x-dx,cy);x+=dx;dx+=s.curve;
   s.clip=maxY;s.v=0;if(z1<=camD||b.y>=a.y||b.y>=maxY)continue;
@@ -1507,7 +1529,9 @@ function render(){
   ctx.globalAlpha=1-s.ft*.6;const clip=s.clip<H;
   // Les décors latéraux ne sont plus coupés par le masque de recouvrement de la chaussée.
   // Leur position reste calculée depuis la projection originale du segment.
-  __crDrawDecoGroup(s,a.x,a.y,a.sc);if(forkActive&&MP&&forkRoute>=0&&s.i>=N-FORK+10){
+  __crDrawDecoGroup(s,a.x,a.y,a.sc);
+   if(s.archFractions){for(let ai=0;ai<s.archFractions.length;ai++){const f=s.archFractions[ai];deco({t:'A',o:0},lerp(a.x,b.x,f),lerp(a.y,b.y,f),lerp(a.sc,b.sc,f))}}
+   if(forkActive&&MP&&forkRoute>=0&&s.i>=N-FORK+10){
    const ff=Math.min(1,(s.i-(N-FORK))/FORK),blocked=forkRoute===0?1:-1;
    const bo=blocked*(.5+.9*ff),bx0=a.x+a.sc*bo*roadW*160;
    deco(__crForkBlockSprite,bx0,a.y,a.sc);
