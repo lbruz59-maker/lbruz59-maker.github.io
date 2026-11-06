@@ -1028,12 +1028,12 @@ const s=sc*(t==='c'?73600:t==='l'?80000:t==='a'?100000:3200*H/2);if('ptacl'.incl
  ctx.fillStyle=ridge;ctx.fill('evenodd');
  // Versants éclairés, dessinés en aplats 2D de part et d'autre du portail.
  ctx.fillStyle=sp.port?'#817365':'#46566a';
- ctx.beginPath();ctx.moveTo(x-w*6.7,y);ctx.lineTo(x-w*5.8,y-w*5.0);ctx.lineTo(x-w*4.7,y-w*5.8);ctx.lineTo(x-w*3.4,y-w*4.65);ctx.lineTo(x-k*1.25,y);ctx.closePath();ctx.fill();
+ ctx.beginPath();ctx.moveTo(x-w*6.7,y);ctx.lineTo(x-w*5.8,y-w*5.0);ctx.lineTo(x-w*4.7,y-w*5.8);ctx.lineTo(x-w*3.4,y-w*4.65);ctx.lineTo(x-k,y);ctx.closePath();ctx.fill();
  ctx.fillStyle=sp.port?'#756a5b':'#3c4b60';
- ctx.beginPath();ctx.moveTo(x+k*1.05,y);ctx.lineTo(x+w*1.35,y-w*4.7);ctx.lineTo(x+w*2.8,y-w*5.65);ctx.lineTo(x+w*4.0,y-w*4.8);ctx.lineTo(x+w*5.2,y-w*5.5);ctx.lineTo(x+w*7,y-w*4.35);ctx.lineTo(x+w*7,y);ctx.closePath();ctx.fill();
+ ctx.beginPath();ctx.moveTo(x+k*1.05,y);ctx.lineTo(x+w*1.35,y-w*4.7);ctx.lineTo(x+w*2.8,y-w*5.65);ctx.lineTo(x+w*4.0,y-w*4.8);ctx.lineTo(x+w*5.2,y-w*5.5);ctx.lineTo(x+w*7,y-w*4.35);ctx.lineTo(x+k,y);ctx.closePath();ctx.fill();
  // Tunnel cylindrique resserré sur la chaussée, placé derrière le cadre.
  const barrel=ctx.createLinearGradient(x-k,0,x+k,0);barrel.addColorStop(0,'#111827');barrel.addColorStop(.5,'#252b38');barrel.addColorStop(1,'#101725');
- ctx.beginPath();ctx.moveTo(x-k,y);ctx.lineTo(x-k,y-hh);ctx.arc(x,y-hh,k,Math.PI,0);ctx.lineTo(x+k,y);ctx.closePath();ctx.fillStyle=barrel;ctx.fill();
+ ctx.beginPath();ctx.moveTo(x-k,y-hh*.32);ctx.lineTo(x-k,y-hh);ctx.arc(x,y-hh,k,Math.PI,0);ctx.lineTo(x+k,y-hh*.32);ctx.closePath();ctx.fillStyle=barrel;ctx.fill();
  ctx.restore();
  if(sp.port){
   ctx.strokeStyle='#b9ad98';ctx.lineWidth=Math.max(1,w*.13);ctx.beginPath();ctx.moveTo(x-k,y);ctx.lineTo(x-k,y-hh);ctx.arc(x,y-hh,k,Math.PI,0);ctx.lineTo(x+k,y);ctx.stroke();
