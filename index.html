@@ -1413,54 +1413,6 @@ function render(){
  else if(t=='B'){const bw=sc*900*160,bh=sc*500*H/2,ph=sc*900*H/2;ctx.fillStyle='#4a4a54';ctx.fillRect(x-bw*.3,y-ph,Math.max(1,bw*.04),ph);ctx.fillRect(x+bw*.26,y-ph,Math.max(1,bw*.04),ph);const g3=ctx.createLinearGradient(0,y-ph-bh,0,y-ph);g3.addColorStop(0,shade(sp.c,.3));g3.addColorStop(1,shade(sp.c,-.3));ctx.fillStyle='#222';ctx.fillRect(x-bw/2-bw*.02,y-ph-bh-bw*.02,bw*1.04,bh+bw*.04);ctx.fillStyle=g3;ctx.fillRect(x-bw/2,y-ph-bh,bw,bh);ctx.fillStyle='#fff';ctx.font='italic 900 '+Math.max(4,bh*.42|0)+'px "Arial Black",Impact,sans-serif';ctx.textAlign='center';ctx.fillText(sp.txt||'',x,y-ph-bh*.35);ctx.fillStyle='#ffffff55';ctx.fillRect(x-bw/2,y-ph-bh,bw,bh*.12)}
  else{const L=sp.txt.length,m=L>1?Math.min(4.5,.6+L*.38):1,bw=sc*500*160,ph=sc*800*H/2;ctx.fillStyle='#777';ctx.fillRect(x-1,y-ph,2,ph);ctx.fillStyle=sp.bg;ctx.fillRect(x-bw*m/2,y-ph-bw,bw*m,bw);ctx.fillStyle='#000';ctx.font='bold '+Math.max(4,Math.min(bw*.8,.85*m*bw/(L*.62))|0)+'px "Arial Black",Impact,sans-serif';ctx.textAlign='center';ctx.fillText(sp.txt,x,y-ph-bw*.15)}}
 
-// V42 — cache de sprites de décor statiques (rendu local, indépendant de la caméra).
-// Les objets animés/contextuels restent dessinés en direct. Le cache est borné en mémoire.
-const __crDecoCache=new Map();
-const __crDecoCacheable=new Set(['p','c','t','h','l','r','a','n','R','A','sk','bs','gs','py','cl','T','sm','ap','sc','rt','cf','ht','ho','ec','X','P','B','W','u','S']); // décors fixes, bâtiments et signalétique pré-rendus
-const __crDecoDynamic=new Set(['I','F','G','C']);
-let __crDecoCacheHits=0,__crDecoCacheMisses=0,__crDecoCacheBytes=0;
-const __crDecoTypeHits=Object.create(null),__crDecoTypeMisses=Object.create(null);
-// V80 : mémoriser la signature des sprites statiques et du thème.
-// Les sprites cacheables ne changent pas pendant une course ; on évite JSON.stringify à chaque frame.
-const __crDecoParamCache=new WeakMap();
-let __crDecoThemeRef=null,__crDecoThemeFT=null,__crDecoThemeWx=null,__crDecoThemeKey='';
-function __crGetDecoThemeKey(){
- if(__crDecoThemeRef!==th||__crDecoThemeFT!==FT||__crDecoThemeWx!==wx){
-  __crDecoThemeRef=th;__crDecoThemeFT=FT;__crDecoThemeWx=wx;
-  __crDecoThemeKey=JSON.stringify([th.n,th.d,th.glow,th.hc,th.bg,th.m,th.w,th.night,th.urb,FT,wx]);
- }
- return __crDecoThemeKey;
-}
-function deco(sp,x,y,sc){
- const t=sp&&sp.t;
- const projected=sc*3200*H/2;
- // Le LOD existant reste maître : aucun objet visible n'est supprimé par ce cache.
- 
- const largeStatic=t==='T'||t==='sm'||t==='ap'||t==='sc'||t==='bs'||t==='gs'||t==='rt'||t==='cf'||t==='ht'||t==='ho'||t==='ec'||t==='sk';
- if(!__crDecoCacheable.has(t)||__crDecoDynamic.has(t)){decoRaster(sp,x,y,sc);return;}
- const qsc=Math.round(sc*256)/256;
- const projectedQ=qsc*3200*H/2;
- const radius=Math.ceil(projectedQ*2.7)+2;
- if(radius>320||qsc<=0){decoRaster(sp,x,y,sc);return;}
- let params=__crDecoParamCache.get(sp);
- if(params===undefined){try{params=JSON.stringify([t,sp.c||'',sp.hh||0,sp.txt||'',sp.bg||'',sp.k||0,sp.port?1:0]);__crDecoParamCache.set(sp,params)}catch(_){decoRaster(sp,x,y,sc);return;}}
- const themeKey=__crGetDecoThemeKey();
- const key=[t,qsc,params,W,H,roadW,themeKey].join('|');
- const ratio=sc/qsc;
- let entry=__crDecoCache.get(key);
- if(entry){__crDecoCache.delete(key);__crDecoCache.set(key,entry);__crDecoCacheHits++;__crDecoTypeHits[t]=(__crDecoTypeHits[t]||0)+1;ctx.drawImage(entry.canvas,x-entry.anchor*ratio,y-entry.anchor*ratio,entry.size*ratio,entry.size*ratio);return;}
- __crDecoCacheMisses++;__crDecoTypeMisses[t]=(__crDecoTypeMisses[t]||0)+1;
- const size=radius*2+2,canvas=document.createElement('canvas');canvas.width=size;canvas.height=size;
- const liveCtx=ctx,cacheCtx=canvas.getContext('2d');
- if(!cacheCtx){decoRaster(sp,x,y,sc);return;}
- try{ctx=cacheCtx;ctx.setTransform(1,0,0,1,0,0);decoRaster(sp,radius+1,radius+1,qsc)}
- finally{ctx=liveCtx}
- entry={canvas,anchor:radius+1,size,bytes:size*size*4};
- __crDecoCache.set(key,entry);__crDecoCacheBytes+=entry.bytes;
- // Budget V99 borné à 24 Mio, éviction LRU ; cache dérivé et recréable.
- while(__crDecoCache.size>96||__crDecoCacheBytes>24*1024*1024){const first=__crDecoCache.keys().next().value,removed=__crDecoCache.get(first);__crDecoCache.delete(first);__crDecoCacheBytes-=removed.bytes}
- ctx.drawImage(canvas,x-entry.anchor*ratio,y-entry.anchor*ratio,entry.size*ratio,entry.size*ratio);
-}
 // V103 — regroupement généralisé des décors statiques de chaque tronçon.
 // Toutes les familles déclarées cacheables (palmiers, arbres, maisons, bâtiments,
 // panneaux et accessoires fixes) sont composées ensemble. Les éléments animés
