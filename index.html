@@ -1019,8 +1019,9 @@ const s=sc*(t==='c'?73600:t==='l'?80000:t==='a'?100000:3200*H/2);if('ptacl'.incl
   // Alternating safety blocks at the two feet of the portal.
   for(let side of[-1,1])for(let n=0;n<4;n++){ctx.fillStyle=n%2?'#e7e2d6':'#c83c42';ctx.fillRect(x+side*(k*.78+n*w*.18),y-w*.16,w*.15,w*.16)}
  }
- // Perspective road tongue and warm ceiling glow make the mouth read as an opening.
- const floor=ctx.createLinearGradient(0,y-hh*.18,0,y);floor.addColorStop(0,'#202a3a');floor.addColorStop(1,'#111824');ctx.fillStyle=floor;ctx.beginPath();ctx.moveTo(x-k*.72,y);ctx.lineTo(x-k*.38,y-hh*.16);ctx.lineTo(x+k*.38,y-hh*.16);ctx.lineTo(x+k*.72,y);ctx.closePath();ctx.fill();
+ // Ne pas repeindre le sol au premier plan : la chaussée et ses marquages
+ // restent ceux du rendu routier, visibles jusque dans le tunnel.
+ // L'éclairage du plafond est conservé sans couche opaque sur la route.
  if(sp.k%5==0){const ly=y-hh-k+w*.12,gl=ctx.createRadialGradient(x,ly,0,x,ly,w*.5);gl.addColorStop(0,'#ffe9a099');gl.addColorStop(1,'#ffe9a000');ctx.fillStyle=gl;ctx.fillRect(x-w*.5,ly-w*.5,w,w);ctx.fillStyle='#fff6c8';ctx.beginPath();ctx.arc(x,ly,Math.max(1,w*.06),0,7);ctx.fill()}}
  else if(t=='A'){const w=sc*roadW*160*1.2,hh=w*.62,pw=w*.2,lh=w*.2,X0=x-w-pw,X1=x+w,sg=ctx.createLinearGradient(X0,0,x+w+pw,0);sg.addColorStop(0,'#e2d2ae');sg.addColorStop(.5,'#cdbb94');sg.addColorStop(1,'#a89468');
   ctx.fillStyle=sg;ctx.fillRect(X0,y-hh,pw,hh);ctx.fillRect(X1,y-hh,pw,hh);ctx.fillRect(X0-pw*.15,y-hh-lh,w*2+pw*2.3,lh);
@@ -1254,7 +1255,7 @@ function render(){
  for(let n=0;n<drawN&&bs.i+n<N;n++){const s=segs[bs.i+n],lz=0,z1=s.i*segL+lz-pos,z2=z1+segL,cx=px*roadW;
   const a=__crProjectPoint(s.__crA||(s.__crA={}),0,s.y1,z1,cx-x,cy),b=__crProjectPoint(s.__crB||(s.__crB={}),0,s.y2,z2,cx-x-dx,cy);x+=dx;dx+=s.curve;
   s.clip=maxY;s.v=0;if(z1<=camD||b.y>=a.y||b.y>=maxY)continue;
-  s.v=1;s.a=a;s.b=b;fogC=s.tun?'#0a0a12':curSky[1];s.ft=Math.min(1,(n/drawN)**2*FM+(s.tun?.4:0));vis.push(s);const ft=s.ft,by=b.y-.6;const d=(s.i/3|0)%2;
+  s.v=1;s.a=a;s.b=b;fogC=s.tun?'#171c29':curSky[1];s.ft=Math.min(1,(n/drawN)**2*FM+(s.tun?.12:0));vis.push(s);const ft=s.ft,by=b.y-.6;const d=(s.i/3|0)%2;
  __crPoly4(fg(curG[d?0:1],ft),0,by,W,by,W,a.y,0,a.y);
  if(s.sea){const l1=a.x-a.w*1.8,l2=b.x-b.w*1.8;__crPoly4(fg(d?'#1f8fe0':'#2a9cef',ft),0,a.y,l1,a.y,l2,by,0,by);__crPoly4('#fff8',l1,a.y,l1+a.w*.12,a.y,l2+b.w*.12,by,l2,by)}
  const fF=forkActive&&s.i>=N-FORK,fa=fF?Math.min(1,(s.i-(N-FORK))/FORK):0,fb=fF?Math.min(1,(s.i+1-(N-FORK))/FORK):0,rl=!fF&&!s.tun&&((s.i/90|0)%3==1);
