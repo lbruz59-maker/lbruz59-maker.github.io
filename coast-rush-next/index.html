@@ -676,12 +676,14 @@ function buildCourse(id){pickTrack();const R=rng(id*7919+13);th=TH[THI[id]];cons
  loopS=-1;for(let k=0;k<32;k++){road(10+R()*15|0,20+R()*30|0,10+R()*15|0,R()<Math.max(.05,.3-.015*stage)?0:Math.round((R()-.5)*12*(th.cv||1)*dif),Math.round((R()-.5)*60*(th.hl||1)*dif));if(k==14&&id%3!=0){road(0,45,0,0,0);loopS=segs.length;road(25,40,25,5,55);road(25,40,25,-5,-55);loopE=segs.length;road(0,12,0,0,0)}}
  road(15,20,15,0,-lastY()/segL);road(0,FORK+8,0,0,0);
  const N=segs.length;trackLen=N*segL;segs.forEach(s=>s.loop=loopS>=0&&s.i>=loopS&&s.i<loopE);
- // Deux tunnels par parcours : longueur multipliée par 10 (20 à 60 km), segment moteur de 200 m.
+ // Deux tunnels : budget cumulé plafonné à 9 % du circuit.
  const tunnelRanges=[],tunnelCount=2;
+ const tunnelBudget=Math.max(20,Math.floor((N-FORK-100)*.09));
+ const tunnelLen=Math.max(10,Math.floor(tunnelBudget/tunnelCount));
  for(let ti=0;ti<tunnelCount;ti++){
-  const requestedLength=(2000+R()*4000)*10,len=Math.max(10,Math.round(requestedLength/segL));
+  const len=tunnelLen;
   let placed=false;
-  for(let attempt=0;attempt<64&&!placed;attempt++){
+  for(let attempt=0;attempt<96&&!placed;attempt++){
    const min=90,max=N-FORK-len-35;if(max<=min)break;
    const start=min+(R()*(max-min+1)|0),end=start+len;
    if(loopS>=0&&start<loopE+24&&end>loopS-24)continue;
@@ -703,17 +705,19 @@ function buildCourse(id){pickTrack();const R=rng(id*7919+13);th=TH[THI[id]];cons
   if(fk()&&i==N-FORK-6){const L1=TH[THI[(stage+1)*stage/2+cposk]],R1=TH[THI[(stage+1)*stage/2+cposk+1]];s.sp.push({t:'S',o:-1.5,txt:'◀ '+L1.n,bg:'#3ddc6a'});s.sp.push({t:'S',o:1.5,txt:R1.n+' ▶',bg:'#3ddc6a'})}
   if(i>=N-FORK&&i%12==0){if(!fk()&&!isLast()){s.sp.push({t:'S',o:-1.3,txt:'CHECK',bg:'#ffd400'});s.sp.push({t:'S',o:1.3,txt:'CHECK',bg:'#ffd400'})}else if(fk()){s.sp.push({t:'S',o:0,txt:'◀  ▶',bg:'#3ddc6a'})}else{s.sp.push({t:'S',o:-1.3,txt:'GOAL',bg:'#fff'});s.sp.push({t:'S',o:1.3,txt:'GOAL',bg:'#fff'})}}});
  
- //// Groupes d'arches : entraxe identique au rythme des palmiers (7 segments), sans modifier la résolution de route.
+ //// Groupes d'arches : longueur cumulée plafonnée à 6 % du circuit (tunnels + arches <= 15 %).
   const archGroupCount=1+(R()<.48?1:0),archZones=[],ARCH_SPACING_M=7*segL;
   const archMin=100,archMax=N-FORK-45,archGap=6;
+  const archBudget=Math.max(10,Math.floor((N-FORK-100)*.06));
+  const archLen=Math.max(5,Math.floor(archBudget/archGroupCount));
   for(let ag=0;ag<archGroupCount;ag++){
-   const requestedLength=(3000+R()*3000)*4,spanSegments=Math.ceil(requestedLength/segL);let placed=false;
-   for(let attempt=0;attempt<64&&!placed;attempt++){
+   const spanSegments=archLen;let placed=false;
+   for(let attempt=0;attempt<96&&!placed;attempt++){
     const start=archMin+(R()*Math.max(1,archMax-archMin-spanSegments)|0),end=start+spanSegments;
     if(end>=archMax||archZones.some(z=>start<z.end+archGap&&end>z.start-archGap))continue;
     let valid=true;for(let ai=start;ai<=end;ai++){const g=segs[ai];if(!g||g.tun||g.loop){valid=false;break}}
     if(!valid)continue;
-    const startZ=start*segL,endZ=startZ+requestedLength;
+    const startZ=start*segL,endZ=(start+spanSegments)*segL;
     for(let z=startZ;z<=endZ+0.001;z+=ARCH_SPACING_M){
      const si=Math.floor(z/segL),fraction=(z-si*segL)/segL,g=segs[si];
      if(g){if(!g.archFractions)g.archFractions=[];g.archFractions.push(fraction)}
@@ -1588,7 +1592,7 @@ function render(){
  for(const p of driftTrail){ctx.globalAlpha=.28*(1-p.t/1.25);ctx.strokeStyle='#17191d';ctx.lineWidth=2.2;ctx.lineCap='round';ctx.beginPath();ctx.moveTo(p.x,p.y+p.t*34);ctx.lineTo(p.x-p.side*1.2,p.y+18+p.t*34);ctx.stroke()}for(const p of smoke){ctx.globalAlpha=.6*(1-p.t/.7);ctx.fillStyle='#ddd';ctx.beginPath();ctx.arc(p.x,p.y,3+p.t*10,0,7);ctx.fill()}ctx.globalAlpha=1;BRK=0;BOOSTF=0;if(gun>0&&Math.floor(flash*24)%2){ctx.fillStyle='#fff3a0';for(const dx of[-9,9]){ctx.beginPath();ctx.arc(W/2+dx,H-34,3+Math.random()*2,0,7);ctx.fill()}}
  ctx.restore();
  if(tunnelMix<=0){{const vk=W+'x'+H;if(vk!==__crVignetteKey){__crVignetteKey=vk;__crVignette=ctx.createRadialGradient(W/2,H/2,H*.4,W/2,H/2,W*.62);__crVignette.addColorStop(0,'#0000');__crVignette.addColorStop(1,'#0007')}ctx.fillStyle=__crVignette;ctx.fillRect(0,0,W,H)}}
- if(tunnelMix>0){const pulse=.5+.5*Math.sin(flash*5+pos/segL*.08);ctx.save();ctx.globalAlpha=tunnelMix;ctx.globalCompositeOperation='lighter';for(let li=0;li<7;li++){const ly=(li/7*H+(pos/segL*3)%(H/7))%H,lx=W*.5+Math.sin(li*.8+flash*.15)*W*.12,rad=18+li*4,lg=ctx.createRadialGradient(lx,ly,0,lx,ly,rad);lg.addColorStop(0,'rgba(255,238,175,'+(.24+.18*pulse)+')');lg.addColorStop(1,'rgba(255,190,90,0)');ctx.fillStyle=lg;ctx.fillRect(lx-rad,ly-rad,rad*2,rad*2);ctx.fillStyle='#fff2c4';ctx.globalAlpha=tunnelMix*.75;ctx.fillRect(lx-2,ly-1,4,2)}ctx.restore()}
+ // Effets lumineux de tunnel désactivés pour isoler le rendu de la coque.
   if(tunnelMix<1){ctx.save();ctx.globalAlpha=1-tunnelMix;if(!ps.tun){if(wx=='rain'){ctx.strokeStyle='#cfe0ffaa';ctx.lineWidth=.7;ctx.beginPath();for(let i=0,n=isTV?58:150;i<n;i++){const x=(i*61+flash*40)%(W+40)-20,y=((i*37+flash*320)%(H+30))-10;ctx.moveTo(x,y);ctx.lineTo(x-3,y+10)}ctx.stroke();ctx.fillStyle='#10203a22';ctx.fillRect(0,0,W,H)}
   else if(wx=='snow'){ctx.fillStyle='#ffffffcc';ctx.beginPath();for(let i=0,n=isTV?52:140;i<n;i++){const x=(i*53+Math.sin(flash*.7+i)*14+flash*8)%(W+20)-10,y=((i*29+flash*(30+i%5*8))%(H+10))-5;ctx.moveTo(x+.9+(i%3)*.5,y);ctx.arc(x,y,.9+(i%3)*.5,0,7)}ctx.fill()}
   else if(wx=='fog'){ctx.fillStyle=curSky[1]+'33';ctx.fillRect(0,0,W,H)}
