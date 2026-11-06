@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr"><head><meta charset="utf-8"><title>Coast Rush V104 – Interactive Menu Artwork</title>
+<html lang="fr"><head><meta charset="utf-8"><title>Coast Rush V112 – Référence V111</title>
 <meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Coast Rush"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="mobile-web-app-capable" content="yes"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
 <style>
 :root{box-sizing:border-box}
@@ -1287,14 +1287,35 @@ function render(){
  ctx.save();const cxp=W/2,cyp=H-6,sw=320*(MODE==2?.18:VW[myV])*1.2*(mini>0?.62:1);
  if(crash>0){ctx.translate(cxp,cyp-15);ctx.rotate(ang);ctx.translate(-cxp,-(cyp-15))}
  const bump=speed>0?(Math.floor(pos/90)%2):0;inTunnel=!!ps.tun;if(ac&&tunnelLP&&tunnelWet){const now=ac.currentTime;tunnelLP.frequency.setTargetAtTime(inTunnel?1050:19000,now,.22);tunnelWet.gain.setTargetAtTime(inTunnel?.24:0,now,.22)}BRK=(inp.b||gpad.b)&&speed>0?1:0;BOOSTF=boost>0?1:0;
- if(inTunnel){ctx.save();ctx.globalCompositeOperation='screen';for(let side of[-1,1]){const hx=W/2+side*sw*.235,hy=H*.91,ex=W/2+side*W*.105,ey=H*.48;const beam=ctx.createLinearGradient(hx,hy,ex,ey);beam.addColorStop(0,'rgba(255,239,190,.19)');beam.addColorStop(.38,'rgba(255,224,160,.10)');beam.addColorStop(1,'rgba(255,220,150,0)');ctx.fillStyle=beam;ctx.beginPath();ctx.moveTo(hx-side*W*.012,hy);ctx.lineTo(ex-side*W*.075,ey);ctx.lineTo(ex+side*W*.035,ey);ctx.lineTo(hx+side*W*.012,hy);ctx.closePath();ctx.fill();const glow=ctx.createRadialGradient(hx,hy-2,1,hx,hy-2,W*.075);glow.addColorStop(0,'rgba(255,244,210,.25)');glow.addColorStop(1,'rgba(255,220,150,0)');ctx.fillStyle=glow;ctx.fillRect(hx-W*.08,hy-W*.08,W*.16,W*.12)}ctx.restore()}
+ if(inTunnel){ctx.save();ctx.globalCompositeOperation='screen';for(let side of[-1,1]){const hx=W/2+side*sw*.235,hy=H*.91,ex=W/2+side*W*.16,ey=H*.68;const beam=ctx.createLinearGradient(hx,hy,ex,ey);beam.addColorStop(0,'rgba(255,239,190,.19)');beam.addColorStop(.38,'rgba(255,224,160,.10)');beam.addColorStop(1,'rgba(255,220,150,0)');ctx.fillStyle=beam;ctx.beginPath();ctx.moveTo(hx-side*W*.012,hy);ctx.lineTo(ex-side*W*.075,ey);ctx.lineTo(ex+side*W*.035,ey);ctx.lineTo(hx+side*W*.012,hy);ctx.closePath();ctx.fill();const glow=ctx.createRadialGradient(hx,hy-2,1,hx,hy-2,W*.075);glow.addColorStop(0,'rgba(255,244,210,.25)');glow.addColorStop(1,'rgba(255,220,150,0)');ctx.fillStyle=glow;ctx.fillRect(hx-W*.08,hy-W*.08,W*.16,W*.12)}ctx.restore()}
  {const slide=drift*driftSide*28+Math.max(-6,Math.min(6,pxVel*2));
   if(musk>0)drawMuskCraft(cxp+slide,cyp-bump-38,sw,flash);
   else drawVehPose(cxp+slide,cyp-bump,sw,star>0&&flash%.2<.1?'#ffd400':(MODE==2?'#f2f2f2':myCol),MODE==2?-1:myV,drift>.15?(driftSide<0?4:3):(carTurn<-.08?2:carTurn>.08?1:0),Math.floor(pos/70)%2)}if(musk>0){ctx.save();ctx.globalAlpha=.9;for(let fi=0;fi<2;fi++){const dx=fi===0?-13:13,ex=cxp+dx,ey=cyp-18;const flame=ctx.createLinearGradient(ex,ey,ex,ey+48);flame.addColorStop(0,'#dffaff');flame.addColorStop(.35,'#42dfff');flame.addColorStop(1,'#ff8a32');ctx.fillStyle=flame;ctx.beginPath();ctx.moveTo(ex-4,ey);ctx.lineTo(ex+4,ey);ctx.lineTo(ex+2+Math.sin(flash*18+dx)*3,ey+44);ctx.lineTo(ex-2,ey+44);ctx.fill()}ctx.restore()}ctx.restore();
  if(crash>0&&flash%.3<.15){ctx.fillStyle='#fff';ctx.font='bold 16px "Arial Black",Impact,sans-serif';ctx.textAlign='center';ctx.fillText('CRASH!',W/2,70)}
  for(const p of driftTrail){ctx.globalAlpha=.28*(1-p.t/1.25);ctx.strokeStyle='#17191d';ctx.lineWidth=2.2;ctx.lineCap='round';ctx.beginPath();ctx.moveTo(p.x,p.y+p.t*34);ctx.lineTo(p.x-p.side*1.2,p.y+18+p.t*34);ctx.stroke()}for(const p of smoke){ctx.globalAlpha=.6*(1-p.t/.7);ctx.fillStyle='#ddd';ctx.beginPath();ctx.arc(p.x,p.y,3+p.t*10,0,7);ctx.fill()}ctx.globalAlpha=1;BRK=0;BOOSTF=0;if(gun>0&&Math.floor(flash*24)%2){ctx.fillStyle='#fff3a0';for(const dx of[-9,9]){ctx.beginPath();ctx.arc(W/2+dx,H-34,3+Math.random()*2,0,7);ctx.fill()}}
  ctx.restore();
+ drawRaceHud();
  {const vk=W+'x'+H;if(vk!==__crVignetteKey){__crVignetteKey=vk;__crVignette=ctx.createRadialGradient(W/2,H/2,H*.4,W/2,H/2,W*.62);__crVignette.addColorStop(0,'#0000');__crVignette.addColorStop(1,'#0007')}ctx.fillStyle=__crVignette;ctx.fillRect(0,0,W,H)}
+// V112 — référence V111 conservée : HUD de course rétabli sans toucher à la physique.
+function drawRaceHud(){
+ if(state==='menu'||NOHUD.includes(state))return;
+ const gap=4,pad=5,boxW=(W-pad*2-gap*3)/4,boxH=27,y=5;
+ const values=[
+  ['TEMPS',Math.max(0,Math.ceil(time)).toString().padStart(2,'0')+'s'],
+  ['SCORE',Math.floor(score).toLocaleString('fr-FR')],
+  ['ÉTAPE',String(stage)],
+  ['VITESSE',Math.round(speed/MAX*290)+' km/h']
+ ];
+ ctx.save();ctx.textBaseline='middle';ctx.textAlign='center';
+ values.forEach((v,i)=>{
+  const x=pad+i*(boxW+gap);
+  ctx.fillStyle='rgba(5,12,25,.78)';ctx.fillRect(x,y,boxW,boxH);
+  ctx.strokeStyle='rgba(130,210,255,.48)';ctx.lineWidth=.7;ctx.strokeRect(x+.35,y+.35,boxW-.7,boxH-.7);
+  ctx.font='bold 6px Arial,sans-serif';ctx.fillStyle='#8edcff';ctx.fillText(v[0],x+boxW/2,y+7,boxW-4);
+  ctx.font='bold 10px Arial,sans-serif';ctx.fillStyle='#fff';ctx.fillText(v[1],x+boxW/2,y+19,boxW-4);
+ });
+ ctx.restore();
+}
 }
 
 function drawCoastRushRouteBackdrop(){
@@ -2144,7 +2165,7 @@ try{$('go').focus()}catch(e){}
 requestAnimationFrame(loop);
 </script><script>
 if('serviceWorker' in navigator){
- const refreshKey='cr-sw-auto-refresh-v11';
+ const refreshKey='cr-sw-auto-refresh-v12';
  navigator.serviceWorker.addEventListener('controllerchange',()=>{
   try{if(sessionStorage.getItem(refreshKey)==='1')return;sessionStorage.setItem(refreshKey,'1')}catch(e){}
   location.reload();
