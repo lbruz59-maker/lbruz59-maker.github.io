@@ -1480,7 +1480,7 @@ function render(){
   s.clip=maxY;s.v=0;if(z1<=camD||b.y>=a.y||b.y>=maxY)continue;
   s.v=1;s.a=a;s.b=b;fogC=s.tun?'#0a0a12':curSky[1];s.ft=Math.min(1,(n/drawN)**2*FM+(s.tun?.4:0));vis.push(s);const ft=s.ft,by=b.y-.6;const d=(s.i/3|0)%2;
  if(s.tun){
-  const tunnelBg=ctx.createLinearGradient(0,by,0,a.y-by);
+  const tunnelBg=ctx.createLinearGradient(0,by,0,a.y);
   tunnelBg.addColorStop(0,'#080e17');tunnelBg.addColorStop(.5,'#172330');tunnelBg.addColorStop(1,'#28313c');
   ctx.fillStyle=tunnelBg;ctx.fillRect(0,by,W,a.y-by);
   // Corridor continuous : plafond et parois intérieures projetés segment par segment.
