@@ -468,19 +468,21 @@ function buildCourse(id){pickTrack();const R=rng(id*7919+13);th=TH[THI[id]];cons
   if(fk()&&i==N-FORK-6){const L1=TH[THI[(stage+1)*stage/2+cposk]],R1=TH[THI[(stage+1)*stage/2+cposk+1]];s.sp.push({t:'S',o:-1.5,txt:'◀ '+L1.n,bg:'#3ddc6a'});s.sp.push({t:'S',o:1.5,txt:R1.n+' ▶',bg:'#3ddc6a'})}
   if(i>=N-FORK&&i%12==0){if(!fk()&&!isLast()){s.sp.push({t:'S',o:-1.3,txt:'CHECK',bg:'#ffd400'});s.sp.push({t:'S',o:1.3,txt:'CHECK',bg:'#ffd400'})}else if(fk()){s.sp.push({t:'S',o:0,txt:'◀  ▶',bg:'#3ddc6a'})}else{s.sp.push({t:'S',o:-1.3,txt:'GOAL',bg:'#fff'});s.sp.push({t:'S',o:1.3,txt:'GOAL',bg:'#fff'})}}});
  segs.forEach(s=>{if(s.tun){s.sp=[{t:'T',o:0,port:s.i==s.tS||s.i==s.tEnd-1,k:s.i}]}});
- // Test : 30 arches regroupées sur le premier tronçon du premier circuit.
-  const archSpan=Math.max(30,Math.floor((N-FORK-220)*.10));
-  const archStart=100;
-  const archEnd=Math.min(N-FORK-20,archStart+archSpan);
-  let archPlaced=0,lastArch=-1;
-  for(let k=0;k<30;k++){
-   let ai=Math.round(archStart+(archEnd-archStart)*k/29);
-   while(ai<=archEnd&&ai<=lastArch)ai=lastArch+1;
-   while(ai<=archEnd&&(!segs[ai]||segs[ai].tun||segs[ai].loop))ai++;
-   if(ai>archEnd)break;
-   segs[ai].sp.push({t:'A',o:0});
-   lastArch=ai;
-   archPlaced++;
+ // Entre 30 et 100 arches, réparties aléatoirement sur chaque circuit.
+  const archCandidates=[];
+  for(let ai=100;ai<N-FORK-20;ai++){
+   const g=segs[ai];
+   if(g&&!g.tun&&!g.loop)archCandidates.push(ai);
+  }
+  for(let i=archCandidates.length-1;i>0;i--){
+   const j=R()*(i+1)|0;
+   [archCandidates[i],archCandidates[j]]=[archCandidates[j],archCandidates[i]];
+  }
+  const archTarget=30+(R()*71|0);
+  const archPlaced=Math.min(archTarget,archCandidates.length);
+  for(let k=0;k<archPlaced;k++){
+   const g=segs[archCandidates[k]];
+   g.sp.push({t:'A',o:0});
   }
  segs.forEach(s=>{if(s.tun||s.loop||s.i>=N-FORK||s.i<80)return;const i=s.i;if(i%5==2)s.sp.push({t:'u',o:(i%2?-1:1)*(1.3+R()*.5),c:HC2[R()*5|0]});if(s.sea&&i%27==7){s.sp.push({t:'W',o:-(3.2+R()*2.8),ph:R()*6});if(i%54==7)s.sp.push({t:'W',o:3.4+R()*2.4,ph:R()*6})}if(!s.sea&&i%(th.urb?31:97)==17)s.sp.push({t:UR[R()*UR.length|0],o:(R()<.5?-1:1)*(2.05+R()*.3),c:['#fff','#f5c76b','#6fc8e8'][R()*3|0],ph:R()*6});if(!s.sea&&th.n=='LE CAIRE'&&i%71==9)s.sp.push({t:'py',o:(R()<.5?-1:1)*(3+R()*2)});if(!s.sea&&th.n=='ROME'&&i%37==5)s.sp.push({t:'cl',o:(R()<.5?-1:1)*(1.9+R()*.4)})});
  cars=[];objs.length=0;for(const k in prox)delete prox[k];for(let i=0;i<DF[dfi].k+stage*2;i++){const T=i%5==4;cars.push({z:1500+R()*(trackLen-(FORK+60)*segL),o:[-.55,0,.55][i%3]+(R()-.5)*.1,T,w:T?.3:.18,sp:MAX*(T?.26+R()*.12:.42+R()*.3),c:cols[i%7]})}cars.forEach(c=>c.lane=c.o);if(MODE==2){
