@@ -687,7 +687,25 @@ function buildCourse(id){pickTrack();const R=rng(id*7919+13);th=TH[THI[id]];cons
   if(fk()&&i==N-FORK-6){const L1=TH[THI[(stage+1)*stage/2+cposk]],R1=TH[THI[(stage+1)*stage/2+cposk+1]];s.sp.push({t:'S',o:-1.5,txt:'◀ '+L1.n,bg:'#3ddc6a'});s.sp.push({t:'S',o:1.5,txt:R1.n+' ▶',bg:'#3ddc6a'})}
   if(i>=N-FORK&&i%12==0){if(!fk()&&!isLast()){s.sp.push({t:'S',o:-1.3,txt:'CHECK',bg:'#ffd400'});s.sp.push({t:'S',o:1.3,txt:'CHECK',bg:'#ffd400'})}else if(fk()){s.sp.push({t:'S',o:0,txt:'◀  ▶',bg:'#3ddc6a'})}else{s.sp.push({t:'S',o:-1.3,txt:'GOAL',bg:'#fff'});s.sp.push({t:'S',o:1.3,txt:'GOAL',bg:'#fff'})}}});
  segs.forEach(s=>{if(s.tun){s.sp=[{t:'T',o:0,port:s.i==s.tS||s.i==s.tEnd-1,k:s.i}]}});
- for(let ai=100;ai<N-FORK-20;ai+=3){const g=segs[ai];if(g&&!g.tun&&!g.loop)g.sp.push({t:'A',o:0})}
+ // Arches : 1 ou 2 groupes par circuit, chacun couvrant au moins 600 m.
+ // Chaque arche est espacée de 200 m ; 4 arches minimum donnent 600 m entre
+ // la première et la dernière. La longueur varie d'un groupe à l'autre.
+ const archGroups=1+(R()<.48?1:0),archZones=[];
+ const archMin=100,archMax=N-FORK-45,archGap=12;
+ for(let ag=0;ag<archGroups;ag++){
+  const count=4+(R()*5|0); // 4 à 8 arches, soit 600 à 1 400 m couverts.
+  const span=count-1;
+  let placed=false;
+  for(let attempt=0;attempt<24&&!placed;attempt++){
+   const start=archMin+(R()*Math.max(1,archMax-archMin-span)|0),end=start+span;
+   if(archZones.some(z=>start<z.end+archGap&&end>z.start-archGap))continue;
+   let valid=true;
+   for(let ai=start;ai<=end;ai++){const g=segs[ai];if(!g||g.tun||g.loop){valid=false;break}}
+   if(!valid)continue;
+   for(let ai=start;ai<=end;ai++)segs[ai].sp.push({t:'A',o:0});
+   archZones.push({start,end});placed=true;
+  }
+ }
  segs.forEach(s=>{if(s.tun||s.loop||s.i>=N-FORK||s.i<80)return;const i=s.i;if(i%5==2)s.sp.push({t:'u',o:(i%2?-1:1)*(1.3+R()*.5),c:HC2[R()*5|0]});if(s.sea&&i%27==7){s.sp.push({t:'W',o:-(3.2+R()*2.8),ph:R()*6});if(i%54==7)s.sp.push({t:'W',o:3.4+R()*2.4,ph:R()*6})}if(!s.sea&&i%(th.urb?31:97)==17)s.sp.push({t:UR[R()*UR.length|0],o:(R()<.5?-1:1)*(2.05+R()*.3),c:['#fff','#f5c76b','#6fc8e8'][R()*3|0],ph:R()*6});if(!s.sea&&th.n=='LE CAIRE'&&i%71==9)s.sp.push({t:'py',o:(R()<.5?-1:1)*(3+R()*2)});if(!s.sea&&th.n=='ROME'&&i%37==5)s.sp.push({t:'cl',o:(R()<.5?-1:1)*(1.9+R()*.4)})});
  cars=[];objs.length=0;for(const k in prox)delete prox[k];for(let i=0;i<DF[dfi].k+stage*2;i++){const T=i%5==4;cars.push({z:1500+R()*(trackLen-(FORK+60)*segL),o:[-.55,0,.55][i%3]+(R()-.5)*.1,T,w:T?.3:.18,sp:MAX*(T?.26+R()*.12:.42+R()*.3),c:cols[i%7]})}cars.forEach(c=>c.lane=c.o);if(MODE==2){
   // Chase HQ : le même suspect reste en fuite pendant les deux circuits.
