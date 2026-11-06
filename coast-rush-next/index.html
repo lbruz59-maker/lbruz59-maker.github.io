@@ -2039,7 +2039,7 @@ requestAnimationFrame(loop);
    crFrames=1;crWindowStart=t;crRafSum=0;crRafCount=0;crRafMax=0;
   }
  }
- catch(err){try{let b=document.getElementById('errb');if(!b){b=document.createElement('div');b.id='errb';b.style.cssText='position:fixed;left:0;right:0;bottom:0;z-index:999;background:#600;color:#fff;font:12px monospace;padding:6px;pointer-events:none';document.body.appendChild(b)}b.textContent='Erreur jeu : '+(err&&err.message?err.message:String(err))}catch(e){}}
+ catch(err){try{let b=document.getElementById('errb');if(!b){b=document.createElement('div');b.id='errb';b.style.cssText='position:fixed;left:0;right:0;bottom:0;z-index:999;background:#600;color:#fff;font:12px monospace;padding:6px;pointer-events:none';document.body.appendChild(b)}b.style.whiteSpace='pre-wrap';b.textContent='Erreur jeu : '+(err&&err.stack?err.stack:(err&&err.message?err.message:String(err)))}catch(e){}}
 }
 addEventListener('keydown',e=>{if(e.key=='Enter'){if(state=='brief')briefT=99;else if(state=='podium')podT=99;else if(state=='mega'&&podT>3)toMenu();else if(state=='over'||state=='win')toMenu()}});
 $('g').addEventListener('pointerdown',()=>{if(state=='brief')briefT=99;else if(state=='podium')podT=99;else if(state=='mega'&&podT>3)toMenu();else if(state=='over'||state=='win')toMenu()});
