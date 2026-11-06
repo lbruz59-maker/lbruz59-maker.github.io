@@ -1471,8 +1471,8 @@ const __crForkBlockSprite={t:'X'};
 function render(){
  if(!segs.length)return;ctx.setTransform(RS,0,0,RS,0,0);ctx.save();if(loopA){const c=Math.abs(Math.cos(loopA)),n=Math.abs(Math.sin(loopA)),k=Math.max(W/H*n+c,c+H/W*n)+.03;ctx.translate(W/2,H/2);ctx.rotate(loopA);ctx.scale(k,k);ctx.translate(-W/2,-H/2)}
  renderBackdrop();
- const bs=segs[Math.floor(pos/segL)%segs.length],bp=(pos%segL)/segL,ps=segs[Math.floor((pos+playerZ)/segL)%segs.length],pp=((pos+playerZ)%segL)/segL;
- const nextPs=segs[(ps.i+1)%N],tunnelMix=lerp(ps.tunBlend||0,nextPs?.tunBlend||0,pp);const cy=camH+lerp(ps.y1,ps.y2,pp);let x=0,dx=-bs.curve*bp,maxY=H;const N=segs.length,vis=__crRenderVisible,forkActive=fk();vis.length=0;
+ const N=segs.length,bs=segs[Math.floor(pos/segL)%segs.length],bp=(pos%segL)/segL,ps=segs[Math.floor((pos+playerZ)/segL)%segs.length],pp=((pos+playerZ)%segL)/segL;
+ const nextPs=segs[(ps.i+1)%N],tunnelMix=lerp(ps.tunBlend||0,nextPs?.tunBlend||0,pp);const cy=camH+lerp(ps.y1,ps.y2,pp);let x=0,dx=-bs.curve*bp,maxY=H;const vis=__crRenderVisible,forkActive=fk();vis.length=0;
  for(let n=0;n<drawN&&bs.i+n<N;n++){const s=segs[bs.i+n],lz=0,z1=s.i*segL+lz-pos,z2=z1+segL,cx=px*roadW;
   const a=__crProjectPoint(s.__crA||(s.__crA={}),0,s.y1,z1,cx-x,cy),b=__crProjectPoint(s.__crB||(s.__crB={}),0,s.y2,z2,cx-x-dx,cy);x+=dx;dx+=s.curve;
   s.clip=maxY;s.v=0;if(z1<=camD||b.y>=a.y||b.y>=maxY)continue;
