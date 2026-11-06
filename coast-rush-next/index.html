@@ -676,10 +676,10 @@ function buildCourse(id){pickTrack();const R=rng(id*7919+13);th=TH[THI[id]];cons
  loopS=-1;for(let k=0;k<32;k++){road(10+R()*15|0,20+R()*30|0,10+R()*15|0,R()<Math.max(.05,.3-.015*stage)?0:Math.round((R()-.5)*12*(th.cv||1)*dif),Math.round((R()-.5)*60*(th.hl||1)*dif));if(k==14&&id%3!=0){road(0,45,0,0,0);loopS=segs.length;road(25,40,25,5,55);road(25,40,25,-5,-55);loopE=segs.length;road(0,12,0,0,0)}}
  road(15,20,15,0,-lastY()/segL);road(0,FORK+8,0,0,0);
  const N=segs.length;trackLen=N*segL;segs.forEach(s=>s.loop=loopS>=0&&s.i>=loopS&&s.i<loopE);
- // Deux tunnels par parcours, de 500 m à 3 km, arrondis au segment moteur de 200 m.
+ // Deux tunnels par parcours, allongés de 2 à 6 km, arrondis au segment moteur de 200 m.
  const tunnelRanges=[],tunnelCount=2;
  for(let ti=0;ti<tunnelCount;ti++){
-  const requestedLength=500+R()*2500,len=Math.max(3,Math.min(15,Math.round(requestedLength/segL)));
+  const requestedLength=2000+R()*4000,len=Math.max(10,Math.min(30,Math.round(requestedLength/segL)));
   let placed=false;
   for(let attempt=0;attempt<64&&!placed;attempt++){
    const min=90,max=N-FORK-len-35;if(max<=min)break;
@@ -703,8 +703,8 @@ function buildCourse(id){pickTrack();const R=rng(id*7919+13);th=TH[THI[id]];cons
   if(fk()&&i==N-FORK-6){const L1=TH[THI[(stage+1)*stage/2+cposk]],R1=TH[THI[(stage+1)*stage/2+cposk+1]];s.sp.push({t:'S',o:-1.5,txt:'◀ '+L1.n,bg:'#3ddc6a'});s.sp.push({t:'S',o:1.5,txt:R1.n+' ▶',bg:'#3ddc6a'})}
   if(i>=N-FORK&&i%12==0){if(!fk()&&!isLast()){s.sp.push({t:'S',o:-1.3,txt:'CHECK',bg:'#ffd400'});s.sp.push({t:'S',o:1.3,txt:'CHECK',bg:'#ffd400'})}else if(fk()){s.sp.push({t:'S',o:0,txt:'◀  ▶',bg:'#3ddc6a'})}else{s.sp.push({t:'S',o:-1.3,txt:'GOAL',bg:'#fff'});s.sp.push({t:'S',o:1.3,txt:'GOAL',bg:'#fff'})}}});
  
- //// Groupes d'arches : entraxe exact de 5 m, sans modifier la résolution de route.
-  const archGroupCount=1+(R()<.48?1:0),archZones=[],ARCH_SPACING_M=5;
+ //// Groupes d'arches : entraxe exact de 20 m, sans modifier la résolution de route.
+  const archGroupCount=1+(R()<.48?1:0),archZones=[],ARCH_SPACING_M=20;
   const archMin=100,archMax=N-FORK-45,archGap=6;
   for(let ag=0;ag<archGroupCount;ag++){
    const requestedLength=3000+R()*3000,spanSegments=Math.ceil(requestedLength/segL);let placed=false;
