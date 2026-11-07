@@ -1026,8 +1026,9 @@ const s=sc*(t==='c'?73600:t==='l'?80000:t==='a'?135000:3200*H/2);if('ptacl'.incl
   ctx.moveTo(x-k*5.8,y);
   ctx.lineTo(x-k*5.8,y-hh*.72);
   ctx.bezierCurveTo(x-k*4.55,y-hh*1.15,x-k*4.05,y-hh*3.9,x-k*2.85,y-hh*5.25);
-  ctx.bezierCurveTo(x-k*2.05,y-hh*6.0,x-k*1.15,y-hh*3.25,x,y-hh*2.75);
-  ctx.bezierCurveTo(x+k*1.15,y-hh*3.25,x+k*2.05,y-hh*6.0,x+k*2.85,y-hh*5.25);
+  // Troisième sommet central, nettement plus haut que les deux sommets latéraux.
+  ctx.bezierCurveTo(x-k*2.05,y-hh*5.8,x-k*1.05,y-hh*7.25,x,y-hh*7.25);
+  ctx.bezierCurveTo(x+k*1.05,y-hh*7.25,x+k*2.05,y-hh*5.8,x+k*2.85,y-hh*5.25);
   ctx.bezierCurveTo(x+k*4.05,y-hh*3.9,x+k*4.55,y-hh*1.15,x+k*5.8,y-hh*.72);
   ctx.lineTo(x+k*5.8,y);ctx.closePath();
   // Découpe centrale plus large que l'arche : aucun rocher ne mord sur le passage.
@@ -1286,50 +1287,36 @@ function __crDrawHeadlightBeams(x,y,w){
 }
 const __crForkBlockSprite={t:'X'};
 
-// Tunnel intérieur léger : deux murs latéraux pleins et une voûte continue.
-// On ne peint jamais sur la chaussée : le corridor central reste totalement ouvert.
+// Tunnel en tube massif : parois et voûte opaques, avec une enveloppe épaisse.
+// L'extérieur latéral est masqué en noir pendant le passage; le corridor central
+// reste ouvert pour conserver la visibilité de la sortie et de la chaussée.
 function __crDrawTunnelInterior(s,a,b){
  const al=a.w,bl=b.w;
- // Murs épais mais légèrement reculés hors de la chaussée.
- const thickA=al*.15,thickB=bl*.15;
- const innerA=al*1.015,innerB=bl*1.015;
+ const innerA=al*1.10,innerB=bl*1.10;
+ const thickA=al*.92,thickB=bl*.92;
  const outerA=innerA+thickA,outerB=innerB+thickB;
- const topA=a.y-al*2.25,topB=b.y-bl*2.25;
+ const roofA=a.y-al*2.05,roofB=b.y-bl*2.05;
+ const outerRoofA=roofA-al*.92,outerRoofB=roofB-bl*.92;
  ctx.save();
- // Masques opaques à l'extérieur des parois : l'extérieur disparaît
- // sur les deux côtés, tandis que l'ouverture centrale reste visible.
- // Fond latéral chaud : jamais de triangles noirs qui découpent le paysage.
- ctx.fillStyle='#494239';
- ctx.beginPath();ctx.moveTo(0,0);ctx.lineTo(a.x-outerA,topA);ctx.lineTo(b.x-outerB,topB);ctx.lineTo(0,H);ctx.closePath();ctx.fill();
- ctx.beginPath();ctx.moveTo(W,0);ctx.lineTo(a.x+outerA,topA);ctx.lineTo(b.x+outerB,topB);ctx.lineTo(W,H);ctx.closePath();ctx.fill();
- // Intérieur gris-beige chaud, plus sombre que l'extérieur.
- ctx.fillStyle='#625b50';
- ctx.beginPath();ctx.moveTo(a.x-innerA,a.y);ctx.lineTo(a.x-outerA,topA);ctx.lineTo(b.x-outerB,topB);ctx.lineTo(b.x-innerB,b.y);ctx.closePath();ctx.fill();
- ctx.fillStyle='#716759';
- ctx.beginPath();ctx.moveTo(a.x+innerA,a.y);ctx.lineTo(a.x+outerA,topA);ctx.lineTo(b.x+outerB,topB);ctx.lineTo(b.x+innerB,b.y);ctx.closePath();ctx.fill();
- // Plafond continu, teinté plus sombre pour fermer visuellement le volume.
- ctx.fillStyle='#49463f';
- // Voûte opaque jusqu'au bord supérieur de l'écran : aucun ciel extérieur
- // ne peut réapparaître au-dessus du plafond pendant les changements de pente.
- ctx.beginPath();ctx.moveTo(0,0);ctx.lineTo(W,0);
- ctx.lineTo(b.x+outerB,topB);ctx.lineTo(a.x+outerA,topA);
- ctx.lineTo(a.x-outerA,topA);ctx.lineTo(b.x-outerB,topB);
- ctx.closePath();ctx.fill();
- // Appliques chaudes plus lumineuses et plus rapprochées.
+ // Noir extérieur sur les côtés et au-dessus; l'axe central reste ouvert vers la sortie.
+ ctx.fillStyle='#020306';
+ ctx.beginPath();ctx.moveTo(0,0);ctx.lineTo(a.x-outerA,outerRoofA);ctx.lineTo(b.x-outerB,outerRoofB);ctx.lineTo(0,H);ctx.closePath();ctx.fill();
+ ctx.beginPath();ctx.moveTo(W,0);ctx.lineTo(a.x+outerA,outerRoofA);ctx.lineTo(b.x+outerB,outerRoofB);ctx.lineTo(W,H);ctx.closePath();ctx.fill();
+ ctx.beginPath();ctx.moveTo(0,0);ctx.lineTo(W,0);ctx.lineTo(b.x+outerB,outerRoofB);ctx.lineTo(a.x+outerA,outerRoofA);ctx.lineTo(a.x-outerA,outerRoofA);ctx.lineTo(b.x-outerB,outerRoofB);ctx.closePath();ctx.fill();
+ // Deux murs épais et opaques, autour du gabarit intérieur.
+ ctx.fillStyle='#514d48';
+ ctx.beginPath();ctx.moveTo(a.x-innerA,a.y);ctx.lineTo(a.x-outerA,outerRoofA);ctx.lineTo(b.x-outerB,outerRoofB);ctx.lineTo(b.x-innerB,b.y);ctx.closePath();ctx.fill();
+ ctx.fillStyle='#5b554e';
+ ctx.beginPath();ctx.moveTo(a.x+innerA,a.y);ctx.lineTo(a.x+outerA,outerRoofA);ctx.lineTo(b.x+outerB,outerRoofB);ctx.lineTo(b.x+innerB,b.y);ctx.closePath();ctx.fill();
+ // Voûte opaque continue : aucune ouverture vers le ciel.
+ ctx.fillStyle='#393a3c';
+ ctx.beginPath();ctx.moveTo(a.x-innerA,roofA);ctx.lineTo(a.x-outerA,outerRoofA);ctx.lineTo(b.x-outerB,outerRoofB);ctx.lineTo(b.x-innerB,roofB);ctx.lineTo(b.x+innerB,roofB);ctx.lineTo(b.x+outerB,outerRoofB);ctx.lineTo(a.x+outerA,outerRoofA);ctx.lineTo(a.x+innerA,roofA);ctx.closePath();ctx.fill();
+ // Une applique simple tous les huit segments pour rester léger.
  if((s.i%8)===0){
-  const lx=(a.x+b.x)*.5,ly=(topA+topB)*.5+al*.12,rad=Math.max(4,al*.34);
-  const glow=ctx.createRadialGradient(lx,ly,1,lx,ly,rad*3.6);
-  glow.addColorStop(0,'rgba(255,204,125,.82)');
-  glow.addColorStop(.22,'rgba(255,158, seventy, .38)'.replace('seventy','70'));
-  glow.addColorStop(.62,'rgba(255,126,48,.16)');
-  glow.addColorStop(1,'rgba(255,112,32,0)');
-  ctx.fillStyle=glow;ctx.beginPath();ctx.ellipse(lx,ly+al*.52,rad*2.9,rad*.95,0,0,Math.PI*2);ctx.fill();
-  ctx.fillStyle='#ffd18a';ctx.fillRect(lx-rad*.22,ly-rad*.12,rad*.44,Math.max(2,rad*.16));
- }
- // Joints structurels espacés : plus de fines nervures à chaque segment.
- if((s.i%8)===0){
-  ctx.strokeStyle='#a99a80';ctx.lineWidth=Math.max(1,al*.025);
-  ctx.beginPath();ctx.moveTo(a.x-outerA,topA);ctx.lineTo(a.x-innerA,a.y);ctx.moveTo(a.x+outerA,topA);ctx.lineTo(a.x+innerA,a.y);ctx.stroke();
+  const lx=(a.x+b.x)*.5,ly=(roofA+roofB)*.5+al*.18,rad=Math.max(3,al*.24);
+  const g=ctx.createRadialGradient(lx,ly,1,lx,ly,rad*2.4);
+  g.addColorStop(0,'rgba(255,205,135,.55)');g.addColorStop(.45,'rgba(255,160,85,.16)');g.addColorStop(1,'rgba(255,140,60,0)');
+  ctx.fillStyle=g;ctx.beginPath();ctx.ellipse(lx,ly+al*.45,rad*1.9,rad*.7,0,0,Math.PI*2);ctx.fill();
  }
  ctx.restore();
 }
@@ -1364,7 +1351,7 @@ function render(){
   // Ne fermer l'extérieur qu'une fois la voiture réellement entrée dans le tunnel.
   // À l'approche, les segments lointains ne doivent jamais masquer le ciel ou le littoral.
   if(s.tun&&ps.tun)__crDrawTunnelInterior(s,a,b);
-  __crDrawDecoGroup(s,a.x,a.y,a.sc);if(forkActive&&MP&&forkRoute>=0&&s.i>=N-FORK+10){
+  if(!(s.tun&&ps.tun))__crDrawDecoGroup(s,a.x,a.y,a.sc);if(forkActive&&MP&&forkRoute>=0&&s.i>=N-FORK+10){
    const ff=Math.min(1,(s.i-(N-FORK))/FORK),blocked=forkRoute===0?1:-1;
    const bo=blocked*(.5+.9*ff),bx0=a.x+a.sc*bo*roadW*160;
    deco(__crForkBlockSprite,bx0,a.y,a.sc);
