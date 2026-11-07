@@ -2219,13 +2219,15 @@ function sizeCanvas(){
  if(wrap)wrap.style.display='none';
  cv.style.position='fixed';cv.style.display='block';cv.style.visibility='visible';
  cv.style.margin='0';cv.style.padding='0';cv.style.border='0';
- // Centrage par le milieu du viewport : évite le canvas hors écran sur
- // les WebView Android qui appliquent différemment le point d'origine CSS.
- cv.style.top='50vh';cv.style.left='50vw';
- cv.style.width=portrait?vh+'px':'100vw';
- cv.style.height=portrait?vw+'px':'100vh';
+ // Positionnement géométrique explicite : le rectangle paysage non tourné
+ // est centré sur le viewport portrait AVANT rotation. Pas de vh/vw ni de
+ // translate en pourcentage (sources de décalage dans Android WebView).
+ cv.style.width=(portrait?vh:vw)+'px';
+ cv.style.height=(portrait?vw:vh)+'px';
+ cv.style.left=(portrait?(vw-vh)/2:0)+'px';
+ cv.style.top=(portrait?(vh-vw)/2:0)+'px';
  cv.style.transformOrigin='center center';
- cv.style.transform=portrait?'translate(-50%,-50%) rotate(90deg)':'translate(-50%,-50%)';
+ cv.style.transform=portrait?'rotate(90deg)':'none';
  cv.style.zIndex='1';cv.style.pointerEvents='none';
  cv.style.maxWidth='none';cv.style.maxHeight='none';
  cv.style.aspectRatio='auto';cv.style.objectFit='fill';cv.style.flex='0 0 auto';
