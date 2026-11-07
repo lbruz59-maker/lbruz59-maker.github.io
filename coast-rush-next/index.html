@@ -470,7 +470,7 @@ function buildCourse(id){pickTrack();const R=rng(id*7919+13);th=TH[THI[id]];cons
   if(i>=N-FORK&&i%12==0){if(!fk()&&!isLast()){s.sp.push({t:'S',o:-1.3,txt:'CHECK',bg:'#ffd400'});s.sp.push({t:'S',o:1.3,txt:'CHECK',bg:'#ffd400'})}else if(fk()){s.sp.push({t:'S',o:0,txt:'◀  ▶',bg:'#3ddc6a'})}else{s.sp.push({t:'S',o:-1.3,txt:'GOAL',bg:'#fff'});s.sp.push({t:'S',o:1.3,txt:'GOAL',bg:'#fff'})}}});
  segs.forEach(s=>{if(s.tun){s.sp=[{t:'T',o:0,port:s.i==s.tS||s.i==s.tEnd-1,k:s.i}]}});
  // Groupe d'arches : 30 à 100 arches, avec un espacement triple (un portique tous les 3 segments).
-  const archTarget=30+(R()*71|0),archGap=3,archSpan=(archTarget-1)*archGap+1;
+  const archTarget=30+(R()*71|0),archGap=3,archSpacing=archGap*segL+50,archSpan=Math.ceil((archTarget-1)*archSpacing/segL)+1;
   let archStart=-1,archEnd=-1;
   const archMin=100,archMax=N-FORK-20-archSpan;
   for(let attempt=0;attempt<160&&archStart<0;attempt++){
@@ -487,7 +487,7 @@ function buildCourse(id){pickTrack();const R=rng(id*7919+13);th=TH[THI[id]];cons
    for(let ai=archStart;ai<archEnd;ai++){
     const g=segs[ai];
     g.sp=g.sp.filter(o=>o.t==='I');
-    if((ai-archStart)%archGap===0)g.sp.push({t:'A',o:0});
+    if(Math.abs((ai-archStart)*segL/archSpacing-Math.round((ai-archStart)*segL/archSpacing))<.16)g.sp.push({t:'A',o:0});
    }
   } segs.forEach(s=>{if(s.tun||s.loop||s.i>=N-FORK||s.i<80||s.sp.some(o=>o.t==='A'))return;const i=s.i;if(i%5==2)s.sp.push({t:'u',o:(i%2?-1:1)*(1.3+R()*.5),c:HC2[R()*5|0]});if(s.sea&&i%27==7){s.sp.push({t:'W',o:-(3.2+R()*2.8),ph:R()*6});if(i%54==7)s.sp.push({t:'W',o:3.4+R()*2.4,ph:R()*6})}if(!s.sea&&i%(th.urb?31:97)==17)s.sp.push({t:UR[R()*UR.length|0],o:(R()<.5?-1:1)*(2.05+R()*.3),c:['#fff','#f5c76b','#6fc8e8'][R()*3|0],ph:R()*6});if(!s.sea&&th.n=='LE CAIRE'&&i%71==9)s.sp.push({t:'py',o:(R()<.5?-1:1)*(3+R()*2)});if(!s.sea&&th.n=='ROME'&&i%37==5)s.sp.push({t:'cl',o:(R()<.5?-1:1)*(1.9+R()*.4)})});
  cars=[];objs.length=0;for(const k in prox)delete prox[k];for(let i=0;i<DF[dfi].k+stage*2;i++){const T=i%5==4;cars.push({z:1500+R()*(trackLen-(FORK+60)*segL),o:[-.55,0,.55][i%3]+(R()-.5)*.1,T,w:T?.3:.18,sp:MAX*(T?.26+R()*.12:.42+R()*.3),c:cols[i%7]})}cars.forEach(c=>c.lane=c.o);if(MODE==2){
@@ -1022,13 +1022,13 @@ const s=sc*(t==='c'?73600:t==='l'?80000:t==='a'?135000:3200*H/2);if('ptacl'.incl
   // Reliefs naturels en deux massifs latéraux : silhouettes courbes et crêtes
   // décalées, sans pic central au-dessus de l'arche ni empiètement sur l'ouverture.
   const drawRidge=(side,back)=>{
-   const baseX=x+side*k*(back?1.2:1.12),farX=x+side*k*(back?5.0:4.8);
-   const peakY=y-hh*(back?1.55:1.9),crest=back?2.95:2.55;
+   const baseX=x+side*k*(back?1.2:1.12),farX=x+side*k*(back?5.8:5.6);
+   const peakY=y-hh*(back?4.65:5.7),crest=back?3.25:2.8;
    // Crête arrondie en deux courbes tangentes, jamais de sommet en pointe.
    ctx.beginPath();ctx.moveTo(baseX,y-hh*.7);
-   ctx.bezierCurveTo(x+side*k*1.55,y-hh*.98,x+side*k*1.85,y-hh*(back?1.35:1.55),x+side*k*(crest-.42),peakY);
-   ctx.bezierCurveTo(x+side*k*(crest-.12),peakY-hh*.12,x+side*k*(crest+.12),peakY-hh*.12,x+side*k*(crest+.42),peakY);
-   ctx.bezierCurveTo(x+side*k*3.55,y-hh*(back?1.45:1.7),x+side*k*4.0,y-hh*(back?1.02:1.2),farX,y-hh*.76);
+   ctx.bezierCurveTo(x+side*k*1.55,y-hh*.98,x+side*k*1.85,y-hh*(back?4.05:4.65),x+side*k*(crest-.42),peakY);
+   ctx.bezierCurveTo(x+side*k*(crest-.12),peakY-hh*.36,x+side*k*(crest+.12),peakY-hh*.36,x+side*k*(crest+.42),peakY);
+   ctx.bezierCurveTo(x+side*k*3.8,y-hh*(back?4.35:5.1),x+side*k*4.35,y-hh*(back?3.06:3.6),farX,y-hh*2.28);
    ctx.lineTo(farX,y);ctx.lineTo(baseX,y);ctx.closePath();ctx.fill();
   };
   ctx.fillStyle='#665b4d';drawRidge(-1,true);drawRidge(1,true);
@@ -1037,16 +1037,16 @@ const s=sc*(t==='c'?73600:t==='l'?80000:t==='a'?135000:3200*H/2);if('ptacl'.incl
   for(const side of[-1,1]){
    ctx.fillStyle=side<0?'#8a795f':'#88765c';
    ctx.beginPath();ctx.moveTo(x+side*k*1.5,y-hh*.98);
-   ctx.bezierCurveTo(x+side*k*1.85,y-hh*1.3,x+side*k*2.15,y-hh*1.62,x+side*k*2.48,y-hh*1.72);
-   ctx.bezierCurveTo(x+side*k*2.28,y-hh*1.42,x+side*k*2.0,y-hh*1.18,x+side*k*1.75,y-hh*1.08);
+   ctx.bezierCurveTo(x+side*k*1.85,y-hh*3.9,x+side*k*2.15,y-hh*4.86,x+side*k*2.48,y-hh*5.16);
+   ctx.bezierCurveTo(x+side*k*2.28,y-hh*4.26,x+side*k*2.0,y-hh*3.54,x+side*k*1.75,y-hh*3.24);
    ctx.closePath();ctx.fill();
   }
   // Cadre d'arche uniquement : aucune plaque pleine devant l'ouverture.
-  ctx.strokeStyle='#c8b99d';ctx.lineWidth=Math.max(2,w*.22);ctx.beginPath();ctx.moveTo(x-k,y);ctx.lineTo(x-k,y-hh);ctx.arc(x,y-hh,k,Math.PI,0);ctx.lineTo(x+k,y);ctx.stroke();
-  ctx.strokeStyle='#eee4cf';ctx.lineWidth=Math.max(1,w*.055);ctx.beginPath();ctx.moveTo(x-k*.91,y);ctx.lineTo(x-k*.91,y-hh);ctx.arc(x,y-hh,k*.91,Math.PI,0);ctx.lineTo(x+k*.91,y);ctx.stroke();
+  ctx.strokeStyle='#c8b99d';ctx.lineWidth=Math.max(2,w*.32);ctx.beginPath();ctx.moveTo(x-k,y);ctx.lineTo(x-k,y-hh);ctx.arc(x,y-hh,k,Math.PI,0);ctx.lineTo(x+k,y);ctx.stroke();
+  ctx.strokeStyle='#eee4cf';ctx.lineWidth=Math.max(1,w*.075);ctx.beginPath();ctx.moveTo(x-k*.91,y);ctx.lineTo(x-k*.91,y-hh);ctx.arc(x,y-hh,k*.91,Math.PI,0);ctx.lineTo(x+k*.91,y);ctx.stroke();
   ctx.restore();
  }
- else if(t=='A'){const w=sc*roadW*160*1.2,hh=w*.62,pw=w*.2,lh=w*.2,X0=x-w-pw,X1=x+w,sg=ctx.createLinearGradient(X0,0,x+w+pw,0);sg.addColorStop(0,'#e2d2ae');sg.addColorStop(.5,'#cdbb94');sg.addColorStop(1,'#a89468');
+ else if(t=='A'){const w=sc*roadW*160*1.2,hh=w*.62,pw=w*.3,lh=w*.3,X0=x-w-pw,X1=x+w,sg=ctx.createLinearGradient(X0,0,x+w+pw,0);sg.addColorStop(0,'#e2d2ae');sg.addColorStop(.5,'#cdbb94');sg.addColorStop(1,'#a89468');
   ctx.fillStyle=sg;ctx.fillRect(X0,y-hh,pw,hh);ctx.fillRect(X1,y-hh,pw,hh);ctx.fillRect(X0-pw*.15,y-hh-lh,w*2+pw*2.3,lh);
   ctx.fillStyle='#00000040';ctx.fillRect(x-w,y-hh,w*2,lh*.25);ctx.strokeStyle='#8a7a5a99';ctx.lineWidth=Math.max(.3,w*.012);
   for(let j=1;j<6;j++){const yy=y-hh*j/6;ctx.beginPath();ctx.moveTo(X0,yy);ctx.lineTo(X0+pw,yy);ctx.moveTo(X1,yy);ctx.lineTo(X1+pw,yy);ctx.stroke()}
@@ -1288,7 +1288,7 @@ const __crForkBlockSprite={t:'X'};
 function __crDrawTunnelInterior(s,a,b){
  const al=a.w,bl=b.w;
  // Murs épais mais légèrement reculés hors de la chaussée.
- const thickA=al*.075,thickB=bl*.075;
+ const thickA=al*.15,thickB=bl*.15;
  const innerA=al*1.015,innerB=bl*1.015;
  const outerA=innerA+thickA,outerB=innerB+thickB;
  const topA=a.y-al*1.42,topB=b.y-bl*1.42;
