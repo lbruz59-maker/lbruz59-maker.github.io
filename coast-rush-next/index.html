@@ -490,6 +490,9 @@ function buildCourse(id){pickTrack();const R=rng(id*7919+13);th=TH[THI[id]];cons
     if(Math.abs((ai-archStart)*segL/archSpacing-Math.round((ai-archStart)*segL/archSpacing))<.16)g.sp.push({t:'A',o:0});
    }
   } segs.forEach(s=>{if(s.tun||s.loop||s.i>=N-FORK||s.i<80||s.sp.some(o=>o.t==='A'))return;const i=s.i;if(i%5==2)s.sp.push({t:'u',o:(i%2?-1:1)*(1.3+R()*.5),c:HC2[R()*5|0]});if(s.sea&&i%27==7){s.sp.push({t:'W',o:-(3.2+R()*2.8),ph:R()*6});if(i%54==7)s.sp.push({t:'W',o:3.4+R()*2.4,ph:R()*6})}if(!s.sea&&i%(th.urb?31:97)==17)s.sp.push({t:UR[R()*UR.length|0],o:(R()<.5?-1:1)*(2.05+R()*.3),c:['#fff','#f5c76b','#6fc8e8'][R()*3|0],ph:R()*6});if(!s.sea&&th.n=='LE CAIRE'&&i%71==9)s.sp.push({t:'py',o:(R()<.5?-1:1)*(3+R()*2)});if(!s.sea&&th.n=='ROME'&&i%37==5)s.sp.push({t:'cl',o:(R()<.5?-1:1)*(1.9+R()*.4)})});
+ // Coast : la mer est toujours à gauche de la chaussée. Aucun décor terrestre
+ // ne doit être placé dans cette zone ; les voiliers restent uniquement en mer.
+ segs.forEach(s=>{if(!s.sea)return;const kept=[];for(const sp of s.sp){if(sp.t==='W'){if(sp.o<0)kept.push(sp);continue;}if(sp.o<0)sp.o=2.15+Math.abs(sp.o)*.55;kept.push(sp)}s.sp=kept;});
  cars=[];objs.length=0;for(const k in prox)delete prox[k];for(let i=0;i<DF[dfi].k+stage*2;i++){const T=i%5==4;cars.push({z:1500+R()*(trackLen-(FORK+60)*segL),o:[-.55,0,.55][i%3]+(R()-.5)*.1,T,w:T?.3:.18,sp:MAX*(T?.26+R()*.12:.42+R()*.3),c:cols[i%7]})}cars.forEach(c=>c.lane=c.o);if(MODE==2){
   // Chase HQ : le même suspect reste en fuite pendant les deux circuits.
   // On ne crée un nouveau bandit qu'après l'arrestation du précédent.
@@ -1294,7 +1297,7 @@ const __crForkBlockSprite={t:'X'};
 // L'extérieur latéral est masqué en noir pendant le passage; le corridor central
 // reste ouvert pour conserver la visibilité de la sortie et de la chaussée.
 function __crDrawTunnelInterior(s,a,b){
- const al=a.w,bl=b.w,innerA=al*1.15,innerB=bl*1.15; // bord extérieur des bandes rouge/blanche + marge anti-crénelage
+ const al=a.w,bl=b.w,innerA=al*1.145,innerB=bl*1.145; // aligné sur le bord externe des bandes de rive
  const roofA=a.y-al*2.02,roofB=b.y-bl*2.02;
  ctx.save();
  // Tube ferme projete : les deux parois sont opaques jusqu'aux bords de l'ecran.
@@ -2216,10 +2219,13 @@ function sizeCanvas(){
  if(wrap)wrap.style.display='none';
  cv.style.position='fixed';cv.style.display='block';cv.style.visibility='visible';
  cv.style.margin='0';cv.style.padding='0';cv.style.border='0';
- cv.style.top='0px';cv.style.left=portrait?vw+'px':'0px';
+ // Centrage par le milieu du viewport : évite le canvas hors écran sur
+ // les WebView Android qui appliquent différemment le point d'origine CSS.
+ cv.style.top='50vh';cv.style.left='50vw';
  cv.style.width=portrait?vh+'px':'100vw';
  cv.style.height=portrait?vw+'px':'100vh';
- cv.style.transformOrigin='top left';cv.style.transform=portrait?'rotate(90deg)':'none';
+ cv.style.transformOrigin='center center';
+ cv.style.transform=portrait?'translate(-50%,-50%) rotate(90deg)':'translate(-50%,-50%)';
  cv.style.zIndex='1';cv.style.pointerEvents='none';
  cv.style.maxWidth='none';cv.style.maxHeight='none';
  cv.style.aspectRatio='auto';cv.style.objectFit='fill';cv.style.flex='0 0 auto';
