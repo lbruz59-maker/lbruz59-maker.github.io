@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr"><head><meta charset="utf-8"><script>if(location.protocol==="http:")location.replace("https:"+location.href.slice(5));</script><link rel="canonical" href="https://lbruz59-maker.github.io/coast-rush-next/"><title>Coast Rush V117 – Tunnel Mountain & Headlights</title>
+<html lang="fr"><head><meta charset="utf-8"><script>if(location.protocol==="http:")location.replace("https:"+location.href.slice(5));</script><link rel="canonical" href="https://lbruz59-maker.github.io/coast-rush-next/"><title>Coast Rush V118 – Full Tunnel Interior</title>
 <meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Coast Rush"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="mobile-web-app-capable" content="yes"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
 <style>
 :root{box-sizing:border-box}
@@ -1013,30 +1013,23 @@ const s=sc*(t==='c'?73600:t==='l'?80000:t==='a'?135000:3200*H/2);if('ptacl'.incl
  else if(t=='F'){const h=sc*900*H/2,wv=Math.sin(flash*(state=='count'?10:4));ctx.fillStyle='#223';ctx.fillRect(x-h*.07,y-h*.45,h*.14,h*.45);ctx.fillStyle='#e32636';ctx.fillRect(x-h*.09,y-h*.8,h*.18,h*.36);ctx.fillStyle='#c91e2c';ctx.fillRect(x-h*.12,y-h*.77,h*.24,h*.09);ctx.fillStyle='#f1c19a';ctx.beginPath();ctx.arc(x,y-h*.88,h*.075,0,7);ctx.fill();ctx.fillStyle='#d51f32';ctx.beginPath();ctx.arc(x,y-h*.94,h*.082,Math.PI,0);ctx.fill();ctx.fillRect(x-h*.09,y-h*.94,h*.18,h*.025);
   const q=x+h*.1,pt=y-h*1.5;ctx.strokeStyle='#999';ctx.lineWidth=Math.max(1,h*.02);ctx.beginPath();ctx.moveTo(x+h*.09,y-h*.7);ctx.lineTo(q+wv*h*.08,pt);ctx.stroke();
   for(let i=0;i<5;i++)for(let j=0;j<4;j++){ctx.fillStyle=(i+j)%2?'#111':'#fff';ctx.fillRect(q+wv*h*.08+i*h*.105+Math.sin(flash*8+i)*h*.025,pt+j*h*.085,h*.105,h*.085)}}
- else if(t=='T'){ctx.globalAlpha=1;const w=sc*roadW*160,k=w*1.12,hh=w*.78;
- if(sp.port){
-  // Massif 2D autour de l'arche : deux flancs et une crête au-dessus.
-  ctx.save();
-  ctx.fillStyle='#665b4d';ctx.beginPath();ctx.moveTo(x-k*.92,y);ctx.lineTo(x-k*1.02,y-hh*.92);ctx.lineTo(x-k*1.72,y-hh*1.92);ctx.lineTo(x-k*2.55,y-hh*1.02);ctx.lineTo(x-k*2.55,y);ctx.closePath();ctx.fill();
-  ctx.fillStyle='#756957';ctx.beginPath();ctx.moveTo(x+k*.92,y);ctx.lineTo(x+k*1.02,y-hh*.92);ctx.lineTo(x+k*1.72,y-hh*1.92);ctx.lineTo(x+k*2.55,y-hh*1.02);ctx.lineTo(x+k*2.55,y);ctx.closePath();ctx.fill();
-  ctx.fillStyle='#817562';ctx.beginPath();ctx.moveTo(x-k*1.08,y-hh*.94);ctx.lineTo(x-k*.68,y-hh*1.55);ctx.lineTo(x,y-hh*2.02);ctx.lineTo(x+k*.68,y-hh*1.55);ctx.lineTo(x+k*1.08,y-hh*.94);ctx.closePath();ctx.fill();
-  // Faces éclairées pour donner du relief au sprite plat.
-  ctx.fillStyle='#9b8b70';ctx.beginPath();ctx.moveTo(x-k*.68,y-hh*1.55);ctx.lineTo(x,y-hh*2.02);ctx.lineTo(x-k*.12,y-hh*1.12);ctx.closePath();ctx.fill();
-  ctx.fillStyle='#594f45';ctx.beginPath();ctx.moveTo(x+k*.68,y-hh*1.55);ctx.lineTo(x,y-hh*2.02);ctx.lineTo(x+k*.12,y-hh*1.12);ctx.closePath();ctx.fill();
+ else if(t=='T'){
+  // Le sprite T ne dessine que le portail d'entrée/sortie.
+  // Les segments intérieurs sont rendus par __crDrawTunnelInterior().
+  if(!sp.port)return;
+  ctx.save();ctx.globalAlpha=1;
+  const w=sc*roadW*160,k=w*1.12,hh=w*.78;
+  // Massifs montagneux beaucoup plus hauts et larges, sans empiéter sur l'ouverture.
+  ctx.fillStyle='#665b4d';ctx.beginPath();ctx.moveTo(x-k*.98,y);ctx.lineTo(x-k*1.02,y-hh*.9);ctx.lineTo(x-k*2.0,y-hh*3.55);ctx.lineTo(x-k*4.65,y-hh*1.45);ctx.lineTo(x-k*4.65,y);ctx.closePath();ctx.fill();
+  ctx.fillStyle='#756957';ctx.beginPath();ctx.moveTo(x+k*.98,y);ctx.lineTo(x+k*1.02,y-hh*.9);ctx.lineTo(x+k*2.0,y-hh*3.55);ctx.lineTo(x+k*4.65,y-hh*1.45);ctx.lineTo(x+k*4.65,y);ctx.closePath();ctx.fill();
+  ctx.fillStyle='#817562';ctx.beginPath();ctx.moveTo(x-k*1.3,y-hh*1.08);ctx.lineTo(x-k*.78,y-hh*2.5);ctx.lineTo(x,y-hh*3.95);ctx.lineTo(x+k*.78,y-hh*2.5);ctx.lineTo(x+k*1.3,y-hh*1.08);ctx.closePath();ctx.fill();
+  ctx.fillStyle='#a09176';ctx.beginPath();ctx.moveTo(x-k*.78,y-hh*2.5);ctx.lineTo(x,y-hh*3.95);ctx.lineTo(x-k*.15,y-hh*1.25);ctx.closePath();ctx.fill();
+  ctx.fillStyle='#594f45';ctx.beginPath();ctx.moveTo(x+k*.78,y-hh*2.5);ctx.lineTo(x,y-hh*3.95);ctx.lineTo(x+k*.15,y-hh*1.25);ctx.closePath();ctx.fill();
+  // Cadre d'arche uniquement : aucune plaque pleine devant l'ouverture.
+  ctx.strokeStyle='#c8b99d';ctx.lineWidth=Math.max(2,w*.22);ctx.beginPath();ctx.moveTo(x-k,y);ctx.lineTo(x-k,y-hh);ctx.arc(x,y-hh,k,Math.PI,0);ctx.lineTo(x+k,y);ctx.stroke();
+  ctx.strokeStyle='#eee4cf';ctx.lineWidth=Math.max(1,w*.055);ctx.beginPath();ctx.moveTo(x-k*.91,y);ctx.lineTo(x-k*.91,y-hh);ctx.arc(x,y-hh,k*.91,Math.PI,0);ctx.lineTo(x+k*.91,y);ctx.stroke();
   ctx.restore();
  }
- // Fond beige limité à la largeur de la route et à la hauteur de l'arche.
- ctx.beginPath();ctx.rect(x-k*1.04,y-hh-k*.16,k*2.08,hh+k*.16);ctx.moveTo(x-k,y);ctx.lineTo(x-k,y-hh);ctx.arc(x,y-hh,k,Math.PI,0);ctx.lineTo(x+k,y);ctx.closePath();ctx.fillStyle=sp.port?'#9a8f7a':((sp.k%4<2)?'#2c2f3a':'#252833');ctx.fill('evenodd');
- if(sp.port){
-  ctx.strokeStyle='#b9ad98';ctx.lineWidth=Math.max(1,w*.13);ctx.beginPath();ctx.moveTo(x-k,y);ctx.lineTo(x-k,y-hh);ctx.arc(x,y-hh,k,Math.PI,0);ctx.lineTo(x+k,y);ctx.stroke();
-  ctx.strokeStyle='#eee4cf';ctx.lineWidth=Math.max(.8,w*.045);ctx.beginPath();ctx.moveTo(x-k*.91,y);ctx.lineTo(x-k*.91,y-hh);ctx.arc(x,y-hh,k*.91,Math.PI,0);ctx.lineTo(x+k*.91,y);ctx.stroke();
-  // Alternating safety blocks at the two feet of the portal.
-  for(let side of[-1,1])for(let n=0;n<4;n++){ctx.fillStyle=n%2?'#e7e2d6':'#c83c42';ctx.fillRect(x+side*(k*.78+n*w*.18),y-w*.16,w*.15,w*.16)}
- }
- // Ne pas repeindre le sol au premier plan : la chaussée et ses marquages
- // restent ceux du rendu routier, visibles jusque dans le tunnel.
- // L'éclairage du plafond est conservé sans couche opaque sur la route.
- if(sp.k%5==0){const ly=y-hh-k+w*.12,gl=ctx.createRadialGradient(x,ly,0,x,ly,w*.5);gl.addColorStop(0,'#ffe9a099');gl.addColorStop(1,'#ffe9a000');ctx.fillStyle=gl;ctx.fillRect(x-w*.5,ly-w*.5,w,w);ctx.fillStyle='#fff6c8';ctx.beginPath();ctx.arc(x,ly,Math.max(1,w*.06),0,7);ctx.fill()}}
  else if(t=='A'){const w=sc*roadW*160*1.2,hh=w*.62,pw=w*.2,lh=w*.2,X0=x-w-pw,X1=x+w,sg=ctx.createLinearGradient(X0,0,x+w+pw,0);sg.addColorStop(0,'#e2d2ae');sg.addColorStop(.5,'#cdbb94');sg.addColorStop(1,'#a89468');
   ctx.fillStyle=sg;ctx.fillRect(X0,y-hh,pw,hh);ctx.fillRect(X1,y-hh,pw,hh);ctx.fillRect(X0-pw*.15,y-hh-lh,w*2+pw*2.3,lh);
   ctx.fillStyle='#00000040';ctx.fillRect(x-w,y-hh,w*2,lh*.25);ctx.strokeStyle='#8a7a5a99';ctx.lineWidth=Math.max(.3,w*.012);
@@ -1261,15 +1254,41 @@ function renderBackdrop(){
 // Projection caméra : les enregistrements de projection sont réutilisés par segment.
 function __crProjectPoint(out,wx,wy,z,cx,cy){const sc=camD/z;out.x=W/2+sc*(wx-cx)*160;out.y=H/2-sc*(wy-cy)*H/2;out.w=sc*roadW*160;out.sc=sc;return out}
 function __crDrawHeadlightBeams(x,y,w){
- // Faisceaux parallèles à l'axe de chaque voiture : ils éclairent droit devant.
- const u=Math.max(1,w/16),nearY=y-1.5*u,farY=Math.max(H*.52,nearY-H*.22),nearHalf=Math.max(5,w*.30),farHalf=Math.max(2,nearHalf*.48),targetX=x;
+ // Faisceau abaissé : il porte sur la chaussée devant le véhicule, pas sur le ciel.
+ const u=Math.max(1,w/16),nearY=y-.55*u,farY=Math.max(H*.76,nearY-H*.105),nearHalf=Math.max(5,w*.28),farHalf=Math.max(2,nearHalf*.22),targetX=x;
  ctx.save();ctx.globalCompositeOperation='lighter';
  const g=ctx.createLinearGradient(x,nearY,targetX,farY);
- g.addColorStop(0,'#fff6d9b0');g.addColorStop(.28,'#ffe5a36a');g.addColorStop(.72,'#ffc66b28');g.addColorStop(1,'#ffbd5a00');ctx.fillStyle=g;
- for(const side of[-1,1]){ctx.beginPath();ctx.moveTo(x+side*nearHalf,nearY);ctx.lineTo(x+side*nearHalf*.92,nearY-1.1*u);ctx.lineTo(targetX+side*farHalf,farY);ctx.lineTo(targetX-side*farHalf,farY);ctx.closePath();ctx.fill()}
+ g.addColorStop(0,'#fff6d9a0');g.addColorStop(.3,'#ffe5a35c');g.addColorStop(.72,'#ffc66b22');g.addColorStop(1,'#ffbd5a00');ctx.fillStyle=g;
+ for(const side of[-1,1]){ctx.beginPath();ctx.moveTo(x+side*nearHalf,nearY);ctx.lineTo(x+side*nearHalf*.92,nearY-.35*u);ctx.lineTo(targetX+side*farHalf,farY);ctx.lineTo(targetX-side*farHalf,farY);ctx.closePath();ctx.fill()}
  ctx.restore();
 }
 const __crForkBlockSprite={t:'X'};
+
+// Tunnel intérieur léger : deux murs latéraux pleins et une voûte continue.
+// On ne peint jamais sur la chaussée : le corridor central reste totalement ouvert.
+function __crDrawTunnelInterior(s,a,b){
+ const al=a.w,bl=b.w;
+ const outerA=al*1.72,outerB=bl*1.72;
+ const topA=a.y-al*1.38,topB=b.y-bl*1.38;
+ const innerA=al*.99,innerB=bl*.99;
+ ctx.save();
+ // Mur gauche
+ ctx.fillStyle='#222b39';
+ ctx.beginPath();ctx.moveTo(a.x-outerA,topA);ctx.lineTo(a.x-innerA,a.y);ctx.lineTo(b.x-innerB,b.y);ctx.lineTo(b.x-outerB,topB);ctx.closePath();ctx.fill();
+ // Mur droit
+ ctx.fillStyle='#252f3e';
+ ctx.beginPath();ctx.moveTo(a.x+innerA,a.y);ctx.lineTo(a.x+outerA,topA);ctx.lineTo(b.x+outerB,topB);ctx.lineTo(b.x+innerB,b.y);ctx.closePath();ctx.fill();
+ // Voûte : forme cintrée au-dessus du gabarit routier, sans boucher l'ouverture.
+ ctx.fillStyle='#30394a';
+ ctx.beginPath();
+ ctx.moveTo(a.x-outerA,topA);ctx.lineTo(a.x+outerA,topA);
+ ctx.lineTo(b.x+outerB,topB);ctx.lineTo(b.x-outerB,topB);
+ ctx.closePath();ctx.fill();
+ // Nervures simples, peu coûteuses, pour matérialiser la profondeur du tunnel.
+ ctx.strokeStyle='#566174';ctx.lineWidth=Math.max(1,al*.018);
+ ctx.beginPath();ctx.moveTo(a.x-outerA,topA);ctx.lineTo(a.x-innerA,a.y);ctx.moveTo(a.x+outerA,topA);ctx.lineTo(a.x+innerA,a.y);ctx.stroke();
+ ctx.restore();
+}
 function render(){
  if(!segs.length)return;ctx.setTransform(RS,0,0,RS,0,0);ctx.save();if(loopA){const c=Math.abs(Math.cos(loopA)),n=Math.abs(Math.sin(loopA)),k=Math.max(W/H*n+c,c+H/W*n)+.03;ctx.translate(W/2,H/2);ctx.rotate(loopA);ctx.scale(k,k);ctx.translate(-W/2,-H/2)}
  renderBackdrop();
@@ -1298,6 +1317,7 @@ function render(){
   ctx.globalAlpha=1-s.ft*.6;const clip=s.clip<H;
   // Les décors latéraux ne sont plus coupés par le masque de recouvrement de la chaussée.
   // Leur position reste calculée depuis la projection originale du segment.
+  if(s.tun)__crDrawTunnelInterior(s,a,b);
   __crDrawDecoGroup(s,a.x,a.y,a.sc);if(forkActive&&MP&&forkRoute>=0&&s.i>=N-FORK+10){
    const ff=Math.min(1,(s.i-(N-FORK))/FORK),blocked=forkRoute===0?1:-1;
    const bo=blocked*(.5+.9*ff),bx0=a.x+a.sc*bo*roadW*160;
