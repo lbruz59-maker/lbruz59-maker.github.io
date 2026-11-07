@@ -1348,9 +1348,10 @@ function render(){
   ctx.globalAlpha=1-s.ft*.6;const clip=s.clip<H;
   // Les décors latéraux ne sont plus coupés par le masque de recouvrement de la chaussée.
   // Leur position reste calculée depuis la projection originale du segment.
-  // Ne fermer l'extérieur qu'une fois la voiture réellement entrée dans le tunnel.
-  // À l'approche, les segments lointains ne doivent jamais masquer le ciel ou le littoral.
-  if(s.tun&&ps.tun)__crDrawTunnelInterior(s,a,b);
+  // Le tube et ses appliques sont visibles dès l'approche du tunnel :
+  // on ne conditionne plus leur rendu à la position de la voiture.
+  // Le corridor central reste ouvert, donc la sortie demeure visible au loin.
+  if(s.tun)__crDrawTunnelInterior(s,a,b);
   if(!(s.tun&&ps.tun))__crDrawDecoGroup(s,a.x,a.y,a.sc);if(forkActive&&MP&&forkRoute>=0&&s.i>=N-FORK+10){
    const ff=Math.min(1,(s.i-(N-FORK))/FORK),blocked=forkRoute===0?1:-1;
    const bo=blocked*(.5+.9*ff),bx0=a.x+a.sc*bo*roadW*160;
