@@ -1,4 +1,4 @@
-const CACHE='coast-rush-pwa-v21';
+const CACHE='coast-rush-pwa-v22';
 self.addEventListener('install',event=>{
   event.waitUntil(
     caches.open(CACHE)
