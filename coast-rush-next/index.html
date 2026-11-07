@@ -1298,11 +1298,7 @@ function __crDrawTunnelInterior(s,a,b){
  const roofA=a.y-al*2.05,roofB=b.y-bl*2.05;
  const outerRoofA=roofA-al*.92,outerRoofB=roofB-bl*.92;
  ctx.save();
- // Noir extérieur sur les côtés et au-dessus; l'axe central reste ouvert vers la sortie.
- ctx.fillStyle='#020306';
- ctx.beginPath();ctx.moveTo(0,0);ctx.lineTo(a.x-outerA,outerRoofA);ctx.lineTo(b.x-outerB,outerRoofB);ctx.lineTo(0,H);ctx.closePath();ctx.fill();
- ctx.beginPath();ctx.moveTo(W,0);ctx.lineTo(a.x+outerA,outerRoofA);ctx.lineTo(b.x+outerB,outerRoofB);ctx.lineTo(W,H);ctx.closePath();ctx.fill();
- ctx.beginPath();ctx.moveTo(0,0);ctx.lineTo(W,0);ctx.lineTo(b.x+outerB,outerRoofB);ctx.lineTo(a.x+outerA,outerRoofA);ctx.lineTo(a.x-outerA,outerRoofA);ctx.lineTo(b.x-outerB,outerRoofB);ctx.closePath();ctx.fill();
+ // Pas de masque plein écran : seules les surfaces réelles du tube sont dessinées.
  // Deux murs épais et opaques, autour du gabarit intérieur.
  ctx.fillStyle='#514d48';
  ctx.beginPath();ctx.moveTo(a.x-innerA,a.y);ctx.lineTo(a.x-outerA,outerRoofA);ctx.lineTo(b.x-outerB,outerRoofB);ctx.lineTo(b.x-innerB,b.y);ctx.closePath();ctx.fill();
@@ -2202,20 +2198,24 @@ function update(dt){const N=segs.length,ps=segs[Math.floor((pos+playerZ)/segL)%N
   rb.gain.value=(__crAudioOffRoad&&speed>MAX*.1)?.3*sp+.08:0;if(rn)rn.gain.value=(wx=='rain'&&state!='menu')?.05:0}}
 let RS=4,qMode=0,RSmax=isTV?2:6;const QN=['AUTO','ÉCO','HD','FULL HD'];
 function sizeCanvas(){
- // Adaptive full-viewport rendering: retain the logical height and expand the
- // logical width to match the actual screen ratio. This removes 16:9 side bars.
+ // Le jeu reste toujours en paysage. En portrait, on pivote le canvas entier
+ // au lieu d'étirer une scène 16:9 dans une fenêtre verticale.
  H=224;
  const vv=window.visualViewport;
  const vw=Math.max(1,Math.round((vv&&vv.width)||window.innerWidth||document.documentElement.clientWidth||1920));
  const vh=Math.max(1,Math.round((vv&&vv.height)||window.innerHeight||document.documentElement.clientHeight||1080));
- const ratio=vw/vh;
- W=Math.max(320,Math.round(H*ratio));
- cv.style.position='absolute';cv.style.left='0px';cv.style.top='0px';
- cv.style.width='100vw';cv.style.height='100vh';cv.style.maxWidth='none';cv.style.maxHeight='none';
+ const portrait=vw<vh;
+ const viewW=portrait?vh:vw,viewH=portrait?vw:vh;
+ W=Math.max(320,Math.round(H*viewW/viewH));
+ cv.style.position='fixed';cv.style.top='0px';cv.style.left=portrait?vw+'px':'0px';
+ cv.style.width=portrait?vh+'px':'100vw';
+ cv.style.height=portrait?vw+'px':'100vh';
+ cv.style.transformOrigin='top left';cv.style.transform=portrait?'rotate(90deg)':'none';
+ cv.style.maxWidth='none';cv.style.maxHeight='none';
  cv.style.aspectRatio='auto';cv.style.objectFit='fill';cv.style.flex='0 0 auto';
  const dpr=Math.max(1,Math.min(isTV?4:2,window.devicePixelRatio||1));
  const maxBackingH=isTV?480:2160;
- const wantedH=Math.round(vh*dpr);
+ const wantedH=Math.round(viewH*dpr);
  const targetH=Math.max(224,Math.min(maxBackingH,wantedH));
  let k=targetH/H;
  if(qMode===1)k=Math.min(k,1.5);
