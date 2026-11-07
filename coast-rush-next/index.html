@@ -2201,39 +2201,20 @@ function update(dt){const N=segs.length,ps=segs[Math.floor((pos+playerZ)/segL)%N
   rb.gain.value=(__crAudioOffRoad&&speed>MAX*.1)?.3*sp+.08:0;if(rn)rn.gain.value=(wx=='rain'&&state!='menu')?.05:0}}
 let RS=4,qMode=0,RSmax=isTV?2:6;const QN=['AUTO','ÉCO','HD','FULL HD'];
 function sizeCanvas(){
- // Le jeu reste toujours en paysage. En portrait, on pivote le canvas entier
- // au lieu d'étirer une scène 16:9 dans une fenêtre verticale.
+ // Retour au comportement d'origine : le canvas remplit le viewport.
+ // En portrait, la scène s'adapte à la hauteur/largeur disponible sans rotation.
  H=224;
  const vv=window.visualViewport;
  const vw=Math.max(1,Math.round((vv&&vv.width)||window.innerWidth||document.documentElement.clientWidth||1920));
  const vh=Math.max(1,Math.round((vv&&vv.height)||window.innerHeight||document.documentElement.clientHeight||1080));
- const portrait=vw<vh;
- const viewW=portrait?vh:vw,viewH=portrait?vw:vh;
- W=Math.max(320,Math.round(H*viewW/viewH));
- // Le canvas est fixé au viewport et doit pouvoir dépasser le conteneur #w
- // avant rotation : overflow:hidden sur #w le coupait entièrement en portrait.
- // Sort le canvas de son conteneur flex : un canvas fixed transforme dans
- // #w était rogné/empilé de façon incorrecte sur certains WebView Android.
- if(cv.parentElement!==document.body)document.body.appendChild(cv);
- const wrap=document.getElementById('w');
- if(wrap)wrap.style.display='none';
- cv.style.position='fixed';cv.style.display='block';cv.style.visibility='visible';
- cv.style.margin='0';cv.style.padding='0';cv.style.border='0';
- // Positionnement géométrique explicite : le rectangle paysage non tourné
- // est centré sur le viewport portrait AVANT rotation. Pas de vh/vw ni de
- // translate en pourcentage (sources de décalage dans Android WebView).
- cv.style.width=(portrait?vh:vw)+'px';
- cv.style.height=(portrait?vw:vh)+'px';
- cv.style.left=(portrait?(vw-vh)/2:0)+'px';
- cv.style.top=(portrait?(vh-vw)/2:0)+'px';
- cv.style.transformOrigin='center center';
- cv.style.transform=portrait?'rotate(90deg)':'none';
- cv.style.zIndex='1';cv.style.pointerEvents='none';
- cv.style.maxWidth='none';cv.style.maxHeight='none';
+ const ratio=vw/vh;
+ W=Math.max(320,Math.round(H*ratio));
+ cv.style.position='absolute';cv.style.left='0px';cv.style.top='0px';
+ cv.style.width='100vw';cv.style.height='100vh';cv.style.maxWidth='none';cv.style.maxHeight='none';
  cv.style.aspectRatio='auto';cv.style.objectFit='fill';cv.style.flex='0 0 auto';
  const dpr=Math.max(1,Math.min(isTV?4:2,window.devicePixelRatio||1));
  const maxBackingH=isTV?480:2160;
- const wantedH=Math.round(viewH*dpr);
+ const wantedH=Math.round(vh*dpr);
  const targetH=Math.max(224,Math.min(maxBackingH,wantedH));
  let k=targetH/H;
  if(qMode===1)k=Math.min(k,1.5);
