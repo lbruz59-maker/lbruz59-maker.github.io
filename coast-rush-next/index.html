@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr"><head><meta charset="utf-8"><title>Coast Rush V104 – Interactive Menu Artwork</title>
+<html lang="fr"><head><meta charset="utf-8"><title>Coast Rush V113 – Référence V111</title>
 <meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Coast Rush"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="mobile-web-app-capable" content="yes"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
 <style>
 :root{box-sizing:border-box}
@@ -1012,9 +1012,31 @@ const s=sc*(t==='c'?73600:t==='l'?80000:t==='a'?100000:3200*H/2);if('ptacl'.incl
  else if(t=='F'){const h=sc*900*H/2,wv=Math.sin(flash*(state=='count'?10:4));ctx.fillStyle='#223';ctx.fillRect(x-h*.07,y-h*.45,h*.14,h*.45);ctx.fillStyle='#e32636';ctx.fillRect(x-h*.09,y-h*.8,h*.18,h*.36);ctx.fillStyle='#c91e2c';ctx.fillRect(x-h*.12,y-h*.77,h*.24,h*.09);ctx.fillStyle='#f1c19a';ctx.beginPath();ctx.arc(x,y-h*.88,h*.075,0,7);ctx.fill();ctx.fillStyle='#d51f32';ctx.beginPath();ctx.arc(x,y-h*.94,h*.082,Math.PI,0);ctx.fill();ctx.fillRect(x-h*.09,y-h*.94,h*.18,h*.025);
   const q=x+h*.1,pt=y-h*1.5;ctx.strokeStyle='#999';ctx.lineWidth=Math.max(1,h*.02);ctx.beginPath();ctx.moveTo(x+h*.09,y-h*.7);ctx.lineTo(q+wv*h*.08,pt);ctx.stroke();
   for(let i=0;i<5;i++)for(let j=0;j<4;j++){ctx.fillStyle=(i+j)%2?'#111':'#fff';ctx.fillRect(q+wv*h*.08+i*h*.105+Math.sin(flash*8+i)*h*.025,pt+j*h*.085,h*.105,h*.085)}}
- else if(t=='T'){ctx.globalAlpha=1;const w=sc*roadW*160,k=w*1.12,hh=w*.78;ctx.beginPath();ctx.rect(x-w*7,y-w*7,w*14,w*7.02);ctx.moveTo(x-k,y);ctx.lineTo(x-k,y-hh);ctx.arc(x,y-hh,k,Math.PI,0);ctx.lineTo(x+k,y);ctx.closePath();ctx.fillStyle=sp.port?'#9a8f7a':((sp.k%4<2)?'#2c2f3a':'#252833');ctx.fill('evenodd');
+ else if(t=='T'){ctx.globalAlpha=1;const w=sc*roadW*160,k=w*1.55,hh=w*1.18;
+ // Montagne 2D autour de l'embouchure : relief en couches, plus aucun grand aplat beige.
+ ctx.save();
+ const ridge=sp.port?(sp.k%4<2?'#665d52':'#514f4d'):'#303b4b';
+ ctx.beginPath();ctx.moveTo(x-w*7,y);ctx.lineTo(x-w*7,y-w*7);
+ ctx.lineTo(x-w*5.8,y-w*5.0);ctx.lineTo(x-w*4.7,y-w*5.8);
+ ctx.lineTo(x-w*3.4,y-w*4.65);ctx.lineTo(x-w*2.2,y-w*5.7);
+ ctx.lineTo(x-w*.9,y-w*4.55);ctx.lineTo(x+w*.15,y-w*5.9);
+ ctx.lineTo(x+w*1.35,y-w*4.7);ctx.lineTo(x+w*2.8,y-w*5.65);
+ ctx.lineTo(x+w*4.0,y-w*4.8);ctx.lineTo(x+w*5.2,y-w*5.5);
+ ctx.lineTo(x+w*7,y-w*4.35);ctx.lineTo(x+w*7,y);ctx.closePath();
+ // Découpe de l'ouverture : le relief encadre le tunnel au lieu de le boucher.
+ ctx.moveTo(x-k,y);ctx.lineTo(x-k,y-hh);ctx.arc(x,y-hh,k,Math.PI,0,true);ctx.lineTo(x+k,y);ctx.closePath();
+ ctx.fillStyle=ridge;ctx.fill('evenodd');
+ // Versants éclairés, dessinés en aplats 2D de part et d'autre du portail.
+ ctx.fillStyle=sp.port?'#817365':'#46566a';
+ ctx.beginPath();ctx.moveTo(x-w*6.7,y);ctx.lineTo(x-w*5.8,y-w*5.0);ctx.lineTo(x-w*4.7,y-w*5.8);ctx.lineTo(x-w*3.4,y-w*4.65);ctx.lineTo(x-k,y);ctx.closePath();ctx.fill();
+ ctx.fillStyle=sp.port?'#756a5b':'#3c4b60';
+ ctx.beginPath();ctx.moveTo(x+k*1.05,y);ctx.lineTo(x+w*1.35,y-w*4.7);ctx.lineTo(x+w*2.8,y-w*5.65);ctx.lineTo(x+w*4.0,y-w*4.8);ctx.lineTo(x+w*5.2,y-w*5.5);ctx.lineTo(x+w*7,y-w*4.35);ctx.lineTo(x+k,y);ctx.closePath();ctx.fill();
+ // Tunnel cylindrique resserré sur la chaussée, placé derrière le cadre.
+ const barrel=ctx.createLinearGradient(x-k,0,x+k,0);barrel.addColorStop(0,'#111827');barrel.addColorStop(.5,'#252b38');barrel.addColorStop(1,'#101725');
+ ctx.beginPath();ctx.moveTo(x-k,y-hh*.32);ctx.lineTo(x-k,y-hh);ctx.arc(x,y-hh,k,Math.PI,0,true);ctx.lineTo(x+k,y-hh*.32);ctx.closePath();ctx.fillStyle=barrel;ctx.fill();
+ ctx.restore();
  if(sp.port){
-  ctx.strokeStyle='#b9ad98';ctx.lineWidth=Math.max(1,w*.13);ctx.beginPath();ctx.moveTo(x-k,y);ctx.lineTo(x-k,y-hh);ctx.arc(x,y-hh,k,Math.PI,0);ctx.lineTo(x+k,y);ctx.stroke();
+  ctx.strokeStyle='#b9ad98';ctx.lineWidth=Math.max(1,w*.13);ctx.beginPath();ctx.moveTo(x-k,y);ctx.lineTo(x-k,y-hh);ctx.arc(x,y-hh,k,Math.PI,0,true);ctx.lineTo(x+k,y);ctx.stroke();
   ctx.strokeStyle='#eee4cf';ctx.lineWidth=Math.max(.8,w*.045);ctx.beginPath();ctx.moveTo(x-k*.91,y);ctx.lineTo(x-k*.91,y-hh);ctx.arc(x,y-hh,k*.91,Math.PI,0);ctx.lineTo(x+k*.91,y);ctx.stroke();
   // Alternating safety blocks at the two feet of the portal.
   for(let side of[-1,1])for(let n=0;n<4;n++){ctx.fillStyle=n%2?'#e7e2d6':'#c83c42';ctx.fillRect(x+side*(k*.78+n*w*.18),y-w*.16,w*.15,w*.16)}
@@ -1287,14 +1309,35 @@ function render(){
  ctx.save();const cxp=W/2,cyp=H-6,sw=320*(MODE==2?.18:VW[myV])*1.2*(mini>0?.62:1);
  if(crash>0){ctx.translate(cxp,cyp-15);ctx.rotate(ang);ctx.translate(-cxp,-(cyp-15))}
  const bump=speed>0?(Math.floor(pos/90)%2):0;inTunnel=!!ps.tun;if(ac&&tunnelLP&&tunnelWet){const now=ac.currentTime;tunnelLP.frequency.setTargetAtTime(inTunnel?1050:19000,now,.22);tunnelWet.gain.setTargetAtTime(inTunnel?.24:0,now,.22)}BRK=(inp.b||gpad.b)&&speed>0?1:0;BOOSTF=boost>0?1:0;
- if(inTunnel){ctx.save();ctx.globalCompositeOperation='screen';for(let side of[-1,1]){const hx=W/2+side*sw*.235,hy=H*.91,ex=W/2+side*W*.105,ey=H*.48;const beam=ctx.createLinearGradient(hx,hy,ex,ey);beam.addColorStop(0,'rgba(255,239,190,.19)');beam.addColorStop(.38,'rgba(255,224,160,.10)');beam.addColorStop(1,'rgba(255,220,150,0)');ctx.fillStyle=beam;ctx.beginPath();ctx.moveTo(hx-side*W*.012,hy);ctx.lineTo(ex-side*W*.075,ey);ctx.lineTo(ex+side*W*.035,ey);ctx.lineTo(hx+side*W*.012,hy);ctx.closePath();ctx.fill();const glow=ctx.createRadialGradient(hx,hy-2,1,hx,hy-2,W*.075);glow.addColorStop(0,'rgba(255,244,210,.25)');glow.addColorStop(1,'rgba(255,220,150,0)');ctx.fillStyle=glow;ctx.fillRect(hx-W*.08,hy-W*.08,W*.16,W*.12)}ctx.restore()}
+ if(inTunnel){ctx.save();ctx.globalCompositeOperation='screen';for(let side of[-1,1]){const hx=W/2+side*sw*.235,hy=H*.91,ex=W/2+side*W*.16,ey=H*.68;const beam=ctx.createLinearGradient(hx,hy,ex,ey);beam.addColorStop(0,'rgba(255,239,190,.19)');beam.addColorStop(.38,'rgba(255,224,160,.10)');beam.addColorStop(1,'rgba(255,220,150,0)');ctx.fillStyle=beam;ctx.beginPath();ctx.moveTo(hx-side*W*.012,hy);ctx.lineTo(ex-side*W*.075,ey);ctx.lineTo(ex+side*W*.035,ey);ctx.lineTo(hx+side*W*.012,hy);ctx.closePath();ctx.fill();const glow=ctx.createRadialGradient(hx,hy-2,1,hx,hy-2,W*.075);glow.addColorStop(0,'rgba(255,244,210,.25)');glow.addColorStop(1,'rgba(255,220,150,0)');ctx.fillStyle=glow;ctx.fillRect(hx-W*.08,hy-W*.08,W*.16,W*.12)}ctx.restore()}
  {const slide=drift*driftSide*28+Math.max(-6,Math.min(6,pxVel*2));
   if(musk>0)drawMuskCraft(cxp+slide,cyp-bump-38,sw,flash);
   else drawVehPose(cxp+slide,cyp-bump,sw,star>0&&flash%.2<.1?'#ffd400':(MODE==2?'#f2f2f2':myCol),MODE==2?-1:myV,drift>.15?(driftSide<0?4:3):(carTurn<-.08?2:carTurn>.08?1:0),Math.floor(pos/70)%2)}if(musk>0){ctx.save();ctx.globalAlpha=.9;for(let fi=0;fi<2;fi++){const dx=fi===0?-13:13,ex=cxp+dx,ey=cyp-18;const flame=ctx.createLinearGradient(ex,ey,ex,ey+48);flame.addColorStop(0,'#dffaff');flame.addColorStop(.35,'#42dfff');flame.addColorStop(1,'#ff8a32');ctx.fillStyle=flame;ctx.beginPath();ctx.moveTo(ex-4,ey);ctx.lineTo(ex+4,ey);ctx.lineTo(ex+2+Math.sin(flash*18+dx)*3,ey+44);ctx.lineTo(ex-2,ey+44);ctx.fill()}ctx.restore()}ctx.restore();
  if(crash>0&&flash%.3<.15){ctx.fillStyle='#fff';ctx.font='bold 16px "Arial Black",Impact,sans-serif';ctx.textAlign='center';ctx.fillText('CRASH!',W/2,70)}
- for(const p of driftTrail){ctx.globalAlpha=.28*(1-p.t/1.25);ctx.strokeStyle='#17191d';ctx.lineWidth=2.2;ctx.lineCap='round';ctx.beginPath();ctx.moveTo(p.x,p.y+p.t*34);ctx.lineTo(p.x-p.side*1.2,p.y+18+p.t*34);ctx.stroke()}for(const p of smoke){ctx.globalAlpha=.6*(1-p.t/.7);ctx.fillStyle='#ddd';ctx.beginPath();ctx.arc(p.x,p.y,3+p.t*10,0,7);ctx.fill()}ctx.globalAlpha=1;BRK=0;BOOSTF=0;if(gun>0&&Math.floor(flash*24)%2){ctx.fillStyle='#fff3a0';for(const dx of[-9,9]){ctx.beginPath();ctx.arc(W/2+dx,H-34,3+Math.random()*2,0,7);ctx.fill()}}
+ for(const p of driftTrail){ctx.globalAlpha=.48*(1-p.t/1.25);ctx.strokeStyle='#42dfff';ctx.lineWidth=2.2;ctx.lineCap='round';ctx.beginPath();ctx.moveTo(p.x,p.y+p.t*34);ctx.lineTo(p.x-p.side*1.2,p.y+18+p.t*34);ctx.stroke()}for(const p of smoke){ctx.globalAlpha=.6*(1-p.t/.7);ctx.fillStyle='#9cecff';ctx.beginPath();ctx.arc(p.x,p.y,3+p.t*10,0,7);ctx.fill()}ctx.globalAlpha=1;BRK=0;BOOSTF=0;if(gun>0&&Math.floor(flash*24)%2){ctx.fillStyle='#fff3a0';for(const dx of[-9,9]){ctx.beginPath();ctx.arc(W/2+dx,H-34,3+Math.random()*2,0,7);ctx.fill()}}
  ctx.restore();
  {const vk=W+'x'+H;if(vk!==__crVignetteKey){__crVignetteKey=vk;__crVignette=ctx.createRadialGradient(W/2,H/2,H*.4,W/2,H/2,W*.62);__crVignette.addColorStop(0,'#0000');__crVignette.addColorStop(1,'#0007')}ctx.fillStyle=__crVignette;ctx.fillRect(0,0,W,H)}
+// V113 — HUD compact restauré : un seul bandeau contrasté, sans quatre cartes.
+function drawRaceHud(){
+ if(state==='menu'||NOHUD.includes(state))return;
+ const x=6,y=5,w=W-12,h=19;
+ ctx.save();ctx.fillStyle='rgba(5,12,25,.78)';ctx.fillRect(x,y,w,h);
+ ctx.strokeStyle='rgba(130,210,255,.62)';ctx.lineWidth=.8;ctx.strokeRect(x+.4,y+.4,w-.8,h-.8);
+ const items=[
+  ['TEMPS',Math.max(0,Math.ceil(time))+'s'],
+  ['SCORE',Math.floor(score).toLocaleString('fr-FR')],
+  ['ÉTAPE',String(stage)],
+  ['VITESSE',Math.round(speed/MAX*290)+' km/h']
+ ];
+ ctx.textBaseline='middle';ctx.textAlign='center';
+ items.forEach((a,i)=>{
+  const cx=x+w*(i+.5)/4;
+  ctx.fillStyle='#8edcff';ctx.font='bold 5.8px Arial,sans-serif';ctx.fillText(a[0],cx,y+6.1);
+  ctx.fillStyle='#fff';ctx.font='bold 9px Arial,sans-serif';ctx.fillText(a[1],cx,y+14.2);
+  if(i) {ctx.strokeStyle='rgba(130,210,255,.22)';ctx.beginPath();ctx.moveTo(x+w*i/4,y+3);ctx.lineTo(x+w*i/4,y+h-3);ctx.stroke();}
+ });
+ ctx.restore();
+}
 }
 
 function drawCoastRushRouteBackdrop(){
@@ -2144,7 +2187,7 @@ try{$('go').focus()}catch(e){}
 requestAnimationFrame(loop);
 </script><script>
 if('serviceWorker' in navigator){
- const refreshKey='cr-sw-auto-refresh-v11';
+ const refreshKey='cr-sw-auto-refresh-v13';
  navigator.serviceWorker.addEventListener('controllerchange',()=>{
   try{if(sessionStorage.getItem(refreshKey)==='1')return;sessionStorage.setItem(refreshKey,'1')}catch(e){}
   location.reload();
