@@ -1297,7 +1297,7 @@ const __crForkBlockSprite={t:'X'};
 // L'extérieur latéral est masqué en noir pendant le passage; le corridor central
 // reste ouvert pour conserver la visibilité de la sortie et de la chaussée.
 function __crDrawTunnelInterior(s,a,b){
- const al=a.w,bl=b.w,innerA=al*1.145,innerB=bl*1.145; // aligné sur le bord externe des bandes de rive
+ const al=a.w,bl=b.w,innerA=al*1.25,innerB=bl*1.25; // ouverture du tube = chaussée + bandes rouge/blanche + marge
  const roofA=a.y-al*2.02,roofB=b.y-bl*2.02;
  ctx.save();
  // Tube ferme projete : les deux parois sont opaques jusqu'aux bords de l'ecran.
