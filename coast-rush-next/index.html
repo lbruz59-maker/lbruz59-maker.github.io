@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr"><head><meta charset="utf-8"><script>if(location.protocol==="http:")location.replace("https:"+location.href.slice(5));</script><link rel="canonical" href="https://lbruz59-maker.github.io/coast-rush-next/"><title>Coast Rush V118 – Full Tunnel Interior</title>
+<html lang="fr"><head><meta charset="utf-8"><script>if(location.protocol==="http:")location.replace("https:"+location.href.slice(5));</script><link rel="canonical" href="https://lbruz59-maker.github.io/coast-rush-next/"><title>Coast Rush V119 – Thick Tunnel Walls & Amber Lights</title>
 <meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Coast Rush"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="mobile-web-app-capable" content="yes"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
 <style>
 :root{box-sizing:border-box}
@@ -1268,24 +1268,30 @@ const __crForkBlockSprite={t:'X'};
 // On ne peint jamais sur la chaussée : le corridor central reste totalement ouvert.
 function __crDrawTunnelInterior(s,a,b){
  const al=a.w,bl=b.w;
- const outerA=al*1.72,outerB=bl*1.72;
+ // Épaisseur des parois : environ 2 m à l'échelle de la chaussée.
+ const thickA=al*.18,thickB=bl*.18;
+ const innerA=al*.98,innerB=bl*.98;
+ const outerA=innerA+thickA,outerB=innerB+thickB;
  const topA=a.y-al*1.38,topB=b.y-bl*1.38;
- const innerA=al*.99,innerB=bl*.99;
  ctx.save();
- // Mur gauche
+ // Faces intérieures épaisses : les deux murs restent hors du gabarit routier.
  ctx.fillStyle='#222b39';
- ctx.beginPath();ctx.moveTo(a.x-outerA,topA);ctx.lineTo(a.x-innerA,a.y);ctx.lineTo(b.x-innerB,b.y);ctx.lineTo(b.x-outerB,topB);ctx.closePath();ctx.fill();
- // Mur droit
+ ctx.beginPath();ctx.moveTo(a.x-innerA, a.y);ctx.lineTo(a.x-outerA,topA);ctx.lineTo(b.x-outerB,topB);ctx.lineTo(b.x-innerB,b.y);ctx.closePath();ctx.fill();
  ctx.fillStyle='#252f3e';
  ctx.beginPath();ctx.moveTo(a.x+innerA,a.y);ctx.lineTo(a.x+outerA,topA);ctx.lineTo(b.x+outerB,topB);ctx.lineTo(b.x+innerB,b.y);ctx.closePath();ctx.fill();
- // Voûte : forme cintrée au-dessus du gabarit routier, sans boucher l'ouverture.
+ // Dalle de plafond pleine, posée au-dessus du gabarit de circulation.
  ctx.fillStyle='#30394a';
- ctx.beginPath();
- ctx.moveTo(a.x-outerA,topA);ctx.lineTo(a.x+outerA,topA);
- ctx.lineTo(b.x+outerB,topB);ctx.lineTo(b.x-outerB,topB);
- ctx.closePath();ctx.fill();
- // Nervures simples, peu coûteuses, pour matérialiser la profondeur du tunnel.
- ctx.strokeStyle='#566174';ctx.lineWidth=Math.max(1,al*.018);
+ ctx.beginPath();ctx.moveTo(a.x-outerA,topA);ctx.lineTo(a.x+outerA,topA);ctx.lineTo(b.x+outerB,topB);ctx.lineTo(b.x-outerB,topB);ctx.closePath();ctx.fill();
+ // Éclairage orangé économique : une applique tous les 12 segments.
+ if((s.i%12)===0){
+  const lx=(a.x+b.x)*.5,ly=(topA+topB)*.5+al*.12,rad=Math.max(3,al*.22);
+  const glow=ctx.createRadialGradient(lx,ly,1,lx,ly,rad*2.8);
+  glow.addColorStop(0,'rgba(255,190,92,.34)');glow.addColorStop(.35,'rgba(255,132, forty, .15)'.replace('forty','80'));glow.addColorStop(1,'rgba(255,120,40,0)');
+  ctx.fillStyle=glow;ctx.beginPath();ctx.ellipse(lx,ly+al*.48,rad*2.2,rad*.72,0,0,Math.PI*2);ctx.fill();
+  ctx.fillStyle='#ffbf70';ctx.fillRect(lx-rad*.16,ly-rad*.10,rad*.32,Math.max(2,rad*.12));
+ }
+ // Nervures et arêtes : matérialisent la profondeur sans ajouter de textures.
+ ctx.strokeStyle='#657083';ctx.lineWidth=Math.max(1,al*.018);
  ctx.beginPath();ctx.moveTo(a.x-outerA,topA);ctx.lineTo(a.x-innerA,a.y);ctx.moveTo(a.x+outerA,topA);ctx.lineTo(a.x+innerA,a.y);ctx.stroke();
  ctx.restore();
 }
@@ -2082,6 +2088,12 @@ function update(dt){const N=segs.length,ps=segs[Math.floor((pos+playerZ)/segL)%N
   pxVel+=(lateralTarget-pxVel)*Math.min(1,dt*(drift>.08?7.5:9));
   if(state=='play'&&gripF<.8)pxVel+=Math.sin(flash*2.3)*.12*(1-gripF)*sp2*dt*4;
   px+=pxVel*dt;
+  // Collision latérale avec les parois : arrêt net avant le mur, rebond amorti.
+  if(ps.tun){
+   const tunnelLimit=.88;
+   if(px>tunnelLimit){px=tunnelLimit;pxVel=Math.min(0,pxVel)*.18;speed=Math.max(0,speed-MAX*.035)}
+   else if(px< -tunnelLimit){px=-tunnelLimit;pxVel=Math.max(0,pxVel)*.18;speed=Math.max(0,speed-MAX*.035)}
+  }
   if(drift>.025){
    if(accelerating)speed=Math.min(MAX*1.10,speed+MAX*.025*drift*dt);
    driftMarkClock+=dt;if(driftMarkClock>.045){driftMarkClock=0;const tx=W/2+driftSide*drift*12,ty=H-16;for(const wheel of [-1,1])__crEmitDrift(tx+wheel*8,ty,driftSide);if(Math.random()<dt*14){__crEmitSmoke(W/2+driftSide*sw*.28,ty-10,driftSide*18+(Math.random()-.5)*8);__crEmitSmoke(W/2-driftSide*sw*.28,ty-10,-driftSide*18+(Math.random()-.5)*8)}}
