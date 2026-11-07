@@ -1308,10 +1308,14 @@ function render(){
  if((state=='count'||state=='wait')&&MODE!=2){ctx.textAlign='center';ctx.font='bold 44px "Arial Black",Impact,sans-serif';T(state=='wait'?'...':String(Math.max(1,Math.ceil(cd))),160,100,'#ffd400');if(state=='wait'){ctx.font='12px "Arial Black",Impact,sans-serif';T('En attente des joueurs',160,120,'#fff')}ctx.textAlign='left'}
  if(ac&&ac.state!='running'){ctx.font='10px "Arial Black",Impact,sans-serif';T('SON : touche l\'écran',90,216,'#ff4d6d')}
  if(MODE==2&&bnd&&state!='menu'){const f=Math.max(0,bnd.hp)/(bnd.mx||3+stage);if(state=='play'){ctx.fillStyle=(Math.floor(flash*6)%2)?'#f003':'#06f3';ctx.fillRect(-OXh,0,5,H);ctx.fillRect(W-5-OXh,0,5,H)}ctx.fillStyle='#000a';ctx.fillRect(105,68,110,10);ctx.fillStyle=f>.5?'#3d3':f>.25?'#fd2':'#f33';ctx.fillRect(107,70,106*f,6);ctx.fillStyle='#fff';ctx.font='8px "Arial Black",Impact,sans-serif';ctx.textAlign='center';ctx.fillText(['COUPÉ','FOURGON','MUSCLE CAR','SUPERCAR','PICK-UP'][bnd.vt|0]+'  '+Math.round((bnd.z-(pos+playerZ))/segL*2)+' m',160,66);ctx.textAlign='left'}
- if(MODE==2&&state=='play'&&bnd){const tx=160+Math.max(-1,Math.min(1,(bnd.o-px)*.7))*92;ctx.save();ctx.translate(OXh,0);ctx.fillStyle='#0009';ctx.fillRect(112,190,96,30);ctx.fillStyle='#ffdf45';ctx.font='bold 8px '+FT;ctx.textAlign='center';ctx.fillText('CIBLE DERRIÈRE',160,199);ctx.fillStyle='#ff3030';ctx.beginPath();ctx.moveTo(tx,207);ctx.lineTo(tx-7,219);ctx.lineTo(tx+7,219);ctx.closePath();ctx.fill();ctx.restore()}
+ if(item){ctx.font='22px sans-serif';ctx.fillText(['','🍄','🍌','🐢','⭐','🛢️','🔫','🚀'][item],8,60);if(item==7){ctx.font='7px '+FT;ctx.fillText('MUSK',28,60)}}
+ if(fk()&&state=='play'&&Math.floor((pos+playerZ)/segL)>=N-FORK){ctx.textAlign='center';ctx.font='bold 14px "Arial Black",Impact,sans-serif';T(px<0?'◀ GAUCHE':'DROITE ▶',160,60,'#3ddc6a')}
+ if(msgT>0){ctx.textAlign='center';ctx.font='bold 20px "Arial Black",Impact,sans-serif';T(msg,160,90,'#ffd400')}
+ }
+ if(state=='over'||state=='win'){ctx.textAlign='center';ctx.fillStyle='#000a';ctx.font='bold 22px "Arial Black",Impact,sans-serif';ctx.font='12px "Arial Black",Impact,sans-serif';T('Touche GAZ / Entrée pour rejouer',160,124,'#fff');T('MEILLEUR '+best,160,137,'#7fe0ff');if(NET()){const L=[[myName,Math.floor(score)]].concat(remotes.filter(r=>r.presence&&r.presence.sc!==undefined).map(r=>[r.presence.n,r.presence.sc])).sort((a,b)=>b[1]-a[1]);L.slice(0,4).forEach((e,i)=>T((i+1)+'. '+e[0]+'  '+e[1],100,152+i*14,'#fff'))}}ctx.restore()}
 
-
-
+// Carte finale OutRun — décor cartographique original dessiné en Canvas.
+// Aucun visuel externe ou image OutRun préexistante n'est utilisé.
 function drawCoastRushRouteBackdrop(){
  const g=ctx.createLinearGradient(0,0,0,H);g.addColorStop(0,'#10243a');g.addColorStop(.58,'#173d55');g.addColorStop(1,'#34566a');ctx.fillStyle=g;ctx.fillRect(0,0,W,H);
  // Mer à gauche et côte découpée.
