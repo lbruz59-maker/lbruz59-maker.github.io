@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr"><head><meta charset="utf-8"><script>if(location.protocol==="http:")location.replace("https:"+location.href.slice(5));</script><link rel="canonical" href="https://lbruz59-maker.github.io/coast-rush-next/"><title>Coast Rush V119 – Thick Tunnel Walls & Amber Lights</title>
+<html lang="fr"><head><meta charset="utf-8"><script>if(location.protocol==="http:")location.replace("https:"+location.href.slice(5));</script><link rel="canonical" href="https://lbruz59-maker.github.io/coast-rush-next/"><title>Coast Rush V120 – Tunnel Lighting & Camera</title>
 <meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Coast Rush"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="mobile-web-app-capable" content="yes"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
 <style>
 :root{box-sizing:border-box}
@@ -412,7 +412,7 @@ window.__coastRushLifecycle=function(kind){
 let inputMode=isTV?'controller':(('ontouchstart' in window||navigator.maxTouchPoints>0)?'touch':'keyboard');
 function applyInputMode(){const touch=inputMode==='touch';document.querySelectorAll('.drive-control').forEach(el=>{el.classList.toggle('input-touch',touch);el.style.display=touch?'flex':'none'});[['ui-key','keyboard'],['ui-pad','controller'],['ui-touch','touch']].forEach(([id,m])=>{const el=document.getElementById(id);if(el)el.classList.toggle('sel',inputMode===m)});const hint=document.getElementById('input-hint');if(hint)hint.textContent=inputMode==='keyboard'?'Clavier : flèches / WASD':inputMode==='controller'?'Manette : stick gauche, gâchette / boutons':'Tactile : commandes affichées à l’écran'}
 
-window.addEventListener('error',e=>{try{let b=document.getElementById('errb');if(!b){b=document.createElement('div');b.id='errb';b.style.cssText='position:fixed;left:0;right:0;bottom:0;z-index:50;background:#600d;color:#fff;font:11px monospace;padding:3px 6px;pointer-events:none';document.body.appendChild(b)}b.textContent='Erreur : '+(e.message||e)+' ('+(e.lineno||'?')+')'}catch(x){}});const segL=200,roadW=2000,camH=1000,camD=1/Math.tan(50*Math.PI/180),playerZ=camH*camD,MAX=segL*60;
+window.addEventListener('error',e=>{try{let b=document.getElementById('errb');if(!b){b=document.createElement('div');b.id='errb';b.style.cssText='position:fixed;left:0;right:0;bottom:0;z-index:50;background:#600d;color:#fff;font:11px monospace;padding:3px 6px;pointer-events:none';document.body.appendChild(b)}b.textContent='Erreur : '+(e.message||e)+' ('+(e.lineno||'?')+')'}catch(x){}});const segL=200,roadW=2000,camH=1000,camD=1/Math.tan(50*Math.PI/180),playerZ=camH*camD+150,MAX=segL*60;
 const lerp=(a,b,p)=>a+(b-a)*p,eIn=(a,b,p)=>a+(b-a)*p*p,eOut=(a,b,p)=>a+(b-a)*(1-(1-p)*(1-p)),eIO=(a,b,p)=>a+(b-a)*(-Math.cos(p*Math.PI)/2+.5);
 const segs=[];let trackLen;
 // Reuse only segments that actually received cars/objects this frame.
@@ -1010,7 +1010,7 @@ const s=sc*(t==='c'?73600:t==='l'?80000:t==='a'?135000:3200*H/2);if('ptacl'.incl
  const lx=x-w-tw*3.2,ly=y-hh*.78,lw=w*.1,lh=w*.3;ctx.fillStyle='#16161c';rrp(lx,ly,lw,lh,lw*.2);ctx.fill();[['#ff2a2a',L==1||L==2],['#ffc830',L==2||L==3],['#2aff5a',L==4]].forEach(([c,on],i)=>{const cy2=ly+lh*(.2+.3*i);ctx.fillStyle=on?c:shade(c,-.75);ctx.beginPath();ctx.arc(lx+lw/2,cy2,lw*.34,0,7);ctx.fill();if(on){const g=ctx.createRadialGradient(lx+lw/2,cy2,0,lx+lw/2,cy2,lw*1.3);g.addColorStop(0,c+'88');g.addColorStop(1,c+'00');ctx.fillStyle=g;ctx.fillRect(lx-lw,cy2-lw*1.3,lw*3,lw*2.6)}});
  ['TURBO','NEON','PIXEL'].forEach((t2,i)=>{ctx.fillStyle='#fff';ctx.fillRect(lx-lw*.2,ly+lh+w*.03+i*w*.12,lw*1.6,w*.1);ctx.fillStyle=['#d8262a','#2a6aff','#111'][i];ctx.font='bold '+Math.max(3,w*.05|0)+'px '+FT;ctx.fillText(t2,lx+lw*.6,ly+lh+w*.1+i*w*.12)});
  const cx2=x+w+tw*1.2;ctx.fillStyle='#fff';ctx.fillRect(cx2,y-hh*.7,w*.28,w*.2);ctx.fillStyle='#111';ctx.font='bold '+Math.max(3,w*.04|0)+'px '+FT;ctx.fillText('CHECK POINT',cx2+w*.14,y-hh*.7+w*.18);ctx.fillStyle='#ffc830';for(let i=0;i<3;i++){ctx.beginPath();ctx.arc(cx2+w*.05+i*w*.09,y-hh*.7+w*.07,w*.03,0,7);ctx.fill()}}
- else if(t=='F'){const h=sc*900*H/2,wv=Math.sin(flash*(state=='count'?10:4));ctx.fillStyle='#223';ctx.fillRect(x-h*.07,y-h*.45,h*.14,h*.45);ctx.fillStyle='#e32636';ctx.fillRect(x-h*.09,y-h*.8,h*.18,h*.36);ctx.fillStyle='#c91e2c';ctx.fillRect(x-h*.12,y-h*.77,h*.24,h*.09);ctx.fillStyle='#f1c19a';ctx.beginPath();ctx.arc(x,y-h*.88,h*.075,0,7);ctx.fill();ctx.fillStyle='#d51f32';ctx.beginPath();ctx.arc(x,y-h*.94,h*.082,Math.PI,0);ctx.fill();ctx.fillRect(x-h*.09,y-h*.94,h*.18,h*.025);
+ else if(t=='F'){const h=sc*1260*H/2,wv=Math.sin(flash*(state=='count'?10:4));ctx.fillStyle='#223';ctx.fillRect(x-h*.07,y-h*.45,h*.14,h*.45);ctx.fillStyle='#e32636';ctx.fillRect(x-h*.09,y-h*.8,h*.18,h*.36);ctx.fillStyle='#c91e2c';ctx.fillRect(x-h*.12,y-h*.77,h*.24,h*.09);ctx.fillStyle='#f1c19a';ctx.beginPath();ctx.arc(x,y-h*.88,h*.075,0,7);ctx.fill();ctx.fillStyle='#d51f32';ctx.beginPath();ctx.arc(x,y-h*.94,h*.082,Math.PI,0);ctx.fill();ctx.fillRect(x-h*.09,y-h*.94,h*.18,h*.025);
   const q=x+h*.1,pt=y-h*1.5;ctx.strokeStyle='#999';ctx.lineWidth=Math.max(1,h*.02);ctx.beginPath();ctx.moveTo(x+h*.09,y-h*.7);ctx.lineTo(q+wv*h*.08,pt);ctx.stroke();
   for(let i=0;i<5;i++)for(let j=0;j<4;j++){ctx.fillStyle=(i+j)%2?'#111':'#fff';ctx.fillRect(q+wv*h*.08+i*h*.105+Math.sin(flash*8+i)*h*.025,pt+j*h*.085,h*.105,h*.085)}}
  else if(t=='T'){
@@ -1268,31 +1268,36 @@ const __crForkBlockSprite={t:'X'};
 // On ne peint jamais sur la chaussée : le corridor central reste totalement ouvert.
 function __crDrawTunnelInterior(s,a,b){
  const al=a.w,bl=b.w;
- // Épaisseur des parois : environ 2 m à l'échelle de la chaussée.
+ // Murs épais mais légèrement reculés hors de la chaussée.
  const thickA=al*.18,thickB=bl*.18;
- const innerA=al*.98,innerB=bl*.98;
+ const innerA=al*.99,innerB=bl*.99;
  const outerA=innerA+thickA,outerB=innerB+thickB;
- const topA=a.y-al*1.38,topB=b.y-bl*1.38;
+ const topA=a.y-al*1.42,topB=b.y-bl*1.42;
  ctx.save();
- // Faces intérieures épaisses : les deux murs restent hors du gabarit routier.
- ctx.fillStyle='#222b39';
- ctx.beginPath();ctx.moveTo(a.x-innerA, a.y);ctx.lineTo(a.x-outerA,topA);ctx.lineTo(b.x-outerB,topB);ctx.lineTo(b.x-innerB,b.y);ctx.closePath();ctx.fill();
- ctx.fillStyle='#252f3e';
+ // Intérieur gris-beige chaud, plus sombre que l'extérieur.
+ ctx.fillStyle='#625b50';
+ ctx.beginPath();ctx.moveTo(a.x-innerA,a.y);ctx.lineTo(a.x-outerA,topA);ctx.lineTo(b.x-outerB,topB);ctx.lineTo(b.x-innerB,b.y);ctx.closePath();ctx.fill();
+ ctx.fillStyle='#716759';
  ctx.beginPath();ctx.moveTo(a.x+innerA,a.y);ctx.lineTo(a.x+outerA,topA);ctx.lineTo(b.x+outerB,topB);ctx.lineTo(b.x+innerB,b.y);ctx.closePath();ctx.fill();
- // Dalle de plafond pleine, posée au-dessus du gabarit de circulation.
- ctx.fillStyle='#30394a';
+ // Plafond continu, teinté plus sombre pour fermer visuellement le volume.
+ ctx.fillStyle='#49463f';
  ctx.beginPath();ctx.moveTo(a.x-outerA,topA);ctx.lineTo(a.x+outerA,topA);ctx.lineTo(b.x+outerB,topB);ctx.lineTo(b.x-outerB,topB);ctx.closePath();ctx.fill();
- // Éclairage orangé économique : une applique tous les 12 segments.
- if((s.i%12)===0){
-  const lx=(a.x+b.x)*.5,ly=(topA+topB)*.5+al*.12,rad=Math.max(3,al*.22);
-  const glow=ctx.createRadialGradient(lx,ly,1,lx,ly,rad*2.8);
-  glow.addColorStop(0,'rgba(255,190,92,.34)');glow.addColorStop(.35,'rgba(255,132, forty, .15)'.replace('forty','80'));glow.addColorStop(1,'rgba(255,120,40,0)');
-  ctx.fillStyle=glow;ctx.beginPath();ctx.ellipse(lx,ly+al*.48,rad*2.2,rad*.72,0,0,Math.PI*2);ctx.fill();
-  ctx.fillStyle='#ffbf70';ctx.fillRect(lx-rad*.16,ly-rad*.10,rad*.32,Math.max(2,rad*.12));
+ // Appliques chaudes plus lumineuses et plus rapprochées.
+ if((s.i%8)===0){
+  const lx=(a.x+b.x)*.5,ly=(topA+topB)*.5+al*.12,rad=Math.max(4,al*.34);
+  const glow=ctx.createRadialGradient(lx,ly,1,lx,ly,rad*3.6);
+  glow.addColorStop(0,'rgba(255,204,125,.82)');
+  glow.addColorStop(.22,'rgba(255,158, seventy, .38)'.replace('seventy','70'));
+  glow.addColorStop(.62,'rgba(255,126,48,.16)');
+  glow.addColorStop(1,'rgba(255,112,32,0)');
+  ctx.fillStyle=glow;ctx.beginPath();ctx.ellipse(lx,ly+al*.52,rad*2.9,rad*.95,0,0,Math.PI*2);ctx.fill();
+  ctx.fillStyle='#ffd18a';ctx.fillRect(lx-rad*.22,ly-rad*.12,rad*.44,Math.max(2,rad*.16));
  }
- // Nervures et arêtes : matérialisent la profondeur sans ajouter de textures.
- ctx.strokeStyle='#657083';ctx.lineWidth=Math.max(1,al*.018);
- ctx.beginPath();ctx.moveTo(a.x-outerA,topA);ctx.lineTo(a.x-innerA,a.y);ctx.moveTo(a.x+outerA,topA);ctx.lineTo(a.x+innerA,a.y);ctx.stroke();
+ // Joints structurels espacés : plus de fines nervures à chaque segment.
+ if((s.i%8)===0){
+  ctx.strokeStyle='#a99a80';ctx.lineWidth=Math.max(1,al*.025);
+  ctx.beginPath();ctx.moveTo(a.x-outerA,topA);ctx.lineTo(a.x-innerA,a.y);ctx.moveTo(a.x+outerA,topA);ctx.lineTo(a.x+innerA,a.y);ctx.stroke();
+ }
  ctx.restore();
 }
 function render(){
