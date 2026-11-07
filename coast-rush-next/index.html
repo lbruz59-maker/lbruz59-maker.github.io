@@ -1294,7 +1294,7 @@ const __crForkBlockSprite={t:'X'};
 // L'extérieur latéral est masqué en noir pendant le passage; le corridor central
 // reste ouvert pour conserver la visibilité de la sortie et de la chaussée.
 function __crDrawTunnelInterior(s,a,b){
- const al=a.w,bl=b.w,innerA=al*1.08,innerB=bl*1.08;
+ const al=a.w,bl=b.w,innerA=al*1.15,innerB=bl*1.15; // bord extérieur des bandes rouge/blanche + marge anti-crénelage
  const roofA=a.y-al*2.02,roofB=b.y-bl*2.02;
  ctx.save();
  // Tube ferme projete : les deux parois sont opaques jusqu'aux bords de l'ecran.
@@ -2207,10 +2207,16 @@ function sizeCanvas(){
  const portrait=vw<vh;
  const viewW=portrait?vh:vw,viewH=portrait?vw:vh;
  W=Math.max(320,Math.round(H*viewW/viewH));
- cv.style.position='fixed';cv.style.top='0px';cv.style.left=portrait?vw+'px':'0px';
+ // Le canvas est fixé au viewport et doit pouvoir dépasser le conteneur #w
+ // avant rotation : overflow:hidden sur #w le coupait entièrement en portrait.
+ const wrap=document.getElementById('w');
+ if(wrap){wrap.style.overflow='visible';wrap.style.zIndex='0'}
+ cv.style.position='fixed';cv.style.display='block';cv.style.visibility='visible';
+ cv.style.top='0px';cv.style.left=portrait?vw+'px':'0px';
  cv.style.width=portrait?vh+'px':'100vw';
  cv.style.height=portrait?vw+'px':'100vh';
  cv.style.transformOrigin='top left';cv.style.transform=portrait?'rotate(90deg)':'none';
+ cv.style.zIndex='0';
  cv.style.maxWidth='none';cv.style.maxHeight='none';
  cv.style.aspectRatio='auto';cv.style.objectFit='fill';cv.style.flex='0 0 auto';
  const dpr=Math.max(1,Math.min(isTV?4:2,window.devicePixelRatio||1));
