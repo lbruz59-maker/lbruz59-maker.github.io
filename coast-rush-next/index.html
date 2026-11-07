@@ -6,7 +6,7 @@
 html,body{-webkit-text-size-adjust:100%;-webkit-touch-callout:none;-webkit-tap-highlight-color:transparent;overscroll-behavior:none;margin:0;height:100%;background:radial-gradient(circle at 50% 40%,#3a0a5a,#0a0218 72%);overflow:hidden;touch-action:none;user-select:none;-webkit-user-select:none;font-family:monospace}
 #w{position:fixed;inset:0;width:100vw;height:100vh;height:100dvh;display:flex;align-items:center;justify-content:center;overflow:hidden}
 canvas{display:block;flex:0 0 auto;width:100%;height:100%;max-width:none;max-height:none;aspect-ratio:auto;object-fit:fill;background:#000;box-shadow:none}
-.b{position:fixed;width:clamp(70px,20vmin,120px);height:clamp(70px,20vmin,120px);border-radius:50%;border:3px solid #fff8;background:#fff3;color:#fff;font-size:clamp(26px,8vmin,46px);display:flex;align-items:center;justify-content:center;font-weight:bold;touch-action:none}
+.b{position:fixed;z-index:5;width:clamp(70px,20vmin,120px);height:clamp(70px,20vmin,120px);border-radius:50%;border:3px solid #fff8;background:#fff3;color:#fff;font-size:clamp(26px,8vmin,46px);display:flex;align-items:center;justify-content:center;font-weight:bold;touch-action:none}
 .b:active,.b.on{background:#ff4d6dcc}
 #l{left:max(12px,env(safe-area-inset-left));bottom:max(14px,env(safe-area-inset-bottom))}
 #r{left:calc(max(12px,env(safe-area-inset-left)) + clamp(80px,22vmin,130px));bottom:max(14px,env(safe-area-inset-bottom))}
@@ -2209,14 +2209,18 @@ function sizeCanvas(){
  W=Math.max(320,Math.round(H*viewW/viewH));
  // Le canvas est fixé au viewport et doit pouvoir dépasser le conteneur #w
  // avant rotation : overflow:hidden sur #w le coupait entièrement en portrait.
+ // Sort le canvas de son conteneur flex : un canvas fixed transforme dans
+ // #w était rogné/empilé de façon incorrecte sur certains WebView Android.
+ if(cv.parentElement!==document.body)document.body.appendChild(cv);
  const wrap=document.getElementById('w');
- if(wrap){wrap.style.overflow='visible';wrap.style.zIndex='0'}
+ if(wrap)wrap.style.display='none';
  cv.style.position='fixed';cv.style.display='block';cv.style.visibility='visible';
+ cv.style.margin='0';cv.style.padding='0';cv.style.border='0';
  cv.style.top='0px';cv.style.left=portrait?vw+'px':'0px';
  cv.style.width=portrait?vh+'px':'100vw';
  cv.style.height=portrait?vw+'px':'100vh';
  cv.style.transformOrigin='top left';cv.style.transform=portrait?'rotate(90deg)':'none';
- cv.style.zIndex='0';
+ cv.style.zIndex='1';cv.style.pointerEvents='none';
  cv.style.maxWidth='none';cv.style.maxHeight='none';
  cv.style.aspectRatio='auto';cv.style.objectFit='fill';cv.style.flex='0 0 auto';
  const dpr=Math.max(1,Math.min(isTV?4:2,window.devicePixelRatio||1));
