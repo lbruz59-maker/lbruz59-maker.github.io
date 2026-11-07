@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr"><head><meta charset="utf-8"><script>if(location.protocol==="http:")location.replace("https:"+location.href.slice(5));</script><link rel="canonical" href="https://lbruz59-maker.github.io/coast-rush-next/"><title>Coast Rush V116 – OutRun Ending Fix</title>
+<html lang="fr"><head><meta charset="utf-8"><script>if(location.protocol==="http:")location.replace("https:"+location.href.slice(5));</script><link rel="canonical" href="https://lbruz59-maker.github.io/coast-rush-next/"><title>Coast Rush V117 – Tunnel Mountain & Headlights</title>
 <meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Coast Rush"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="mobile-web-app-capable" content="yes"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
 <style>
 :root{box-sizing:border-box}
@@ -1013,7 +1013,20 @@ const s=sc*(t==='c'?73600:t==='l'?80000:t==='a'?135000:3200*H/2);if('ptacl'.incl
  else if(t=='F'){const h=sc*900*H/2,wv=Math.sin(flash*(state=='count'?10:4));ctx.fillStyle='#223';ctx.fillRect(x-h*.07,y-h*.45,h*.14,h*.45);ctx.fillStyle='#e32636';ctx.fillRect(x-h*.09,y-h*.8,h*.18,h*.36);ctx.fillStyle='#c91e2c';ctx.fillRect(x-h*.12,y-h*.77,h*.24,h*.09);ctx.fillStyle='#f1c19a';ctx.beginPath();ctx.arc(x,y-h*.88,h*.075,0,7);ctx.fill();ctx.fillStyle='#d51f32';ctx.beginPath();ctx.arc(x,y-h*.94,h*.082,Math.PI,0);ctx.fill();ctx.fillRect(x-h*.09,y-h*.94,h*.18,h*.025);
   const q=x+h*.1,pt=y-h*1.5;ctx.strokeStyle='#999';ctx.lineWidth=Math.max(1,h*.02);ctx.beginPath();ctx.moveTo(x+h*.09,y-h*.7);ctx.lineTo(q+wv*h*.08,pt);ctx.stroke();
   for(let i=0;i<5;i++)for(let j=0;j<4;j++){ctx.fillStyle=(i+j)%2?'#111':'#fff';ctx.fillRect(q+wv*h*.08+i*h*.105+Math.sin(flash*8+i)*h*.025,pt+j*h*.085,h*.105,h*.085)}}
- else if(t=='T'){ctx.globalAlpha=1;const w=sc*roadW*160,k=w*1.12,hh=w*.78;ctx.beginPath();ctx.rect(x-w*7,y-w*7,w*14,w*7.02);ctx.moveTo(x-k,y);ctx.lineTo(x-k,y-hh);ctx.arc(x,y-hh,k,Math.PI,0);ctx.lineTo(x+k,y);ctx.closePath();ctx.fillStyle=sp.port?'#9a8f7a':((sp.k%4<2)?'#2c2f3a':'#252833');ctx.fill('evenodd');
+ else if(t=='T'){ctx.globalAlpha=1;const w=sc*roadW*160,k=w*1.12,hh=w*.78;
+ if(sp.port){
+  // Massif 2D autour de l'arche : deux flancs et une crête au-dessus.
+  ctx.save();
+  ctx.fillStyle='#665b4d';ctx.beginPath();ctx.moveTo(x-k*.92,y);ctx.lineTo(x-k*1.02,y-hh*.92);ctx.lineTo(x-k*1.72,y-hh*1.92);ctx.lineTo(x-k*2.55,y-hh*1.02);ctx.lineTo(x-k*2.55,y);ctx.closePath();ctx.fill();
+  ctx.fillStyle='#756957';ctx.beginPath();ctx.moveTo(x+k*.92,y);ctx.lineTo(x+k*1.02,y-hh*.92);ctx.lineTo(x+k*1.72,y-hh*1.92);ctx.lineTo(x+k*2.55,y-hh*1.02);ctx.lineTo(x+k*2.55,y);ctx.closePath();ctx.fill();
+  ctx.fillStyle='#817562';ctx.beginPath();ctx.moveTo(x-k*1.08,y-hh*.94);ctx.lineTo(x-k*.68,y-hh*1.55);ctx.lineTo(x,y-hh*2.02);ctx.lineTo(x+k*.68,y-hh*1.55);ctx.lineTo(x+k*1.08,y-hh*.94);ctx.closePath();ctx.fill();
+  // Faces éclairées pour donner du relief au sprite plat.
+  ctx.fillStyle='#9b8b70';ctx.beginPath();ctx.moveTo(x-k*.68,y-hh*1.55);ctx.lineTo(x,y-hh*2.02);ctx.lineTo(x-k*.12,y-hh*1.12);ctx.closePath();ctx.fill();
+  ctx.fillStyle='#594f45';ctx.beginPath();ctx.moveTo(x+k*.68,y-hh*1.55);ctx.lineTo(x,y-hh*2.02);ctx.lineTo(x+k*.12,y-hh*1.12);ctx.closePath();ctx.fill();
+  ctx.restore();
+ }
+ // Fond beige limité à la largeur de la route et à la hauteur de l'arche.
+ ctx.beginPath();ctx.rect(x-k*1.04,y-hh-k*.16,k*2.08,hh+k*.16);ctx.moveTo(x-k,y);ctx.lineTo(x-k,y-hh);ctx.arc(x,y-hh,k,Math.PI,0);ctx.lineTo(x+k,y);ctx.closePath();ctx.fillStyle=sp.port?'#9a8f7a':((sp.k%4<2)?'#2c2f3a':'#252833');ctx.fill('evenodd');
  if(sp.port){
   ctx.strokeStyle='#b9ad98';ctx.lineWidth=Math.max(1,w*.13);ctx.beginPath();ctx.moveTo(x-k,y);ctx.lineTo(x-k,y-hh);ctx.arc(x,y-hh,k,Math.PI,0);ctx.lineTo(x+k,y);ctx.stroke();
   ctx.strokeStyle='#eee4cf';ctx.lineWidth=Math.max(.8,w*.045);ctx.beginPath();ctx.moveTo(x-k*.91,y);ctx.lineTo(x-k*.91,y-hh);ctx.arc(x,y-hh,k*.91,Math.PI,0);ctx.lineTo(x+k*.91,y);ctx.stroke();
@@ -1248,11 +1261,12 @@ function renderBackdrop(){
 // Projection caméra : les enregistrements de projection sont réutilisés par segment.
 function __crProjectPoint(out,wx,wy,z,cx,cy){const sc=camD/z;out.x=W/2+sc*(wx-cx)*160;out.y=H/2-sc*(wy-cy)*H/2;out.w=sc*roadW*160;out.sc=sc;return out}
 function __crDrawHeadlightBeams(x,y,w){
- const u=Math.max(1,w/16),nearY=y-3.5*u,farY=Math.max(H*.58,nearY-H*.20),nearHalf=Math.max(5,w*.30),farHalf=Math.max(2,nearHalf*.14),targetX=x+(W*.5-x)*.12;
+ // Faisceaux parallèles à l'axe de chaque voiture : ils éclairent droit devant.
+ const u=Math.max(1,w/16),nearY=y-1.5*u,farY=Math.max(H*.52,nearY-H*.22),nearHalf=Math.max(5,w*.30),farHalf=Math.max(2,nearHalf*.48),targetX=x;
  ctx.save();ctx.globalCompositeOperation='lighter';
  const g=ctx.createLinearGradient(x,nearY,targetX,farY);
- g.addColorStop(0,'#fff6d9a0');g.addColorStop(.28,'#ffe5a35a');g.addColorStop(.72,'#ffc66b20');g.addColorStop(1,'#ffbd5a00');ctx.fillStyle=g;
- for(const side of[-1,1]){ctx.beginPath();ctx.moveTo(x+side*nearHalf,nearY);ctx.lineTo(x+side*nearHalf*.78,nearY-1.5*u);ctx.lineTo(targetX+side*farHalf,farY);ctx.lineTo(targetX-side*farHalf,farY);ctx.closePath();ctx.fill()}
+ g.addColorStop(0,'#fff6d9b0');g.addColorStop(.28,'#ffe5a36a');g.addColorStop(.72,'#ffc66b28');g.addColorStop(1,'#ffbd5a00');ctx.fillStyle=g;
+ for(const side of[-1,1]){ctx.beginPath();ctx.moveTo(x+side*nearHalf,nearY);ctx.lineTo(x+side*nearHalf*.92,nearY-1.1*u);ctx.lineTo(targetX+side*farHalf,farY);ctx.lineTo(targetX-side*farHalf,farY);ctx.closePath();ctx.fill()}
  ctx.restore();
 }
 const __crForkBlockSprite={t:'X'};
