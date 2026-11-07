@@ -1019,26 +1019,29 @@ const s=sc*(t==='c'?73600:t==='l'?80000:t==='a'?135000:3200*H/2);if('ptacl'.incl
   if(!sp.port)return;
   ctx.save();ctx.globalAlpha=1;
   const w=sc*roadW*160,k=w*1.12,hh=w*.78;
-  // Reliefs naturels en deux massifs latéraux : silhouettes courbes et crêtes
-  // décalées, sans pic central au-dessus de l'arche ni empiètement sur l'ouverture.
-  const drawRidge=(side,back)=>{
-   const baseX=x+side*k*(back?1.2:1.12),farX=x+side*k*(back?5.8:5.6);
-   const peakY=y-hh*(back?4.65:5.7),crest=back?3.25:2.8;
-   // Crête arrondie en deux courbes tangentes, jamais de sommet en pointe.
-   ctx.beginPath();ctx.moveTo(baseX,y-hh*.7);
-   ctx.bezierCurveTo(x+side*k*1.55,y-hh*.98,x+side*k*1.85,y-hh*(back?4.05:4.65),x+side*k*(crest-.42),peakY);
-   ctx.bezierCurveTo(x+side*k*(crest-.12),peakY-hh*.36,x+side*k*(crest+.12),peakY-hh*.36,x+side*k*(crest+.42),peakY);
-   ctx.bezierCurveTo(x+side*k*3.8,y-hh*(back?4.35:5.1),x+side*k*4.35,y-hh*(back?3.06:3.6),farX,y-hh*2.28);
-   ctx.lineTo(farX,y);ctx.lineTo(baseX,y);ctx.closePath();ctx.fill();
-  };
-  ctx.fillStyle='#665b4d';drawRidge(-1,true);drawRidge(1,true);
-  ctx.fillStyle='#796a56';drawRidge(-1,false);drawRidge(1,false);
-  // Plans de lumière larges et doux sur les pentes, sans facettes triangulaires.
+  // Un seul massif continu, avec une découpe en arche (even-odd) pour
+  // conserver le ciel visible dans le portail et la chaussée parfaitement libre.
+  ctx.fillStyle='#796a56';
+  ctx.beginPath();
+  ctx.moveTo(x-k*5.8,y);
+  ctx.lineTo(x-k*5.8,y-hh*.72);
+  ctx.bezierCurveTo(x-k*4.55,y-hh*1.15,x-k*4.05,y-hh*3.9,x-k*2.85,y-hh*5.25);
+  ctx.bezierCurveTo(x-k*2.05,y-hh*6.0,x-k*1.15,y-hh*3.25,x,y-hh*2.75);
+  ctx.bezierCurveTo(x+k*1.15,y-hh*3.25,x+k*2.05,y-hh*6.0,x+k*2.85,y-hh*5.25);
+  ctx.bezierCurveTo(x+k*4.05,y-hh*3.9,x+k*4.55,y-hh*1.15,x+k*5.8,y-hh*.72);
+  ctx.lineTo(x+k*5.8,y);ctx.closePath();
+  // Découpe centrale plus large que l'arche : aucun rocher ne mord sur le passage.
+  ctx.moveTo(x-k*1.08,y);
+  ctx.lineTo(x-k*1.08,y-hh);
+  ctx.arc(x,y-hh,k*1.08,Math.PI,0);
+  ctx.lineTo(x+k*1.08,y);ctx.closePath();
+  ctx.fill('evenodd');
+  // Une seule lumière douce par versant, contenue hors de l'ouverture.
   for(const side of[-1,1]){
    ctx.fillStyle=side<0?'#8a795f':'#88765c';
-   ctx.beginPath();ctx.moveTo(x+side*k*1.5,y-hh*.98);
-   ctx.bezierCurveTo(x+side*k*1.85,y-hh*3.9,x+side*k*2.15,y-hh*4.86,x+side*k*2.48,y-hh*5.16);
-   ctx.bezierCurveTo(x+side*k*2.28,y-hh*4.26,x+side*k*2.0,y-hh*3.54,x+side*k*1.75,y-hh*3.24);
+   ctx.beginPath();ctx.moveTo(x+side*k*1.65,y-hh*1.7);
+   ctx.bezierCurveTo(x+side*k*2.0,y-hh*3.45,x+side*k*2.45,y-hh*4.65,x+side*k*2.9,y-hh*4.95);
+   ctx.bezierCurveTo(x+side*k*2.55,y-hh*3.85,x+side*k*2.15,y-hh*2.65,x+side*k*1.85,y-hh*2.15);
    ctx.closePath();ctx.fill();
   }
   // Cadre d'arche uniquement : aucune plaque pleine devant l'ouverture.
@@ -1274,7 +1277,7 @@ function renderBackdrop(){
 function __crProjectPoint(out,wx,wy,z,cx,cy){const sc=camD/z;out.x=W/2+sc*(wx-cx)*160;out.y=H/2-sc*(wy-cy)*H/2;out.w=sc*roadW*160;out.sc=sc;return out}
 function __crDrawHeadlightBeams(x,y,w){
  // Faisceau abaissé : il porte sur la chaussée devant le véhicule, pas sur le ciel.
- const u=Math.max(1,w/16),nearY=y-.55*u,farY=Math.max(H*.76,nearY-H*.105),nearHalf=Math.max(5,w*.28),farHalf=Math.max(2,nearHalf*.22),targetX=x;
+ const u=Math.max(1,w/16),nearY=y-.7*u,farY=Math.max(H*.58,nearY-u*2.35),nearHalf=Math.max(4,w*.25),farHalf=Math.max(2,nearHalf*.3),targetX=x;
  ctx.save();ctx.globalCompositeOperation='lighter';
  const g=ctx.createLinearGradient(x,nearY,targetX,farY);
  g.addColorStop(0,'#fff6d9a0');g.addColorStop(.3,'#ffe5a35c');g.addColorStop(.72,'#ffc66b22');g.addColorStop(1,'#ffbd5a00');ctx.fillStyle=g;
@@ -1291,7 +1294,7 @@ function __crDrawTunnelInterior(s,a,b){
  const thickA=al*.15,thickB=bl*.15;
  const innerA=al*1.015,innerB=bl*1.015;
  const outerA=innerA+thickA,outerB=innerB+thickB;
- const topA=a.y-al*1.42,topB=b.y-bl*1.42;
+ const topA=a.y-al*2.25,topB=b.y-bl*2.25;
  ctx.save();
  // Masques opaques à l'extérieur des parois : l'extérieur disparaît
  // sur les deux côtés, tandis que l'ouverture centrale reste visible.
@@ -1306,7 +1309,12 @@ function __crDrawTunnelInterior(s,a,b){
  ctx.beginPath();ctx.moveTo(a.x+innerA,a.y);ctx.lineTo(a.x+outerA,topA);ctx.lineTo(b.x+outerB,topB);ctx.lineTo(b.x+innerB,b.y);ctx.closePath();ctx.fill();
  // Plafond continu, teinté plus sombre pour fermer visuellement le volume.
  ctx.fillStyle='#49463f';
- ctx.beginPath();ctx.moveTo(a.x-outerA,topA);ctx.lineTo(a.x+outerA,topA);ctx.lineTo(b.x+outerB,topB);ctx.lineTo(b.x-outerB,topB);ctx.closePath();ctx.fill();
+ // Voûte opaque jusqu'au bord supérieur de l'écran : aucun ciel extérieur
+ // ne peut réapparaître au-dessus du plafond pendant les changements de pente.
+ ctx.beginPath();ctx.moveTo(0,0);ctx.lineTo(W,0);
+ ctx.lineTo(b.x+outerB,topB);ctx.lineTo(a.x+outerA,topA);
+ ctx.lineTo(a.x-outerA,topA);ctx.lineTo(b.x-outerB,topB);
+ ctx.closePath();ctx.fill();
  // Appliques chaudes plus lumineuses et plus rapprochées.
  if((s.i%8)===0){
   const lx=(a.x+b.x)*.5,ly=(topA+topB)*.5+al*.12,rad=Math.max(4,al*.34);
@@ -1362,7 +1370,7 @@ function render(){
    deco(__crForkBlockSprite,bx0,a.y,a.sc);
   }
   if(clip){ctx.save();ctx.beginPath();ctx.rect(0,0,W,s.clip);ctx.clip()}
-  for(const c of s.cars){const pct=(c.z%segL)/segL,sc=lerp(a.sc,b.sc,pct),cxs=lerp(a.x,b.x,pct)+sc*c.o*roadW*160,sy=lerp(a.y,b.y,pct),cw=sc*roadW*160*c.w*(c.shr>0?.6:1);if(s.tun&&cw>2){ctx.save();ctx.globalAlpha=.24;ctx.fillStyle='#ffe2a0';ctx.beginPath();ctx.moveTo(cxs-cw*.18,sy-cw*.72);ctx.lineTo(cxs-cw*2.2,sy-cw*9);ctx.lineTo(cxs+cw*2.2,sy-cw*9);ctx.lineTo(cxs+cw*.18,sy-cw*.72);ctx.closePath();ctx.fill();ctx.restore()}if((th.night||s.tun)&&cw>2)__crDrawHeadlightBeams(cxs,sy,cw);drawObj(c,cxs,sy,cw)}
+  for(const c of s.cars){const pct=(c.z%segL)/segL,sc=lerp(a.sc,b.sc,pct),cxs=lerp(a.x,b.x,pct)+sc*c.o*roadW*160,sy=lerp(a.y,b.y,pct),cw=sc*roadW*160*c.w*(c.shr>0?.6:1);if((th.night||s.tun)&&cw>2)__crDrawHeadlightBeams(cxs,sy,cw);drawObj(c,cxs,sy,cw)}
   if(clip)ctx.restore();ctx.globalAlpha=1}
  // joueur
  ctx.save();const cxp=W/2,cyp=H-6,sw=320*(MODE==2?.18:VW[myV])*1.2*(mini>0?.62:1);
