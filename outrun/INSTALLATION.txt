@@ -1,0 +1,21 @@
+OUTRUN MULTIPLAYER — VERSION WEB POUR IPHONE
+
+HÉBERGEMENT
+Publie tout le contenu de ce dossier sur un hébergement statique HTTPS. Garde
+index.html, outrun.js, outrun.wasm et outrun.data au même niveau. Le serveur
+doit servir les fichiers .wasm avec le type application/wasm et autoriser le
+service worker.
+
+IPHONE
+Ouvre l’adresse HTTPS dans Safari. Choisis une archive ZIP contenant les ROMs
+OutRun Revision B que tu es autorisé à utiliser. Le ZIP est lu dans le navigateur
+et enregistré dans le stockage local de l’iPhone; il n’est pas envoyé au site.
+Choisis Solo ou une salle Internet puis touche Lancer OutRun. Pour l’icône,
+utilise Partager > Sur l’écran d’accueil.
+
+MULTIJOUEUR
+Les salles Internet ont un code de quatre lettres ou chiffres. Les appareils
+Android et Windows peuvent utiliser le même code. La découverte Wi-Fi locale
+n’est pas disponible dans Safari.
+
+Aucune ROM n’est distribuée avec cette version.
