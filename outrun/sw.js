@@ -1,4 +1,4 @@
-const CACHE = "outrun-web-v2";
+const CACHE = "outrun-web-v3";
 const SHELL = [
   "./", "./index.html", "./style.css", "./app.js", "./relay.js", "./zip.js",
   "./manifest.webmanifest", "./icon.svg", "./outrun.js", "./outrun.wasm", "./outrun.data"
