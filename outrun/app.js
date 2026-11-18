@@ -1,5 +1,5 @@
 (() => {
-  const webBuild = "20261118-14";
+  const webBuild = "20261118-15";
   const dbName = "outrun-web-data";
   const $ = id => document.getElementById(id);
   const romInput = $("romZip");
@@ -100,6 +100,28 @@
     return `mode=${mode === "create" ? "internet_create" : mode === "join" ? "internet_join" : "offline"}\naddress=\nport=30800\nprotocol=10\nroom=${room}\nplayer=${player}\n`;
   }
 
+  const driverName = $("driverName");
+  const profileKey = "outrun.driverName";
+  function arcadeInitials(name) {
+    const letters = name.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toUpperCase().replace(/[^A-Z]/g, "");
+    return letters.length >= 3 ? letters.slice(0, 3) : "";
+  }
+  function updateDriverHint() {
+    const initials = arcadeInitials(driverName.value);
+    $("driverHint").textContent = initials ? "Tes initiales au classement arcade : " + initials :
+      "Tu pourras choisir tes trois initiales en fin de course.";
+  }
+  try { driverName.value = localStorage.getItem(profileKey) || ""; } catch (_) {}
+  driverName.addEventListener("input", () => {
+    updateDriverHint();
+    try {
+      const name = driverName.value.trim();
+      if (name) localStorage.setItem(profileKey, name);
+      else localStorage.removeItem(profileKey);
+    } catch (_) {}
+  });
+  updateDriverHint();
+
   const racePrefix = "outrun.race.";
   const scoreFiles = ["hiscores", "hiscores_jap", "hiscores_continuous", "hiscores_continuous_jap", "hiscores_timetrial", "hiscores_timetrial_jap"].map(name => name + ".xml");
   let currentRace;
@@ -123,14 +145,16 @@
     $("game").hidden = false;
     $("gameStatus").textContent = settings.room === "----" ? "OutRun · solo" : `Salle ${settings.room} · connexion au relais…`;
     const canvas = $("canvas");
+    const name = driverName.value.trim();
     const lastScores = new Map();
     const module = {
       canvas,
       runtimeInitialized: false,
+      driverInitials: arcadeInitials(name),
       saveRace(score, initials, first) {
         try {
           if (first) currentRace = racePrefix + Date.now() + "." + crypto.getRandomValues(new Uint32Array(1))[0];
-          localStorage.setItem(currentRace, initials + " · " + (score >>> 0).toString(16).padStart(8, "0"));
+          localStorage.setItem(currentRace, (name ? name + " · " : "") + initials + " · " + (score >>> 0).toString(16).padStart(8, "0"));
         } catch (_) { $("gameStatus").textContent = "Sauvegarde des scores indisponible."; }
       },
       syncScores() {

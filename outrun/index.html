@@ -26,6 +26,10 @@
       <input id="romZip" type="file" accept=".zip,application/zip">
       <p id="romStatus" class="status">Aucune archive sélectionnée.</p>
 
+      <label for="driverName">Nom ou pseudo du pilote (facultatif)</label>
+      <input id="driverName" maxlength="32" autocomplete="nickname" placeholder="Ex. Bruno" aria-describedby="driverHint">
+      <p id="driverHint" class="small"></p>
+
       <fieldset>
         <legend>Mode de jeu</legend>
         <label class="choice"><input type="radio" name="mode" value="offline" checked> Solo</label>
@@ -80,6 +84,6 @@
 
   <script src="./zip.js"></script>
   <script src="./relay.js?v=20261118-12"></script>
-  <script src="./app.js?v=20261118-14"></script>
+  <script src="./app.js?v=20261118-15"></script>
 </body>
 </html>
