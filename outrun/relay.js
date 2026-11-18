@@ -11,6 +11,7 @@
   let brokerIndex = 0;
   let packetId = 0;
   let subscribed = false;
+  let playerCount = 1;
   let stopped = false;
   let nativeModule = null;
   const pendingPackets = [];
@@ -38,7 +39,7 @@
       nativeModule.ccall("outrun_web_on_relay_status", null, ["number"], [connected ? 1 : 0]);
     const badge = document.getElementById("gameStatus");
     if (badge && roomTopic)
-      badge.textContent = connected ? `Salle ${roomTopic.slice(roomTopic.lastIndexOf("/") + 1)} · connectée` :
+      badge.textContent = connected ? `Salle ${roomTopic.slice(roomTopic.lastIndexOf("/") + 1)} · connectée · ${playerCount}/8 joueurs` :
         `Salle ${roomTopic.slice(roomTopic.lastIndexOf("/") + 1)} · connexion au relais…`;
   }
 
@@ -57,6 +58,7 @@
   }
 
   function flushPending() {
+    if (!nativeModule || !nativeModule.runtimeInitialized || !nativeModule.ccall) return;
     while (pendingPackets.length) deliver(pendingPackets.shift());
   }
 
@@ -134,6 +136,12 @@
   }
 
   window.OutRunRelay = {
+    updatePlayerCount(count) {
+      count = Math.max(1, Math.min(8, count));
+      if (playerCount === count) return;
+      playerCount = count;
+      if (subscribed) setNativeStatus(true);
+    },
     start(room) {
       if (!/^[A-Z0-9]{4}$/.test(room)) return false;
       this.stop();

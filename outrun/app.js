@@ -1,4 +1,5 @@
 (() => {
+  const webBuild = "20261118-7";
   const dbName = "outrun-web-data";
   const $ = id => document.getElementById(id);
   const romInput = $("romZip");
@@ -112,7 +113,7 @@
         console.error(text);
         if (/ROM|failed|error|unable|failed/i.test(text)) $("gameStatus").textContent = text;
       },
-      locateFile: path => `./${path}`,
+      locateFile: path => `./${path}?v=${webBuild}`,
       preRun: [() => {
         const FS = module.FS;
         try { FS.mkdir("/roms"); } catch (_) {}
@@ -131,7 +132,7 @@
     };
     window.Module = module;
     const script = document.createElement("script");
-    script.src = "./outrun.js";
+    script.src = `./outrun.js?v=${webBuild}`;
     script.onerror = () => { $("gameStatus").textContent = "Fichiers du jeu absents. Le paquet WebAssembly doit être compilé et publié en HTTPS."; };
     document.body.appendChild(script);
   }
