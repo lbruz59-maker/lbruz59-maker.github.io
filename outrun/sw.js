@@ -1,6 +1,6 @@
-const CACHE = "outrun-web-v23";
+const CACHE = "outrun-web-v24";
 const SHELL = [
-  "./", "./index.html", "./style.css?v=20261118-13", "./app.js?v=20261118-18", "./relay.js?v=20261118-12", "./zip.js",
+  "./", "./index.html", "./style.css?v=20261118-13", "./app.js?v=20261118-19", "./relay.js?v=20261118-12", "./zip.js",
   "./manifest.webmanifest", "./icon.svg", "./outrun.js", "./outrun.wasm", "./outrun.data"
 ];
 self.addEventListener("install", event => {
