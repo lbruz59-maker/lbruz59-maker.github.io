@@ -1,7 +1,7 @@
-const CACHE = "outrun-hd-beetle-v1";
+const CACHE = "outrun-hd-beetle-v2";
 const SHELL = [
-  "./beetle.js", "./beetle.png", "./", "./index.html", "./style.css?v=20261118-13", "./app.js?v=20261118-20", "./relay.js?v=20261118-12", "./zip.js",
-  "./manifest.webmanifest", "./icon.svg", "./outrun.js?v=20261118-20", "./outrun.wasm?v=20261118-20", "./outrun.data?v=20261118-20"
+  "./beetle.js", "./beetle.png", "./", "./index.html", "./style.css?v=20261118-13", "./app.js?v=20261118-fork1", "./relay.js?v=20261118-12", "./zip.js",
+  "./manifest.webmanifest", "./icon.svg", "./outrun.js?v=20261118-fork1", "./outrun.wasm?v=20261118-fork1", "./outrun.data?v=20261118-fork1"
 ];
 self.addEventListener("install", event => {
   event.waitUntil(caches.open(CACHE).then(cache => cache.addAll(SHELL)));

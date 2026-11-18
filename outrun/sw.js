@@ -1,6 +1,6 @@
-const CACHE = "outrun-web-v25";
+const CACHE = "outrun-web-v26";
 const SHELL = [
-  "./", "./index.html", "./style.css?v=20261118-13", "./app.js?v=20261118-20", "./relay.js?v=20261118-12", "./zip.js",
+  "./", "./index.html", "./style.css?v=20261118-13", "./app.js?v=20261118-fork1", "./relay.js?v=20261118-12", "./zip.js",
   "./manifest.webmanifest", "./icon.svg", "./outrun.js", "./outrun.wasm", "./outrun.data"
 ];
 self.addEventListener("install", event => {
@@ -8,7 +8,7 @@ self.addEventListener("install", event => {
   self.skipWaiting();
 });
 self.addEventListener("activate", event => {
-  event.waitUntil(caches.keys().then(keys => Promise.all(keys.filter(key => key !== CACHE).map(key => caches.delete(key)))));
+  event.waitUntil(caches.keys().then(keys => Promise.all(keys.filter(key => key.startsWith("outrun-web-v") && key !== CACHE).map(key => caches.delete(key)))));
   self.clients.claim();
 });
 self.addEventListener("fetch", event => {
