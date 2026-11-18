@@ -1,5 +1,5 @@
 (() => {
-  const webBuild = "20261118-12";
+  const webBuild = "20261118-14";
   const dbName = "outrun-web-data";
   const $ = id => document.getElementById(id);
   const romInput = $("romZip");
@@ -100,14 +100,51 @@
     return `mode=${mode === "create" ? "internet_create" : mode === "join" ? "internet_join" : "offline"}\naddress=\nport=30800\nprotocol=10\nroom=${room}\nplayer=${player}\n`;
   }
 
+  const racePrefix = "outrun.race.";
+  const scoreFiles = ["hiscores", "hiscores_jap", "hiscores_continuous", "hiscores_continuous_jap", "hiscores_timetrial", "hiscores_timetrial_jap"].map(name => name + ".xml");
+  let currentRace;
+  function showHistory() {
+    const list = $("raceHistory");
+    list.replaceChildren();
+    try {
+      const keys = Object.keys(localStorage).filter(key => key.startsWith(racePrefix)).sort().reverse();
+      for (const key of keys) {
+        const row = document.createElement("li");
+        row.textContent = localStorage.getItem(key);
+        list.appendChild(row);
+      }
+      if (!keys.length) list.textContent = "Aucune course enregistrée.";
+    } catch (_) { list.textContent = "Stockage indisponible."; }
+  }
+  $("scoresPanel").addEventListener("toggle", showHistory);
+
   function launch(settings) {
     $("setup").hidden = true;
     $("game").hidden = false;
     $("gameStatus").textContent = settings.room === "----" ? "OutRun · solo" : `Salle ${settings.room} · connexion au relais…`;
     const canvas = $("canvas");
+    const lastScores = new Map();
     const module = {
       canvas,
       runtimeInitialized: false,
+      saveRace(score, initials, first) {
+        try {
+          if (first) currentRace = racePrefix + Date.now() + "." + crypto.getRandomValues(new Uint32Array(1))[0];
+          localStorage.setItem(currentRace, initials + " · " + (score >>> 0).toString(16).padStart(8, "0"));
+        } catch (_) { $("gameStatus").textContent = "Sauvegarde des scores indisponible."; }
+      },
+      syncScores() {
+        try {
+          for (const name of scoreFiles) {
+            const key = "outrun.table." + name;
+            const value = module.FS.analyzePath("/" + name).exists ? module.FS.readFile("/" + name, {encoding: "utf8"}) : null;
+            if (value === lastScores.get(name)) continue;
+            if (value === null) localStorage.removeItem(key);
+            else localStorage.setItem(key, value);
+            lastScores.set(name, value);
+          }
+        } catch (_) { $("gameStatus").textContent = "Sauvegarde du classement indisponible."; }
+      },
       print: text => console.log(text),
       printErr: text => {
         console.error(text);
@@ -116,6 +153,13 @@
       locateFile: path => `./${path}?v=${webBuild}`,
       preRun: [() => {
         const FS = module.FS;
+        try {
+          for (const name of scoreFiles) {
+            const value = localStorage.getItem("outrun.table." + name);
+            lastScores.set(name, value);
+            if (value !== null) FS.writeFile("/" + name, value);
+          }
+        } catch (_) { $("gameStatus").textContent = "Lecture du classement indisponible."; }
         try { FS.mkdir("/roms"); } catch (_) {}
         for (const [name, data] of Object.entries(romFiles)) FS.writeFile(`/roms/${name}`, data);
         FS.writeFile("/multiplayer.cfg", settings.config);
