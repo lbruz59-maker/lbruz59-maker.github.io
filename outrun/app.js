@@ -52,7 +52,7 @@
 
   function setRoms(files, label) {
     romFiles = files;
-    $("romStatus").textContent = `${label} Â· ${OutRunZip.ROM_NAMES.length} ROMs prÃªtes sur cet appareil.`;
+    $("romStatus").textContent = `${label} · ${OutRunZip.ROM_NAMES.length} ROMs prêtes sur cet appareil.`;
     play.disabled = false;
     play.textContent = "Lancer OutRun";
   }
@@ -61,7 +61,7 @@
     const file = romInput.files && romInput.files[0];
     if (!file) return;
     play.disabled = true;
-    $("romStatus").textContent = "Lecture locale de lâ€™archive ZIPâ€¦";
+    $("romStatus").textContent = "Lecture locale de l’archive ZIP…";
     $("message").textContent = "";
     try {
       const extracted = await OutRunZip.extract(file);
@@ -69,10 +69,10 @@
       setRoms(extracted, file.name);
     } catch (error) {
       romFiles = null;
-      $("romStatus").textContent = "Archive non installÃ©e.";
+      $("romStatus").textContent = "Archive non installée.";
       $("message").textContent = error.message || "Lecture du ZIP impossible.";
       play.disabled = true;
-      play.textContent = "Lâ€™archive ZIP des ROMs est requise";
+      play.textContent = "L’archive ZIP des ROMs est requise";
     }
   });
 
@@ -135,7 +135,7 @@
         row.textContent = localStorage.getItem(key);
         list.appendChild(row);
       }
-      if (!keys.length) list.textContent = "Aucune course enregistrÃ©e.";
+      if (!keys.length) list.textContent = "Aucune course enregistrée.";
     } catch (_) { list.textContent = "Stockage indisponible."; }
   }
   $("scoresPanel").addEventListener("toggle", showHistory);
@@ -143,7 +143,7 @@
   function launch(settings) {
     $("setup").hidden = true;
     $("game").hidden = false;
-    $("gameStatus").textContent = settings.room === "----" ? "OutRun Â· solo" : `Salle ${settings.room} Â· connexion au relaisâ€¦`;
+    $("gameStatus").textContent = settings.room === "----" ? "OutRun · solo" : `Salle ${settings.room} · connexion au relais…`;
     const canvas = $("canvas");
     const name = driverName.value.trim();
     const lastScores = new Map();
@@ -186,7 +186,7 @@
       saveRace(score, initials, first) {
         try {
           if (first) currentRace = racePrefix + Date.now() + "." + crypto.getRandomValues(new Uint32Array(1))[0];
-          localStorage.setItem(currentRace, (name ? name + " Â· " : "") + initials + " Â· " + (score >>> 0).toString(16).padStart(8, "0"));
+          localStorage.setItem(currentRace, (name ? name + " · " : "") + initials + " · " + (score >>> 0).toString(16).padStart(8, "0"));
         } catch (_) { $("gameStatus").textContent = "Sauvegarde des scores indisponible."; }
       },
       syncScores() {
@@ -227,13 +227,13 @@
         if ("serviceWorker" in navigator) navigator.serviceWorker.register("./sw.js").catch(console.warn);
       },
       onAbort: reason => {
-        $("gameStatus").textContent = `Le jeu ne dÃ©marre pas : ${reason}`;
+        $("gameStatus").textContent = `Le jeu ne démarre pas : ${reason}`;
       }
     };
     window.Module = module;
     const script = document.createElement("script");
     script.src = `./outrun.js?v=${webBuild}`;
-    script.onerror = () => { $("gameStatus").textContent = "Fichiers du jeu absents. Le paquet WebAssembly doit Ãªtre compilÃ© et publiÃ© en HTTPS."; };
+    script.onerror = () => { $("gameStatus").textContent = "Fichiers du jeu absents. Le paquet WebAssembly doit être compilé et publié en HTTPS."; };
     document.body.appendChild(script);
   }
 
@@ -314,7 +314,7 @@
   });
 
   $("newCode").textContent = newRoomCode;
-  loadRoms().then(files => { if (files) setRoms(files, "Archive enregistrÃ©e"); }).catch(() => {});
+  loadRoms().then(files => { if (files) setRoms(files, "Archive enregistrée"); }).catch(() => {});
   if ("serviceWorker" in navigator && location.protocol !== "file:")
     navigator.serviceWorker.register("./sw.js").catch(() => {});
 })();
