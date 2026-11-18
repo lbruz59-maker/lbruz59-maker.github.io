@@ -1,5 +1,5 @@
 (() => {
-  const webBuild = "20261118-8";
+  const webBuild = "20261118-10";
   const dbName = "outrun-web-data";
   const $ = id => document.getElementById(id);
   const romInput = $("romZip");
