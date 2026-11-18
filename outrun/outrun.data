@@ -149,7 +149,7 @@
         2 = Manual   (Separate Buttons for High/Low)
         3 = Automatic 
     -->
-    <gear>0</gear>
+    <gear>3</gear>
     
     <!-- Use the N'th joystick on the system. -->
     <pad_id>0</pad_id>
@@ -169,7 +169,7 @@
         <brake>120</brake>
         <gear1>32</gear1>
         <gear2>32</gear2>
-        <start>49</start>
+        <start>13</start>
         <coin>53</coin>
         <menu>286</menu>
         <view>304</view>

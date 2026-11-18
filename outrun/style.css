@@ -44,6 +44,7 @@ legend { margin-bottom:8px; font-size:14px; font-weight:800; }
 .left-cluster { left:calc(env(safe-area-inset-left) + 14px); }
 .right-cluster { right:calc(env(safe-area-inset-right) + 14px); }
 .touch { width:clamp(58px,12vw,92px); height:clamp(58px,12vw,92px); border:2px solid #ffffffb5; border-radius:18px; background:#064a7fc2; color:white; font-size:clamp(18px,4vw,28px); font-weight:800; touch-action:none; user-select:none; }
+.touch.shift { position:absolute; left:0; bottom:calc(100% + 8px); height:44px; font-size:14px; }
 .touch.accel { background:#c4382bc9; }
 .touch.pressed { background:#f5bd32dd; color:#101820; transform:scale(.96); }
 .hud-toggle { position:absolute; top:calc(env(safe-area-inset-top) + 12px); right:calc(env(safe-area-inset-right) + 12px); min-height:36px; padding:6px 10px; pointer-events:auto; color:#fff; border:1px solid #ffffffaa; border-radius:10px; background:#071522bb; font-size:12px; }
