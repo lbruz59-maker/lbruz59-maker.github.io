@@ -37,6 +37,12 @@
         <label class="choice"><input type="radio" name="mode" value="join"> Rejoindre une salle</label>
       </fieldset>
       <div id="roomPanel" class="room-panel" hidden>
+        <label for="carModel">Voiture multijoueur</label>
+        <select id="carModel" class="code-input">
+          <option value="0">Ferrari</option><option value="1">Pick-up / Jeep</option>
+          <option value="2">Coccinelle</option><option value="3">BMW</option>
+          <option value="4">Corvette</option><option value="5">Porsche</option>
+        </select>
         <div id="createPanel" hidden>
           <span class="caption">Code à donner aux autres joueurs</span>
           <strong id="newCode" class="room-code">----</strong>
@@ -84,6 +90,6 @@
 
   <script src="./zip.js"></script>
   <script src="./relay.js?v=20261118-12"></script>
-  <script src="./app.js?v=20261118-15"></script>
+  <script src="./app.js?v=20261118-16"></script>
 </body>
 </html>
