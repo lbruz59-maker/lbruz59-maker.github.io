@@ -171,6 +171,13 @@
     hud.classList.toggle("hidden");
     $("hudToggle").textContent = hud.classList.contains("hidden") ? "Afficher commandes" : "Masquer commandes";
   });
+  // Holding a pedal must not start WebKit text selection or its callout.
+  for (const type of ["selectstart", "contextmenu"])
+    hud.addEventListener(type, event => event.preventDefault());
+  hud.addEventListener("touchstart", event => {
+    if (event.target.closest("[data-control]") && event.cancelable) event.preventDefault();
+  }, { passive: false });
+
   document.querySelectorAll("[data-control]").forEach(button => {
     const control = Number(button.dataset.control);
     const set = pressed => {

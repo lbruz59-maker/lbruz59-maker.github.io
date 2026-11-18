@@ -36,6 +36,7 @@ legend { margin-bottom:8px; font-size:14px; font-weight:800; }
 .game { position:fixed; inset:0; overflow:hidden; background:#000; }
 #canvas { display:block; width:100% !important; height:100% !important; image-rendering:pixelated; object-fit:contain; touch-action:none; }
 .game-status { position:absolute; top:calc(env(safe-area-inset-top) + 8px); left:50%; transform:translateX(-50%); max-width:90vw; padding:5px 11px; border-radius:20px; color:#fff; background:#061b30bb; font-size:12px; pointer-events:none; }
+.touch-hud, .touch-hud * { -webkit-touch-callout:none; -webkit-user-select:none; user-select:none; }
 .touch-hud { position:absolute; inset:0; pointer-events:none; }
 .touch-cluster { position:absolute; bottom:calc(env(safe-area-inset-bottom) + 14px); display:flex; gap:10px; pointer-events:auto; }
 .gear-cluster { top:calc(env(safe-area-inset-top) + 12px); bottom:auto; left:calc(env(safe-area-inset-left) + 12px); }
