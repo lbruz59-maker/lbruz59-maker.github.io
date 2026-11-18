@@ -1,5 +1,5 @@
 (() => {
-  const webBuild = "20261118-10";
+  const webBuild = "20261118-11";
   const dbName = "outrun-web-data";
   const $ = id => document.getElementById(id);
   const romInput = $("romZip");
@@ -142,6 +142,11 @@
     try {
       const config = multiplayerSettings();
       const selected = config.match(/^room=(.*)$/m);
+      const root = document.documentElement;
+      const enterFullscreen = root.requestFullscreen || root.webkitRequestFullscreen;
+      if (enterFullscreen && !document.fullscreenElement) {
+        try { Promise.resolve(enterFullscreen.call(root)).catch(() => {}); } catch (_) {}
+      }
       launch({ config, room: selected ? selected[1] : "----" });
     } catch (error) {
       $("message").textContent = error.message;
