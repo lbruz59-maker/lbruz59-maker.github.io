@@ -1,5 +1,5 @@
 (() => {
-  const webBuild = "20261119-garage1";
+  const webBuild = "20261119-nativefix2";
   const dbName = "outrun-web-data";
   const $ = id => document.getElementById(id);
   const romInput = $("romZip");
@@ -227,6 +227,12 @@
       locateFile: path => `./${path}?v=${webBuild}`,
       preRun: [() => {
         const FS = module.FS;
+        try {
+          const path = "/config.xml";
+          const xml = FS.readFile(path, {encoding:"utf8"});
+          const fixed = xml.replace(/<sound>[\s\S]*?<\/sound>/, section => section.replace(/<(enable|advertise|preview)>\s*\d+\s*<\/\1>/g, (_, tag) => `<${tag}>1</${tag}>`)).replace(/<menu>\s*<enabled>\s*\d+\s*<\/enabled>/, "<menu><enabled>1</enabled>");
+          if (fixed !== xml) FS.writeFile(path, fixed);
+        } catch (error) { console.warn("Native config", error); }
         try {
           for (const name of scoreFiles) {
             const value = localStorage.getItem("outrun.table." + name);
