@@ -64,7 +64,9 @@
 
   <section id="game" class="game" hidden>
     <canvas id="canvas" oncontextmenu="event.preventDefault()" tabindex="0"></canvas>
+    <canvas id="scoreTiles" hidden aria-hidden="true" style="position:absolute;pointer-events:none"></canvas>
     <canvas id="hdCar" hidden aria-hidden="true" style="position:absolute;pointer-events:none"></canvas>
+    <canvas id="hudTiles" hidden aria-hidden="true" style="position:absolute;pointer-events:none"></canvas>
     <div id="gameStatus" class="game-status"></div>
     <div id="touchHud" class="touch-hud" aria-label="Commandes tactiles">
       <div class="touch-cluster gear-cluster">
@@ -90,11 +92,12 @@
     </div>
   </section>
 
-  <script src="./sprites.js?v=20261119-cars1"></script>
-  <script src="./landscape.js?v=20261119-cars1"></script>
-  <script src="./beetle.js?v=20261119-cars1"></script>
+  <script src="./arcade-ui.js?v=20261119-arcade1"></script>
+    <script src="./sprites.js?v=20261119-arcade1"></script>
+  <script src="./landscape.js?v=20261119-arcade1"></script>
+  <script src="./beetle.js?v=20261119-arcade1"></script>
   <script src="./zip.js"></script>
   <script src="./relay.js?v=20261118-12"></script>
-  <script src="./app.js?v=20261119-start1"></script>
+  <script src="./app.js?v=20261119-arcade1"></script>
 </body>
 </html>

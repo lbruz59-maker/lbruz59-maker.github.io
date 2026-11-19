@@ -5,6 +5,7 @@ function createLandscape(gl, compile, newTexture) {
   const panoramas=new Map();
   let currentSky, previousSky, skyChanged=0;
   let asphalt, verge, scene, rows, program, uniforms, pixels, rowData, width=0,height=0;
+  let stripeTexture, stripeBytes;
   const palette=new Uint32Array(8192);
   function load(url,repeat=false) {
     const asset={texture:null};
@@ -34,8 +35,12 @@ function createLandscape(gl, compile, newTexture) {
   const frag=compile(gl.FRAGMENT_SHADER,`
     precision highp float;
     varying vec2 uv;
-    uniform sampler2D surface,panorama,asphalt,scanline,verge,priorSky;
+    uniform sampler2D surface,panorama,asphalt,scanline,verge,priorSky,stripes;
     uniform vec2 size;
+    uniform float pixelWidth;
+    vec2 limits(vec2 cell){
+      return texture2D(stripes,(cell+.5)/size).rg*255.-128.;
+    }
     uniform float horizon,heading,travel,transition;
     void main(){
       vec4 sampleData=texture2D(surface,uv);
@@ -56,22 +61,32 @@ function createLandscape(gl, compile, newTexture) {
       float grain=dot(aggregate,vec3(.299,.587,.114));
       vec3 rgb=sampleData.rgb;
       if(type<2.5){
-        // Reconstruct the edge of lane paint between arcade scanlines.
-        vec2 texel=1./size;
-        vec2 pos=uv*size-.5, part=fract(pos), base=(floor(pos)+.5)*texel;
-        vec4 a=texture2D(surface,base), b=texture2D(surface,base+vec2(texel.x,0.));
-        vec4 c=texture2D(surface,base+vec2(0.,texel.y)), d=texture2D(surface,base+texel);
-        vec3 top=mix(abs(a.a*255.-2.)<.4?a.rgb:rgb,abs(b.a*255.-2.)<.4?b.rgb:rgb,smoothstep(.1,.9,part.x));
-        vec3 bottom=mix(abs(c.a*255.-2.)<.4?c.rgb:rgb,abs(d.a*255.-2.)<.4?d.rgb:rgb,smoothstep(.1,.9,part.x));
-        rgb=mix(top,bottom,part.y);
-        float lum=dot(rgb,vec3(.299,.587,.114));
-        float paint=smoothstep(.70,.94,lum);
+        // Rebuild each painted interval as two sloping edges in display pixels.
+        vec2 pos=uv*size, cell=floor(pos);
+        float offset=fract(pos.x);
+        float row=floor(pos.y-.5), fy=fract(pos.y-.5);
+        vec2 c0=limits(vec2(cell.x,row)),c1=limits(vec2(cell.x,row+1.));
+        vec2 prev=limits(vec2(cell.x,row-1.)),next=limits(vec2(cell.x,row+2.));
+        if(max(abs(prev.x-c0.x),abs(prev.y-c0.y))<5. &&
+           max(abs(c1.x-c0.x),abs(c1.y-c0.y))<5.)
+          c0=(prev+2.*c0+c1)*.25;
+        if(max(abs(next.x-c1.x),abs(next.y-c1.y))<5. &&
+           max(abs(c1.x-c0.x),abs(c1.y-c0.y))<5.)
+          c1=(c0+2.*c1+next)*.25;
+        float aa=max(.12,pixelWidth*.55);
+        vec2 edge=mix(c0,c1,fy);
+        float paint=smoothstep(-aa,aa,min(offset-edge.x,edge.y-offset));
+        if(abs(c0.x-c1.x)>8. || abs(c0.y-c1.y)>8.){
+          float a=smoothstep(-aa,aa,min(offset-c0.x,c0.y-offset));
+          float b=smoothstep(-aa,aa,min(offset-c1.x,c1.y-offset));
+          paint=mix(a,b,smoothstep(.5-aa,.5+aa,fy));
+        }
         float path=abs(fract(roadUV.x*1.22)-.5)-.26;
         float tracks=exp(-14.*path*path);
         vec3 bitumen=mix(rgb,vec3(.47),.45)*.54+vec3(.02,.025,.03);
         float wear=texture2D(asphalt,roadUV*vec2(.23,.047)).r;
         bitumen*=1.06-.12*tracks+.45*(wear-.37);
-        rgb=mix(bitumen,rgb,paint)*(.47+grain*1.93);
+        rgb=mix(bitumen*(.47+grain*1.93),vec3(.92,.91,.86)*(.92+.13*grain),paint);
       }else{
         vec2 cell=rgb.g>rgb.r*1.06?vec2(1.,0.):rgb.r>.67 && rgb.g>.53?vec2(0.):rgb.r>rgb.b*1.45?vec2(1.):vec2(0.,1.);
         vec2 coord=cell*.5+(.006+.988*fract(roadUV*.68))*.5;
@@ -84,8 +99,8 @@ function createLandscape(gl, compile, newTexture) {
   program=gl.createProgram();gl.attachShader(program,vert);gl.attachShader(program,frag);
   gl.bindAttribLocation(program,0,"corner");gl.linkProgram(program);
   if(!gl.getProgramParameter(program,gl.LINK_STATUS))throw Error(gl.getProgramInfoLog(program));
-  uniforms=Object.fromEntries(["size","horizon","travel","heading","surface","panorama","asphalt","scanline","verge","priorSky","transition"].map(n=>[n,gl.getUniformLocation(program,n)]));
-  scene=newTexture(gl.NEAREST);rows=newTexture(gl.LINEAR);verge=load('./verges.webp');asphalt=load("./pavement.webp",true);panorama(courseIds[0]);
+  uniforms=Object.fromEntries(["stripes","pixelWidth","size","horizon","travel","heading","surface","panorama","asphalt","scanline","verge","priorSky","transition"].map(n=>[n,gl.getUniformLocation(program,n)]));
+  stripeTexture=newTexture(gl.NEAREST);scene=newTexture(gl.NEAREST);rows=newTexture(gl.LINEAR);verge=load('./verges.webp');asphalt=load("./pavement.webp",true);panorama(courseIds[0]);
   let lastPosition, travel = 0;
   function render(heap,ptr,W,H,bytes,depth,params){
     const [stage,pal,yPtr,xPtr,position,heading]=params;
@@ -99,7 +114,7 @@ function createLandscape(gl, compile, newTexture) {
     if(next && next!==currentSky){previousSky=currentSky||next;currentSky=next;skyChanged=now;}
     if(!currentSky)return;
     const resized=W!==width||H!==height;
-    if(resized){width=W;height=H;pixels=new Uint32Array(W*H);rowData=new Uint8Array(H*4);}
+    if(resized){width=W;height=H;pixels=new Uint32Array(W*H);stripeBytes=new Uint8Array(W*H*4);rowData=new Uint8Array(H*4);}
     const scale=H/224;
     for(let index=0x400;index<0x440;index++){
       const color=bytes[pal+2*index]*256+bytes[pal+2*index+1];
@@ -117,6 +132,26 @@ function createLandscape(gl, compile, newTexture) {
         pixels[i]=palette[value];
         if(i<firstRoad*W)firstRoad=Math.floor(i/W);
       }else pixels[i]=base<0x400 || (base>=0x780 && base<0x800)?0x01000000:0;
+    }
+    stripeBytes.fill(0);
+    // Store signed left/right edges of each bright road marking at nearby texels.
+    const isPaint=v=>(v>>>24)===2 && (v&255)>182 && (v>>>8&255)>182 && (v>>>16&255)>169;
+    for(let y=firstRoad;y<H;y++){
+      const row=y*W;
+      for(let x=0;x<W;){
+        if(!isPaint(pixels[row+x])){x++;continue;}
+        const left=x;
+        while(x<W && isPaint(pixels[row+x]))x++;
+        const right=x, a=pixels[row+Math.max(0,left-1)],b=pixels[row+Math.min(W-1,right)];
+        const tarmac=(a>>>24)===2?a:(b>>>24)===2?b:0x02787878;
+        for(let k=Math.max(0,left-4);k<Math.min(W,right+4);k++){
+          const i=(row+k)*4;
+          if(k<left && stripeBytes[i+1] && left-k>128-stripeBytes[i+1])continue;
+          stripeBytes[i]=Math.max(1,Math.min(255,128+left-k));
+          stripeBytes[i+1]=Math.max(1,Math.min(255,128+right-k));
+          if(k>=left && k<right)pixels[row+k]=tarmac;
+        }
+      }
     }
     if(firstRoad===H)firstRoad=Math.round(H*.64);
     const setRow=(y,z,x)=>{
@@ -138,6 +173,8 @@ function createLandscape(gl, compile, newTexture) {
       else gl.texSubImage2D(gl.TEXTURE_2D,0,0,0,w,h,gl.RGBA,gl.UNSIGNED_BYTE,data);
     };
     gl.useProgram(program);
+    upload(0,stripeTexture,W,H,stripeBytes);gl.uniform1i(uniforms.stripes,0);
+    gl.uniform1f(uniforms.pixelWidth,W/gl.drawingBufferWidth);
     upload(2,scene,W,H,new Uint8Array(pixels.buffer));upload(3,rows,1,H,rowData);
     gl.activeTexture(gl.TEXTURE4);gl.bindTexture(gl.TEXTURE_2D,currentSky);
     gl.activeTexture(gl.TEXTURE5);gl.bindTexture(gl.TEXTURE_2D,asphalt.texture);
@@ -149,6 +186,7 @@ function createLandscape(gl, compile, newTexture) {
     gl.uniform1f(uniforms.heading,heading/1024);
     gl.uniform1f(uniforms.travel,travel);
     gl.drawArrays(gl.TRIANGLE_STRIP,0,4);
+    return true;
   }
   return {render};
 }
