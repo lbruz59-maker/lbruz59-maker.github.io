@@ -8,7 +8,7 @@ const beetleHD = window.beetleHD = (() => {
   const draws = [];
   const colors = [[1,0,0],[0,.25,1],[1,.86,0],[0,.75,.1],[0,.84,.93],[1,.34,0],[.59,0,1],[1,.17,.57]];
   const ferrariPalettes = [2,256,261,266,271,276,281,286];
-  let mask, program;
+  let mask, program, landscape;
   const u = {};
   let depthWidth = 0, depthHeight = 0;
   function shader(type,source) {
@@ -62,7 +62,7 @@ const beetleHD = window.beetleHD = (() => {
         gl_FragColor=vec4(c.rgb*c.a,c.a);
       }`);
     program=gl.createProgram();gl.attachShader(program,vs);gl.attachShader(program,fs);
-    gl.linkProgram(program);if(!gl.getProgramParameter(program,gl.LINK_STATUS))throw Error(gl.getProgramInfoLog(program));
+    gl.bindAttribLocation(program,0,"corner");gl.linkProgram(program);if(!gl.getProgramParameter(program,gl.LINK_STATUS))throw Error(gl.getProgramInfoLog(program));
     gl.useProgram(program);
     for(const name of ["dest","source","screen","mirror","layer","phase","tint","paint","brake","depthMap","atlas"])u[name]=gl.getUniformLocation(program,name);
     const buf=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,buf);
@@ -70,6 +70,7 @@ const beetleHD = window.beetleHD = (() => {
     const corner=gl.getAttribLocation(program,"corner");gl.enableVertexAttribArray(corner);gl.vertexAttribPointer(corner,2,gl.FLOAT,false,0,0);
     gl.uniform1i(u.depthMap,1);gl.uniform1i(u.atlas,0);
     gl.enable(gl.BLEND);gl.blendFunc(gl.ONE,gl.ONE_MINUS_SRC_ALPHA);
+    landscape=createLandscape(gl,shader,newTexture);
     mask=newTexture(gl.NEAREST);gl.pixelStorei(gl.UNPACK_ALIGNMENT,1);
     manifest.images.forEach((file,i)=>{
       const image=new Image();image.onload=()=>{
@@ -100,13 +101,13 @@ const beetleHD = window.beetleHD = (() => {
       wheel:car?wheel:0,brake:kind==="ferrari" && paint>=0 && palette-ferrariPalettes[paint]>=2 && palette-ferrariPalettes[paint]<4,top,bottom});
     return 1;
   }
-  function present(heap,ptr,W,H,bytes,depthPtr){
+  function present(heap,ptr,W,H,bytes,depthPtr,...road){
     const depth=bytes.subarray(depthPtr,depthPtr+W*H);
     for(let i=0;i<depth.length;i++){
       const value=heap[ptr+i];if(!(value&32768))depth[i]=255;
       heap[ptr+i]=value&32767;
     }
-    if(!draws.length){overlay.hidden=true;return;}
+    if(!draws.length && !(road[0]>=0)){overlay.hidden=true;return;}
     const rect=game.getBoundingClientRect(),scale=Math.min(rect.width/W,rect.height/H);
     const sw=W*scale,sh=H*scale,dpr=Math.min(window.devicePixelRatio||1,2560/Math.max(1,sw));
     const bw=Math.max(1,Math.round(sw*dpr)),bh=Math.max(1,Math.round(sh*dpr));
@@ -114,7 +115,8 @@ const beetleHD = window.beetleHD = (() => {
     if(overlay.width!==bw || overlay.height!==bh){overlay.width=bw;overlay.height=bh;}
     Object.assign(overlay.style,{width:sw+"px",height:sh+"px",left:(rect.width-sw)/2+"px",top:(rect.height-sh)/2+"px"});
     gl.viewport(0,0,bw,bh);gl.disable(gl.SCISSOR_TEST);gl.clearColor(0,0,0,0);gl.clear(gl.COLOR_BUFFER_BIT);
-    gl.activeTexture(gl.TEXTURE1);gl.bindTexture(gl.TEXTURE_2D,mask);
+    if(road[0]>=0)landscape.render(heap,ptr,W,H,bytes,depth,road);
+    gl.useProgram(program);gl.activeTexture(gl.TEXTURE1);gl.bindTexture(gl.TEXTURE_2D,mask);
     if(depthWidth!==W||depthHeight!==H){
       gl.texImage2D(gl.TEXTURE_2D,0,gl.LUMINANCE,W,H,0,gl.LUMINANCE,gl.UNSIGNED_BYTE,depth);
       depthWidth=W;depthHeight=H;
