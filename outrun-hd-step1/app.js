@@ -55,7 +55,7 @@
     romFiles = files;
     $("romStatus").textContent = `${label} · ${OutRunZip.ROM_NAMES.length} ROMs prêtes sur cet appareil.`;
     play.disabled = false;
-    play.textContent = "Prendre le départ";
+    play.textContent = "Lancer OutRun";
   }
 
   romInput.addEventListener("change", async () => {
