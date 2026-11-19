@@ -1,5 +1,5 @@
 (() => {
-  const webBuild = "20261119-arcade1";
+  const webBuild = "20261119-cleanrestore3";
   const dbName = "outrun-web-data";
   const $ = id => document.getElementById(id);
   const romInput = $("romZip");

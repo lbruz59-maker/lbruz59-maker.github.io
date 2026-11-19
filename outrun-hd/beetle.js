@@ -58,12 +58,10 @@ const beetleHD = window.beetleHD = (() => {
       attribute vec2 corner;
       uniform vec4 dest,source;
       uniform vec2 screen;
-      uniform float mirror,roll;
+      uniform float mirror;
       varying vec2 uv,local,world;
       void main(){
-        vec2 offset=(corner-.5)*dest.zw;
-        float c=cos(roll),s=sin(roll);
-        world=(dest.xy+.5*dest.zw+mat2(c,s,-s,c)*offset)/screen;
+        world=(dest.xy+corner*dest.zw)/screen;
         local=vec2(mix(corner.x,1.-corner.x,mirror),corner.y);
         uv=source.xy+local*source.zw;
         gl_Position=vec4(world*vec2(2.,-2.)+vec2(-1.,1.),0.,1.);
@@ -117,7 +115,7 @@ const beetleHD = window.beetleHD = (() => {
     program=gl.createProgram();gl.attachShader(program,vs);gl.attachShader(program,fs);
     gl.bindAttribLocation(program,0,"corner");gl.linkProgram(program);if(!gl.getProgramParameter(program,gl.LINK_STATUS))throw Error(gl.getProgramInfoLog(program));
     gl.useProgram(program);
-    for(const name of ["dest","source","screen","roll","mirror","layer","phase","hubA","hubB","lamps","lampSize","tint","paint","brake","depthMap","atlas"])u[name]=gl.getUniformLocation(program,name);
+    for(const name of ["dest","source","screen","mirror","layer","phase","hubA","hubB","lamps","lampSize","tint","paint","brake","depthMap","atlas"])u[name]=gl.getUniformLocation(program,name);
     const buf=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,buf);
     gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([0,0,1,0,0,1,1,1]),gl.STATIC_DRAW);
     const corner=gl.getAttribLocation(program,"corner");gl.enableVertexAttribArray(corner);gl.vertexAttribPointer(corner,2,gl.FLOAT,false,0,0);
@@ -135,7 +133,7 @@ const beetleHD = window.beetleHD = (() => {
   }
   if(gl){try{init();}catch(error){console.error(error);program=null;}}
   let skyVisible=false;
-  function queue(slot,address,x,y,w,h,flip,model,turn,paint,wheel,palette,top,bottom,scale,braking,roll=0) {
+  function queue(slot,address,x,y,w,h,flip,model,turn,paint,wheel,palette,top,bottom,scale,braking) {
     // The native cloud routine uses eight distance variants and palette CD.
     // The HD panoramas already contain their own sky and cloud layer.
     if(palette===0xcd && address>=72656 && address<=72726 && (address-72656)%10===0)
@@ -166,7 +164,7 @@ const beetleHD = window.beetleHD = (() => {
     if(localCar && car)api.pose=[x,y,w,h,turn,paint,wheel,!!braking];
     const left=flip?1-f[5]-f[7]:f[5];
     draws.push({slot:slot+1,f,x:x+w*left,y:y+h*f[6],w:w*f[7],h:h*f[8],flip,paint:car?paint:0,
-      wheel:car?wheel:0,brake:equipped && braking,lamps,hub,roll,top,bottom});
+      wheel:car?wheel:0,brake:equipped && braking,lamps,hub,top,bottom});
     return 1;
   }
   function present(heap,ptr,W,H,bytes,depthPtr,...road){
@@ -194,13 +192,13 @@ const beetleHD = window.beetleHD = (() => {
       const f=d.f,t=textures[f[0]];
       gl.bindTexture(gl.TEXTURE_2D,t.texture);
       gl.uniform4f(u.dest,d.x,d.y,d.w,d.h);gl.uniform4f(u.source,(f[1]+.5)/t.w,(f[2]+.5)/t.h,(f[3]-1)/t.w,(f[4]-1)/t.h);
-      gl.uniform1f(u.roll,d.roll*Math.PI/180);gl.uniform1f(u.layer,d.slot);gl.uniform1f(u.mirror,+!!d.flip);gl.uniform1f(u.phase,d.wheel);
+      gl.uniform1f(u.layer,d.slot);gl.uniform1f(u.mirror,+!!d.flip);gl.uniform1f(u.phase,d.wheel);
       const l=d.lamps,h=d.hub;
       gl.uniform4f(u.lamps,l[0],l[1],l[2],l[3]);gl.uniform2f(u.lampSize,l[4],l[5]);
       gl.uniform4f(u.hubA,h[0],h[1],h[2],h[3]);gl.uniform4f(u.hubB,h[4],h[5],h[6],h[7]);
       gl.uniform3fv(u.paint,colors[d.paint]||colors[0]);gl.uniform1f(u.tint,+(d.paint>0 && d.paint<8));gl.uniform1f(u.brake,+!!d.brake);
       const low=Math.max(0,Math.floor((H-d.bottom)*bh/H)),high=Math.min(bh,Math.ceil((H-d.top)*bh/H));
-      gl.scissor(0,d.roll?0:low,bw,d.roll?bh:Math.max(0,high-low));gl.drawArrays(gl.TRIANGLE_STRIP,0,4);
+      gl.scissor(0,low,bw,Math.max(0,high-low));gl.drawArrays(gl.TRIANGLE_STRIP,0,4);
     }
   }
   const api={get ready(){return !!program && !gl.isContextLost() && enabled.checked && textures.some(Boolean);},
