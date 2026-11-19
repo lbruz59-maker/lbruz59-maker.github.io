@@ -1,5 +1,5 @@
 (() => {
-  const webBuild = "20261119-nativefix2";
+  const webBuild = "20261119-arcade1";
   const dbName = "outrun-web-data";
   const $ = id => document.getElementById(id);
   const romInput = $("romZip");
@@ -55,7 +55,7 @@
     romFiles = files;
     $("romStatus").textContent = `${label} · ${OutRunZip.ROM_NAMES.length} ROMs prêtes sur cet appareil.`;
     play.disabled = false;
-    play.textContent = "Prendre le départ";
+    play.textContent = "Lancer OutRun";
   }
 
   romInput.addEventListener("change", async () => {
@@ -161,18 +161,10 @@
         audio = new AudioAPI();
         const resume = () => {
           if (audio.state !== "running" && audio.state !== "closed") audio.resume().catch(() => {});
-          const nativeAudio = window.Module?.SDL2?.audioContext;
-          if (nativeAudio && nativeAudio.state !== "running" && nativeAudio.state !== "closed") nativeAudio.resume().catch(() => {});
         };
         resume();
         window.addEventListener("pointerdown", resume);
-        window.addEventListener("pointerup", resume);
-        window.addEventListener("touchend", resume, { passive: true });
-        window.addEventListener("click", resume);
         window.addEventListener("keydown", resume);
-        document.addEventListener("visibilitychange", () => {
-          if (!document.hidden) { audioTime = 0; resume(); }
-        });
       } catch (_) {}
     }
     const module = {
@@ -196,10 +188,6 @@
       },
       canvas,
       runtimeInitialized: false,
-      returnToGarage() {
-        module.syncScores();
-        location.reload();
-      },
       driverInitials: arcadeInitials(name),
       saveRace(score, initials, first) {
         try {
@@ -227,12 +215,6 @@
       locateFile: path => `./${path}?v=${webBuild}`,
       preRun: [() => {
         const FS = module.FS;
-        try {
-          const path = "/config.xml";
-          const xml = FS.readFile(path, {encoding:"utf8"});
-          const fixed = xml.replace(/<sound>[\s\S]*?<\/sound>/, section => section.replace(/<(enable|advertise|preview)>\s*\d+\s*<\/\1>/g, (_, tag) => `<${tag}>1</${tag}>`)).replace(/<menu>\s*<enabled>\s*\d+\s*<\/enabled>/, "<menu><enabled>1</enabled>");
-          if (fixed !== xml) FS.writeFile(path, fixed);
-        } catch (error) { console.warn("Native config", error); }
         try {
           for (const name of scoreFiles) {
             const value = localStorage.getItem("outrun.table." + name);

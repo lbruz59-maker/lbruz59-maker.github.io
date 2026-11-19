@@ -170,7 +170,6 @@ const beetleHD = window.beetleHD = (() => {
     return 1;
   }
   function present(heap,ptr,W,H,bytes,depthPtr,...road){
-    api.roadVisible=road[0]>=0;
     const depth=bytes.subarray(depthPtr,depthPtr+W*H);
     for(let i=0;i<depth.length;i++){
       const value=heap[ptr+i];if(!(value&32768))depth[i]=255;
@@ -205,6 +204,6 @@ const beetleHD = window.beetleHD = (() => {
     }
   }
   const api={get ready(){return !!program && !gl.isContextLost() && enabled.checked && textures.some(Boolean);},
-    roadVisible:false,pose:null,queue,present,begin(){draws.length=0;api.pose=null;if(!api.ready)overlay.hidden=true;return +api.ready;}};
+    pose:null,queue,present,begin(){draws.length=0;api.pose=null;if(!api.ready)overlay.hidden=true;return +api.ready;}};
   return api;
 })();
