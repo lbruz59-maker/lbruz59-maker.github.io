@@ -86,9 +86,14 @@ function createLandscape(gl, compile, newTexture) {
   if(!gl.getProgramParameter(program,gl.LINK_STATUS))throw Error(gl.getProgramInfoLog(program));
   uniforms=Object.fromEntries(["size","horizon","travel","heading","surface","panorama","asphalt","scanline","verge","priorSky","transition"].map(n=>[n,gl.getUniformLocation(program,n)]));
   scene=newTexture(gl.NEAREST);rows=newTexture(gl.LINEAR);verge=load('./verges.webp');asphalt=load("./pavement.webp",true);panorama(courseIds[0]);
+  let lastPosition, travel = 0;
   function render(heap,ptr,W,H,bytes,depth,params){
     const [stage,pal,yPtr,xPtr,position,heading]=params;
-    if(stage<0 || !asphalt.texture || !verge.texture)return;
+    if(stage<0){lastPosition=undefined;travel=0;return;}
+    const distance=position>>>0;
+    if(lastPosition!==undefined && distance>=lastPosition)travel=(travel+(distance-lastPosition)/1048576)%1;
+    lastPosition=distance;
+    if(!asphalt.texture || !verge.texture)return;
     const next=panorama(stage);
     const now=performance.now();
     if(next && next!==currentSky){previousSky=currentSky||next;currentSky=next;skyChanged=now;}
@@ -142,7 +147,7 @@ function createLandscape(gl, compile, newTexture) {
     for(const [name,unit] of [["surface",2],["scanline",3],["panorama",4],["asphalt",5],["verge",6],["priorSky",7]])gl.uniform1i(uniforms[name],unit);
     gl.uniform2f(uniforms.size,W,H);gl.uniform1f(uniforms.horizon,firstRoad/H);
     gl.uniform1f(uniforms.heading,heading/1024);
-    gl.uniform1f(uniforms.travel,(position>>>0)/65536/16%1);
+    gl.uniform1f(uniforms.travel,travel);
     gl.drawArrays(gl.TRIANGLE_STRIP,0,4);
   }
   return {render};
