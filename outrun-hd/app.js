@@ -1,5 +1,5 @@
 (() => {
-  const webBuild = "20261118-fork1";
+  const webBuild = "20261119-hd1";
   const dbName = "outrun-web-data";
   const $ = id => document.getElementById(id);
   const romInput = $("romZip");
@@ -97,7 +97,7 @@
     if (mode !== "offline" && !/^[A-Z0-9]{4}$/.test(room))
       throw new Error("Le code de salle doit contenir quatre lettres ou chiffres.");
     const player = crypto.getRandomValues(new Uint32Array(1))[0] || 1;
-    return `mode=${mode === "create" ? "internet_create" : mode === "join" ? "internet_join" : "offline"}\naddress=\nport=30800\nmodel=${mode === "offline" ? 2 : $("carModel").value}\nprotocol=10\nroom=${room}\nplayer=${player}\n`;
+    return `mode=${mode === "create" ? "internet_create" : mode === "join" ? "internet_join" : "offline"}\naddress=\nport=30800\nmodel=${$("carModel").value}\nprotocol=10\nroom=${room}\nplayer=${player}\n`;
   }
 
   const driverName = $("driverName");

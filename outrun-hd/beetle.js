@@ -1,82 +1,136 @@
 const beetleHD = window.beetleHD = (() => {
   const overlay = document.getElementById("hdCar");
   const game = document.getElementById("canvas");
-  const ctx = overlay.getContext("2d");
   const enabled = document.getElementById("hdEnabled");
-  const atlas = new Image();
-  const frames = [[42,71,605,595],[733,77,670,588],[1446,82,718,583]];
-  const paints = [0,220,50,123,185,27,275,329];
-  const textures = new Map();
-  atlas.src = "./beetle.png";
-
-  function texture(view, paint) {
-    const key = view * 8 + paint;
-    if (textures.has(key)) return textures.get(key);
-    const [sx,sy,w,h] = frames[view];
-    const panel = document.createElement("canvas");
-    panel.width = w; panel.height = h;
-    const brush = panel.getContext("2d");
-    brush.drawImage(atlas,sx,sy,w,h,0,0,w,h);
-    if (paint) {
-      const data = brush.getImageData(0,0,w,h);
-      const hue = paints[paint] / 60;
-      const second = 1 - Math.abs(hue % 2 - 1);
-      const rgb = [[1,second,0],[second,1,0],[0,1,second],[0,second,1],[second,0,1],[1,0,second]][Math.floor(hue)];
-      for (let y=0;y<h;y++) for (let x=0;x<w;x++) {
-        const i=4*(y*w+x), p=data.data, low=Math.min(p[i+1],p[i+2]), range=p[i]-low;
-        if (!p[i+3] || range<18 || p[i]<p[i+1]*1.18 || p[i]<p[i+2]*1.12) continue;
-        // Keep the two rear lamp lenses red as body paint changes.
-        const nx=x/w, ny=y/h;
-        const lamps=[[.16,.85],[.32,.91],[.48,.96]][view];
-        if(ny>.56 && ny<.75 && lamps.some(cx=>((nx-cx)/.049)**2+((ny-.66)/.085)**2<1)) continue;
-        for(let k=0;k<3;k++) p[i+k]=low+range*rgb[k];
-      }
-      brush.putImageData(data,0,0);
-    }
-    textures.set(key,panel);
-    return panel;
+  const gl = overlay.getContext("webgl", {alpha:true, antialias:false, depth:false, premultipliedAlpha:true});
+  const manifest = window.hdSprites;
+  const textures = [];
+  const draws = [];
+  const colors = [[1,0,0],[0,.25,1],[1,.86,0],[0,.75,.1],[0,.84,.93],[1,.34,0],[.59,0,1],[1,.17,.57]];
+  const ferrariPalettes = [2,256,261,266,271,276,281,286];
+  let mask, program;
+  const u = {};
+  let depthWidth = 0, depthHeight = 0;
+  function shader(type,source) {
+    const obj=gl.createShader(type);
+    gl.shaderSource(obj,source);gl.compileShader(obj);
+    if(!gl.getShaderParameter(obj,gl.COMPILE_STATUS))throw Error(gl.getShaderInfoLog(obj));
+    return obj;
   }
-
-  function present(heap,ptr,W,H) {
-    if(!api.pose){overlay.hidden=true;return;}
-    const [x,y,w,h,turn,paint,phase]=api.pose;
-    const rect=game.getBoundingClientRect();
-    const scale=Math.min(rect.width/W,rect.height/H);
-    const dpr=window.devicePixelRatio||1;
-    const bw=Math.max(1,Math.round(w*scale*dpr)), bh=Math.max(1,Math.round(h*scale*dpr));
-    overlay.hidden=false;
-    Object.assign(overlay.style,{
-      left:((rect.width-W*scale)/2+x*scale)+"px",top:((rect.height-H*scale)/2+y*scale)+"px",
-      width:w*scale+"px",height:h*scale+"px"
+  function newTexture(filter) {
+    const t=gl.createTexture();gl.bindTexture(gl.TEXTURE_2D,t);
+    for(const key of [gl.TEXTURE_MIN_FILTER,gl.TEXTURE_MAG_FILTER])gl.texParameteri(gl.TEXTURE_2D,key,filter);
+    for(const key of [gl.TEXTURE_WRAP_S,gl.TEXTURE_WRAP_T])gl.texParameteri(gl.TEXTURE_2D,key,gl.CLAMP_TO_EDGE);
+    return t;
+  }
+  function init() {
+    const vs=shader(gl.VERTEX_SHADER,`
+      attribute vec2 corner;
+      uniform vec4 dest,source;
+      uniform vec2 screen;
+      uniform float mirror;
+      varying vec2 uv,local,world;
+      void main(){
+        world=(dest.xy+corner*dest.zw)/screen;
+        local=vec2(mix(corner.x,1.-corner.x,mirror),corner.y);
+        uv=source.xy+local*source.zw;
+        gl_Position=vec4(world*vec2(2.,-2.)+vec2(-1.,1.),0.,1.);
+      }`);
+    const fs=shader(gl.FRAGMENT_SHADER,`
+      precision highp float;
+      uniform sampler2D atlas,depthMap;
+      uniform float layer,phase,tint,brake;
+      uniform vec3 paint;
+      uniform vec4 source;
+      varying vec2 uv,local,world;
+      void main(){
+        if(texture2D(depthMap,world).r*255. > layer+.4)discard;
+        vec4 c=texture2D(atlas,uv);
+        if(c.a<.01)discard;
+        float lower=smoothstep(.80,.95,local.y);
+        float tires=lower*(1.-smoothstep(.07,.21,max(c.r,max(c.g,c.b))));
+        tires*=step(.17,abs(local.x-.5));
+        if(phase>.5 && tires>.01){
+          vec3 tread=texture2D(atlas,uv+vec2(0.,-.018*source.w)).rgb;
+          c.rgb=mix(c.rgb,clamp(tread,0.,.22)+.045*step(.45,fract(local.y*41.)),tires);
+        }
+        float red=c.r-max(c.g,c.b);
+        if(tint>.5 && red>.075 && c.r>1.16*c.g && c.r>1.12*c.b)
+          c.rgb=mix(c.rgb,min(c.g,c.b)+paint*(c.r-min(c.g,c.b)),smoothstep(.075,.19,red));
+        if(brake>.5 && local.y>.43 && local.y<.58 && abs(local.x-.5)>.25 && red>.14)
+          c.rgb=mix(c.rgb,vec3(1.,.17,.035),.43);
+        gl_FragColor=vec4(c.rgb*c.a,c.a);
+      }`);
+    program=gl.createProgram();gl.attachShader(program,vs);gl.attachShader(program,fs);
+    gl.linkProgram(program);if(!gl.getProgramParameter(program,gl.LINK_STATUS))throw Error(gl.getProgramInfoLog(program));
+    gl.useProgram(program);
+    for(const name of ["dest","source","screen","mirror","layer","phase","tint","paint","brake","depthMap","atlas"])u[name]=gl.getUniformLocation(program,name);
+    const buf=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,buf);
+    gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([0,0,1,0,0,1,1,1]),gl.STATIC_DRAW);
+    const corner=gl.getAttribLocation(program,"corner");gl.enableVertexAttribArray(corner);gl.vertexAttribPointer(corner,2,gl.FLOAT,false,0,0);
+    gl.uniform1i(u.depthMap,1);gl.uniform1i(u.atlas,0);
+    gl.enable(gl.BLEND);gl.blendFunc(gl.ONE,gl.ONE_MINUS_SRC_ALPHA);
+    mask=newTexture(gl.NEAREST);gl.pixelStorei(gl.UNPACK_ALIGNMENT,1);
+    manifest.images.forEach((file,i)=>{
+      const image=new Image();image.onload=()=>{
+        gl.activeTexture(gl.TEXTURE0);const texture=newTexture(gl.LINEAR);
+        gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA,gl.RGBA,gl.UNSIGNED_BYTE,image);
+        textures[i]={texture,w:image.width,h:image.height};
+      };image.src=file;
     });
-    if(overlay.width!==bw || overlay.height!==bh){overlay.width=bw;overlay.height=bh;}
-    ctx.setTransform(1,0,0,1,0,0);ctx.clearRect(0,0,bw,bh);
-    const pic=texture(Math.abs(turn),paint);
-    ctx.save();
-    if(turn>0){ctx.translate(bw,0);ctx.scale(-1,1);}
-    ctx.drawImage(pic,0,0,bw,bh);
-    // Shift narrow bands inside the rubber while leaving the contact patch fixed.
-    if(phase) {
-      const zones=[[[.06,.12],[.82,.11]],[[.025,.05],[.19,.08],[.86,.085]],[[.025,.04],[.23,.075],[.87,.06]]][Math.abs(turn)];
-      for(const [l,span] of zones) for(let band=0;band<3;band++){
-        const sy=.86+band*.026;
-        ctx.drawImage(pic,l*pic.width,(sy+.011)*pic.height,span*pic.width,.012*pic.height,l*bw,sy*bh,span*bw,.012*bh);
-      }
+  }
+  if(gl){try{init();}catch(error){console.error(error);program=null;}}
+  function queue(slot,address,x,y,w,h,flip,model,turn,paint,wheel,palette,top,bottom) {
+    const localCar=paint>=0;
+    const f=manifest.frames[model ? "car"+model+"-"+Math.abs(turn) : address===0x1085c ? "lights"+Math.max(0,Math.min(3,palette-122)) : address];
+    if(!f || !textures[f[0]] || w<3 || h<2)return 0;
+    const kind=f[9],car=kind==="car"||kind==="ferrari"||kind==="traffic";
+    if(model){
+      x+=w*.065;w*=.87;
+      flip=model===2 ? turn>0 : turn<0;
     }
-    ctx.restore();
-    // Preserve foreground sprites and text drawn after the car in the arcade renderer.
-    for(let row=0;row<h;row++){
-      let start=-1;
-      for(let col=0;col<=w;col++){
-        const visible=col<w && x+col>=0 && x+col<W && y+row>=0 && y+row<H;
-        const addr=ptr+(y+row)*W+x+col;
-        const marked=visible && (heap[addr]&0x8000);
-        if(marked) heap[addr]&=0x7fff;
-        if(col<w && !marked){if(start<0)start=col;}
-        else if(start>=0){const a=Math.round(start*bw/w),b=Math.round(row*bh/h);ctx.clearRect(a,b,Math.round(col*bw/w)-a,Math.round((row+1)*bh/h)-b);start=-1;}
-      }
+    if(localCar && paint>7)paint=0;
+    if(!localCar && car){
+      if(palette>=manifest.trafficPalette){paint=(palette-manifest.trafficPalette)%8;wheel=+(palette>=manifest.trafficPalette+40);}
+      else if(kind==="ferrari")paint=ferrariPalettes.findIndex(p=>palette>=p && palette<p+4);
+    }
+    if(localCar && car)api.pose=[x,y,w,h,turn,paint,wheel];
+    const left=flip?1-f[5]-f[7]:f[5];
+    draws.push({slot:slot+1,f,x:x+w*left,y:y+h*f[6],w:w*f[7],h:h*f[8],flip,paint:car?paint:0,
+      wheel:car?wheel:0,brake:kind==="ferrari" && paint>=0 && palette-ferrariPalettes[paint]>=2 && palette-ferrariPalettes[paint]<4,top,bottom});
+    return 1;
+  }
+  function present(heap,ptr,W,H,bytes,depthPtr){
+    const depth=bytes.subarray(depthPtr,depthPtr+W*H);
+    for(let i=0;i<depth.length;i++){
+      const value=heap[ptr+i];if(!(value&32768))depth[i]=255;
+      heap[ptr+i]=value&32767;
+    }
+    if(!draws.length){overlay.hidden=true;return;}
+    const rect=game.getBoundingClientRect(),scale=Math.min(rect.width/W,rect.height/H);
+    const sw=W*scale,sh=H*scale,dpr=Math.min(window.devicePixelRatio||1,2560/Math.max(1,sw));
+    const bw=Math.max(1,Math.round(sw*dpr)),bh=Math.max(1,Math.round(sh*dpr));
+    overlay.hidden=false;
+    if(overlay.width!==bw || overlay.height!==bh){overlay.width=bw;overlay.height=bh;}
+    Object.assign(overlay.style,{width:sw+"px",height:sh+"px",left:(rect.width-sw)/2+"px",top:(rect.height-sh)/2+"px"});
+    gl.viewport(0,0,bw,bh);gl.disable(gl.SCISSOR_TEST);gl.clearColor(0,0,0,0);gl.clear(gl.COLOR_BUFFER_BIT);
+    gl.activeTexture(gl.TEXTURE1);gl.bindTexture(gl.TEXTURE_2D,mask);
+    if(depthWidth!==W||depthHeight!==H){
+      gl.texImage2D(gl.TEXTURE_2D,0,gl.LUMINANCE,W,H,0,gl.LUMINANCE,gl.UNSIGNED_BYTE,depth);
+      depthWidth=W;depthHeight=H;
+    }else gl.texSubImage2D(gl.TEXTURE_2D,0,0,0,W,H,gl.LUMINANCE,gl.UNSIGNED_BYTE,depth);
+    gl.activeTexture(gl.TEXTURE0);gl.uniform2f(u.screen,W,H);gl.enable(gl.SCISSOR_TEST);
+    for(const d of draws){
+      const f=d.f,t=textures[f[0]];
+      gl.bindTexture(gl.TEXTURE_2D,t.texture);
+      gl.uniform4f(u.dest,d.x,d.y,d.w,d.h);gl.uniform4f(u.source,(f[1]+.5)/t.w,(f[2]+.5)/t.h,(f[3]-1)/t.w,(f[4]-1)/t.h);
+      gl.uniform1f(u.layer,d.slot);gl.uniform1f(u.mirror,+!!d.flip);gl.uniform1f(u.phase,d.wheel);
+      gl.uniform3fv(u.paint,colors[d.paint]||colors[0]);gl.uniform1f(u.tint,+(d.paint>0 && d.paint<8));gl.uniform1f(u.brake,+!!d.brake);
+      const low=Math.max(0,Math.floor((H-d.bottom)*bh/H)),high=Math.min(bh,Math.ceil((H-d.top)*bh/H));
+      gl.scissor(0,low,bw,Math.max(0,high-low));gl.drawArrays(gl.TRIANGLE_STRIP,0,4);
     }
   }
-  const api={get ready(){return enabled.checked && atlas.complete && atlas.naturalWidth>0;},pose:null,present};
+  const api={get ready(){return !!program && !gl.isContextLost() && enabled.checked && textures.some(Boolean);},
+    pose:null,queue,present,begin(){draws.length=0;api.pose=null;if(!api.ready)overlay.hidden=true;return +api.ready;}};
   return api;
 })();

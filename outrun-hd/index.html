@@ -11,7 +11,7 @@
   <link rel="manifest" href="./manifest.webmanifest">
   <link rel="icon" href="./icon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="./style.css?v=20261118-13">
-  <title>OutRun HD · Coccinelle</title>
+  <title>OutRun HD</title>
 </head>
 <body>
   <main id="setup" class="setup">
@@ -20,7 +20,7 @@
       <p>COURSE MULTIJOUEUR</p>
     </header>
     <section class="card">
-      <h1>Essai HD · Coccinelle</h1>
+      <h1>OutRun HD</h1>
       <p class="intro">Choisis une seule archive ZIP contenant tes ROMs OutRun Revision B. Elle reste sur cet appareil.</p>
       <label class="file-button" for="romZip">Choisir l’archive ZIP</label>
       <input id="romZip" type="file" accept=".zip,application/zip">
@@ -36,13 +36,13 @@
         <label class="choice"><input type="radio" name="mode" value="create"> Créer une salle Internet</label>
         <label class="choice"><input type="radio" name="mode" value="join"> Rejoindre une salle</label>
       </fieldset>
-      <div id="roomPanel" class="room-panel" hidden>
-        <label for="carModel">Voiture multijoueur</label>
+        <label for="carModel">Voiture</label>
         <select id="carModel" class="code-input">
           <option value="0">Ferrari</option><option value="1">Pick-up / Jeep</option>
-          <option value="2" selected>Coccinelle HD</option><option value="3">BMW</option>
+          <option value="2">Coccinelle</option><option value="3">BMW</option>
           <option value="4">Corvette</option><option value="5">Porsche</option>
         </select>
+      <div id="roomPanel" class="room-panel" hidden>
         <div id="createPanel" hidden>
           <span class="caption">Code à donner aux autres joueurs</span>
           <strong id="newCode" class="room-code">----</strong>
@@ -52,7 +52,7 @@
         </label>
         <p class="small">Jouable avec Android et PC connectés au même relais Internet.</p>
       </div>
-      <label class="choice"><input id="hdEnabled" type="checkbox" checked> Dessin HD de la Coccinelle</label>
+      <label class="choice"><input id="hdEnabled" type="checkbox" checked> Sprites HD</label>
       <button id="play" class="play" disabled>L’archive ZIP des ROMs est requise</button>
       <button id="install" class="install" hidden>Installer l’app</button>
       <details id="scoresPanel"><summary>Mes scores sur cet appareil</summary><ol id="raceHistory"></ol></details>
@@ -90,9 +90,10 @@
     </div>
   </section>
 
+  <script src="./sprites.js"></script>
   <script src="./beetle.js"></script>
   <script src="./zip.js"></script>
   <script src="./relay.js?v=20261118-12"></script>
-  <script src="./app.js?v=20261118-fork1"></script>
+  <script src="./app.js?v=20261119-hd1"></script>
 </body>
 </html>
