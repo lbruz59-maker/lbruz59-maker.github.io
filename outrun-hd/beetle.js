@@ -7,6 +7,18 @@ const beetleHD = window.beetleHD = (() => {
   const textures = [];
   const draws = [];
   const colors = [[1,0,0],[0,.25,1],[1,.86,0],[0,.75,.1],[0,.84,.93],[1,.34,0],[.59,0,1],[1,.17,.57]];
+  // Rear views in the original traffic table, including the alternate incline frames.
+  const trafficViews = new Map();
+  const rearAddresses = [
+    [0xf3bc,0xf420,0xf484,0xf3ee,0xf452,0xf4b6],
+    [0xf90c,0xf93e,0xf970],
+    [0xf510,0xf574,0xf5d8,0xf542,0xf5a6,0xf60a],
+    [0xf876,0xf8a8,0xf8da],
+    [0xf290,0xf2f4,0xf358,0xf2c2,0xf326,0xf38a]
+  ];
+  rearAddresses.forEach((addresses,index)=>addresses.forEach((address,frame)=>{
+    trafficViews.set(address,[index+1,frame%3]);
+  }));
   const ferrariPalettes = [2,256,261,266,271,276,281,286];
   let mask, program, landscape;
   const u = {};
@@ -51,8 +63,10 @@ const beetleHD = window.beetleHD = (() => {
         float tires=lower*(1.-smoothstep(.07,.21,max(c.r,max(c.g,c.b))));
         tires*=step(.17,abs(local.x-.5));
         if(phase>.5 && tires>.01){
-          vec3 tread=texture2D(atlas,uv+vec2(0.,-.018*source.w)).rgb;
-          c.rgb=mix(c.rgb,clamp(tread,0.,.22)+.045*step(.45,fract(local.y*41.)),tires);
+          float stepY=phase*.25;
+          vec3 tread=texture2D(atlas,uv-vec2(0.,stepY*.018*source.w)).rgb;
+          float grooves=cos(6.28318*(local.y*16.+stepY+abs(local.x-.5)*3.));
+          c.rgb=mix(c.rgb,clamp(tread,0.,.2)*.8+vec3(.095*smoothstep(.05,.8,grooves)),tires);
         }
         float red=c.r-max(c.g,c.b);
         if(tint>.5 && red>.075 && c.r>1.16*c.g && c.r>1.12*c.b)
@@ -83,16 +97,22 @@ const beetleHD = window.beetleHD = (() => {
   if(gl){try{init();}catch(error){console.error(error);program=null;}}
   function queue(slot,address,x,y,w,h,flip,model,turn,paint,wheel,palette,top,bottom) {
     const localCar=paint>=0;
-    const f=manifest.frames[model ? "car"+model+"-"+Math.abs(turn) : address===0x1085c ? "lights"+Math.max(0,Math.min(3,palette-122)) : address];
+    const variant=palette-manifest.trafficPalette;
+    const rivalModel=!localCar && variant>=0 && variant<80 ? 1+Math.floor((variant%40)/8) : 0;
+    const trafficView=paint<=-2 ? trafficViews.get(address) : null;
+    const bodyModel=model||rivalModel||trafficView?.[0];
+    const angle=trafficView ? trafficView[1] : Math.abs(turn);
+    const f=manifest.frames[bodyModel ? "car"+bodyModel+"-"+angle : address===0x1085c ? "lights"+Math.max(0,Math.min(3,palette-122)) : address];
     if(!f || !textures[f[0]] || w<3 || h<2)return 0;
     const kind=f[9],car=kind==="car"||kind==="ferrari"||kind==="traffic";
     if(model){
       x+=w*.065;w*=.87;
-      flip=model===2 ? turn>0 : turn<0;
+      flip=turn>0;
     }
     if(localCar && paint>7)paint=0;
     if(!localCar && car){
-      if(palette>=manifest.trafficPalette){paint=(palette-manifest.trafficPalette)%8;wheel=+(palette>=manifest.trafficPalette+40);}
+      if(rivalModel){paint=variant%8;flip=turn!==0 && !flip;}
+      else if(trafficView){paint=-paint-2;flip=angle!==0 && !flip;}
       else if(kind==="ferrari")paint=ferrariPalettes.findIndex(p=>palette>=p && palette<p+4);
     }
     if(localCar && car)api.pose=[x,y,w,h,turn,paint,wheel];
