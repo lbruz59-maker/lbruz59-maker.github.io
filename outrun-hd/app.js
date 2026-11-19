@@ -225,6 +225,12 @@
       locateFile: path => `./${path}?v=${webBuild}`,
       preRun: [() => {
         const FS = module.FS;
+        // Cannonball uses SDL2 keycodes; the packaged F5 value is from SDL1.
+        if (FS.analyzePath("/config.xml").exists) {
+          const config = FS.readFile("/config.xml", {encoding: "utf8"});
+          const corrected = config.replace(/(<keyconfig>[\s\S]*?<menu>)286(<\/menu>)/, (_, before, after) => before + "1073741886" + after);
+          if (corrected !== config) FS.writeFile("/config.xml", corrected);
+        }
         try {
           for (const name of scoreFiles) {
             const value = localStorage.getItem("outrun.table." + name);
