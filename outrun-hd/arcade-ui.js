@@ -106,5 +106,5 @@ window.arcadeUI = (() => {
         ctx.drawImage(glyph(words,bytes,tilePtr,pal,entries[i+2],entries[i+3]),entries[i]|0,entries[i+1]|0,8,8);
     }
   }
-  return {render,ready:layers.every(l=>l.ctx),hide(){for(const l of layers){l.canvas.hidden=true;l.previous=null;}}};
+  return {render,get ready(){return !!window.beetleHD?.roadVisible && layers.every(l=>l.ctx);},hide(){for(const l of layers){l.canvas.hidden=true;l.previous=null;}}};
 })();
