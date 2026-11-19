@@ -1,5 +1,5 @@
 (() => {
-  const webBuild = "20261119-arcade2";
+  const webBuild = "20261119-garage1";
   const dbName = "outrun-web-data";
   const $ = id => document.getElementById(id);
   const romInput = $("romZip");
@@ -55,7 +55,7 @@
     romFiles = files;
     $("romStatus").textContent = `${label} · ${OutRunZip.ROM_NAMES.length} ROMs prêtes sur cet appareil.`;
     play.disabled = false;
-    play.textContent = "Lancer OutRun";
+    play.textContent = "Prendre le départ";
   }
 
   romInput.addEventListener("change", async () => {
@@ -188,6 +188,10 @@
       },
       canvas,
       runtimeInitialized: false,
+      returnToGarage() {
+        module.syncScores();
+        location.reload();
+      },
       driverInitials: arcadeInitials(name),
       saveRace(score, initials, first) {
         try {

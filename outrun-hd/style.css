@@ -33,6 +33,24 @@ legend { margin-bottom:8px; font-size:14px; font-weight:800; }
 .message { min-height:18px; color:#ffd15c; font-size:12px; margin:9px 0 0; }
 .help,.legal { max-width:480px; font-size:12px; text-align:center; margin:14px auto 0; }
 .legal { color:#778599; margin-top:7px; }
+.setup { display:grid; grid-template-columns:minmax(0,1.45fr) minmax(320px,510px); grid-template-rows:1fr auto auto; gap:0; align-items:start; padding:0; background:#101517; }
+.setup .brand { position:sticky; top:0; grid-row:1 / 4; margin:0; width:100%; height:100dvh; display:flex; align-items:flex-end; text-align:left; padding:clamp(24px,5vw,80px); background:linear-gradient(0deg,#101517ed,transparent 50%),url('./depart.webp') center/cover; }
+.brand h1 { margin:0; font:italic 900 clamp(52px,8vw,136px)/.95 "Arial Black",system-ui,sans-serif; letter-spacing:-.085em; }
+.brand h1 span { vertical-align:top; color:#ffbc48; font-size:.31em; letter-spacing:-.04em; line-height:1.5; }
+.setup .card { width:100%; padding:clamp(20px,3vw,48px); background:transparent; border:0; border-radius:0; box-shadow:none; }
+.card h2 { margin:0 0 14px; font-size:clamp(24px,3vw,38px); letter-spacing:-.05em; }
+.card .file-button,.card .choice,.card .code-input,.card #driverName { background:#1d2529; color:#f3f5f3; border:1px solid #485155; border-radius:7px; }
+.card #driverName,.card select.code-input { width:100%; min-height:42px; padding:8px 12px; margin:6px 0; font:inherit; text-transform:none; letter-spacing:normal; text-align:left; }
+.card .choice:has(input:checked) { border-color:#ffbd52; background:#322d23; }
+.card .choice input { accent-color:#ffbd52; }
+.card .play:enabled { background:#ffbd52; color:#171916; }
+.card fieldset { margin:16px 0; }
+.card details { margin-top:16px; }
+.setup .help,.setup .legal { grid-column:2; padding:0 22px; margin:0 auto 12px; }
+@media(max-width:760px) {
+  .setup { display:flex; }
+  .setup .brand { position:relative; height:clamp(165px,43vw,290px); padding:20px; background-position:center 64%; }
+}
 .game { position:fixed; inset:0; overflow:hidden; background:#000; }
 #canvas { display:block; width:100% !important; height:100% !important; image-rendering:pixelated; object-fit:contain; touch-action:none; }
 .game-status { position:absolute; top:calc(env(safe-area-inset-top) + 8px); left:50%; transform:translateX(-50%); max-width:90vw; padding:5px 11px; border-radius:20px; color:#fff; background:#061b30bb; font-size:12px; pointer-events:none; }

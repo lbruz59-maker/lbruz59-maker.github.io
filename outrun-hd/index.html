@@ -10,17 +10,16 @@
   <link rel="apple-touch-icon" href="./icon.svg">
   <link rel="manifest" href="./manifest.webmanifest">
   <link rel="icon" href="./icon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="./style.css?v=20261118-13">
+  <link rel="stylesheet" href="./style.css?v=20261119-garage1">
   <title>OutRun HD</title>
 </head>
 <body>
   <main id="setup" class="setup">
     <header class="brand">
-      <div class="mark" aria-hidden="true">OUTRUN</div>
-      <p>COURSE MULTIJOUEUR</p>
+      <h1>OutRun <span>HD</span></h1>
     </header>
-    <section class="card">
-      <h1>OutRun HD</h1>
+    <section class="card" aria-label="Préparation de la course">
+      <h2>Préparer la course</h2>
       <p class="intro">Choisis une seule archive ZIP contenant tes ROMs OutRun Revision B. Elle reste sur cet appareil.</p>
       <label class="file-button" for="romZip">Choisir l’archive ZIP</label>
       <input id="romZip" type="file" accept=".zip,application/zip">
@@ -50,7 +49,7 @@
         <label id="joinPanel" hidden for="roomCode">Code de la salle
           <input id="roomCode" class="code-input" maxlength="4" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="AB12">
         </label>
-        <p class="small">Jouable avec Android et PC connectés au même relais Internet.</p>
+        <p class="small">Les autres pilotes doivent rejoindre cette salle avec le même code.</p>
       </div>
       <label class="choice"><input id="hdEnabled" type="checkbox" checked> Graphismes HD</label>
       <button id="play" class="play" disabled>L’archive ZIP des ROMs est requise</button>
@@ -92,12 +91,12 @@
     </div>
   </section>
 
-  <script src="./arcade-ui.js?v=20261119-arcade2"></script>
-    <script src="./sprites.js?v=20261119-arcade2"></script>
-  <script src="./landscape.js?v=20261119-arcade2"></script>
-  <script src="./beetle.js?v=20261119-arcade2"></script>
+  <script src="./arcade-ui.js?v=20261119-garage1"></script>
+    <script src="./sprites.js?v=20261119-garage1"></script>
+  <script src="./landscape.js?v=20261119-garage1"></script>
+  <script src="./beetle.js?v=20261119-garage1"></script>
   <script src="./zip.js"></script>
   <script src="./relay.js?v=20261118-12"></script>
-  <script src="./app.js?v=20261119-arcade2"></script>
+  <script src="./app.js?v=20261119-garage1"></script>
 </body>
 </html>
