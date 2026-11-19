@@ -1,5 +1,5 @@
 (() => {
-  const webBuild = "20261120-arcaderoll1";
+  const webBuild = "20261120-arcaderoll2";
   const dbName = "outrun-web-data";
   const $ = id => document.getElementById(id);
   const romInput = $("romZip");
@@ -230,7 +230,7 @@
         module.runtimeInitialized = true;
         canvas.focus();
         window.OutRunRelay.setModule(module);
-        if ("serviceWorker" in navigator) navigator.serviceWorker.register("./sw.js").catch(console.warn);
+        
       },
       onAbort: reason => {
         $("gameStatus").textContent = `Le jeu ne démarre pas : ${reason}`;
