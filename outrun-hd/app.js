@@ -164,7 +164,13 @@
         };
         resume();
         window.addEventListener("pointerdown", resume);
+        window.addEventListener("pointerup", resume);
+        window.addEventListener("touchend", resume, { passive: true });
+        window.addEventListener("click", resume);
         window.addEventListener("keydown", resume);
+        document.addEventListener("visibilitychange", () => {
+          if (!document.hidden) { audioTime = 0; resume(); }
+        });
       } catch (_) {}
     }
     const module = {
