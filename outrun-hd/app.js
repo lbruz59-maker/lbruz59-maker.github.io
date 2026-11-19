@@ -9,6 +9,7 @@
   const joinPanel = $("joinPanel");
   const codeInput = $("roomCode");
   let romFiles = null;
+  let importAttempt = 0;
   let newRoomCode = makeRoomCode();
   let installPrompt = null;
 
@@ -60,14 +61,19 @@
   romInput.addEventListener("change", async () => {
     const file = romInput.files && romInput.files[0];
     if (!file) return;
+    const attempt = ++importAttempt;
     play.disabled = true;
     $("romStatus").textContent = "Lecture locale de l’archive ZIP…";
     $("message").textContent = "";
     try {
       const extracted = await OutRunZip.extract(file);
-      await storeRoms(extracted);
+      if (attempt !== importAttempt) return;
       setRoms(extracted, file.name);
+      storeRoms(extracted).catch(() => {
+        if (attempt === importAttempt) $("romStatus").textContent = file.name + " · ROMs prêtes pour cette session. Le navigateur ne peut pas les conserver.";
+      });
     } catch (error) {
+      if (attempt !== importAttempt) return;
       romFiles = null;
       $("romStatus").textContent = "Archive non installée.";
       $("message").textContent = error.message || "Lecture du ZIP impossible.";
@@ -314,7 +320,7 @@
   });
 
   $("newCode").textContent = newRoomCode;
-  loadRoms().then(files => { if (files) setRoms(files, "Archive enregistrée"); }).catch(() => {});
+  loadRoms().then(files => { if (!importAttempt && files) setRoms(files, "Archive enregistrée"); }).catch(() => {});
   if ("serviceWorker" in navigator && location.protocol !== "file:")
     navigator.serviceWorker.register("./sw.js").catch(() => {});
 })();
