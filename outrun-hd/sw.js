@@ -1,6 +1,6 @@
 const CACHE = "outrun-hd-beetle-v3";
 const SHELL = [
-  "./beetle.js", "./sprites.js", "./sprites-0.webp", "./sprites-1.webp", "./sprites-2.webp", "./sprites-3.webp", "./sprites-4.webp", "./sprites-5.webp", "./sprites-detail.webp", "./", "./index.html", "./style.css?v=20261118-13", "./app.js?v=20261119-hd1", "./relay.js?v=20261118-12", "./zip.js",
+  "./beetle.js?v=20261119-hd1", "./sprites.js?v=20261119-hd1", "./sprites-0.webp", "./sprites-1.webp", "./sprites-2.webp", "./sprites-3.webp", "./sprites-4.webp", "./sprites-5.webp", "./sprites-detail.webp", "./", "./index.html", "./style.css?v=20261118-13", "./app.js?v=20261119-hd1", "./relay.js?v=20261118-12", "./zip.js",
   "./manifest.webmanifest", "./icon.svg", "./outrun.js?v=20261119-hd1", "./outrun.wasm?v=20261119-hd1", "./outrun.data?v=20261119-hd1"
 ];
 self.addEventListener("install", event => {
