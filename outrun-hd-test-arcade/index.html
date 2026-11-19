@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+  <meta name="theme-color" content="#111827">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="OutRun">
+  <link rel="apple-touch-icon" href="./icon.svg">
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="icon" href="./icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./style.css?v=20261118-13">
+  <title>OutRun HD</title>
+</head>
+<body>
+  <main id="setup" class="setup">
+    <header class="brand">
+      <div class="mark" aria-hidden="true">OUTRUN</div>
+      <p>COURSE MULTIJOUEUR</p>
+    </header>
+    <section class="card">
+      <h1>OutRun HD</h1>
+      <p class="intro">Choisis une seule archive ZIP contenant tes ROMs OutRun Revision B. Elle reste sur cet appareil.</p>
+      <label class="file-button" for="romZip">Choisir l’archive ZIP</label>
+      <input id="romZip" type="file" accept=".zip,application/zip">
+      <p id="romStatus" class="status">Aucune archive sélectionnée.</p>
+
+      <label for="driverName">Nom ou pseudo du pilote (facultatif)</label>
+      <input id="driverName" maxlength="32" autocomplete="nickname" placeholder="Ex. Bruno" aria-describedby="driverHint">
+      <p id="driverHint" class="small"></p>
+
+      <fieldset>
+        <legend>Mode de jeu</legend>
+        <label class="choice"><input type="radio" name="mode" value="offline" checked> Solo</label>
+        <label class="choice"><input type="radio" name="mode" value="create"> Créer une salle Internet</label>
+        <label class="choice"><input type="radio" name="mode" value="join"> Rejoindre une salle</label>
+      </fieldset>
+        <label for="carModel">Voiture</label>
+        <select id="carModel" class="code-input">
+          <option value="0">Ferrari</option><option value="1">Pick-up / Jeep</option>
+          <option value="2">Coccinelle</option><option value="3">BMW</option>
+          <option value="4">Corvette</option><option value="5">Porsche</option>
+        </select>
+      <div id="roomPanel" class="room-panel" hidden>
+        <div id="createPanel" hidden>
+          <span class="caption">Code à donner aux autres joueurs</span>
+          <strong id="newCode" class="room-code">----</strong>
+        </div>
+        <label id="joinPanel" hidden for="roomCode">Code de la salle
+          <input id="roomCode" class="code-input" maxlength="4" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="AB12">
+        </label>
+        <p class="small">Jouable avec Android et PC connectés au même relais Internet.</p>
+      </div>
+      <label class="choice"><input id="hdEnabled" type="checkbox" checked> Graphismes HD</label>
+      <button id="play" class="play" disabled>L’archive ZIP des ROMs est requise</button>
+      <button id="install" class="install" hidden>Installer l’app</button>
+      <details id="scoresPanel"><summary>Mes scores sur cet appareil</summary><ol id="raceHistory"></ol></details>
+      <p id="message" class="message" role="status"></p>
+    </section>
+    <p class="help">Sur iPhone : ouvre cette page dans Safari, puis Partager → <b>Sur l’écran d’accueil</b>.</p>
+    <p class="legal">Cette version ne contient aucune ROM. Sélectionne uniquement une archive que tu es autorisé à utiliser.</p>
+  </main>
+
+  <section id="game" class="game" hidden>
+    <canvas id="canvas" oncontextmenu="event.preventDefault()" tabindex="0"></canvas>
+    <canvas id="scoreTiles" hidden aria-hidden="true" style="position:absolute;pointer-events:none"></canvas>
+    <canvas id="hdCar" hidden aria-hidden="true" style="position:absolute;pointer-events:none"></canvas>
+    <canvas id="hudTiles" hidden aria-hidden="true" style="position:absolute;pointer-events:none"></canvas>
+    <div id="gameStatus" class="game-status"></div>
+    <div id="touchHud" class="touch-hud" aria-label="Commandes tactiles">
+      <div class="touch-cluster gear-cluster">
+        <button class="touch small-touch" data-control="2" aria-label="Vitesse supérieure">▲</button>
+        <button class="touch small-touch" data-control="3" aria-label="Vitesse inférieure">▼</button>
+      </div>
+      <div class="touch-cluster action-cluster">
+        <button class="touch small-touch" data-control="10">VUE</button>
+        <button class="touch small-touch" data-control="9">PIÈCE</button>
+        <button class="touch small-touch" data-control="8">START</button>
+        <button class="touch small-touch" data-control="14">MENU</button>
+      </div>
+      <div class="touch-cluster left-cluster">
+        <button class="touch" data-control="0" aria-label="Gauche">◀</button>
+        <button class="touch" data-control="1" aria-label="Droite">▶</button>
+      </div>
+      <div class="touch-cluster right-cluster">
+        <button class="touch shift" data-control="6" aria-label="Changer de vitesse">VITESSE</button>
+        <button class="touch" data-control="5">FREIN</button>
+        <button class="touch accel" data-control="4">GAZ</button>
+      </div>
+      <button id="hudToggle" class="hud-toggle">Masquer commandes</button>
+    </div>
+  </section>
+
+  <script src="./arcade-ui.js?v=20261119-arcade1"></script>
+    <script src="./sprites.js?v=20261119-arcade1"></script>
+  <script src="./landscape.js?v=20261119-arcade1"></script>
+  <script src="./beetle.js?v=20261119-arcade1"></script>
+  <script src="./zip.js"></script>
+  <script src="./relay.js?v=20261118-12"></script>
+  <script src="./app.js?v=20261119-arcade1"></script>
+</body>
+</html>
