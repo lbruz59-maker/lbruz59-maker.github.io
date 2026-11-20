@@ -1,0 +1,37 @@
+name: Extract Coast Rush V39 sprites
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  extract:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Extract and validate sprites
+        run: |
+          python - <<'PY'
+          import zipfile, pathlib
+          base = pathlib.Path('coast-rush-hd-v11')
+          dest = base / 'v39-sprites'
+          with zipfile.ZipFile(base / 'coast-rush-v39-sprites-preparation.zip') as z:
+              entries = [i for i in z.infolist() if not i.is_dir()]
+              assert sum(i.file_size for i in entries) < 200_000_000
+              for i in entries:
+                  p = pathlib.PurePosixPath(i.filename)
+                  assert not p.is_absolute() and '..' not in p.parts
+                  if p.suffix.lower() not in ('.png','.webp','.jpg','.json','.txt'): continue
+                  out = dest.joinpath(*p.parts)
+                  out.parent.mkdir(parents=True, exist_ok=True)
+                  out.write_bytes(z.read(i))
+          assert len(list(dest.rglob('*.png'))) > 0
+          PY
+      - name: Commit extracted assets
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add coast-rush-hd-v11/v39-sprites
+          if ! git diff --cached --quiet; then
+            git commit -m "Extract V39 HD sprite assets"
+            git push
+          fi
