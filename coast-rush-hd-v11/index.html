@@ -3035,7 +3035,7 @@ function renderScene(){
   else if(st==='podium')drawPodium(podEntries(raceNo-1),'COURSE '+raceNo+' / '+NR(),podT,false);
   else if(st==='mega')drawPodium(podEntries(0,true),'CLASSEMENT FINAL',podT,true);
   else if(st==='ttfinish')drawTimeTrialFinish();
-  else if(st==='win'){if(MODE===2)drawChaseVictory(winT);else if(MODE===0||MODE===7||MODE===6)(winT<8?drawOutrunVictoryCine:drawOutrunMap)(winT);else if(MODE===5)__crBRWin(winT);else drawEnding(winT)}
+  else if(st==='win'){if(MODE===2)drawChaseVictory(winT);else if(MODE===0||MODE===7||MODE===6)(winT<(MODE===7?800/60:8)?drawOutrunVictoryCine:drawOutrunMap)(winT);else if(MODE===5)__crBRWin(winT);else drawEnding(winT)}
   else if(st==='over'){if((MODE===0||MODE===7||MODE===6)&&winT>=3.5)drawOutrunMap(winT);else drawDefeat(winT)}
   return;
  }
@@ -3323,7 +3323,7 @@ const crShowModes=()=>{
 })();
 
 requestAnimationFrame(loop);
- const routeMapActive=(MODE===0||MODE===7)&&(state==='over'||(state==='win'&&winT>=8));
+ const routeMapActive=(MODE===0||MODE===7)&&(state==='over'||(state==='win'&&winT>=(MODE===7?800/60:8)));
  if(routeMapActive!==__crRouteMapClassState){document.body.classList.toggle('route-map-active',routeMapActive);__crRouteMapClassState=routeMapActive;}
  const paused=document.hidden||window.__coastRushNativePaused===true;
  if(paused){last=t;crLastRaf=0;crRafSum=0;crRafCount=0;crRafMax=0;if(crHud)crHud.style.display='none';return}
