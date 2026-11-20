@@ -1758,7 +1758,7 @@ function drawBgCached(themeKey){
   ctx.drawImage(__crBgCacheCanvas,-offset,0,W,H);
   ctx.drawImage(__crBgCacheCanvas,W-offset,0,W,H);
  }
-function decoRaster(sp,x,y,sc){if(sp.t==='OR'){deco(sp,x,y,sc);return;}const t=sp.t;if(t==='F'&&window.CRHD.drawMarshal(ctx,x,y,sc*1350*H/2,flash,state==='count'))return;if(t=='t'||t=='n'||t=='eu'){ctx.save();ctx.translate(x,y);ctx.scale(1.45,1.45);ctx.translate(-x,-y);__crDecoRaster0(sp,x,y,sc);ctx.restore()}else __crDecoRaster0(sp,x,y,sc)}
+function decoRaster(sp,x,y,sc){if(crDrawNewHD(sp,x,y,sc))return;if(sp.t==='OR'){deco(sp,x,y,sc);return;}const t=sp.t;if(t==='F'&&window.CRHD.drawMarshal(ctx,x,y,sc*1350*H/2,flash,state==='count'))return;if(t=='t'||t=='n'||t=='eu'){ctx.save();ctx.translate(x,y);ctx.scale(1.45,1.45);ctx.translate(-x,-y);__crDecoRaster0(sp,x,y,sc);ctx.restore()}else __crDecoRaster0(sp,x,y,sc)}
 function __crDecoRaster0(sp,x,y,sc){
  const t=sp.t;
  if(t=='ap'||t=='sc'||t=='ht'){__crLocalSprite({t:'Z',k:t=='ap'?'airp':t=='sc'?'school':'hotel',o:0,z:.46},x,y,sc);return}
@@ -2021,7 +2021,11 @@ function __crGetDecoThemeKey(){
  }
  return __crDecoThemeKey;
 }
-const orArchImage=new Image();orArchImage.src='./arch.webp';function deco(sp,x,y,sc){if(sp.t==='F'&&window.CRHD.drawMarshal(ctx,x,y,sc*1350*H/2,flash,state==='count'))return;if(sp.t==='ORA'){const w=sc*160*roadW*3.3,h=w*.66;if(orArchImage.complete&&orArchImage.naturalWidth){ctx.save();ctx.beginPath();ctx.rect(x-w/2,y-h,w,h);const r=w*.39,cy=y-h*.38;ctx.moveTo(x-r,y+1);ctx.lineTo(x-r,cy);ctx.arc(x,cy,r,Math.PI,0);ctx.lineTo(x+r,y+1);ctx.closePath();ctx.clip('evenodd');ctx.drawImage(orArchImage,x-w/2,y-h,w,h);ctx.restore();}return;}if(sp.t==='OR'){const f=window.CRHD.atlas.frames[sp.key];if(f){const unit=sc*160*roadW/290,h=unit*f[4],w=unit*f[3];const dx=Math.sign(sp.o)*(w*.5+sc*160*roadW*.035);window.CRHD.draw(ctx,sp.key,x+dx,y,w,h,!([64706,66016,66176,66226,66276].includes(Number(sp.key)))&&Boolean(sp.flags&1));}return;}if(sp.t==='F'&&window.CRHD.drawMarshal(ctx,x,y,sc*1350*H/2,flash,state==='count'))return;
+const orArchImage=new Image();orArchImage.src='./arch.webp';const crNewNature=new Image(),crNewBuildings=new Image();crNewNature.src='./coast-nature-hd.webp';crNewBuildings.src='./coast-buildings-hd.webp';
+const crNatureRects={p:[0,0,192,192],t:[192,0,192,192],eu:[384,0,192,192],n:[384,192,192,192],c:[192,192,192,192],a:[576,192,192,192],r:[0,384,192,192],u:[384,384,192,192]};
+const crBuildingRects={cot:[214,207,105,81],hau:[214,207,105,81],fair:[158,117,101,95],cf:[265,119,148,84],gs:[125,218,88,69],ch:[214,207,105,81],bs:[640,119,128,83]};
+function crDrawNewHD(sp,x,y,sc){if(MODE===7)return false;const rect=crNatureRects[sp.t],br=crBuildingRects[sp.k]||crBuildingRects[sp.t];const a=rect||br,im=rect?crNewNature:crNewBuildings;if(!a||!im.complete||!im.naturalWidth)return false;const u=im.naturalWidth/768,v=im.naturalHeight/(rect?576:384),h=sc*160*roadW*(rect?({p:0.85,t:.85,eu:.85,n:.95,c:.55,a:.72,r:.25,u:.18}[sp.t]||.5):.67),w=h*a[2]*u/(a[3]*v);if(h<2)return true;ctx.drawImage(im,a[0]*u,a[1]*v,a[2]*u,a[3]*v,x-w/2,y-h,w,h);return true;}
+function deco(sp,x,y,sc){if(crDrawNewHD(sp,x,y,sc))return;if(sp.t==='F'&&window.CRHD.drawMarshal(ctx,x,y,sc*1350*H/2,flash,state==='count'))return;if(sp.t==='ORA'){const w=sc*160*roadW*3.3,h=w*.66;if(orArchImage.complete&&orArchImage.naturalWidth){ctx.save();ctx.beginPath();ctx.rect(x-w/2,y-h,w,h);const r=w*.39,cy=y-h*.38;ctx.moveTo(x-r,y+1);ctx.lineTo(x-r,cy);ctx.arc(x,cy,r,Math.PI,0);ctx.lineTo(x+r,y+1);ctx.closePath();ctx.clip('evenodd');ctx.drawImage(orArchImage,x-w/2,y-h,w,h);ctx.restore();}return;}if(sp.t==='OR'){const f=window.CRHD.atlas.frames[sp.key];if(f){const unit=sc*160*roadW/290,h=unit*f[4],w=unit*f[3];const dx=Math.sign(sp.o)*(w*.5+sc*160*roadW*.035);window.CRHD.draw(ctx,sp.key,x+dx,y,w,h,!([64706,66016,66176,66226,66276].includes(Number(sp.key)))&&Boolean(sp.flags&1));}return;}if(sp.t==='F'&&window.CRHD.drawMarshal(ctx,x,y,sc*1350*H/2,flash,state==='count'))return;
  const t=sp&&sp.t;
  const projected=sc*3200*H/2;
  // Le LOD existant reste maître : aucun objet visible n'est supprimé par ce cache.
