@@ -833,7 +833,8 @@ const cpSegments=[1,2,3].map(n=>Math.floor((N-FORK)*n/4));segs.forEach(s=>{s.sea
  if(i%82===17){const zl=ZL[th.n];if(zl)s.sp.push({t:'Z',k:zl[(i/41|0)%zl.length],o:(i%82<41?1:-1)*(5.2+(i%5)*.12)})}
  // V196 : monuments emblématiques, gondoles, ports et feuillage saisonnier.
  if(i%157===68&&!f&&!s.tun&&!s.bridge&&!s.loop)s.sp.push({t:'rc',o:(i%314<157?-1:1)*1.48,k:i});
-  if(i%95===46&&!s.tun&&!s.loop){const landmark={PARIS:'arch',BARCELONE:'sagrada',VENISE:'basil',ROME:'colo','NEW YORK':'liberty',LONDRES:'ben','LE CAIRE':'pyr',SYDNEY:'opera',TOKYO:'ttower',DUBAÏ:'burj',LILLE:'belf'}[th.n];if(landmark)s.sp.push({t:'M',k:landmark,o:(i%380<190?-1:1)*5.8,z:1.2})}
+  if(i%95===46&&!s.tun&&!s.loop&&!s.bridge){
+const landmark={PARIS:Math.floor(i/95)%2?'eiffel':'arch',BARCELONE:'sagrada',VENISE:'basil',ROME:'colo','NEW YORK':'liberty',LONDRES:'ben','LE CAIRE':'pyr',SYDNEY:'opera',TOKYO:'ttower',DUBAÏ:'burj',LILLE:'belf'}[th.n];if(landmark)s.sp.push({t:'M',k:landmark,o:(Math.floor(i/95)%2?-1:1)*2.35,z:1.2})}
  if(th.n==='VENISE'&&s.sea&&i%29===14&&!s.tun&&!s.loop)s.sp.push({t:'D',k:'gon',o:(i%74<37?-1:1)*3.8,z:1.15});
  const waterPort=['VENISE','BARCELONE','RIO','SYDNEY','COAST','ISLAND','SUNSET','SANTORIN','FJORDS','ISLANDE','AMAZONIE','ÎLE DE LA RÉUNION'];if(waterPort.includes(th.n)&&i%95===46&&!s.tun&&!s.loop)s.sp.push({t:'M',k:'port',o:(i%310<155?-1:1)*7.2,z:1.25});
  if(th.n==='AUTUMN'&&i%6===3&&!s.tun&&!s.loop)s.sp.push({t:'D',k:'leaf',o:(i%18<9?-1:1)*(2.8+(i%5)*.12),z:.9});
@@ -2069,6 +2070,7 @@ function __crDrawDecoGroup(seg,baseX,baseY,sc,spriteBoost=1){
  if(qsc<=0){for(const sp of sprites)deco(sp,baseX+offsetSc*sp.o*roadW*160,baseY,sc*spriteBoost);return}
  const stat=[],live=[];
  for(const sp of sprites){
+  if(crBuildingRects[sp.k]&&sp.t==='M'){const side=Math.sign(sp.o)||1;deco(sp,baseX+offsetSc*side*Math.min(Math.abs(sp.o),2.7)*roadW*160,baseY,sc*spriteBoost);continue;}
   if(__crDecoCacheable.has(sp.t)&&!__crDecoDynamic.has(sp.t))stat.push(sp);
   else live.push(sp);
  }
