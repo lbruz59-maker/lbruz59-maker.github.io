@@ -2022,7 +2022,7 @@ function __crGetDecoThemeKey(){
  }
  return __crDecoThemeKey;
 }
-const orArchImage=new Image();orArchImage.src='./arch.webp';const crNewNature=new Image(),crNewBuildings=new Image();crNewNature.src='./coast-nature-hd.webp';crNewBuildings.src='./coast-buildings-hd.webp';
+const orArchImage=new Image();orArchImage.src='./arch.webp';const crNewNature=new Image(),crNewBuildings=new Image();crNewNature.src='./coast-nature-hd.webp?v=19';crNewBuildings.src='./coast-buildings-hd.webp?v=19';
 const crNatureRects={p:[0,0,192,192],t:[192,0,192,192],eu:[384,0,192,192],n:[384,192,192,192],c:[192,192,192,192],a:[576,192,192,192],r:[0,384,192,192],u:[384,384,192,192]};
 const crBuildingRects={cot:[214,207,105,81],hau:[214,207,105,81],fair:[158,117,101,95],cf:[265,119,148,84],gs:[125,218,88,69],ch:[214,207,105,81],bs:[640,119,128,83],arch:[0,0,122,113],eiffel:[125,0,96,113],sagrada:[222,0,105,113],ben:[328,0,83,113],basil:[670,0,98,113],gym:[550,212,115,75],port:[0,117,157,85]};
 function crDrawNewHD(sp,x,y,sc){if(MODE===7)return false;const rect=crNatureRects[sp.t],br=crBuildingRects[sp.k]||crBuildingRects[sp.t];const a=rect||br,im=rect?crNewNature:crNewBuildings;if(!a||!im.complete||!im.naturalWidth)return false;const u=im.naturalWidth/768,v=im.naturalHeight/(rect?576:384),h=sc*160*roadW*(rect?({p:0.85,t:.85,eu:.85,n:.95,c:.55,a:.72,r:.25,u:.18}[sp.t]||.5):({arch:1.15,eiffel:1.25,sagrada:1.15,ben:1.1,basil:.85,gym:.55,port:.38}[sp.k]||.67)),w=h*a[2]*u/(a[3]*v);if(h<2)return true;ctx.drawImage(im,a[0]*u,a[1]*v,a[2]*u,a[3]*v,x-w/2,y-h,w,h);return true;}
@@ -2070,7 +2070,7 @@ function __crDrawDecoGroup(seg,baseX,baseY,sc,spriteBoost=1){
  if(qsc<=0){for(const sp of sprites)deco(sp,baseX+offsetSc*sp.o*roadW*160,baseY,sc*spriteBoost);return}
  const stat=[],live=[];
  for(const sp of sprites){
-  if(crBuildingRects[sp.k]&&sp.t==='M'){const side=Math.sign(sp.o)||1;deco(sp,baseX+offsetSc*side*Math.min(Math.abs(sp.o),2.7)*roadW*160,baseY,sc*spriteBoost);continue;}
+  if((crNatureRects[sp.t]&&crNewNature.naturalWidth)||(crBuildingRects[sp.k]||crBuildingRects[sp.t])&&crNewBuildings.naturalWidth){const side=Math.sign(sp.o)||1;deco(sp,baseX+offsetSc*side*(sp.t==='M'?Math.min(Math.abs(sp.o),2.7):Math.abs(sp.o))*roadW*160,baseY,sc*spriteBoost);continue;}
   if(__crDecoCacheable.has(sp.t)&&!__crDecoDynamic.has(sp.t))stat.push(sp);
   else live.push(sp);
  }
