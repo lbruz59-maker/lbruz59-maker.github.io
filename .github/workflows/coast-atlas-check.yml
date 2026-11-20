@@ -1,0 +1,35 @@
+name: Coast atlas check
+on: [workflow_dispatch, push]
+jobs:
+  sheet:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          python -m pip install pillow
+          cd coast-rush-hd-v2
+          python - <<'PY'
+          import json,base64,io
+          from PIL import Image,ImageDraw
+          s=open('sprites.js').read()
+          a=json.loads(s[s.index('{'):s.rindex('}')+1])
+          imgs=[Image.open(x).convert('RGBA') for x in a['images']]
+          groups={}
+          for k,f in a['frames'].items():
+            if not k.isdigit():continue
+            if f[-1]=='scene' and int(k)<68500 and f[3]/f[4]<4: group='scenery'
+            elif f[-1] in ['ferrari','riders']:group=f[-1]
+            else:continue
+            groups.setdefault(group,[]).append((k,f))
+          for group,items in groups.items():
+            items.sort(key=lambda x:int(x[0]))
+            for page in range(0,len(items),24):
+              sheet=Image.new('RGB',(384,((len(items[page:page+24])+5)//6)*65),'#c2c2c2')
+              d=ImageDraw.Draw(sheet)
+              for n,(k,f) in enumerate(items[page:page+24]):
+                im=imgs[f[0]].crop((f[1],f[2],f[1]+f[3],f[2]+f[4]));im.thumbnail((60,49))
+                x=n%6*64;y=n//6*65
+                sheet.paste(im,(x+(64-im.width)//2,y),im);d.text((x+4,y+49),k,fill='black')
+              b=io.BytesIO();sheet.save(b,'JPEG',quality=65)
+              print('SHEET_'+group+'_'+str(page)+'='+base64.b64encode(b.getvalue()).decode())
+          PY
