@@ -1030,12 +1030,13 @@ function hat(t){const s=ac.createBufferSource(),g=ac.createGain(),f=ac.createBiq
 let vm=0,forkSaid=0,lowSaid=0,shake=0,musOn=1,crRaceTrack=0,crMusicVolume=.7,BUS=null;
 const crRaceMusic=[new Audio('https://lbruz59-maker.github.io/Coast-Rush/versions/coast-rush-v188-ponts/assets/menu-music.mp3'),new Audio('https://lbruz59-maker.github.io/Coast-Rush/versions/coast-rush-v188-ponts/assets/sunset-racers.mp3'),new Audio('https://lbruz59-maker.github.io/Coast-Rush/versions/coast-rush-v188-ponts/assets/endless-horizon.mp3')];
 crRaceMusic.forEach(a=>{a.loop=true;a.preload='auto';a.volume=crMusicVolume});
-function crSetMusicVolume(v){crMusicVolume=Math.max(0,Math.min(1,Number(v)||0));crRaceMusic.forEach(a=>{a.volume=crMusicVolume});}
+function crSetMusicVolume(v){crMusicVolume=Math.max(0,Math.min(1,Number(v)||0));[...crRaceMusic,...crOriginalMusic].forEach(a=>{a.volume=crMusicVolume});}
+const crOriginalMusic=['magicalsoundshower','passingbreeze','splashwave'].map(name=>{const a=new Audio('./ost/'+name+'.mp3');a.loop=true;a.preload='none';a.volume=crMusicVolume;return a;});
 const crMenuMusic=crRaceMusic[0];
 function crMenuMusicPlay(){if(!musOn||state!=='menu'||!crMenuMusic.paused)return;const p=crMenuMusic.play();if(p&&p.catch)p.catch(()=>{});}
 function crMenuMusicStop(){crMenuMusic.pause();}
-function crRaceMusicPlay(){if(!musOn||state!=='play')return;crMenuMusic.pause();const a=crRaceMusic[crRaceTrack];if(!a)return;crRaceMusic.forEach((x,i)=>{if(i!==crRaceTrack)x.pause()});const p=a.play();if(p&&p.catch)p.catch(()=>{});}
-function crRaceMusicStop(){crRaceMusic.forEach(a=>{a.pause()});}
+function crRaceMusicPlay(){if(!musOn||state!=='play')return;crMenuMusic.pause();const a=(MODE===7?crOriginalMusic:crRaceMusic)[crRaceTrack];if(!a)return;[...crRaceMusic,...crOriginalMusic].forEach(x=>{if(x!==a)x.pause();});a.volume=crMusicVolume;const p=a.play();if(p&&p.catch)p.catch(()=>{if(MODE===7&&state==='play'&&musOn){const fallback=crRaceMusic[crRaceTrack];fallback.play().catch(()=>{});}});}
+function crRaceMusicStop(){[...crRaceMusic,...crOriginalMusic].forEach(a=>{a.pause()});}
 document.addEventListener('pointerdown',()=>{if(state==='menu')crMenuMusicPlay()},{capture:true,passive:true,once:true});try{const savedColor=localStorage.getItem('cr_color');if(savedColor)myCol=savedColor}catch(e){}
 function say(t,p,r){if(vm||!window.speechSynthesis)return;try{const u=new SpeechSynthesisUtterance(t);u.lang='en-US';u.pitch=p||1;u.rate=r||1;speechSynthesis.cancel();speechSynthesis.speak(u)}catch(e){}}
 const OH=['Oh no!','Ouch!','Watch out!','Hey!'];function voice(){say(OH[Math.random()*OH.length|0],1.7,1.15)}
