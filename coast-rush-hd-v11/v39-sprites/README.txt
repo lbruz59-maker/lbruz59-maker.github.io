@@ -1,0 +1,1 @@
+Préparation V39 : sprites candidats PNG alpha, ancre au sol normalisée. Les extractions automatiques restent à vérifier visuellement et à nommer. Personnages : poses individuelles, pas encore des animations validées. Aucun code du jeu modifié.
