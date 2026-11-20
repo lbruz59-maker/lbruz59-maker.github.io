@@ -2829,7 +2829,7 @@ function drawOutrunMap(t){
  const themeFor=id=>TH[THI[id]]||TH[0];
 
  // Miniature paysagère basée sur les vraies palettes et le thème du circuit.
- function drawThemeMini(x,y,w,h,id){
+ function drawThemeMini(x,y,w,h,id){if(MODE===7){const im=orBackdrops[id];if(im?.complete&&im.naturalWidth){ctx.save();ctx.beginPath();ctx.roundRect(x,y,w,h,2);ctx.clip();const hh=h*.74,ww=Math.max(w,hh*im.naturalWidth/im.naturalHeight);ctx.fillStyle='#96c9ed';ctx.fillRect(x,y,w,h);ctx.drawImage(im,x+(w-ww)/2,y,ww,hh);ctx.fillStyle='#719b4c';ctx.fillRect(x,y+hh,w,h-hh);__crPoly4('#777',x+w*.46,y+hh,x+w*.54,y+hh,x+w*.82,y+h,x+w*.18,y+h);ctx.restore();return;}}
    const thm=themeFor(id),name=thm.n;const skyPair=Array.isArray(thm.sky)?thm.sky:['#426b91','#d7e5ef'];const groundPair=Array.isArray(thm.g)?thm.g:['#71866a','#5e755c'];const mountainPair=Array.isArray(thm.m)?thm.m:['#64758a','#46566d'];
    ctx.save();
    ctx.beginPath();ctx.roundRect(x,y,w,h,2);ctx.clip();
