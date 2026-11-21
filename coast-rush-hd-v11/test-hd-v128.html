@@ -566,7 +566,7 @@ body.route-map-active .b,body.route-map-active #pauseBtn{display:none!important;
 body.cr-cinematic .drive-control,body.cr-cinematic #pauseBtn{visibility:hidden!important;pointer-events:none!important}
 
 #crMenuHotspots .cr116Palette button.cr-color-swatch{width:34px!important;height:34px!important;min-width:34px!important;min-height:34px!important;border-radius:7px!important}
-</style><link rel="manifest" href="./manifest.webmanifest"><meta name="theme-color" content="#080d18"><meta name="application-name" content="Coast Rush"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Coast Rush"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="coast-rush-version" content="V190 – 293 km/h hors bonus, circuits x2, checkpoints, scrolling OutRun et profondeur de vision augmentée"></head><body><div id="crPerfHud">FPS -- | RAF -- ms</div>
+</style><style>#crPerfHud,#cr120Diagnostics,#crHDDiagnostic,#pauseMonitorBtn{display:none!important}</style><link rel="manifest" href="./manifest.webmanifest"><meta name="theme-color" content="#080d18"><meta name="application-name" content="Coast Rush"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Coast Rush"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="coast-rush-version" content="V190 – 293 km/h hors bonus, circuits x2, checkpoints, scrolling OutRun et profondeur de vision augmentée"></head><body><div id="crPerfHud">FPS -- | RAF -- ms</div>
 <button id="pauseBtn" type="button" aria-label="Mettre le jeu en pause">Ⅱ</button><div id="pauseLayer" role="dialog" aria-modal="true" aria-label="Jeu en pause"><div id="pauseCard"><h2>PAUSE</h2><p>La course est arrêtée.</p><button id="resumeBtn" type="button">▶ REPRENDRE</button><button id="pauseMonitorBtn" type="button">TÉMOINS : OFF</button><button id="pauseMenuBtn" type="button">⌂ RETOUR AU MENU</button></div></div>
 <div id="w"><canvas id="c" width="320" height="224"></canvas></div>
 <div class="b drive-control" id="l" data-k="l">◀</div><div class="b drive-control" id="r" data-k="r">▶</div>
@@ -2161,7 +2161,7 @@ function __crGetDecoThemeKey(){
  return __crDecoThemeKey;
 }
 const orArchImage=new Image();orArchImage.src='../outrun-hd-arcade-roll-v10/arch.webp';const crNewNature=new Image(),crNewBuildings=new Image();crNewNature.src='./coast-nature-hd.webp?v=19';crNewBuildings.src='./coast-buildings-hd.webp?v=19';
-const crHDDiagnostic=document.createElement('div');crHDDiagnostic.style.cssText='position:fixed;left:8px;top:8px;z-index:99999;background:#102030;color:white;font:12px monospace;padding:5px;pointer-events:none';document.body.appendChild(crHDDiagnostic);setInterval(()=>{crHDDiagnostic.textContent='V99 HD | mode '+MODE+' | nature '+crNewNature.naturalWidth+' | bâtiments '+crNewBuildings.naturalWidth+' | neige '+(cr38Images['snow-chalet'].naturalWidth&&cr38Images['snow-pine'].naturalWidth?'HD':'standard')+' | sprites '+crHDHits;crHDHits=0;},1000);
+const crHDDiagnostic=document.createElement('div');crHDDiagnostic.style.cssText='position:fixed;left:8px;top:8px;z-index:99999;background:#102030;color:white;font:12px monospace;padding:5px;pointer-events:none';crHDDiagnostic.id='crHDDiagnostic';document.body.appendChild(crHDDiagnostic);setInterval(()=>{crHDDiagnostic.textContent='V99 HD | mode '+MODE+' | nature '+crNewNature.naturalWidth+' | bâtiments '+crNewBuildings.naturalWidth+' | neige '+(cr38Images['snow-chalet'].naturalWidth&&cr38Images['snow-pine'].naturalWidth?'HD':'standard')+' | sprites '+crHDHits;crHDHits=0;},1000);
 let crHDHits=0;const crNatureRects={p:[0,0,192,192],t:[192,0,192,192],eu:[384,0,192,192],n:[384,192,192,192],c:[192,192,192,192],a:[576,192,192,192],r:[0,384,192,192],u:[384,384,192,192]};
 const crBuildingRects={cot:[214,207,105,81],hau:[214,207,105,81],fair:[158,117,101,95],cf:[265,119,148,84],gs:[125,218,88,69],ch:[214,207,105,81],bs:[640,119,128,83],arch:[0,0,122,113],eiffel:[125,0,96,113],sagrada:[222,0,105,113],ben:[328,0,83,113],basil:[670,0,98,113],gym:[550,212,115,75],port:[0,117,157,85]};
 
@@ -3737,7 +3737,7 @@ const crShowModes=()=>{
   volumeBox.append(volumeHead,volumeDesc,volumeSlider);card.insertBefore(volumeBox,actions);
   row('Bonus','Objets et bonus en course',['Activés','Désactivés'],()=>useItems?0:1,v=>{useItems=v===0?1:0;$('bn').textContent='Bonus : '+(useItems?'ON':'OFF')});
   row('Difficulté','Niveau de pilotage',['Facile','Normal','Difficile'],()=>dfi,v=>{dfi=v;$('df').textContent='Difficulté : '+DF[dfi].n});
-  row('Monitoring','Affichage des témoins de performances',['OFF','ON'],()=>window.__CR_PERF_VISIBLE__?1:0,v=>crSetMonitoring(v===1));
+  
   const save=btn('💾 SAUVEGARDER LES PARAMÈTRES',()=>{
    try{
     localStorage.setItem(CR_COMMAND_SETTINGS_KEY,JSON.stringify({inputMode,autoG,autoGas,raceTrack:crRaceTrack,musicVolume:crMusicVolume,useItems,difficulty:dfi,monitoring:!!window.__CR_PERF_VISIBLE__}));
@@ -4258,4 +4258,4 @@ if('serviceWorker' in navigator){
   navigator.serviceWorker.getRegistrations().then(rs=>Promise.all(rs.filter(r=>r.scope.includes('/coast-rush-hd-v11/')).map(r=>r.unregister()))).catch(()=>{});
  });
 }
-</script><div style="position:fixed;right:8px;bottom:8px;z-index:2147483647;color:white;background:#b21818;padding:5px;font:12px monospace;pointer-events:none">V128 PRECHAUFFAGE MENU</div></body></html>
+</script></body></html>
