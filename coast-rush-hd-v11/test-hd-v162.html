@@ -3584,7 +3584,7 @@ function cr144Sample(t){
   const thirds=[0,0,0];for(const x of recent){const n=Math.max(0,Math.min(2,Math.floor((x.at-cr144Started)/11000)));thirds[n]++;}
   const biggestTasks=[...tasks].sort((a,b)=>b.duration-a.duration).slice(0,3);
   const maxRender=recent.reduce((m,x)=>Math.max(m,x.render||0),0);
-  cr144Panel.textContent='V162 [+(cr154TintOff?'SANS TEINTE':'COULEUR')+'] | 32s : '+recent.length+' pics >50ms'+
+  cr144Panel.textContent='V162 ['+(cr154TintOff?'SANS TEINTE':'COULEUR')+'] | 32s : '+recent.length+' pics >50ms'+
    '\\nRendu '+groups.RENDU+' | Calcul '+groups.CALCUL+' | Manette '+groups.MANETTE+' | Hors boucle '+groups['HORS BOUCLE']+
    '\\nPics 0-11s / 11-22s / 22-32s : '+thirds.join(' / ')+
    '\\nLongues taches '+taskCount+' | correspondances '+overlaps+'/'+recent.length+
