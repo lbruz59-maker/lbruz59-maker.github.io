@@ -1,8 +1,9 @@
-name: Deploy Coast Rush root site to GitHub Pages
+name: Deploy Coast Rush root site to GitHub Pages (manual only)
 
+# GitHub Pages is configured to deploy from main / (root).
+# Keep this workflow for reference/manual troubleshooting only;
+# do not compete with the branch-based Pages publisher on pushes.
 on:
-  push:
-    branches: [main]
   workflow_dispatch:
 
 permissions:
