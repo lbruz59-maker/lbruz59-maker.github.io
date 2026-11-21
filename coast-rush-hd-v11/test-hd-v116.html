@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr"><head><script src='./ground-hd.js?v=101'></script><script src='./sprites.js?v=11'></script><script src='./coast-hd.js?v=15'></script><script src='./outrun-original-data.js?v=15'></script><script src="./outrun-endings.js?v=15"></script><meta charset="utf-8"><title>Coast Rush HD V116 - Garage compact sans defilement</title>
+<html lang="fr"><head><script src='./ground-hd.js?v=101'></script><script src='./sprites.js?v=11'></script><script src='./coast-hd.js?v=15'></script><script src='./outrun-original-data.js?v=15'></script><script src="./outrun-endings.js?v=15"></script><meta charset="utf-8"><title>Coast Rush HD V116 - Optimisation recoloration HD</title>
 <meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Coast Rush"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="mobile-web-app-capable" content="yes"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
 <style>:root{--vw:1vw;--vh:1vh;--dvh:1dvh;--pw:100vw;--ph:100vh}html.crRot{--vw:1vh;--vh:1vw;--dvh:1dvw}
 html.crRot,html.crRot body{overflow:hidden!important}html.crRot body{position:fixed!important;top:0!important;left:var(--pw)!important;width:var(--ph)!important;height:var(--pw)!important;margin:0!important;transform:rotate(90deg)!important;transform-origin:0 0!important}
@@ -1690,7 +1690,29 @@ sidecar:[[.30,.865,.105,.155],[.79,.875,.085,.12]]
 function cr96WheelFrames(src,name,pose){const w=src.width,h=src.height,frames=[src];const tires=cr98TireLayout[name]||cr98TireLayout.sport;const turn=pose===0?-.012:pose===2?.012:0;const patches=tires.map(([fx,fy,rx,ry])=>{const cx=Math.round(w*(fx+turn)),cy=Math.round(h*fy),tw=Math.max(3,Math.round(w*rx*1.15)),th=Math.max(6,Math.round(h*ry*1.65));const sx=Math.max(0,cx-Math.floor(tw/2)),sy=Math.max(0,cy-Math.floor(th/2));const bw=Math.min(tw,w-sx),bh=Math.min(th,h-sy);if(bw<3||bh<6)return null;const temp=document.createElement('canvas');temp.width=bw;temp.height=bh;temp.getContext('2d').drawImage(src,sx,sy,bw,bh,0,0,bw,bh);return {cx,cy,sx,sy,bw,bh,temp}}).filter(Boolean);for(let phase=1;phase<8;phase++){const c=document.createElement('canvas');c.width=w;c.height=h;const g=c.getContext('2d');g.drawImage(src,0,0);for(const {cx,cy,sx,sy,bw,bh,temp} of patches){const shift=Math.round(phase*bh/8);g.save();g.beginPath();g.ellipse(cx,cy,bw*.42,bh*.48,0,0,Math.PI*2);g.clip();g.drawImage(temp,sx,sy+shift,bw,bh);g.drawImage(temp,sx,sy+shift-bh,bw,bh);g.restore()}frames.push(c)}return frames}
 // V113 : teinte de carrosserie des sprites HD, cache borne, sans recolorer pneus, vitres ou personnages.
 const cr113TintCache=new Map();
+const cr116TintPending=new Set(),cr116TintQueue=[];
+let cr116TintScheduled=false;
+function cr116TintWork(){
+ cr116TintScheduled=false;const item=cr116TintQueue.shift();if(!item)return;
+ cr116TintPending.delete(item.key);
+ cr113TintBuild(item.src,item.color,item.v,item.pose,item.phase);
+ if(cr116TintQueue.length)cr116TintSchedule();
+}
+function cr116TintSchedule(){
+ if(cr116TintScheduled)return;cr116TintScheduled=true;
+ if(typeof requestIdleCallback==='function')requestIdleCallback(cr116TintWork,{timeout:300});
+ else setTimeout(cr116TintWork,30);
+}
 function cr113Tint(src,color,v,pose,phase){
+ if(!src||!/^#[0-9a-f]{6}$/i.test(color||''))return src;
+ const key=[v,pose,phase,color].join('|'),ready=cr113TintCache.get(key);
+ if(ready){cr113TintCache.delete(key);cr113TintCache.set(key,ready);return ready}
+ if(!cr116TintPending.has(key)){
+  cr116TintPending.add(key);cr116TintQueue.push({key,src,color,v,pose,phase});cr116TintSchedule();
+ }
+ return src;
+}
+function cr113TintBuild(src,color,v,pose,phase){
  if(!src||!/^#[0-9a-f]{6}$/i.test(color||''))return src;
  const key=[v,pose,phase,color].join('|');if(cr113TintCache.has(key)){const c=cr113TintCache.get(key);cr113TintCache.delete(key);cr113TintCache.set(key,c);return c}
  try{
@@ -1714,7 +1736,7 @@ function cr113Tint(src,color,v,pose,phase){
    d[i]=Math.round(r*(1-weight)+rr*weight);d[i+1]=Math.round(gg*(1-weight)+rg*weight);d[i+2]=Math.round(b*(1-weight)+rb*weight);
   }
   g.putImageData(im,0,0);cr113TintCache.set(key,cv);
-  while(cr113TintCache.size>30)cr113TintCache.delete(cr113TintCache.keys().next().value);
+  while(cr113TintCache.size>64)cr113TintCache.delete(cr113TintCache.keys().next().value);
   return cv;
  }catch(e){return src}
 }
