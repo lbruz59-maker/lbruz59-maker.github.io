@@ -4,9 +4,20 @@ function draw(g,key,x,y,w,h,flip=false){const f=atlas.frames[key];if(!f||!Number
 function natural(g,k,x,y,h,flip=false,maxW=Infinity){const f=atlas.frames[k];if(!f)return false;const w=Math.min(maxW,h*f[3]/f[4]);return draw(g,k,x,y,w,w*f[4]/f[3],flip)}
 function drawCar(g,x,y,w,c,model,lean){const pose=Math.min(2,Math.round(Math.abs(lean||0))),flip=model===6?lean<0:lean>0;const k=model===6?[['62026','62006','62016'],['62056','62036','62046'],['62086','62066','62076']][pose][window.CRHD.grade>.15?1:window.CRHD.grade<-.15?2:0]:'car'+model+'-'+pose;const f=atlas.frames[k],base=atlas.frames[model===6?'62026':'car'+model+'-0'];if(!f||!base||!ready(images[f[0]])||w<2)return false;
 const h=model===6?w*base[4]/base[3]:w*base[4]/base[3],ww=model===6?w:h*f[3]/f[4];if(model!==6)return draw(g,k,x,y,ww,h,flip);
-const wind=(window.CRHD.motion||0)>.1&&Math.floor(performance.now()/140)%2;const heads=[wind?'69926':'69916',wind?'69956':'69946'];if(heads.some(k=>!atlas.frames[k]||!ready(images[atlas.frames[k][0]])))return false;
-g.save();g.translate(x,y);draw(g,k,0,0,ww,h,flip);
-for(let n=0;n<2;n++){const k=heads[n],f=atlas.frames[k],rh=h*(n===0?.24:.27),rw=rh*f[3]/f[4];draw(g,k,(n===0?-.17:.17)*ww+(flip?-1:1)*pose*.035*ww,-h*.76,rw,rh);}
+// V179: Ferrari distante et adversaires : personnages obligatoires, meme si les frames de tete chargent tard.
+const wind=(window.CRHD.motion||0)>.1&&Math.floor(performance.now()/140)%2;
+const heads=[wind?'69926':'69916',wind?'69956':'69946'];
+g.save();g.translate(x,y);
+draw(g,k,0,0,ww,h,flip);
+for(let n=0;n<2;n++){
+ const hk=heads[n],hf=atlas.frames[hk],rh=h*(n===0?.24:.27),px=(n===0?-.17:.17)*ww+(flip?-1:1)*pose*.035*ww,py=-h*.76;
+ if(hf&&ready(images[hf[0]])){draw(g,hk,px,py,rh*hf[3]/hf[4],rh);continue;}
+ // Silhouette de secours stable pour ne jamais laisser une Ferrari adverse vide.
+ const r=Math.max(.5,rh*.27);g.fillStyle=n===0?'#392b25':'#e5bd63';
+ g.beginPath();g.ellipse(px,py-rh*.55,r*1.12,r*1.2,0,0,Math.PI*2);g.fill();
+ g.fillStyle='#e9b895';g.beginPath();g.ellipse(px,py-rh*.43,r*.78,r*.92,0,0,Math.PI*2);g.fill();
+ g.fillStyle=n===0?'#345575':'#f1d4a5';g.fillRect(px-r*1.2,py-rh*.18,r*2.4,rh*.32);
+}
 g.restore();return true}
 const marshal=['68526','68536','68546','68556','68566','68576','68586','68596','68606','68616'];
 function drawMarshal(g,x,y,h,t,active){return natural(g,marshal[active?Math.floor(t*9)%marshal.length:0],x,y,h)}
