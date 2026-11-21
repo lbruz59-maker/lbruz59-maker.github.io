@@ -2160,7 +2160,9 @@ function __crGetDecoThemeKey(){
  }
  return __crDecoThemeKey;
 }
-// V127: optional A/B diagnostic for tunnel arch textures; normal rendering unchanged.\nwindow.__cr127NoTunnelTexture=new URLSearchParams(location.search).has('notunneltexture');\nconst orArchImage=new Image();orArchImage.src='../outrun-hd-arcade-roll-v10/arch.webp';const crNewNature=new Image(),crNewBuildings=new Image();crNewNature.src='./coast-nature-hd.webp?v=19';crNewBuildings.src='./coast-buildings-hd.webp?v=19';
+// V127: optional A/B diagnostic for tunnel arch textures; normal rendering unchanged.
+window.__cr127NoTunnelTexture=new URLSearchParams(location.search).has('notunneltexture');
+const orArchImage=new Image();orArchImage.src='../outrun-hd-arcade-roll-v10/arch.webp';const crNewNature=new Image(),crNewBuildings=new Image();crNewNature.src='./coast-nature-hd.webp?v=19';crNewBuildings.src='./coast-buildings-hd.webp?v=19';
 const crHDDiagnostic=document.createElement('div');crHDDiagnostic.style.cssText='position:fixed;left:8px;top:8px;z-index:99999;background:#102030;color:white;font:12px monospace;padding:5px;pointer-events:none';document.body.appendChild(crHDDiagnostic);setInterval(()=>{crHDDiagnostic.textContent='V99 HD | mode '+MODE+' | nature '+crNewNature.naturalWidth+' | bâtiments '+crNewBuildings.naturalWidth+' | neige '+(cr38Images['snow-chalet'].naturalWidth&&cr38Images['snow-pine'].naturalWidth?'HD':'standard')+' | sprites '+crHDHits;crHDHits=0;},1000);
 let crHDHits=0;const crNatureRects={p:[0,0,192,192],t:[192,0,192,192],eu:[384,0,192,192],n:[384,192,192,192],c:[192,192,192,192],a:[576,192,192,192],r:[0,384,192,192],u:[384,384,192,192]};
 const crBuildingRects={cot:[214,207,105,81],hau:[214,207,105,81],fair:[158,117,101,95],cf:[265,119,148,84],gs:[125,218,88,69],ch:[214,207,105,81],bs:[640,119,128,83],arch:[0,0,122,113],eiffel:[125,0,96,113],sagrada:[222,0,105,113],ben:[328,0,83,113],basil:[670,0,98,113],gym:[550,212,115,75],port:[0,117,157,85]};
