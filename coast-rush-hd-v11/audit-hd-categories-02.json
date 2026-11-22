@@ -1,0 +1,200 @@
+{
+  "version": "V247-audit-02",
+  "source": "spritesinventaire.zip / sprites.js",
+  "visuallyClassified": 36,
+  "unresolved": [
+    "68526",
+    "68536",
+    "68546",
+    "68556",
+    "68566",
+    "68576",
+    "68586",
+    "68596",
+    "68606",
+    "68616"
+  ],
+  "notes": "Arch.webp frames blank in contact sheet; check image dimensions and atlas alignment before assigning. No gameplay changes.",
+  "items": {
+    "66666": [
+      "panneau-publicitaire",
+      "DANKE! tourisme méditerranéen",
+      "bord de route"
+    ],
+    "66716": [
+      "panneau-course",
+      "P1L 75",
+      "bord de circuit"
+    ],
+    "66766": [
+      "panneau-publicitaire",
+      "moto KTM rallye",
+      "bord de route"
+    ],
+    "66816": [
+      "signalisation",
+      "panneau directionnel Minestone/P. Azzurro",
+      "bord de route"
+    ],
+    "66866": [
+      "panneau-publicitaire",
+      "ice cream parking",
+      "bord de route"
+    ],
+    "66916": [
+      "signalisation",
+      "panneau televisione",
+      "bord de route"
+    ],
+    "66966": [
+      "panneau-publicitaire",
+      "diving school Captain",
+      "bord de route"
+    ],
+    "67016": [
+      "enseigne",
+      "SEGA lettres séparées",
+      "signalétique"
+    ],
+    "67626": [
+      "panneau-course",
+      "CIBIÉ",
+      "bord de circuit"
+    ],
+    "67726": [
+      "structure",
+      "pylône treillis métallique",
+      "support panneau"
+    ],
+    "67776": [
+      "batiment",
+      "café El Flamenco",
+      "village"
+    ],
+    "67826": [
+      "batiment",
+      "BOXES / garage course",
+      "zone stands"
+    ],
+    "67876": [
+      "structure-course",
+      "pompe essence et poste chronométrage",
+      "bord de circuit"
+    ],
+    "67926": [
+      "spectateurs",
+      "tribune OutRun avec foule",
+      "tribune terrestre"
+    ],
+    "67976": [
+      "attraction",
+      "grande roue",
+      "zone fête foraine"
+    ],
+    "68026": [
+      "batiment",
+      "tour de pierre isolée",
+      "village/monument"
+    ],
+    "68076": [
+      "batiment",
+      "deux tours de pierre",
+      "village/monument"
+    ],
+    "68126": [
+      "mur",
+      "quatre segments de muret de pierre",
+      "terrain sec"
+    ],
+    "68176": [
+      "rocher",
+      "dalle rocheuse plate",
+      "terrain sec"
+    ],
+    "68226": [
+      "rocher",
+      "grand rocher vertical",
+      "terrain sec"
+    ],
+    "68276": [
+      "rocher",
+      "strates rocheuses",
+      "terrain sec"
+    ],
+    "68326": [
+      "sol-composite",
+      "massif rocheux flou au sol",
+      "terrain sec"
+    ],
+    "68376": [
+      "rocher-composite",
+      "rochers et végétation",
+      "terrain sec"
+    ],
+    "68426": [
+      "monument",
+      "statue de pierre debout",
+      "site historique"
+    ],
+    "68476": [
+      "monument",
+      "statue de pierre variante",
+      "site historique"
+    ],
+    "68696": [
+      "village-composite",
+      "village méditerranéen sur îlot",
+      "terrain sec"
+    ],
+    "68726": [
+      "personnage",
+      "homme en tunique avec bâton",
+      "terrain sec"
+    ],
+    "68776": [
+      "animal",
+      "chameau harnaché",
+      "désert"
+    ],
+    "68826": [
+      "animal",
+      "chameau debout",
+      "désert"
+    ],
+    "68876": [
+      "animal",
+      "chameau couché",
+      "désert"
+    ],
+    "68926": [
+      "animal",
+      "chameau en marche",
+      "désert"
+    ],
+    "68986": [
+      "falaise-composite",
+      "falaise avec pins",
+      "arrière-plan terrestre"
+    ],
+    "68996": [
+      "terrain-composite",
+      "dune sableuse",
+      "désert"
+    ],
+    "69006": [
+      "vegetation",
+      "massif de fleurs",
+      "terrain sec"
+    ],
+    "69016": [
+      "village-composite",
+      "village côtier sur îlot",
+      "terrain sec"
+    ],
+    "69026": [
+      "vegetation",
+      "bosquet d'arbres",
+      "terrain sec"
+    ]
+  }
+}
