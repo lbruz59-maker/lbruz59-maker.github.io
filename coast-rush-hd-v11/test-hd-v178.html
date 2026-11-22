@@ -2865,13 +2865,19 @@ function cr47TunnelShell(a,b,s){
 
 const cr48MarshalFrames=['68526','68536','68546','68556','68566','68576','68586','68596','68606','68616'];
 window.CRHD=window.CRHD||{};
+// V180 : dimensions normalisees sur la silhouette de reference, pieds ancres au sol.
+const cr180MarshalBase=267;
 window.CRHD.drawMarshal=function(g,x,y,h,t,active){
- const k=cr48MarshalFrames[active?Math.abs(Math.floor(t*9))%10:0], f=window.CRHD?.atlas?.frames[k];
- if(!f)return false;
- // Common source-pixel scale (267 px reference), feet fixed.
- const frameHeight=Math.max(1,f[4]); // normalize animation height without stretching aspect ratio
- const frameWidth=Math.max(1,f[3]);
- return window.CRHD.draw(g,k,x,y,h*frameWidth/frameHeight,h);
+ const atlas=window.CRHD?.atlas, frames=atlas?.frames;
+ if(!frames||!Number.isFinite(h)||h<=0)return false;
+ const index=active?Math.abs(Math.floor((Number(t)||0)*9))%cr48MarshalFrames.length:0;
+ const key=cr48MarshalFrames[index],f=frames[key],ref=frames[cr48MarshalFrames[0]];
+ if(!f||!ref)return false;
+ // L'echelle du monde reste constante, la largeur vient de la frame reelle.
+ const refH=Math.max(1,ref[4]), frameH=Math.max(1,f[4]), frameW=Math.max(1,f[3]);
+ const targetH=h*cr180MarshalBase/refH;
+ const targetW=targetH*frameW/frameH;
+ return window.CRHD.draw(g,key,x,y,targetW,targetH);
 };
 const cr48Regional=cr42Regional;
 cr42Regional=function(sp,x,y,sc){
