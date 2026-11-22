@@ -1,0 +1,141 @@
+{
+  "source": "Original arch.webp from user-provided spritesinventaire.zip",
+  "actualDimensions": {
+    "width": 356,
+    "height": 325
+  },
+  "visuallyIdentified": "Arc de Triomphe de Paris, façade frontale",
+  "validFrame": {
+    "id": "69116",
+    "rectangle": [
+      0,
+      0,
+      208,
+      263
+    ],
+    "note": "Valid rectangle but only partial monument; use entire original image for complete Arc de Triomphe"
+  },
+  "invalidFrames": [
+    {
+      "id": "68526",
+      "rectangle": [
+        1200,
+        0,
+        76,
+        267
+      ],
+      "status": "invalid coordinates; no individual sprite image exists at these coordinates"
+    },
+    {
+      "id": "68536",
+      "rectangle": [
+        0,
+        550,
+        128,
+        261
+      ],
+      "status": "invalid coordinates; no individual sprite image exists at these coordinates"
+    },
+    {
+      "id": "68546",
+      "rectangle": [
+        400,
+        550,
+        197,
+        256
+      ],
+      "status": "invalid coordinates; no individual sprite image exists at these coordinates"
+    },
+    {
+      "id": "68556",
+      "rectangle": [
+        800,
+        550,
+        195,
+        252
+      ],
+      "status": "invalid coordinates; no individual sprite image exists at these coordinates"
+    },
+    {
+      "id": "68566",
+      "rectangle": [
+        1200,
+        550,
+        176,
+        259
+      ],
+      "status": "invalid coordinates; no individual sprite image exists at these coordinates"
+    },
+    {
+      "id": "68576",
+      "rectangle": [
+        0,
+        1100,
+        138,
+        257
+      ],
+      "status": "invalid coordinates; no individual sprite image exists at these coordinates"
+    },
+    {
+      "id": "68586",
+      "rectangle": [
+        400,
+        1100,
+        175,
+        257
+      ],
+      "status": "invalid coordinates; no individual sprite image exists at these coordinates"
+    },
+    {
+      "id": "68596",
+      "rectangle": [
+        800,
+        1100,
+        214,
+        256
+      ],
+      "status": "invalid coordinates; no individual sprite image exists at these coordinates"
+    },
+    {
+      "id": "68606",
+      "rectangle": [
+        1200,
+        1100,
+        238,
+        255
+      ],
+      "status": "invalid coordinates; no individual sprite image exists at these coordinates"
+    },
+    {
+      "id": "68616",
+      "rectangle": [
+        0,
+        1650,
+        140,
+        266
+      ],
+      "status": "invalid coordinates; no individual sprite image exists at these coordinates"
+    },
+    {
+      "id": "69126",
+      "rectangle": [
+        400,
+        0,
+        196,
+        260
+      ],
+      "status": "invalid coordinates; no individual sprite image exists at these coordinates"
+    },
+    {
+      "id": "69136",
+      "rectangle": [
+        800,
+        0,
+        129,
+        265
+      ],
+      "status": "invalid coordinates; no individual sprite image exists at these coordinates"
+    }
+  ],
+  "conclusion": "These 12 entries cannot be individually visually verified because they do not point to pixels within the supplied arch.webp. Do not fabricate sprites or relabel them as visually verified. Preserve V247."
+}
