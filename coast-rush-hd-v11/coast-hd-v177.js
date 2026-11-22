@@ -20,7 +20,7 @@ for(let n=0;n<2;n++){
 }
 g.restore();return true}
 const marshal=['68526','68536','68546','68556','68566','68576','68586','68596','68606','68616'];
-function drawMarshal(g,x,y,h,t,active){return natural(g,marshal[active?Math.floor(t*9)%marshal.length:0],x,y,h)}
+function drawMarshal(g,x,y,h,t,active){return natural(g,marshal[active?((Math.floor(Math.max(0,t)*10)%marshal.length)):0],x,y,h)}
 const variants={p:['64456','64706','64756'],c:['64856','64906','64806'],t:['64256','64556','64656'],a:['64206','64356','64406','64506'],n:['64256','64606','64956'],eu:[],u:['64136','64166','64176','64186','64806','65106','65156'],r:['67216','67266','68176','68276','68326','68376'],h:['67776','67826'],ch:['67776','67826'],cl:['64096','64106','65006'],gs:['64126'],rt:['67776'],cf:['67826']};
 const factor={p:1,c:1.25,t:.7,a:.55,n:1,u:.35,r:.25,h:.94,ch:.65,cl:.7,gs:.65,rt:.65,cf:.65};
 function choose(sp,arr){const seed=Math.abs(Math.floor((Number(sp.o)||0)*173+(Number(sp.hh)||0)*31+(Number(sp.z)||0)*7));return arr[seed%arr.length]}
