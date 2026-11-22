@@ -1,0 +1,242 @@
+{
+  "version": "V247-audit-04",
+  "source": "Original WebP atlases from spritesinventaire.zip",
+  "visuallyClassified": 47,
+  "items": {
+    "62006": [
+      "vehicule-ferrari-512tr",
+      "Ferrari 512 TR rouge, vue arrière, variation de direction",
+      "véhicules / animations dédiées"
+    ],
+    "62016": [
+      "vehicule-ferrari-512tr",
+      "Ferrari 512 TR rouge, vue arrière, variation de direction",
+      "véhicules / animations dédiées"
+    ],
+    "62026": [
+      "vehicule-ferrari-512tr",
+      "Ferrari 512 TR rouge, vue arrière, variation de direction",
+      "véhicules / animations dédiées"
+    ],
+    "62036": [
+      "vehicule-ferrari-512tr",
+      "Ferrari 512 TR rouge, vue arrière, variation de direction",
+      "véhicules / animations dédiées"
+    ],
+    "62046": [
+      "vehicule-ferrari-512tr",
+      "Ferrari 512 TR rouge, vue arrière, variation de direction",
+      "véhicules / animations dédiées"
+    ],
+    "62056": [
+      "vehicule-ferrari-512tr",
+      "Ferrari 512 TR rouge, vue arrière, variation de direction",
+      "véhicules / animations dédiées"
+    ],
+    "62066": [
+      "vehicule-ferrari-512tr",
+      "Ferrari 512 TR rouge, vue arrière, variation de direction",
+      "véhicules / animations dédiées"
+    ],
+    "62076": [
+      "vehicule-ferrari-512tr",
+      "Ferrari 512 TR rouge, vue arrière, variation de direction",
+      "véhicules / animations dédiées"
+    ],
+    "62086": [
+      "vehicule-ferrari-512tr",
+      "Ferrari 512 TR rouge, vue arrière, variation de direction",
+      "véhicules / animations dédiées"
+    ],
+    "62096": [
+      "vehicule-porsche-911",
+      "Porsche 911 rouge, vue arrière et trois-quarts",
+      "véhicules / animations dédiées"
+    ],
+    "62146": [
+      "vehicule-porsche-911",
+      "Porsche 911 rouge, vue arrière et trois-quarts",
+      "véhicules / animations dédiées"
+    ],
+    "62196": [
+      "vehicule-porsche-911",
+      "Porsche 911 rouge, vue arrière et trois-quarts",
+      "véhicules / animations dédiées"
+    ],
+    "62246": [
+      "vehicule-porsche-911",
+      "Porsche 911 rouge, vue arrière et trois-quarts",
+      "véhicules / animations dédiées"
+    ],
+    "62296": [
+      "vehicule-porsche-911",
+      "Porsche 911 rouge, vue arrière et trois-quarts",
+      "véhicules / animations dédiées"
+    ],
+    "62346": [
+      "vehicule-porsche-911",
+      "Porsche 911 rouge, vue arrière et trois-quarts",
+      "véhicules / animations dédiées"
+    ],
+    "62396": [
+      "vehicule-pickup-chevrolet",
+      "Pick-up Chevrolet, vue avant/arrière et trois-quarts",
+      "véhicules / animations dédiées"
+    ],
+    "62446": [
+      "vehicule-pickup-chevrolet",
+      "Pick-up Chevrolet, vue avant/arrière et trois-quarts",
+      "véhicules / animations dédiées"
+    ],
+    "62496": [
+      "vehicule-pickup-chevrolet",
+      "Pick-up Chevrolet, vue avant/arrière et trois-quarts",
+      "véhicules / animations dédiées"
+    ],
+    "62546": [
+      "vehicule-pickup-chevrolet",
+      "Pick-up Chevrolet, vue avant/arrière et trois-quarts",
+      "véhicules / animations dédiées"
+    ],
+    "62596": [
+      "vehicule-pickup-chevrolet",
+      "Pick-up Chevrolet, vue avant/arrière et trois-quarts",
+      "véhicules / animations dédiées"
+    ],
+    "62646": [
+      "vehicule-pickup-chevrolet",
+      "Pick-up Chevrolet, vue avant/arrière et trois-quarts",
+      "véhicules / animations dédiées"
+    ],
+    "62696": [
+      "vehicule-ferrari-cabriolet",
+      "Ferrari cabriolet rouge, vue avant/profil",
+      "véhicules / animations dédiées"
+    ],
+    "62706": [
+      "vehicule-ferrari-cabriolet",
+      "Ferrari cabriolet rouge, vue avant/profil",
+      "véhicules / animations dédiées"
+    ],
+    "62716": [
+      "vehicule-ferrari-cabriolet",
+      "Ferrari cabriolet rouge, vue avant/profil",
+      "véhicules / animations dédiées"
+    ],
+    "62726": [
+      "vehicule-ferrari-cabriolet",
+      "Ferrari cabriolet rouge, vue avant/profil",
+      "véhicules / animations dédiées"
+    ],
+    "62736": [
+      "vehicule-bmw-325i",
+      "BMW 325i cabriolet rouge, vue avant/arrière et trois-quarts",
+      "véhicules / animations dédiées"
+    ],
+    "62786": [
+      "vehicule-bmw-325i",
+      "BMW 325i cabriolet rouge, vue avant/arrière et trois-quarts",
+      "véhicules / animations dédiées"
+    ],
+    "62836": [
+      "vehicule-bmw-325i",
+      "BMW 325i cabriolet rouge, vue avant/arrière et trois-quarts",
+      "véhicules / animations dédiées"
+    ],
+    "62886": [
+      "vehicule-bmw-325i",
+      "BMW 325i cabriolet rouge, vue avant/arrière et trois-quarts",
+      "véhicules / animations dédiées"
+    ],
+    "62936": [
+      "vehicule-bmw-325i",
+      "BMW 325i cabriolet rouge, vue avant/arrière et trois-quarts",
+      "véhicules / animations dédiées"
+    ],
+    "62986": [
+      "vehicule-camion-bipin",
+      "Camion BIPIN, vue arrière et trois-quarts",
+      "véhicules / animations dédiées"
+    ],
+    "63036": [
+      "vehicule-camion-bipin",
+      "Camion BIPIN, vue arrière et trois-quarts",
+      "véhicules / animations dédiées"
+    ],
+    "63086": [
+      "vehicule-camion-bipin",
+      "Camion BIPIN, vue arrière et trois-quarts",
+      "véhicules / animations dédiées"
+    ],
+    "63136": [
+      "vehicule-porsche-turbo",
+      "Porsche Turbo rouge, vue arrière",
+      "véhicules / animations dédiées"
+    ],
+    "63606": [
+      "vehicule-porsche-turbo",
+      "Porsche Turbo rouge, vue arrière",
+      "véhicules / animations dédiées"
+    ],
+    "63656": [
+      "vehicule-corvette",
+      "Corvette rouge, vue arrière",
+      "véhicules / animations dédiées"
+    ],
+    "63706": [
+      "vehicule-volkswagen-coccinelle",
+      "Volkswagen Coccinelle rouge, vue arrière et trois-quarts",
+      "véhicules / animations dédiées"
+    ],
+    "63756": [
+      "vehicule-volkswagen-coccinelle",
+      "Volkswagen Coccinelle rouge, vue arrière et trois-quarts",
+      "véhicules / animations dédiées"
+    ],
+    "63806": [
+      "vehicule-volkswagen-coccinelle",
+      "Volkswagen Coccinelle rouge, vue arrière et trois-quarts",
+      "véhicules / animations dédiées"
+    ],
+    "63856": [
+      "vehicule-bmw-325i",
+      "BMW 325i cabriolet rouge, vue avant",
+      "véhicules / animations dédiées"
+    ],
+    "70436": [
+      "animation-tonneau-ferrari",
+      "Ferrari rouge, image de rotation et retournement",
+      "véhicules / animations dédiées"
+    ],
+    "70446": [
+      "animation-tonneau-ferrari",
+      "Ferrari rouge, image de rotation et retournement",
+      "véhicules / animations dédiées"
+    ],
+    "70456": [
+      "animation-tonneau-ferrari",
+      "Ferrari rouge, image de rotation et retournement",
+      "véhicules / animations dédiées"
+    ],
+    "70466": [
+      "animation-tonneau-ferrari",
+      "Ferrari rouge, image de rotation et retournement",
+      "véhicules / animations dédiées"
+    ],
+    "70476": [
+      "animation-tonneau-ferrari",
+      "Ferrari rouge, image de rotation et retournement",
+      "véhicules / animations dédiées"
+    ],
+    "70486": [
+      "animation-tonneau-ferrari",
+      "Ferrari rouge, image de rotation et retournement",
+      "véhicules / animations dédiées"
+    ],
+    "70496": [
+      "animation-tonneau-ferrari",
+      "Ferrari rouge, image de rotation et retournement",
+      "véhicules / animations dédiées"
+    ]
+  }
+}
