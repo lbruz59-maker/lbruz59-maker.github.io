@@ -1,0 +1,303 @@
+{
+  "version": "V247-audit-05",
+  "source": "Original OutRun HD WebP atlas / 59 individual crops",
+  "visuallyClassified": 59,
+  "importantCorrection": "Source label riders is wrong for these sprites: 57 cinematic character frames and 2 road pieces.",
+  "items": {
+    "63186": [
+      "cinematique-chute-homme",
+      "Homme en chemise et pantalon en chute / rotation",
+      "cinématique uniquement"
+    ],
+    "63196": [
+      "cinematique-chute-homme",
+      "Homme en chemise et pantalon en chute / rotation",
+      "cinématique uniquement"
+    ],
+    "63206": [
+      "cinematique-chute-homme",
+      "Homme en chemise et pantalon en chute / rotation",
+      "cinématique uniquement"
+    ],
+    "63216": [
+      "cinematique-chute-homme",
+      "Homme en chemise et pantalon en chute / rotation",
+      "cinématique uniquement"
+    ],
+    "63226": [
+      "cinematique-chute-homme",
+      "Homme en chemise et pantalon en chute / rotation",
+      "cinématique uniquement"
+    ],
+    "63236": [
+      "cinematique-chute-homme",
+      "Homme en chemise et pantalon en chute / rotation",
+      "cinématique uniquement"
+    ],
+    "63246": [
+      "cinematique-homme-sol",
+      "Homme au sol, en train de se relever, variations de pose",
+      "cinématique uniquement"
+    ],
+    "63256": [
+      "cinematique-homme-sol",
+      "Homme au sol, en train de se relever, variations de pose",
+      "cinématique uniquement"
+    ],
+    "63266": [
+      "cinematique-homme-sol",
+      "Homme au sol, en train de se relever, variations de pose",
+      "cinématique uniquement"
+    ],
+    "63276": [
+      "cinematique-homme-sol",
+      "Homme au sol, en train de se relever, variations de pose",
+      "cinématique uniquement"
+    ],
+    "63286": [
+      "cinematique-homme-sol",
+      "Homme au sol, en train de se relever, variations de pose",
+      "cinématique uniquement"
+    ],
+    "63296": [
+      "cinematique-homme-sol",
+      "Homme au sol, en train de se relever, variations de pose",
+      "cinématique uniquement"
+    ],
+    "63306": [
+      "cinematique-homme-sol",
+      "Homme au sol, en train de se relever, variations de pose",
+      "cinématique uniquement"
+    ],
+    "63316": [
+      "cinematique-homme-sol",
+      "Homme au sol, en train de se relever, variations de pose",
+      "cinématique uniquement"
+    ],
+    "63326": [
+      "cinematique-femme-sol",
+      "Femme au sol, mouvement de chute et redressement",
+      "cinématique uniquement"
+    ],
+    "63336": [
+      "cinematique-femme-sol",
+      "Femme au sol, mouvement de chute et redressement",
+      "cinématique uniquement"
+    ],
+    "63346": [
+      "cinematique-femme-sol",
+      "Femme au sol, mouvement de chute et redressement",
+      "cinématique uniquement"
+    ],
+    "63356": [
+      "cinematique-femme-sol",
+      "Femme au sol, mouvement de chute et redressement",
+      "cinématique uniquement"
+    ],
+    "63366": [
+      "cinematique-femme-sol",
+      "Femme au sol, mouvement de chute et redressement",
+      "cinématique uniquement"
+    ],
+    "63376": [
+      "cinematique-femme-sol",
+      "Femme au sol, mouvement de chute et redressement",
+      "cinématique uniquement"
+    ],
+    "63386": [
+      "cinematique-femme-sol",
+      "Femme au sol, mouvement de chute et redressement",
+      "cinématique uniquement"
+    ],
+    "63396": [
+      "cinematique-femme-sol",
+      "Femme au sol, mouvement de chute et redressement",
+      "cinématique uniquement"
+    ],
+    "63406": [
+      "cinematique-femme-sol",
+      "Femme au sol, mouvement de chute et redressement",
+      "cinématique uniquement"
+    ],
+    "63416": [
+      "cinematique-femme-sol",
+      "Femme au sol, mouvement de chute et redressement",
+      "cinématique uniquement"
+    ],
+    "63426": [
+      "cinematique-femme-sol",
+      "Femme au sol, mouvement de chute et redressement",
+      "cinématique uniquement"
+    ],
+    "63436": [
+      "cinematique-femme-sol",
+      "Femme au sol, mouvement de chute et redressement",
+      "cinématique uniquement"
+    ],
+    "63446": [
+      "cinematique-femme-sol",
+      "Femme au sol, mouvement de chute et redressement",
+      "cinématique uniquement"
+    ],
+    "67416": [
+      "route-piece",
+      "Segment de chaussée oblique, image de transition",
+      "route / animation dédiée"
+    ],
+    "67466": [
+      "route-piece",
+      "Segment de chaussée oblique, image de transition",
+      "route / animation dédiée"
+    ],
+    "69756": [
+      "cinematique-homme-tir",
+      "Homme avec arme, fumée de tir, vues de dos et profil",
+      "cinématique uniquement"
+    ],
+    "69766": [
+      "cinematique-homme-tir",
+      "Homme avec arme, fumée de tir, vues de dos et profil",
+      "cinématique uniquement"
+    ],
+    "69776": [
+      "cinematique-homme-tir",
+      "Homme avec arme, fumée de tir, vues de dos et profil",
+      "cinématique uniquement"
+    ],
+    "69786": [
+      "cinematique-homme-tir",
+      "Homme avec arme, fumée de tir, vues de dos et profil",
+      "cinématique uniquement"
+    ],
+    "69796": [
+      "cinematique-homme-tir",
+      "Homme avec arme, fumée de tir, vues de dos et profil",
+      "cinématique uniquement"
+    ],
+    "69806": [
+      "cinematique-homme-tir",
+      "Homme avec arme, fumée de tir, vues de dos et profil",
+      "cinématique uniquement"
+    ],
+    "69816": [
+      "cinematique-homme-tir",
+      "Homme avec arme, fumée de tir, vues de dos et profil",
+      "cinématique uniquement"
+    ],
+    "69826": [
+      "cinematique-homme-tir",
+      "Homme avec arme, fumée de tir, vues de dos et profil",
+      "cinématique uniquement"
+    ],
+    "69836": [
+      "cinematique-visages",
+      "Portraits et vues de dos des personnages homme et femme",
+      "cinématique uniquement"
+    ],
+    "69846": [
+      "cinematique-visages",
+      "Portraits et vues de dos des personnages homme et femme",
+      "cinématique uniquement"
+    ],
+    "69856": [
+      "cinematique-visages",
+      "Portraits et vues de dos des personnages homme et femme",
+      "cinématique uniquement"
+    ],
+    "69866": [
+      "cinematique-visages",
+      "Portraits et vues de dos des personnages homme et femme",
+      "cinématique uniquement"
+    ],
+    "69876": [
+      "cinematique-visages",
+      "Portraits et vues de dos des personnages homme et femme",
+      "cinématique uniquement"
+    ],
+    "69886": [
+      "cinematique-visages",
+      "Portraits et vues de dos des personnages homme et femme",
+      "cinématique uniquement"
+    ],
+    "69896": [
+      "cinematique-visages",
+      "Portraits et vues de dos des personnages homme et femme",
+      "cinématique uniquement"
+    ],
+    "69906": [
+      "cinematique-visages",
+      "Portraits et vues de dos des personnages homme et femme",
+      "cinématique uniquement"
+    ],
+    "69916": [
+      "cinematique-visages",
+      "Portraits et vues de dos des personnages homme et femme",
+      "cinématique uniquement"
+    ],
+    "69926": [
+      "cinematique-visages",
+      "Portraits et vues de dos des personnages homme et femme",
+      "cinématique uniquement"
+    ],
+    "69936": [
+      "cinematique-visages",
+      "Portraits et vues de dos des personnages homme et femme",
+      "cinématique uniquement"
+    ],
+    "69946": [
+      "cinematique-visages",
+      "Portraits et vues de dos des personnages homme et femme",
+      "cinématique uniquement"
+    ],
+    "69956": [
+      "cinematique-visages",
+      "Portraits et vues de dos des personnages homme et femme",
+      "cinématique uniquement"
+    ],
+    "70506": [
+      "cinematique-dialogue",
+      "Personnages en conversation, gestes et changements de pose",
+      "cinématique uniquement"
+    ],
+    "70516": [
+      "cinematique-dialogue",
+      "Personnages en conversation, gestes et changements de pose",
+      "cinématique uniquement"
+    ],
+    "70536": [
+      "cinematique-dialogue",
+      "Personnages en conversation, gestes et changements de pose",
+      "cinématique uniquement"
+    ],
+    "70546": [
+      "cinematique-dialogue",
+      "Personnages en conversation, gestes et changements de pose",
+      "cinématique uniquement"
+    ],
+    "70556": [
+      "cinematique-dialogue",
+      "Personnages en conversation, gestes et changements de pose",
+      "cinématique uniquement"
+    ],
+    "70566": [
+      "cinematique-dialogue",
+      "Personnages en conversation, gestes et changements de pose",
+      "cinématique uniquement"
+    ],
+    "70586": [
+      "cinematique-dialogue",
+      "Personnages en conversation, gestes et changements de pose",
+      "cinématique uniquement"
+    ],
+    "70596": [
+      "cinematique-dialogue",
+      "Personnages en conversation, gestes et changements de pose",
+      "cinématique uniquement"
+    ],
+    "70606": [
+      "cinematique-dialogue",
+      "Personnages en conversation, gestes et changements de pose",
+      "cinématique uniquement"
+    ]
+  }
+}
