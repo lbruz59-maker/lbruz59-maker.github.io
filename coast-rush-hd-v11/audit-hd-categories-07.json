@@ -1,0 +1,247 @@
+{
+  "version": "V247-audit-07",
+  "source": "User-supplied original OutRun HD WebP atlases; individual crops visually inspected",
+  "visuallyClassified": 48,
+  "items": {
+    "63876": [
+      "voiture-rallye",
+      "Voiture de rallye blanche, avant trois-quarts",
+      "véhicule"
+    ],
+    "63906": [
+      "ferrari-decapotable-animation",
+      "Ferrari décapotable rouge, vues latérales, capote et portes en mouvement",
+      "animation voiture"
+    ],
+    "63916": [
+      "ferrari-decapotable-animation",
+      "Ferrari décapotable rouge, vues latérales, capote et portes en mouvement",
+      "animation voiture"
+    ],
+    "63926": [
+      "ferrari-decapotable-animation",
+      "Ferrari décapotable rouge, vues latérales, capote et portes en mouvement",
+      "animation voiture"
+    ],
+    "63936": [
+      "ferrari-carrosserie",
+      "Panneau de carrosserie rouge et feux arrière",
+      "animation voiture"
+    ],
+    "63946": [
+      "ferrari-carrosserie",
+      "Panneau de carrosserie rouge et feux arrière",
+      "animation voiture"
+    ],
+    "63956": [
+      "ferrari-habitacle",
+      "Tableau de bord Ferrari et volant, variations de cadrage",
+      "animation voiture"
+    ],
+    "63966": [
+      "ferrari-habitacle",
+      "Tableau de bord Ferrari et volant, variations de cadrage",
+      "animation voiture"
+    ],
+    "63976": [
+      "ferrari-habitacle",
+      "Tableau de bord Ferrari et volant, variations de cadrage",
+      "animation voiture"
+    ],
+    "63986": [
+      "ferrari-habitacle",
+      "Tableau de bord Ferrari et volant, variations de cadrage",
+      "animation voiture"
+    ],
+    "63996": [
+      "cinematique-couple",
+      "Couple s'embrassant dans la Ferrari",
+      "cinématique"
+    ],
+    "64006": [
+      "cinematique-couple",
+      "Couple s'embrassant dans la Ferrari",
+      "cinématique"
+    ],
+    "64016": [
+      "ferrari-roue",
+      "Roue Ferrari, rotation/angle",
+      "animation voiture"
+    ],
+    "64026": [
+      "ferrari-roue",
+      "Roue Ferrari, rotation/angle",
+      "animation voiture"
+    ],
+    "64036": [
+      "ferrari-carrosserie",
+      "Partie arrière basse rouge de la Ferrari",
+      "animation voiture"
+    ],
+    "65066": [
+      "arbre-mort",
+      "Arbre sec avec racines sur sol rocheux",
+      "décor terrestre"
+    ],
+    "65676": [
+      "panorama-cotier",
+      "Île ou ville côtière vue de loin",
+      "arrière-plan côtier"
+    ],
+    "66536": [
+      "effet-poussiere",
+      "Nuage de poussière, forme de particules pour animation",
+      "effet de course"
+    ],
+    "66546": [
+      "effet-poussiere",
+      "Nuage de poussière, forme de particules pour animation",
+      "effet de course"
+    ],
+    "66556": [
+      "effet-poussiere",
+      "Nuage de poussière, forme de particules pour animation",
+      "effet de course"
+    ],
+    "66566": [
+      "effet-poussiere",
+      "Nuage de poussière, forme de particules pour animation",
+      "effet de course"
+    ],
+    "67546": [
+      "effet-poussiere",
+      "Nuage de poussière, forme de particules pour animation",
+      "effet de course"
+    ],
+    "67556": [
+      "effet-poussiere",
+      "Nuage de poussière, forme de particules pour animation",
+      "effet de course"
+    ],
+    "67566": [
+      "effet-poussiere",
+      "Nuage de poussière, forme de particules pour animation",
+      "effet de course"
+    ],
+    "67576": [
+      "effet-poussiere",
+      "Nuage de poussière, forme de particules pour animation",
+      "effet de course"
+    ],
+    "67586": [
+      "effet-poussiere",
+      "Nuage de poussière, forme de particules pour animation",
+      "effet de course"
+    ],
+    "67596": [
+      "effet-poussiere",
+      "Nuage de poussière, forme de particules pour animation",
+      "effet de course"
+    ],
+    "67606": [
+      "effet-poussiere",
+      "Nuage de poussière, forme de particules pour animation",
+      "effet de course"
+    ],
+    "67616": [
+      "cinematique-victoire",
+      "Pilote levant une coupe avec foule, Ferrari et paysage",
+      "cinématique victoire"
+    ],
+    "69086": [
+      "cinematique-podium",
+      "Trois hommes autour du trophée, animation de groupe",
+      "cinématique victoire"
+    ],
+    "69096": [
+      "cinematique-podium",
+      "Trois hommes autour du trophée, animation de groupe",
+      "cinématique victoire"
+    ],
+    "69106": [
+      "cinematique-podium",
+      "Trois hommes autour du trophée, animation de groupe",
+      "cinématique victoire"
+    ],
+    "70616": [
+      "cinematique-homme",
+      "Homme en polo bleu et pantalon blanc, geste/applaudissement",
+      "cinématique victoire"
+    ],
+    "70626": [
+      "cinematique-homme",
+      "Homme en polo bleu et pantalon blanc, geste/applaudissement",
+      "cinématique victoire"
+    ],
+    "70636": [
+      "cinematique-homme",
+      "Homme en polo bleu et pantalon blanc, geste/applaudissement",
+      "cinématique victoire"
+    ],
+    "70646": [
+      "cinematique-homme",
+      "Homme en polo bleu et pantalon blanc, geste/applaudissement",
+      "cinématique victoire"
+    ],
+    "70656": [
+      "cinematique-homme",
+      "Homme en polo bleu et pantalon blanc, geste/applaudissement",
+      "cinématique victoire"
+    ],
+    "70666": [
+      "cinematique-homme",
+      "Homme en polo bleu et pantalon blanc, geste/applaudissement",
+      "cinématique victoire"
+    ],
+    "70676": [
+      "cinematique-femme",
+      "Femme en robe blanche, remise de trophée et gestes",
+      "cinématique victoire"
+    ],
+    "70686": [
+      "cinematique-femme",
+      "Femme en robe blanche, remise de trophée et gestes",
+      "cinématique victoire"
+    ],
+    "70696": [
+      "cinematique-femme",
+      "Femme en robe blanche, remise de trophée et gestes",
+      "cinématique victoire"
+    ],
+    "70706": [
+      "cinematique-femme",
+      "Femme en robe blanche, remise de trophée et gestes",
+      "cinématique victoire"
+    ],
+    "70716": [
+      "cinematique-femme",
+      "Femme en robe blanche, remise de trophée et gestes",
+      "cinématique victoire"
+    ],
+    "70726": [
+      "cinematique-femme",
+      "Femme en robe blanche, remise de trophée et gestes",
+      "cinématique victoire"
+    ],
+    "70736": [
+      "cinematique-coupe",
+      "Homme en polo bleu recevant et levant la coupe",
+      "cinématique victoire"
+    ],
+    "70746": [
+      "cinematique-coupe",
+      "Homme en polo bleu recevant et levant la coupe",
+      "cinématique victoire"
+    ],
+    "70756": [
+      "cinematique-coupe",
+      "Homme en polo bleu recevant et levant la coupe",
+      "cinématique victoire"
+    ],
+    "70766": [
+      "cinematique-coupe",
+      "Homme en polo bleu recevant et levant la coupe",
+      "cinématique victoire"
+    ]
+  }
+}
