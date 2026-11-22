@@ -1,0 +1,271 @@
+{
+  "version": "V247-audit-12",
+  "source": "Original user-provided WebP files; individually cropped and visually inspected",
+  "visuallyClassified": 26,
+  "unverifiable": [
+    {
+      "id": "68526",
+      "atlas": "arch.webp",
+      "rectangle": [
+        1200,
+        0,
+        76,
+        267
+      ],
+      "reason": "Rectangle exceeds real 356×325 image; not visually verifiable"
+    },
+    {
+      "id": "68536",
+      "atlas": "arch.webp",
+      "rectangle": [
+        0,
+        550,
+        128,
+        261
+      ],
+      "reason": "Rectangle exceeds real 356×325 image; not visually verifiable"
+    },
+    {
+      "id": "68546",
+      "atlas": "arch.webp",
+      "rectangle": [
+        400,
+        550,
+        197,
+        256
+      ],
+      "reason": "Rectangle exceeds real 356×325 image; not visually verifiable"
+    },
+    {
+      "id": "68556",
+      "atlas": "arch.webp",
+      "rectangle": [
+        800,
+        550,
+        195,
+        252
+      ],
+      "reason": "Rectangle exceeds real 356×325 image; not visually verifiable"
+    },
+    {
+      "id": "68566",
+      "atlas": "arch.webp",
+      "rectangle": [
+        1200,
+        550,
+        176,
+        259
+      ],
+      "reason": "Rectangle exceeds real 356×325 image; not visually verifiable"
+    },
+    {
+      "id": "68576",
+      "atlas": "arch.webp",
+      "rectangle": [
+        0,
+        1100,
+        138,
+        257
+      ],
+      "reason": "Rectangle exceeds real 356×325 image; not visually verifiable"
+    },
+    {
+      "id": "68586",
+      "atlas": "arch.webp",
+      "rectangle": [
+        400,
+        1100,
+        175,
+        257
+      ],
+      "reason": "Rectangle exceeds real 356×325 image; not visually verifiable"
+    },
+    {
+      "id": "68596",
+      "atlas": "arch.webp",
+      "rectangle": [
+        800,
+        1100,
+        214,
+        256
+      ],
+      "reason": "Rectangle exceeds real 356×325 image; not visually verifiable"
+    },
+    {
+      "id": "68606",
+      "atlas": "arch.webp",
+      "rectangle": [
+        1200,
+        1100,
+        238,
+        255
+      ],
+      "reason": "Rectangle exceeds real 356×325 image; not visually verifiable"
+    },
+    {
+      "id": "68616",
+      "atlas": "arch.webp",
+      "rectangle": [
+        0,
+        1650,
+        140,
+        266
+      ],
+      "reason": "Rectangle exceeds real 356×325 image; not visually verifiable"
+    },
+    {
+      "id": "69126",
+      "atlas": "arch.webp",
+      "rectangle": [
+        400,
+        0,
+        196,
+        260
+      ],
+      "reason": "Rectangle exceeds real 356×325 image; not visually verifiable"
+    },
+    {
+      "id": "69136",
+      "atlas": "arch.webp",
+      "rectangle": [
+        800,
+        0,
+        129,
+        265
+      ],
+      "reason": "Rectangle exceeds real 356×325 image; not visually verifiable"
+    }
+  ],
+  "items": {
+    "73206": [
+      "cinematique-femme-remise-coupe",
+      "Femme blonde en robe blanche tenant ou tendant un trophée, pose individuelle",
+      "cinématique uniquement"
+    ],
+    "73216": [
+      "cinematique-femme-remise-coupe",
+      "Femme blonde en robe blanche tenant ou tendant un trophée, pose individuelle",
+      "cinématique uniquement"
+    ],
+    "73226": [
+      "cinematique-femme-remise-coupe",
+      "Femme blonde en robe blanche tenant ou tendant un trophée, pose individuelle",
+      "cinématique uniquement"
+    ],
+    "73236": [
+      "cinematique-femme-remise-coupe",
+      "Femme blonde en robe blanche tenant ou tendant un trophée, pose individuelle",
+      "cinématique uniquement"
+    ],
+    "73246": [
+      "cinematique-femme-remise-coupe",
+      "Femme blonde en robe blanche tenant ou tendant un trophée, pose individuelle",
+      "cinématique uniquement"
+    ],
+    "73256": [
+      "cinematique-femme-remise-coupe",
+      "Femme blonde en robe blanche tenant ou tendant un trophée, pose individuelle",
+      "cinématique uniquement"
+    ],
+    "73266": [
+      "cinematique-homme-chapeau",
+      "Homme barbu en chapeau, chemise bleue et sac en bandoulière, animation de marche",
+      "cinématique uniquement"
+    ],
+    "73276": [
+      "cinematique-homme-chapeau",
+      "Homme barbu en chapeau, chemise bleue et sac en bandoulière, animation de marche",
+      "cinématique uniquement"
+    ],
+    "73286": [
+      "cinematique-homme-chapeau",
+      "Homme barbu en chapeau, chemise bleue et sac en bandoulière, animation de marche",
+      "cinématique uniquement"
+    ],
+    "73296": [
+      "cinematique-homme-chapeau",
+      "Homme barbu en chapeau, chemise bleue et sac en bandoulière, animation de marche",
+      "cinématique uniquement"
+    ],
+    "73306": [
+      "cinematique-femme-sac",
+      "Femme blonde en robe blanche avec sac, animation de marche",
+      "cinématique uniquement"
+    ],
+    "73316": [
+      "cinematique-femme-sac",
+      "Femme blonde en robe blanche avec sac, animation de marche",
+      "cinématique uniquement"
+    ],
+    "73326": [
+      "cinematique-femme-sac",
+      "Femme blonde en robe blanche avec sac, animation de marche",
+      "cinématique uniquement"
+    ],
+    "73336": [
+      "cinematique-femme-sac",
+      "Femme blonde en robe blanche avec sac, animation de marche",
+      "cinématique uniquement"
+    ],
+    "73346": [
+      "cinematique-homme-coupe",
+      "Homme en polo bleu et pantalon blanc, applaudissant ou tenant la coupe",
+      "cinématique uniquement"
+    ],
+    "73356": [
+      "cinematique-homme-coupe",
+      "Homme en polo bleu et pantalon blanc, applaudissant ou tenant la coupe",
+      "cinématique uniquement"
+    ],
+    "73366": [
+      "cinematique-homme-coupe",
+      "Homme en polo bleu et pantalon blanc, applaudissant ou tenant la coupe",
+      "cinématique uniquement"
+    ],
+    "73376": [
+      "cinematique-homme-coupe",
+      "Homme en polo bleu et pantalon blanc, applaudissant ou tenant la coupe",
+      "cinématique uniquement"
+    ],
+    "73386": [
+      "cinematique-homme-coupe",
+      "Homme en polo bleu et pantalon blanc, applaudissant ou tenant la coupe",
+      "cinématique uniquement"
+    ],
+    "73396": [
+      "cinematique-homme-coupe",
+      "Homme en polo bleu et pantalon blanc, applaudissant ou tenant la coupe",
+      "cinématique uniquement"
+    ],
+    "73406": [
+      "cinematique-homme-coupe",
+      "Homme en polo bleu et pantalon blanc, applaudissant ou tenant la coupe",
+      "cinématique uniquement"
+    ],
+    "73416": [
+      "cinematique-homme-coupe",
+      "Homme en polo bleu et pantalon blanc, applaudissant ou tenant la coupe",
+      "cinématique uniquement"
+    ],
+    "lights0": [
+      "signalisation-feu-anime",
+      "Panneaux SIV, JPC, Côte d'Azur et feu tricolore, état 0",
+      "signalisation animée"
+    ],
+    "lights1": [
+      "signalisation-feu-anime",
+      "Panneaux SIV, JPC, Côte d'Azur et feu tricolore, état 1",
+      "signalisation animée"
+    ],
+    "lights2": [
+      "signalisation-feu-anime",
+      "Panneaux SIV, JPC, Côte d'Azur et feu tricolore, état 2",
+      "signalisation animée"
+    ],
+    "lights3": [
+      "signalisation-feu-anime",
+      "Panneaux SIV, JPC, Côte d'Azur et feu tricolore, état 3",
+      "signalisation animée"
+    ]
+  }
+}
