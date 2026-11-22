@@ -1,0 +1,308 @@
+{
+  "version": "V247-audit-09",
+  "source": "Original OutRun HD WebP atlas contact sheet; identical rectangles inspected once and associated with all corresponding IDs",
+  "visuallyClassified": 60,
+  "uniqueImages": 8,
+  "items": {
+    "65036": [
+      "route-texture",
+      "Petit fragment de chaussée en perspective",
+      "route uniquement"
+    ],
+    "65206": [
+      "terrain-rocheux-continu",
+      "Bande de terrain rocheux avec végétation; région atlas identique répétée",
+      "sol terrestre, jamais sur route"
+    ],
+    "65216": [
+      "terrain-rocheux-continu",
+      "Bande de terrain rocheux avec végétation; région atlas identique répétée",
+      "sol terrestre, jamais sur route"
+    ],
+    "65226": [
+      "terrain-rocheux-continu",
+      "Bande de terrain rocheux avec végétation; région atlas identique répétée",
+      "sol terrestre, jamais sur route"
+    ],
+    "65236": [
+      "terrain-rocheux-continu",
+      "Bande de terrain rocheux avec végétation; région atlas identique répétée",
+      "sol terrestre, jamais sur route"
+    ],
+    "65246": [
+      "terrain-rocheux-continu",
+      "Bande de terrain rocheux avec végétation; région atlas identique répétée",
+      "sol terrestre, jamais sur route"
+    ],
+    "65256": [
+      "terrain-rocheux-continu",
+      "Bande de terrain rocheux avec végétation; région atlas identique répétée",
+      "sol terrestre, jamais sur route"
+    ],
+    "65266": [
+      "terrain-rocheux-continu",
+      "Bande de terrain rocheux avec végétation; région atlas identique répétée",
+      "sol terrestre, jamais sur route"
+    ],
+    "65276": [
+      "terrain-rocheux-continu",
+      "Bande de terrain rocheux avec végétation; région atlas identique répétée",
+      "sol terrestre, jamais sur route"
+    ],
+    "65286": [
+      "terrain-rocheux-continu",
+      "Bande de terrain rocheux avec végétation; région atlas identique répétée",
+      "sol terrestre, jamais sur route"
+    ],
+    "65296": [
+      "terrain-rocheux-continu",
+      "Bande de terrain rocheux avec végétation; région atlas identique répétée",
+      "sol terrestre, jamais sur route"
+    ],
+    "65306": [
+      "terrain-rocheux-continu",
+      "Bande de terrain rocheux avec végétation; région atlas identique répétée",
+      "sol terrestre, jamais sur route"
+    ],
+    "65316": [
+      "terrain-rocheux-continu",
+      "Bande de terrain rocheux avec végétation; région atlas identique répétée",
+      "sol terrestre, jamais sur route"
+    ],
+    "65326": [
+      "terrain-rocheux-continu",
+      "Bande de terrain rocheux avec végétation; région atlas identique répétée",
+      "sol terrestre, jamais sur route"
+    ],
+    "65336": [
+      "terrain-rocheux-continu",
+      "Bande de terrain rocheux avec végétation; région atlas identique répétée",
+      "sol terrestre, jamais sur route"
+    ],
+    "65346": [
+      "terrain-rocheux-continu",
+      "Bande de terrain rocheux avec végétation; région atlas identique répétée",
+      "sol terrestre, jamais sur route"
+    ],
+    "65356": [
+      "terrain-rocheux-continu",
+      "Bande de terrain rocheux avec végétation; région atlas identique répétée",
+      "sol terrestre, jamais sur route"
+    ],
+    "66016": [
+      "mer-littoral-continu",
+      "Bande de mer turquoise avec écume; région atlas identique répétée",
+      "bord de mer, jamais sur route"
+    ],
+    "66026": [
+      "mer-littoral-continu",
+      "Bande de mer turquoise avec écume; région atlas identique répétée",
+      "bord de mer, jamais sur route"
+    ],
+    "66036": [
+      "mer-littoral-continu",
+      "Bande de mer turquoise avec écume; région atlas identique répétée",
+      "bord de mer, jamais sur route"
+    ],
+    "66046": [
+      "mer-littoral-continu",
+      "Bande de mer turquoise avec écume; région atlas identique répétée",
+      "bord de mer, jamais sur route"
+    ],
+    "66056": [
+      "mer-littoral-continu",
+      "Bande de mer turquoise avec écume; région atlas identique répétée",
+      "bord de mer, jamais sur route"
+    ],
+    "66066": [
+      "mer-littoral-continu",
+      "Bande de mer turquoise avec écume; région atlas identique répétée",
+      "bord de mer, jamais sur route"
+    ],
+    "66076": [
+      "mer-littoral-continu",
+      "Bande de mer turquoise avec écume; région atlas identique répétée",
+      "bord de mer, jamais sur route"
+    ],
+    "66086": [
+      "mer-littoral-continu",
+      "Bande de mer turquoise avec écume; région atlas identique répétée",
+      "bord de mer, jamais sur route"
+    ],
+    "66096": [
+      "mer-littoral-continu",
+      "Bande de mer turquoise avec écume; région atlas identique répétée",
+      "bord de mer, jamais sur route"
+    ],
+    "66106": [
+      "mer-littoral-continu",
+      "Bande de mer turquoise avec écume; région atlas identique répétée",
+      "bord de mer, jamais sur route"
+    ],
+    "66116": [
+      "mer-littoral-continu",
+      "Bande de mer turquoise avec écume; région atlas identique répétée",
+      "bord de mer, jamais sur route"
+    ],
+    "66126": [
+      "mer-littoral-continu",
+      "Bande de mer turquoise avec écume; région atlas identique répétée",
+      "bord de mer, jamais sur route"
+    ],
+    "66136": [
+      "mer-littoral-continu",
+      "Bande de mer turquoise avec écume; région atlas identique répétée",
+      "bord de mer, jamais sur route"
+    ],
+    "66146": [
+      "mer-littoral-continu",
+      "Bande de mer turquoise avec écume; région atlas identique répétée",
+      "bord de mer, jamais sur route"
+    ],
+    "66156": [
+      "mer-littoral-continu",
+      "Bande de mer turquoise avec écume; région atlas identique répétée",
+      "bord de mer, jamais sur route"
+    ],
+    "66166": [
+      "mer-littoral-continu",
+      "Bande de mer turquoise avec écume; région atlas identique répétée",
+      "bord de mer, jamais sur route"
+    ],
+    "66176": [
+      "monument-tour",
+      "Tour médiévale en pierre",
+      "monument terrestre"
+    ],
+    "66226": [
+      "architecture-toiture",
+      "Corniche/toiture de pierre; n'est pas START",
+      "bâtiment"
+    ],
+    "66276": [
+      "vegetation-bande",
+      "Bande d'herbes et plantes basses; région atlas identique répétée",
+      "bord de terrain"
+    ],
+    "66286": [
+      "vegetation-bande",
+      "Bande d'herbes et plantes basses; région atlas identique répétée",
+      "bord de terrain"
+    ],
+    "66296": [
+      "vegetation-bande",
+      "Bande d'herbes et plantes basses; région atlas identique répétée",
+      "bord de terrain"
+    ],
+    "66306": [
+      "vegetation-bande",
+      "Bande d'herbes et plantes basses; région atlas identique répétée",
+      "bord de terrain"
+    ],
+    "66316": [
+      "vegetation-bande",
+      "Bande d'herbes et plantes basses; région atlas identique répétée",
+      "bord de terrain"
+    ],
+    "66326": [
+      "vegetation-bande",
+      "Bande d'herbes et plantes basses; région atlas identique répétée",
+      "bord de terrain"
+    ],
+    "66336": [
+      "vegetation-bande",
+      "Bande d'herbes et plantes basses; région atlas identique répétée",
+      "bord de terrain"
+    ],
+    "66346": [
+      "vegetation-bande",
+      "Bande d'herbes et plantes basses; région atlas identique répétée",
+      "bord de terrain"
+    ],
+    "66356": [
+      "vegetation-bande",
+      "Bande d'herbes et plantes basses; région atlas identique répétée",
+      "bord de terrain"
+    ],
+    "66366": [
+      "vegetation-bande",
+      "Bande d'herbes et plantes basses; région atlas identique répétée",
+      "bord de terrain"
+    ],
+    "66376": [
+      "vegetation-bande",
+      "Bande d'herbes et plantes basses; région atlas identique répétée",
+      "bord de terrain"
+    ],
+    "66386": [
+      "vegetation-bande",
+      "Bande d'herbes et plantes basses; région atlas identique répétée",
+      "bord de terrain"
+    ],
+    "66396": [
+      "vegetation-bande",
+      "Bande d'herbes et plantes basses; région atlas identique répétée",
+      "bord de terrain"
+    ],
+    "66406": [
+      "vegetation-bande",
+      "Bande d'herbes et plantes basses; région atlas identique répétée",
+      "bord de terrain"
+    ],
+    "66416": [
+      "vegetation-bande",
+      "Bande d'herbes et plantes basses; région atlas identique répétée",
+      "bord de terrain"
+    ],
+    "66426": [
+      "vegetation-bande",
+      "Bande d'herbes et plantes basses; région atlas identique répétée",
+      "bord de terrain"
+    ],
+    "66576": [
+      "arbres-bande",
+      "Rangée d'arbres nus sur herbe; région atlas identique répétée",
+      "terrain automne/hiver"
+    ],
+    "66586": [
+      "arbres-bande",
+      "Rangée d'arbres nus sur herbe; région atlas identique répétée",
+      "terrain automne/hiver"
+    ],
+    "66596": [
+      "arbres-bande",
+      "Rangée d'arbres nus sur herbe; région atlas identique répétée",
+      "terrain automne/hiver"
+    ],
+    "66606": [
+      "arbres-bande",
+      "Rangée d'arbres nus sur herbe; région atlas identique répétée",
+      "terrain automne/hiver"
+    ],
+    "66616": [
+      "arbres-bande",
+      "Rangée d'arbres nus sur herbe; région atlas identique répétée",
+      "terrain automne/hiver"
+    ],
+    "66626": [
+      "arbres-bande",
+      "Rangée d'arbres nus sur herbe; région atlas identique répétée",
+      "terrain automne/hiver"
+    ],
+    "66636": [
+      "arbres-bande",
+      "Rangée d'arbres nus sur herbe; région atlas identique répétée",
+      "terrain automne/hiver"
+    ],
+    "66646": [
+      "arbres-bande",
+      "Rangée d'arbres nus sur herbe; région atlas identique répétée",
+      "terrain automne/hiver"
+    ],
+    "67066": [
+      "borne-arcade",
+      "Borne d'arcade SEGA OutRun",
+      "décoration événementielle, pas chaussée"
+    ]
+  }
+}
