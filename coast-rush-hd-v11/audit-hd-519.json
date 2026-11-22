@@ -1,0 +1,8837 @@
+{
+  "version": "V247-audit-519",
+  "source": "sprites.js + user-supplied original WebP atlases",
+  "status": "Complete technical inventory; visual verification remains partial",
+  "counts": {
+    "total": 519,
+    "visuallyClassified": 105,
+    "unclassified": 414,
+    "duplicateRegions": 66,
+    "archInvalid": 12
+  },
+  "records": [
+    {
+      "id": "62006",
+      "atlas": 5,
+      "rect": [
+        272,
+        503,
+        267,
+        150
+      ],
+      "source": "ferrari",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "62016",
+      "atlas": 5,
+      "rect": [
+        1314,
+        656,
+        271,
+        144
+      ],
+      "source": "ferrari",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "62026",
+      "atlas": 5,
+      "rect": [
+        1627,
+        806,
+        267,
+        138
+      ],
+      "source": "ferrari",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "62036",
+      "atlas": 5,
+      "rect": [
+        0,
+        503,
+        270,
+        151
+      ],
+      "source": "ferrari",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "62046",
+      "atlas": 5,
+      "rect": [
+        821,
+        806,
+        266,
+        140
+      ],
+      "source": "ferrari",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "62056",
+      "atlas": 5,
+      "rect": [
+        545,
+        951,
+        268,
+        133
+      ],
+      "source": "ferrari",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "62066",
+      "atlas": 5,
+      "rect": [
+        1128,
+        340,
+        266,
+        157
+      ],
+      "source": "ferrari",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "62076",
+      "atlas": 5,
+      "rect": [
+        0,
+        951,
+        271,
+        138
+      ],
+      "source": "ferrari",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "62086",
+      "atlas": 5,
+      "rect": [
+        803,
+        1091,
+        265,
+        127
+      ],
+      "source": "ferrari",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "62096",
+      "atlas": 4,
+      "rect": [
+        1590,
+        855,
+        273,
+        201
+      ],
+      "source": "traffic",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "62146",
+      "atlas": 4,
+      "rect": [
+        531,
+        0,
+        274,
+        220
+      ],
+      "source": "traffic",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "62196",
+      "atlas": 4,
+      "rect": [
+        1095,
+        1654,
+        277,
+        182
+      ],
+      "source": "traffic",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "62246",
+      "atlas": 4,
+      "rect": [
+        1616,
+        1060,
+        276,
+        195
+      ],
+      "source": "traffic",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "62296",
+      "atlas": 5,
+      "rect": [
+        552,
+        340,
+        283,
+        160
+      ],
+      "source": "traffic",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "62346",
+      "atlas": 4,
+      "rect": [
+        1626,
+        1843,
+        279,
+        171
+      ],
+      "source": "traffic",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "62396",
+      "atlas": 3,
+      "rect": [
+        531,
+        1717,
+        252,
+        223
+      ],
+      "source": "traffic",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "62446",
+      "atlas": 3,
+      "rect": [
+        801,
+        1257,
+        246,
+        228
+      ],
+      "source": "traffic",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "62496",
+      "atlas": 4,
+      "rect": [
+        500,
+        855,
+        254,
+        202
+      ],
+      "source": "traffic",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "62546",
+      "atlas": 4,
+      "rect": [
+        251,
+        0,
+        278,
+        220
+      ],
+      "source": "traffic",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "62596",
+      "atlas": 4,
+      "rect": [
+        529,
+        1460,
+        272,
+        191
+      ],
+      "source": "traffic",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "62646",
+      "atlas": 4,
+      "rect": [
+        794,
+        1263,
+        269,
+        194
+      ],
+      "source": "traffic",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "62696",
+      "atlas": 5,
+      "rect": [
+        562,
+        1341,
+        270,
+        104
+      ],
+      "source": "ferrari",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "62706",
+      "atlas": 5,
+      "rect": [
+        1101,
+        1638,
+        269,
+        76
+      ],
+      "source": "ferrari",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "62716",
+      "atlas": 5,
+      "rect": [
+        0,
+        1798,
+        273,
+        70
+      ],
+      "source": "ferrari",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "62726",
+      "atlas": 5,
+      "rect": [
+        1110,
+        1341,
+        269,
+        100
+      ],
+      "source": "ferrari",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "62736",
+      "atlas": 4,
+      "rect": [
+        1535,
+        649,
+        264,
+        203
+      ],
+      "source": "traffic",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "62786",
+      "atlas": 4,
+      "rect": [
+        642,
+        438,
+        270,
+        206
+      ],
+      "source": "traffic",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "62836",
+      "atlas": 4,
+      "rect": [
+        1065,
+        1263,
+        276,
+        194
+      ],
+      "source": "traffic",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "62886",
+      "atlas": 4,
+      "rect": [
+        1343,
+        1263,
+        273,
+        194
+      ],
+      "source": "traffic",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "62936",
+      "atlas": 5,
+      "rect": [
+        268,
+        340,
+        282,
+        161
+      ],
+      "source": "traffic",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "62986",
+      "atlas": 5,
+      "rect": [
+        821,
+        0,
+        277,
+        167
+      ],
+      "source": "traffic",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "63036",
+      "atlas": 1,
+      "rect": [
+        684,
+        1670,
+        217,
+        269
+      ],
+      "source": "traffic",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "63086",
+      "atlas": 1,
+      "rect": [
+        962,
+        850,
+        247,
+        272
+      ],
+      "source": "traffic",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "63136",
+      "atlas": 2,
+      "rect": [
+        1606,
+        1605,
+        265,
+        259
+      ],
+      "source": "traffic",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "63186",
+      "atlas": 3,
+      "rect": [
+        829,
+        770,
+        243,
+        241
+      ],
+      "source": "riders",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "63196",
+      "atlas": 1,
+      "rect": [
+        1077,
+        1125,
+        206,
+        270
+      ],
+      "source": "riders",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "63206",
+      "atlas": 1,
+      "rect": [
+        1285,
+        1125,
+        211,
+        270
+      ],
+      "source": "riders",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "63216",
+      "atlas": 2,
+      "rect": [
+        0,
+        1605,
+        266,
+        260
+      ],
+      "source": "riders",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "63226",
+      "atlas": 2,
+      "rect": [
+        1695,
+        271,
+        201,
+        266
+      ],
+      "source": "riders",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "63236",
+      "atlas": 2,
+      "rect": [
+        1641,
+        540,
+        214,
+        265
+      ],
+      "source": "riders",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "63246",
+      "atlas": 5,
+      "rect": [
+        1089,
+        806,
+        264,
+        139
+      ],
+      "source": "riders",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "63256",
+      "atlas": 5,
+      "rect": [
+        1368,
+        1224,
+        277,
+        111
+      ],
+      "source": "riders",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "63266",
+      "atlas": 3,
+      "rect": [
+        785,
+        1717,
+        282,
+        223
+      ],
+      "source": "riders",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "63276",
+      "atlas": 3,
+      "rect": [
+        1074,
+        770,
+        290,
+        241
+      ],
+      "source": "riders",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "63286",
+      "atlas": 3,
+      "rect": [
+        1665,
+        770,
+        290,
+        238
+      ],
+      "source": "riders",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "63296",
+      "atlas": 3,
+      "rect": [
+        270,
+        1017,
+        291,
+        236
+      ],
+      "source": "riders",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "63306",
+      "atlas": 3,
+      "rect": [
+        0,
+        1257,
+        261,
+        229
+      ],
+      "source": "riders",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "63316",
+      "atlas": 3,
+      "rect": [
+        1049,
+        1257,
+        260,
+        228
+      ],
+      "source": "riders",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "63326",
+      "atlas": 1,
+      "rect": [
+        903,
+        1670,
+        229,
+        269
+      ],
+      "source": "riders",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "63336",
+      "atlas": 3,
+      "rect": [
+        1610,
+        1717,
+        258,
+        221
+      ],
+      "source": "riders",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "63346",
+      "atlas": 2,
+      "rect": [
+        697,
+        1075,
+        205,
+        263
+      ],
+      "source": "riders",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "63356",
+      "atlas": 3,
+      "rect": [
+        912,
+        261,
+        251,
+        254
+      ],
+      "source": "riders",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "63366",
+      "atlas": 2,
+      "rect": [
+        1857,
+        540,
+        157,
+        265
+      ],
+      "source": "riders",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "63376",
+      "atlas": 2,
+      "rect": [
+        1793,
+        0,
+        241,
+        267
+      ],
+      "source": "riders",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "63386",
+      "atlas": 3,
+      "rect": [
+        0,
+        770,
+        279,
+        245
+      ],
+      "source": "riders",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "63396",
+      "atlas": 5,
+      "rect": [
+        541,
+        503,
+        283,
+        150
+      ],
+      "source": "riders",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "63406",
+      "atlas": 5,
+      "rect": [
+        1381,
+        1341,
+        282,
+        98
+      ],
+      "source": "riders",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "63416",
+      "atlas": 3,
+      "rect": [
+        666,
+        519,
+        284,
+        248
+      ],
+      "source": "riders",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "63426",
+      "atlas": 2,
+      "rect": [
+        0,
+        1341,
+        233,
+        262
+      ],
+      "source": "riders",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "63436",
+      "atlas": 2,
+      "rect": [
+        1681,
+        808,
+        232,
+        264
+      ],
+      "source": "riders",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "63446",
+      "atlas": 2,
+      "rect": [
+        0,
+        808,
+        232,
+        265
+      ],
+      "source": "riders",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "63456",
+      "atlas": 1,
+      "rect": [
+        295,
+        1670,
+        149,
+        269
+      ],
+      "source": "scene",
+      "category": "vehicule",
+      "description": "motard arrière",
+      "placement": "exclure décor",
+      "verified": true,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "63506",
+      "atlas": 1,
+      "rect": [
+        879,
+        573,
+        187,
+        274
+      ],
+      "source": "scene",
+      "category": "vehicule",
+      "description": "motard profil trois-quarts",
+      "placement": "exclure décor",
+      "verified": true,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "63556",
+      "atlas": 1,
+      "rect": [
+        1325,
+        291,
+        215,
+        275
+      ],
+      "source": "scene",
+      "category": "vehicule",
+      "description": "motard autre animation",
+      "placement": "exclure décor",
+      "verified": true,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "63606",
+      "atlas": 4,
+      "rect": [
+        756,
+        855,
+        263,
+        202
+      ],
+      "source": "traffic",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "63656",
+      "atlas": 5,
+      "rect": [
+        1100,
+        0,
+        278,
+        167
+      ],
+      "source": "traffic",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "63706",
+      "atlas": 5,
+      "rect": [
+        811,
+        656,
+        276,
+        145
+      ],
+      "source": "traffic",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "63756",
+      "atlas": 3,
+      "rect": [
+        1418,
+        1017,
+        250,
+        231
+      ],
+      "source": "traffic",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "63806",
+      "atlas": 4,
+      "rect": [
+        1062,
+        0,
+        273,
+        218
+      ],
+      "source": "traffic",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "63856",
+      "atlas": 4,
+      "rect": [
+        1066,
+        1060,
+        289,
+        197
+      ],
+      "source": "traffic",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "63876",
+      "atlas": 5,
+      "rect": [
+        536,
+        656,
+        273,
+        147
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "63906",
+      "atlas": 5,
+      "rect": [
+        565,
+        1638,
+        267,
+        80
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "63916",
+      "atlas": 5,
+      "rect": [
+        1656,
+        1449,
+        266,
+        90
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "63926",
+      "atlas": 5,
+      "rect": [
+        819,
+        1798,
+        268,
+        68
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "63936",
+      "atlas": 5,
+      "rect": [
+        1094,
+        951,
+        265,
+        132
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "63946",
+      "atlas": 4,
+      "rect": [
+        546,
+        1843,
+        262,
+        176
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "63956",
+      "atlas": 5,
+      "rect": [
+        0,
+        1449,
+        263,
+        95
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "63966",
+      "atlas": 5,
+      "rect": [
+        0,
+        1224,
+        263,
+        115
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "63976",
+      "atlas": 5,
+      "rect": [
+        269,
+        656,
+        265,
+        147
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "63986",
+      "atlas": 5,
+      "rect": [
+        1635,
+        503,
+        264,
+        148
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "63996",
+      "atlas": 5,
+      "rect": [
+        281,
+        172,
+        272,
+        165
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "64006",
+      "atlas": 5,
+      "rect": [
+        1647,
+        0,
+        273,
+        166
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "64016",
+      "atlas": 1,
+      "rect": [
+        1498,
+        1125,
+        232,
+        270
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "64026",
+      "atlas": 4,
+      "rect": [
+        807,
+        0,
+        253,
+        220
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "64036",
+      "atlas": 5,
+      "rect": [
+        1106,
+        1546,
+        267,
+        85
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "64056",
+      "atlas": 1,
+      "rect": [
+        404,
+        291,
+        211,
+        279
+      ],
+      "source": "scene",
+      "category": "decor-composite",
+      "description": "arbre sur îlot fleuri",
+      "placement": "sol naturel seulement",
+      "verified": true,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "64066",
+      "atlas": 4,
+      "rect": [
+        579,
+        223,
+        277,
+        210
+      ],
+      "source": "scene",
+      "category": "rocher-composite",
+      "description": "falaise végétalisée",
+      "placement": "montagne/côte terrestre",
+      "verified": true,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "64076",
+      "atlas": 4,
+      "rect": [
+        789,
+        1060,
+        275,
+        199
+      ],
+      "source": "scene",
+      "category": "ruines",
+      "description": "colonnes sur îlot fleuri",
+      "placement": "terrain sec",
+      "verified": true,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "64086",
+      "atlas": 2,
+      "rect": [
+        1144,
+        271,
+        265,
+        267
+      ],
+      "source": "scene",
+      "category": "montagne-composite",
+      "description": "montagnes et massif fleuri",
+      "placement": "arrière-plan terrestre",
+      "verified": true,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "64096",
+      "atlas": 3,
+      "rect": [
+        1331,
+        1717,
+        277,
+        222
+      ],
+      "source": "scene",
+      "category": "ruines",
+      "description": "colonnes et fleurs",
+      "placement": "terrain sec",
+      "verified": true,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "64106",
+      "atlas": 2,
+      "rect": [
+        420,
+        0,
+        247,
+        269
+      ],
+      "source": "scene",
+      "category": "ruines",
+      "description": "aqueduc/arches en pierre",
+      "placement": "terrain sec",
+      "verified": true,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "64116",
+      "atlas": 5,
+      "rect": [
+        545,
+        0,
+        274,
+        169
+      ],
+      "source": "scene",
+      "category": "rocher",
+      "description": "dalles rocheuses",
+      "placement": "terrain sec",
+      "verified": true,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "64126",
+      "atlas": 2,
+      "rect": [
+        833,
+        808,
+        269,
+        265
+      ],
+      "source": "scene",
+      "category": "batiment",
+      "description": "station GAS et maisons",
+      "placement": "terrain sec",
+      "verified": true,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "64136",
+      "atlas": 5,
+      "rect": [
+        0,
+        1546,
+        285,
+        90
+      ],
+      "source": "scene",
+      "category": "rocher",
+      "description": "plateforme rocheuse basse",
+      "placement": "terrain sec",
+      "verified": true,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "64146",
+      "atlas": 4,
+      "rect": [
+        810,
+        1843,
+        273,
+        176
+      ],
+      "source": "scene",
+      "category": "vegetation-composite",
+      "description": "rangée d'arbres sur roche",
+      "placement": "terrain sec",
+      "verified": true,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "64156",
+      "atlas": 5,
+      "rect": [
+        0,
+        806,
+        279,
+        143
+      ],
+      "source": "scene",
+      "category": "terrain-composite",
+      "description": "rochers et fleurs",
+      "placement": "terrain sec",
+      "verified": true,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "64166",
+      "atlas": 5,
+      "rect": [
+        837,
+        340,
+        289,
+        158
+      ],
+      "source": "scene",
+      "category": "vegetation",
+      "description": "bosquet d'oliviers",
+      "placement": "terrain sec",
+      "verified": true,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "64176",
+      "atlas": 5,
+      "rect": [
+        1336,
+        1091,
+        272,
+        121
+      ],
+      "source": "scene",
+      "category": "terrain-composite",
+      "description": "rochers fleuris",
+      "placement": "terrain sec",
+      "verified": true,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "64186",
+      "atlas": 5,
+      "rect": [
+        0,
+        1341,
+        278,
+        106
+      ],
+      "source": "scene",
+      "category": "terrain-composite",
+      "description": "mare avec roseaux",
+      "placement": "bord d'eau, pas sur mer",
+      "verified": true,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "64206",
+      "atlas": 1,
+      "rect": [
+        0,
+        291,
+        289,
+        280
+      ],
+      "source": "scene",
+      "category": "arbre",
+      "description": "olivier isolé",
+      "placement": "terrain sec",
+      "verified": true,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "64256",
+      "atlas": 1,
+      "rect": [
+        186,
+        573,
+        132,
+        274
+      ],
+      "source": "scene",
+      "category": "arbre",
+      "description": "cyprès",
+      "placement": "terrain sec",
+      "verified": true,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "64306",
+      "atlas": 5,
+      "rect": [
+        0,
+        1932,
+        261,
+        45
+      ],
+      "source": "scene",
+      "category": "vegetation",
+      "description": "rangée de petits arbres",
+      "placement": "terrain sec",
+      "verified": true,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "64356",
+      "atlas": 4,
+      "rect": [
+        803,
+        1460,
+        269,
+        190
+      ],
+      "source": "scene",
+      "category": "vegetation",
+      "description": "arbuste à fleurs roses",
+      "placement": "terrain sec",
+      "verified": true,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "64406",
+      "atlas": 5,
+      "rect": [
+        1070,
+        1091,
+        264,
+        121
+      ],
+      "source": "scene",
+      "category": "vegetation",
+      "description": "bosquet d'arbustes roses",
+      "placement": "terrain sec",
+      "verified": true,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "64456",
+      "atlas": 1,
+      "rect": [
+        1663,
+        573,
+        164,
+        273
+      ],
+      "source": "scene",
+      "category": "arbre",
+      "description": "palmier haut",
+      "placement": "climat chaud",
+      "verified": true,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "64506",
+      "atlas": 1,
+      "rect": [
+        320,
+        573,
+        275,
+        274
+      ],
+      "source": "scene",
+      "category": "arbre",
+      "description": "grand pin parasol",
+      "placement": "climat méditerranéen",
+      "verified": true,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "64556",
+      "atlas": 5,
+      "rect": [
+        549,
+        1546,
+        273,
+        85
+      ],
+      "source": "scene",
+      "category": "arbre-groupe",
+      "description": "deux pins parasols",
+      "placement": "climat méditerranéen",
+      "verified": true,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "64606",
+      "atlas": 1,
+      "rect": [
+        597,
+        573,
+        280,
+        274
+      ],
+      "source": "scene",
+      "category": "arbre",
+      "description": "grand arbre sans feuilles",
+      "placement": "terrain sec",
+      "verified": true,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "64656",
+      "atlas": 5,
+      "rect": [
+        1382,
+        1449,
+        272,
+        90
+      ],
+      "source": "scene",
+      "category": "arbre-groupe",
+      "description": "deux petits arbres",
+      "placement": "terrain sec",
+      "verified": true,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "64706",
+      "atlas": 4,
+      "rect": [
+        268,
+        1654,
+        258,
+        185
+      ],
+      "source": "scene",
+      "category": "arbre",
+      "description": "palmier trapu",
+      "placement": "climat chaud",
+      "verified": true,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "64756",
+      "atlas": 4,
+      "rect": [
+        802,
+        1654,
+        291,
+        182
+      ],
+      "source": "scene",
+      "category": "arbre",
+      "description": "arbre fleuri blanc",
+      "placement": "terrain sec",
+      "verified": true,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "64806",
+      "atlas": 5,
+      "rect": [
+        1596,
+        951,
+        272,
+        131
+      ],
+      "source": "scene",
+      "category": "vegetation",
+      "description": "massif de figuiers de Barbarie",
+      "placement": "climat aride",
+      "verified": true,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "64856",
+      "atlas": 2,
+      "rect": [
+        669,
+        0,
+        144,
+        268
+      ],
+      "source": "scene",
+      "category": "vegetation",
+      "description": "grand cactus",
+      "placement": "désert",
+      "verified": true,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "64906",
+      "atlas": 5,
+      "rect": [
+        1361,
+        951,
+        233,
+        131
+      ],
+      "source": "scene",
+      "category": "vegetation",
+      "description": "deux cactus",
+      "placement": "désert",
+      "verified": true,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "64956",
+      "atlas": 1,
+      "rect": [
+        0,
+        850,
+        180,
+        273
+      ],
+      "source": "scene",
+      "category": "arbre",
+      "description": "arbre mort ramifié",
+      "placement": "terrain sec",
+      "verified": true,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "65006",
+      "atlas": 4,
+      "rect": [
+        507,
+        1060,
+        280,
+        199
+      ],
+      "source": "scene",
+      "category": "ruines",
+      "description": "ruine de pierre sur rochers",
+      "placement": "terrain sec",
+      "verified": true,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "65036",
+      "atlas": 6,
+      "rect": [
+        733,
+        242,
+        67,
+        48
+      ],
+      "source": "scene",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "65056",
+      "atlas": 1,
+      "rect": [
+        777,
+        850,
+        183,
+        272
+      ],
+      "source": "scene",
+      "category": "arbre",
+      "description": "tronc mort",
+      "placement": "terrain sec",
+      "verified": true,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "65066",
+      "atlas": 1,
+      "rect": [
+        1698,
+        1670,
+        156,
+        269
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "65106",
+      "atlas": 5,
+      "rect": [
+        1074,
+        1224,
+        292,
+        111
+      ],
+      "source": "scene",
+      "category": "vegetation",
+      "description": "buisson bas fleuri",
+      "placement": "terrain sec",
+      "verified": true,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "65156",
+      "atlas": 5,
+      "rect": [
+        796,
+        1224,
+        276,
+        113
+      ],
+      "source": "scene",
+      "category": "vegetation",
+      "description": "buissons bas mixtes",
+      "placement": "terrain sec",
+      "verified": true,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "65206",
+      "atlas": 5,
+      "rect": [
+        817,
+        1449,
+        563,
+        92
+      ],
+      "source": "scene",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "65216",
+      "atlas": 5,
+      "rect": [
+        817,
+        1449,
+        563,
+        92
+      ],
+      "source": "scene",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": "65206",
+      "invalidBounds": false
+    },
+    {
+      "id": "65226",
+      "atlas": 5,
+      "rect": [
+        817,
+        1449,
+        563,
+        92
+      ],
+      "source": "scene",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": "65206",
+      "invalidBounds": false
+    },
+    {
+      "id": "65236",
+      "atlas": 5,
+      "rect": [
+        817,
+        1449,
+        563,
+        92
+      ],
+      "source": "scene",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": "65206",
+      "invalidBounds": false
+    },
+    {
+      "id": "65246",
+      "atlas": 5,
+      "rect": [
+        817,
+        1449,
+        563,
+        92
+      ],
+      "source": "scene",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": "65206",
+      "invalidBounds": false
+    },
+    {
+      "id": "65256",
+      "atlas": 5,
+      "rect": [
+        817,
+        1449,
+        563,
+        92
+      ],
+      "source": "scene",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": "65206",
+      "invalidBounds": false
+    },
+    {
+      "id": "65266",
+      "atlas": 5,
+      "rect": [
+        817,
+        1449,
+        563,
+        92
+      ],
+      "source": "scene",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": "65206",
+      "invalidBounds": false
+    },
+    {
+      "id": "65276",
+      "atlas": 5,
+      "rect": [
+        817,
+        1449,
+        563,
+        92
+      ],
+      "source": "scene",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": "65206",
+      "invalidBounds": false
+    },
+    {
+      "id": "65286",
+      "atlas": 5,
+      "rect": [
+        817,
+        1449,
+        563,
+        92
+      ],
+      "source": "scene",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": "65206",
+      "invalidBounds": false
+    },
+    {
+      "id": "65296",
+      "atlas": 5,
+      "rect": [
+        817,
+        1449,
+        563,
+        92
+      ],
+      "source": "scene",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": "65206",
+      "invalidBounds": false
+    },
+    {
+      "id": "65306",
+      "atlas": 5,
+      "rect": [
+        817,
+        1449,
+        563,
+        92
+      ],
+      "source": "scene",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": "65206",
+      "invalidBounds": false
+    },
+    {
+      "id": "65316",
+      "atlas": 5,
+      "rect": [
+        817,
+        1449,
+        563,
+        92
+      ],
+      "source": "scene",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": "65206",
+      "invalidBounds": false
+    },
+    {
+      "id": "65326",
+      "atlas": 5,
+      "rect": [
+        817,
+        1449,
+        563,
+        92
+      ],
+      "source": "scene",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": "65206",
+      "invalidBounds": false
+    },
+    {
+      "id": "65336",
+      "atlas": 5,
+      "rect": [
+        817,
+        1449,
+        563,
+        92
+      ],
+      "source": "scene",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": "65206",
+      "invalidBounds": false
+    },
+    {
+      "id": "65346",
+      "atlas": 5,
+      "rect": [
+        817,
+        1449,
+        563,
+        92
+      ],
+      "source": "scene",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": "65206",
+      "invalidBounds": false
+    },
+    {
+      "id": "65356",
+      "atlas": 5,
+      "rect": [
+        817,
+        1449,
+        563,
+        92
+      ],
+      "source": "scene",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": "65206",
+      "invalidBounds": false
+    },
+    {
+      "id": "65676",
+      "atlas": 5,
+      "rect": [
+        822,
+        1932,
+        285,
+        39
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "66016",
+      "atlas": 5,
+      "rect": [
+        1375,
+        1546,
+        562,
+        85
+      ],
+      "source": "scene",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "66026",
+      "atlas": 5,
+      "rect": [
+        1375,
+        1546,
+        562,
+        85
+      ],
+      "source": "scene",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": "66016",
+      "invalidBounds": false
+    },
+    {
+      "id": "66036",
+      "atlas": 5,
+      "rect": [
+        1375,
+        1546,
+        562,
+        85
+      ],
+      "source": "scene",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": "66016",
+      "invalidBounds": false
+    },
+    {
+      "id": "66046",
+      "atlas": 5,
+      "rect": [
+        1375,
+        1546,
+        562,
+        85
+      ],
+      "source": "scene",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": "66016",
+      "invalidBounds": false
+    },
+    {
+      "id": "66056",
+      "atlas": 5,
+      "rect": [
+        1375,
+        1546,
+        562,
+        85
+      ],
+      "source": "scene",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": "66016",
+      "invalidBounds": false
+    },
+    {
+      "id": "66066",
+      "atlas": 5,
+      "rect": [
+        1375,
+        1546,
+        562,
+        85
+      ],
+      "source": "scene",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": "66016",
+      "invalidBounds": false
+    },
+    {
+      "id": "66076",
+      "atlas": 5,
+      "rect": [
+        1375,
+        1546,
+        562,
+        85
+      ],
+      "source": "scene",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": "66016",
+      "invalidBounds": false
+    },
+    {
+      "id": "66086",
+      "atlas": 5,
+      "rect": [
+        1375,
+        1546,
+        562,
+        85
+      ],
+      "source": "scene",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": "66016",
+      "invalidBounds": false
+    },
+    {
+      "id": "66096",
+      "atlas": 5,
+      "rect": [
+        1375,
+        1546,
+        562,
+        85
+      ],
+      "source": "scene",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": "66016",
+      "invalidBounds": false
+    },
+    {
+      "id": "66106",
+      "atlas": 5,
+      "rect": [
+        1375,
+        1546,
+        562,
+        85
+      ],
+      "source": "scene",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": "66016",
+      "invalidBounds": false
+    },
+    {
+      "id": "66116",
+      "atlas": 5,
+      "rect": [
+        1375,
+        1546,
+        562,
+        85
+      ],
+      "source": "scene",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": "66016",
+      "invalidBounds": false
+    },
+    {
+      "id": "66126",
+      "atlas": 5,
+      "rect": [
+        1375,
+        1546,
+        562,
+        85
+      ],
+      "source": "scene",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": "66016",
+      "invalidBounds": false
+    },
+    {
+      "id": "66136",
+      "atlas": 5,
+      "rect": [
+        1375,
+        1546,
+        562,
+        85
+      ],
+      "source": "scene",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": "66016",
+      "invalidBounds": false
+    },
+    {
+      "id": "66146",
+      "atlas": 5,
+      "rect": [
+        1375,
+        1546,
+        562,
+        85
+      ],
+      "source": "scene",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": "66016",
+      "invalidBounds": false
+    },
+    {
+      "id": "66156",
+      "atlas": 5,
+      "rect": [
+        1375,
+        1546,
+        562,
+        85
+      ],
+      "source": "scene",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": "66016",
+      "invalidBounds": false
+    },
+    {
+      "id": "66166",
+      "atlas": 5,
+      "rect": [
+        1375,
+        1546,
+        562,
+        85
+      ],
+      "source": "scene",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": "66016",
+      "invalidBounds": false
+    },
+    {
+      "id": "66176",
+      "atlas": 2,
+      "rect": [
+        1438,
+        0,
+        179,
+        267
+      ],
+      "source": "scene",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "66226",
+      "atlas": 7,
+      "rect": [
+        0,
+        0,
+        640,
+        127
+      ],
+      "source": "scene",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "66276",
+      "atlas": 5,
+      "rect": [
+        834,
+        1722,
+        547,
+        74
+      ],
+      "source": "scene",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "66286",
+      "atlas": 5,
+      "rect": [
+        834,
+        1722,
+        547,
+        74
+      ],
+      "source": "scene",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": "66276",
+      "invalidBounds": false
+    },
+    {
+      "id": "66296",
+      "atlas": 5,
+      "rect": [
+        834,
+        1722,
+        547,
+        74
+      ],
+      "source": "scene",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": "66276",
+      "invalidBounds": false
+    },
+    {
+      "id": "66306",
+      "atlas": 5,
+      "rect": [
+        834,
+        1722,
+        547,
+        74
+      ],
+      "source": "scene",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": "66276",
+      "invalidBounds": false
+    },
+    {
+      "id": "66316",
+      "atlas": 5,
+      "rect": [
+        834,
+        1722,
+        547,
+        74
+      ],
+      "source": "scene",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": "66276",
+      "invalidBounds": false
+    },
+    {
+      "id": "66326",
+      "atlas": 5,
+      "rect": [
+        834,
+        1722,
+        547,
+        74
+      ],
+      "source": "scene",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": "66276",
+      "invalidBounds": false
+    },
+    {
+      "id": "66336",
+      "atlas": 5,
+      "rect": [
+        834,
+        1722,
+        547,
+        74
+      ],
+      "source": "scene",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": "66276",
+      "invalidBounds": false
+    },
+    {
+      "id": "66346",
+      "atlas": 5,
+      "rect": [
+        834,
+        1722,
+        547,
+        74
+      ],
+      "source": "scene",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": "66276",
+      "invalidBounds": false
+    },
+    {
+      "id": "66356",
+      "atlas": 5,
+      "rect": [
+        834,
+        1722,
+        547,
+        74
+      ],
+      "source": "scene",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": "66276",
+      "invalidBounds": false
+    },
+    {
+      "id": "66366",
+      "atlas": 5,
+      "rect": [
+        834,
+        1722,
+        547,
+        74
+      ],
+      "source": "scene",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": "66276",
+      "invalidBounds": false
+    },
+    {
+      "id": "66376",
+      "atlas": 5,
+      "rect": [
+        834,
+        1722,
+        547,
+        74
+      ],
+      "source": "scene",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": "66276",
+      "invalidBounds": false
+    },
+    {
+      "id": "66386",
+      "atlas": 5,
+      "rect": [
+        834,
+        1722,
+        547,
+        74
+      ],
+      "source": "scene",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": "66276",
+      "invalidBounds": false
+    },
+    {
+      "id": "66396",
+      "atlas": 5,
+      "rect": [
+        834,
+        1722,
+        547,
+        74
+      ],
+      "source": "scene",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": "66276",
+      "invalidBounds": false
+    },
+    {
+      "id": "66406",
+      "atlas": 5,
+      "rect": [
+        834,
+        1722,
+        547,
+        74
+      ],
+      "source": "scene",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": "66276",
+      "invalidBounds": false
+    },
+    {
+      "id": "66416",
+      "atlas": 5,
+      "rect": [
+        834,
+        1722,
+        547,
+        74
+      ],
+      "source": "scene",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": "66276",
+      "invalidBounds": false
+    },
+    {
+      "id": "66426",
+      "atlas": 5,
+      "rect": [
+        834,
+        1722,
+        547,
+        74
+      ],
+      "source": "scene",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": "66276",
+      "invalidBounds": false
+    },
+    {
+      "id": "66536",
+      "atlas": 5,
+      "rect": [
+        265,
+        1870,
+        267,
+        59
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "66546",
+      "atlas": 5,
+      "rect": [
+        834,
+        1638,
+        265,
+        78
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "66556",
+      "atlas": 5,
+      "rect": [
+        548,
+        1449,
+        267,
+        92
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "66566",
+      "atlas": 5,
+      "rect": [
+        534,
+        1870,
+        264,
+        57
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "66576",
+      "atlas": 5,
+      "rect": [
+        284,
+        1638,
+        279,
+        81
+      ],
+      "source": "scene",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "66586",
+      "atlas": 5,
+      "rect": [
+        284,
+        1638,
+        279,
+        81
+      ],
+      "source": "scene",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": "66576",
+      "invalidBounds": false
+    },
+    {
+      "id": "66596",
+      "atlas": 5,
+      "rect": [
+        284,
+        1638,
+        279,
+        81
+      ],
+      "source": "scene",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": "66576",
+      "invalidBounds": false
+    },
+    {
+      "id": "66606",
+      "atlas": 5,
+      "rect": [
+        284,
+        1638,
+        279,
+        81
+      ],
+      "source": "scene",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": "66576",
+      "invalidBounds": false
+    },
+    {
+      "id": "66616",
+      "atlas": 5,
+      "rect": [
+        284,
+        1638,
+        279,
+        81
+      ],
+      "source": "scene",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": "66576",
+      "invalidBounds": false
+    },
+    {
+      "id": "66626",
+      "atlas": 5,
+      "rect": [
+        284,
+        1638,
+        279,
+        81
+      ],
+      "source": "scene",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": "66576",
+      "invalidBounds": false
+    },
+    {
+      "id": "66636",
+      "atlas": 5,
+      "rect": [
+        284,
+        1638,
+        279,
+        81
+      ],
+      "source": "scene",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": "66576",
+      "invalidBounds": false
+    },
+    {
+      "id": "66646",
+      "atlas": 5,
+      "rect": [
+        284,
+        1638,
+        279,
+        81
+      ],
+      "source": "scene",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": "66576",
+      "invalidBounds": false
+    },
+    {
+      "id": "66666",
+      "atlas": 4,
+      "rect": [
+        534,
+        1263,
+        258,
+        194
+      ],
+      "source": "scene",
+      "category": "panneau-publicitaire",
+      "description": "DANKE! tourisme méditerranéen",
+      "placement": "bord de route",
+      "verified": true,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "66716",
+      "atlas": 3,
+      "rect": [
+        0,
+        1488,
+        232,
+        227
+      ],
+      "source": "scene",
+      "category": "panneau-course",
+      "description": "P1L 75",
+      "placement": "bord de circuit",
+      "verified": true,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "66766",
+      "atlas": 3,
+      "rect": [
+        0,
+        261,
+        255,
+        256
+      ],
+      "source": "scene",
+      "category": "panneau-publicitaire",
+      "description": "moto KTM rallye",
+      "placement": "bord de route",
+      "verified": true,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "66816",
+      "atlas": 5,
+      "rect": [
+        1324,
+        1798,
+        263,
+        67
+      ],
+      "source": "scene",
+      "category": "signalisation",
+      "description": "panneau directionnel Minestone/P. Azzurro",
+      "placement": "bord de route",
+      "verified": true,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "66866",
+      "atlas": 2,
+      "rect": [
+        1407,
+        808,
+        272,
+        264
+      ],
+      "source": "scene",
+      "category": "panneau-publicitaire",
+      "description": "ice cream parking",
+      "placement": "bord de route",
+      "verified": true,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "66916",
+      "atlas": 2,
+      "rect": [
+        1017,
+        1605,
+        149,
+        259
+      ],
+      "source": "scene",
+      "category": "signalisation",
+      "description": "panneau televisione",
+      "placement": "bord de route",
+      "verified": true,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "66966",
+      "atlas": 4,
+      "rect": [
+        254,
+        1263,
+        278,
+        194
+      ],
+      "source": "scene",
+      "category": "panneau-publicitaire",
+      "description": "diving school Captain",
+      "placement": "bord de route",
+      "verified": true,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "67016",
+      "atlas": 5,
+      "rect": [
+        524,
+        1224,
+        270,
+        114
+      ],
+      "source": "scene",
+      "category": "enseigne",
+      "description": "SEGA lettres séparées",
+      "placement": "signalétique",
+      "verified": true,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "67066",
+      "atlas": 2,
+      "rect": [
+        1168,
+        1605,
+        258,
+        259
+      ],
+      "source": "scene",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "67116",
+      "atlas": 5,
+      "rect": [
+        1380,
+        0,
+        265,
+        166
+      ],
+      "source": "scene",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "67136",
+      "atlas": 5,
+      "rect": [
+        555,
+        172,
+        271,
+        165
+      ],
+      "source": "scene",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "67166",
+      "atlas": 1,
+      "rect": [
+        501,
+        850,
+        274,
+        272
+      ],
+      "source": "scene",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "67216",
+      "atlas": 5,
+      "rect": [
+        1372,
+        1638,
+        271,
+        74
+      ],
+      "source": "scene",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "67266",
+      "atlas": 6,
+      "rect": [
+        549,
+        698,
+        438,
+        140
+      ],
+      "source": "scene",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "67316",
+      "atlas": 4,
+      "rect": [
+        1183,
+        223,
+        640,
+        209
+      ],
+      "source": "scene",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "67366",
+      "atlas": 4,
+      "rect": [
+        0,
+        438,
+        640,
+        209
+      ],
+      "source": "scene",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "67416",
+      "atlas": 5,
+      "rect": [
+        826,
+        503,
+        272,
+        150
+      ],
+      "source": "riders",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "67466",
+      "atlas": 4,
+      "rect": [
+        528,
+        1654,
+        272,
+        183
+      ],
+      "source": "riders",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "67496",
+      "atlas": 2,
+      "rect": [
+        1553,
+        271,
+        140,
+        266
+      ],
+      "source": "scene",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "67546",
+      "atlas": 5,
+      "rect": [
+        557,
+        806,
+        262,
+        142
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "67556",
+      "atlas": 3,
+      "rect": [
+        263,
+        1257,
+        269,
+        229
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "67566",
+      "atlas": 3,
+      "rect": [
+        632,
+        0,
+        272,
+        258
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "67576",
+      "atlas": 5,
+      "rect": [
+        0,
+        656,
+        267,
+        148
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "67586",
+      "atlas": 2,
+      "rect": [
+        1288,
+        1341,
+        256,
+        261
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "67596",
+      "atlas": 2,
+      "rect": [
+        755,
+        1605,
+        260,
+        260
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "67606",
+      "atlas": 5,
+      "rect": [
+        1396,
+        340,
+        262,
+        154
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "67616",
+      "atlas": 4,
+      "rect": [
+        1021,
+        855,
+        297,
+        202
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "67626",
+      "atlas": 5,
+      "rect": [
+        1589,
+        1798,
+        266,
+        62
+      ],
+      "source": "scene",
+      "category": "panneau-course",
+      "description": "CIBIÉ",
+      "placement": "bord de circuit",
+      "verified": true,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "67726",
+      "atlas": 2,
+      "rect": [
+        1104,
+        808,
+        66,
+        264
+      ],
+      "source": "scene",
+      "category": "structure",
+      "description": "pylône treillis métallique",
+      "placement": "support panneau",
+      "verified": true,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "67776",
+      "atlas": 4,
+      "rect": [
+        247,
+        1060,
+        258,
+        199
+      ],
+      "source": "scene",
+      "category": "batiment",
+      "description": "café El Flamenco",
+      "placement": "village",
+      "verified": true,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "67826",
+      "atlas": 4,
+      "rect": [
+        1337,
+        0,
+        285,
+        215
+      ],
+      "source": "scene",
+      "category": "batiment",
+      "description": "BOXES / garage course",
+      "placement": "zone stands",
+      "verified": true,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "67876",
+      "atlas": 3,
+      "rect": [
+        563,
+        1017,
+        289,
+        233
+      ],
+      "source": "scene",
+      "category": "structure-course",
+      "description": "pompe essence et poste chronométrage",
+      "placement": "bord de circuit",
+      "verified": true,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "67926",
+      "atlas": 5,
+      "rect": [
+        280,
+        1341,
+        280,
+        105
+      ],
+      "source": "scene",
+      "category": "spectateurs",
+      "description": "tribune OutRun avec foule",
+      "placement": "tribune terrestre",
+      "verified": true,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "67976",
+      "atlas": 2,
+      "rect": [
+        1210,
+        0,
+        226,
+        267
+      ],
+      "source": "scene",
+      "category": "attraction",
+      "description": "grande roue",
+      "placement": "zone fête foraine",
+      "verified": true,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "68026",
+      "atlas": 2,
+      "rect": [
+        105,
+        1075,
+        139,
+        263
+      ],
+      "source": "scene",
+      "category": "batiment",
+      "description": "tour de pierre isolée",
+      "placement": "village/monument",
+      "verified": true,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "68076",
+      "atlas": 5,
+      "rect": [
+        0,
+        340,
+        266,
+        161
+      ],
+      "source": "scene",
+      "category": "batiment",
+      "description": "deux tours de pierre",
+      "placement": "village/monument",
+      "verified": true,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "68126",
+      "atlas": 5,
+      "rect": [
+        263,
+        1932,
+        271,
+        41
+      ],
+      "source": "scene",
+      "category": "mur",
+      "description": "quatre segments de muret de pierre",
+      "placement": "terrain sec",
+      "verified": true,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "68176",
+      "atlas": 5,
+      "rect": [
+        1665,
+        1341,
+        283,
+        95
+      ],
+      "source": "scene",
+      "category": "rocher",
+      "description": "dalle rocheuse plate",
+      "placement": "terrain sec",
+      "verified": true,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "68226",
+      "atlas": 1,
+      "rect": [
+        488,
+        1670,
+        194,
+        269
+      ],
+      "source": "scene",
+      "category": "rocher",
+      "description": "grand rocher vertical",
+      "placement": "terrain sec",
+      "verified": true,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "68276",
+      "atlas": 5,
+      "rect": [
+        834,
+        1341,
+        274,
+        103
+      ],
+      "source": "scene",
+      "category": "rocher",
+      "description": "strates rocheuses",
+      "placement": "terrain sec",
+      "verified": true,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "68326",
+      "atlas": 5,
+      "rect": [
+        287,
+        1546,
+        260,
+        87
+      ],
+      "source": "scene",
+      "category": "sol-composite",
+      "description": "massif rocheux flou au sol",
+      "placement": "terrain sec",
+      "verified": true,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "68376",
+      "atlas": 5,
+      "rect": [
+        1355,
+        806,
+        270,
+        138
+      ],
+      "source": "scene",
+      "category": "rocher-composite",
+      "description": "rochers et végétation",
+      "placement": "terrain sec",
+      "verified": true,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "68426",
+      "atlas": 1,
+      "rect": [
+        88,
+        573,
+        96,
+        274
+      ],
+      "source": "scene",
+      "category": "monument",
+      "description": "statue de pierre debout",
+      "placement": "site historique",
+      "verified": true,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "68476",
+      "atlas": 2,
+      "rect": [
+        1697,
+        0,
+        94,
+        267
+      ],
+      "source": "scene",
+      "category": "monument",
+      "description": "statue de pierre variante",
+      "placement": "site historique",
+      "verified": true,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "68526",
+      "atlas": 8,
+      "rect": [
+        1200,
+        0,
+        76,
+        267
+      ],
+      "source": "scene",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": true
+    },
+    {
+      "id": "68536",
+      "atlas": 8,
+      "rect": [
+        0,
+        550,
+        128,
+        261
+      ],
+      "source": "scene",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": true
+    },
+    {
+      "id": "68546",
+      "atlas": 8,
+      "rect": [
+        400,
+        550,
+        197,
+        256
+      ],
+      "source": "scene",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": true
+    },
+    {
+      "id": "68556",
+      "atlas": 8,
+      "rect": [
+        800,
+        550,
+        195,
+        252
+      ],
+      "source": "scene",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": true
+    },
+    {
+      "id": "68566",
+      "atlas": 8,
+      "rect": [
+        1200,
+        550,
+        176,
+        259
+      ],
+      "source": "scene",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": true
+    },
+    {
+      "id": "68576",
+      "atlas": 8,
+      "rect": [
+        0,
+        1100,
+        138,
+        257
+      ],
+      "source": "scene",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": true
+    },
+    {
+      "id": "68586",
+      "atlas": 8,
+      "rect": [
+        400,
+        1100,
+        175,
+        257
+      ],
+      "source": "scene",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": true
+    },
+    {
+      "id": "68596",
+      "atlas": 8,
+      "rect": [
+        800,
+        1100,
+        214,
+        256
+      ],
+      "source": "scene",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": true
+    },
+    {
+      "id": "68606",
+      "atlas": 8,
+      "rect": [
+        1200,
+        1100,
+        238,
+        255
+      ],
+      "source": "scene",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": true
+    },
+    {
+      "id": "68616",
+      "atlas": 8,
+      "rect": [
+        0,
+        1650,
+        140,
+        266
+      ],
+      "source": "scene",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": true
+    },
+    {
+      "id": "68696",
+      "atlas": 5,
+      "rect": [
+        271,
+        1091,
+        269,
+        131
+      ],
+      "source": "scene",
+      "category": "village-composite",
+      "description": "village méditerranéen sur îlot",
+      "placement": "terrain sec",
+      "verified": true,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "68726",
+      "atlas": 3,
+      "rect": [
+        906,
+        0,
+        136,
+        257
+      ],
+      "source": "scene",
+      "category": "personnage",
+      "description": "homme en tunique avec bâton",
+      "placement": "terrain sec",
+      "verified": true,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "68776",
+      "atlas": 3,
+      "rect": [
+        0,
+        519,
+        270,
+        249
+      ],
+      "source": "scene",
+      "category": "animal",
+      "description": "chameau harnaché",
+      "placement": "désert",
+      "verified": true,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "68826",
+      "atlas": 1,
+      "rect": [
+        896,
+        1125,
+        179,
+        270
+      ],
+      "source": "scene",
+      "category": "animal",
+      "description": "chameau debout",
+      "placement": "désert",
+      "verified": true,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "68876",
+      "atlas": 5,
+      "rect": [
+        1108,
+        172,
+        212,
+        164
+      ],
+      "source": "scene",
+      "category": "animal",
+      "description": "chameau couché",
+      "placement": "désert",
+      "verified": true,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "68926",
+      "atlas": 4,
+      "rect": [
+        1320,
+        855,
+        268,
+        201
+      ],
+      "source": "scene",
+      "category": "animal",
+      "description": "chameau en marche",
+      "placement": "désert",
+      "verified": true,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "68986",
+      "atlas": 5,
+      "rect": [
+        265,
+        0,
+        278,
+        170
+      ],
+      "source": "scene",
+      "category": "falaise-composite",
+      "description": "falaise avec pins",
+      "placement": "arrière-plan terrestre",
+      "verified": true,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "68996",
+      "atlas": 5,
+      "rect": [
+        1661,
+        1722,
+        268,
+        71
+      ],
+      "source": "scene",
+      "category": "terrain-composite",
+      "description": "dune sableuse",
+      "placement": "désert",
+      "verified": true,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "69006",
+      "atlas": 5,
+      "rect": [
+        828,
+        172,
+        278,
+        165
+      ],
+      "source": "scene",
+      "category": "vegetation",
+      "description": "massif de fleurs",
+      "placement": "terrain sec",
+      "verified": true,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "69016",
+      "atlas": 5,
+      "rect": [
+        1647,
+        1224,
+        290,
+        109
+      ],
+      "source": "scene",
+      "category": "village-composite",
+      "description": "village côtier sur îlot",
+      "placement": "terrain sec",
+      "verified": true,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "69026",
+      "atlas": 5,
+      "rect": [
+        0,
+        172,
+        279,
+        166
+      ],
+      "source": "scene",
+      "category": "vegetation",
+      "description": "bosquet d'arbres",
+      "placement": "terrain sec",
+      "verified": true,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "69086",
+      "atlas": 4,
+      "rect": [
+        0,
+        1460,
+        263,
+        192
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "69096",
+      "atlas": 4,
+      "rect": [
+        323,
+        223,
+        254,
+        211
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "69106",
+      "atlas": 2,
+      "rect": [
+        594,
+        808,
+        237,
+        265
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "69116",
+      "atlas": 8,
+      "rect": [
+        0,
+        0,
+        208,
+        263
+      ],
+      "source": "scene",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "69126",
+      "atlas": 8,
+      "rect": [
+        400,
+        0,
+        196,
+        260
+      ],
+      "source": "scene",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": true
+    },
+    {
+      "id": "69136",
+      "atlas": 8,
+      "rect": [
+        800,
+        0,
+        129,
+        265
+      ],
+      "source": "scene",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": true
+    },
+    {
+      "id": "69146",
+      "atlas": 2,
+      "rect": [
+        1787,
+        1075,
+        11,
+        262
+      ],
+      "source": "scene",
+      "category": "structure",
+      "description": "poteau fin rouillé",
+      "placement": "support de signalisation",
+      "verified": true,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "69196",
+      "atlas": 2,
+      "rect": [
+        1800,
+        1075,
+        19,
+        262
+      ],
+      "source": "scene",
+      "category": "structure",
+      "description": "poteau métallique clair",
+      "placement": "support de signalisation",
+      "verified": true,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "69246",
+      "atlas": 2,
+      "rect": [
+        1151,
+        0,
+        57,
+        267
+      ],
+      "source": "scene",
+      "category": "arbre-mort",
+      "description": "tronc sec épais",
+      "placement": "terrain sec",
+      "verified": true,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "69296",
+      "atlas": 2,
+      "rect": [
+        1172,
+        808,
+        15,
+        264
+      ],
+      "source": "scene",
+      "category": "structure",
+      "description": "poteau fin vert",
+      "placement": "support de signalisation",
+      "verified": true,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "69346",
+      "atlas": 1,
+      "rect": [
+        446,
+        1670,
+        40,
+        269
+      ],
+      "source": "scene",
+      "category": "arbre-mort",
+      "description": "tronc sec étroit",
+      "placement": "terrain sec",
+      "verified": true,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "69396",
+      "atlas": 1,
+      "rect": [
+        617,
+        291,
+        183,
+        278
+      ],
+      "source": "scene",
+      "category": "sport-nautique",
+      "description": "personnage sur planche à voile",
+      "placement": "sur eau seulement",
+      "verified": true,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "69446",
+      "atlas": 1,
+      "rect": [
+        1829,
+        573,
+        180,
+        273
+      ],
+      "source": "scene",
+      "category": "structure-course",
+      "description": "borne de circuit avec chevrons rouges",
+      "placement": "bord de circuit",
+      "verified": true,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "69586",
+      "atlas": 2,
+      "rect": [
+        1189,
+        808,
+        216,
+        264
+      ],
+      "source": "scene",
+      "category": "obstacle-course",
+      "description": "baril métallique rouge et blanc",
+      "placement": "zone de circuit",
+      "verified": true,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "69756",
+      "atlas": 5,
+      "rect": [
+        824,
+        1546,
+        280,
+        85
+      ],
+      "source": "riders",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "69766",
+      "atlas": 5,
+      "rect": [
+        0,
+        1638,
+        282,
+        82
+      ],
+      "source": "riders",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "69776",
+      "atlas": 5,
+      "rect": [
+        265,
+        1449,
+        281,
+        93
+      ],
+      "source": "riders",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "69786",
+      "atlas": 5,
+      "rect": [
+        0,
+        1091,
+        269,
+        131
+      ],
+      "source": "riders",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "69796",
+      "atlas": 4,
+      "rect": [
+        0,
+        1654,
+        266,
+        187
+      ],
+      "source": "riders",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "69806",
+      "atlas": 5,
+      "rect": [
+        1645,
+        1638,
+        277,
+        74
+      ],
+      "source": "riders",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "69816",
+      "atlas": 5,
+      "rect": [
+        539,
+        1798,
+        278,
+        68
+      ],
+      "source": "riders",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "69826",
+      "atlas": 5,
+      "rect": [
+        0,
+        1722,
+        279,
+        74
+      ],
+      "source": "riders",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "69836",
+      "atlas": 3,
+      "rect": [
+        349,
+        0,
+        281,
+        258
+      ],
+      "source": "riders",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "69846",
+      "atlas": 2,
+      "rect": [
+        1744,
+        1341,
+        268,
+        260
+      ],
+      "source": "riders",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "69856",
+      "atlas": 2,
+      "rect": [
+        456,
+        1075,
+        239,
+        263
+      ],
+      "source": "riders",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "69866",
+      "atlas": 3,
+      "rect": [
+        1366,
+        770,
+        297,
+        239
+      ],
+      "source": "riders",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "69876",
+      "atlas": 4,
+      "rect": [
+        1618,
+        1263,
+        232,
+        194
+      ],
+      "source": "riders",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "69886",
+      "atlas": 3,
+      "rect": [
+        0,
+        0,
+        227,
+        259
+      ],
+      "source": "riders",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "69896",
+      "atlas": 3,
+      "rect": [
+        1575,
+        261,
+        203,
+        251
+      ],
+      "source": "riders",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "69906",
+      "atlas": 3,
+      "rect": [
+        1165,
+        261,
+        211,
+        253
+      ],
+      "source": "riders",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "69916",
+      "atlas": 5,
+      "rect": [
+        1587,
+        656,
+        224,
+        144
+      ],
+      "source": "riders",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "69926",
+      "atlas": 5,
+      "rect": [
+        1089,
+        656,
+        223,
+        145
+      ],
+      "source": "riders",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "69936",
+      "atlas": 6,
+      "rect": [
+        60,
+        58,
+        394,
+        422
+      ],
+      "source": "riders",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "69946",
+      "atlas": 3,
+      "rect": [
+        1226,
+        519,
+        274,
+        246
+      ],
+      "source": "riders",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "69956",
+      "atlas": 3,
+      "rect": [
+        1502,
+        519,
+        272,
+        245
+      ],
+      "source": "riders",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "70436",
+      "atlas": 5,
+      "rect": [
+        281,
+        806,
+        274,
+        142
+      ],
+      "source": "ferrari",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "70446",
+      "atlas": 4,
+      "rect": [
+        1353,
+        1460,
+        274,
+        188
+      ],
+      "source": "ferrari",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "70456",
+      "atlas": 5,
+      "rect": [
+        1605,
+        172,
+        274,
+        163
+      ],
+      "source": "ferrari",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "70466",
+      "atlas": 5,
+      "rect": [
+        1383,
+        1722,
+        276,
+        71
+      ],
+      "source": "ferrari",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "70476",
+      "atlas": 5,
+      "rect": [
+        815,
+        951,
+        277,
+        133
+      ],
+      "source": "ferrari",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "70486",
+      "atlas": 4,
+      "rect": [
+        1074,
+        1460,
+        277,
+        189
+      ],
+      "source": "ferrari",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "70496",
+      "atlas": 5,
+      "rect": [
+        1660,
+        340,
+        276,
+        152
+      ],
+      "source": "ferrari",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "70506",
+      "atlas": 3,
+      "rect": [
+        281,
+        770,
+        263,
+        244
+      ],
+      "source": "riders",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "70516",
+      "atlas": 3,
+      "rect": [
+        952,
+        519,
+        272,
+        247
+      ],
+      "source": "riders",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "70536",
+      "atlas": 4,
+      "rect": [
+        1085,
+        1843,
+        264,
+        175
+      ],
+      "source": "riders",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "70546",
+      "atlas": 5,
+      "rect": [
+        0,
+        0,
+        263,
+        170
+      ],
+      "source": "riders",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "70556",
+      "atlas": 5,
+      "rect": [
+        1322,
+        172,
+        281,
+        164
+      ],
+      "source": "riders",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "70566",
+      "atlas": 4,
+      "rect": [
+        1351,
+        1843,
+        273,
+        175
+      ],
+      "source": "riders",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "70586",
+      "atlas": 3,
+      "rect": [
+        546,
+        770,
+        281,
+        242
+      ],
+      "source": "riders",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "70596",
+      "atlas": 3,
+      "rect": [
+        854,
+        1017,
+        266,
+        233
+      ],
+      "source": "riders",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "70606",
+      "atlas": 3,
+      "rect": [
+        0,
+        1017,
+        268,
+        238
+      ],
+      "source": "riders",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "70616",
+      "atlas": 2,
+      "rect": [
+        59,
+        271,
+        89,
+        267
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "70626",
+      "atlas": 2,
+      "rect": [
+        150,
+        271,
+        89,
+        267
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "70636",
+      "atlas": 1,
+      "rect": [
+        1575,
+        1670,
+        121,
+        269
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "70646",
+      "atlas": 1,
+      "rect": [
+        1177,
+        1398,
+        119,
+        270
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "70656",
+      "atlas": 1,
+      "rect": [
+        1298,
+        1398,
+        100,
+        270
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "70666",
+      "atlas": 1,
+      "rect": [
+        1400,
+        1398,
+        72,
+        270
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "70676",
+      "atlas": 2,
+      "rect": [
+        0,
+        271,
+        57,
+        267
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "70686",
+      "atlas": 2,
+      "rect": [
+        234,
+        808,
+        91,
+        265
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "70696",
+      "atlas": 2,
+      "rect": [
+        1915,
+        808,
+        117,
+        264
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "70706",
+      "atlas": 2,
+      "rect": [
+        327,
+        808,
+        135,
+        265
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "70716",
+      "atlas": 2,
+      "rect": [
+        464,
+        808,
+        128,
+        265
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "70726",
+      "atlas": 2,
+      "rect": [
+        904,
+        1075,
+        114,
+        263
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "70736",
+      "atlas": 2,
+      "rect": [
+        904,
+        0,
+        141,
+        268
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "70746",
+      "atlas": 2,
+      "rect": [
+        241,
+        271,
+        129,
+        267
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "70756",
+      "atlas": 2,
+      "rect": [
+        275,
+        540,
+        102,
+        266
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "70766",
+      "atlas": 2,
+      "rect": [
+        379,
+        540,
+        105,
+        266
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "70776",
+      "atlas": 2,
+      "rect": [
+        486,
+        540,
+        103,
+        266
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "70786",
+      "atlas": 2,
+      "rect": [
+        591,
+        540,
+        104,
+        266
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "70796",
+      "atlas": 0,
+      "rect": [
+        1008,
+        1509,
+        314,
+        293
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "70806",
+      "atlas": 0,
+      "rect": [
+        1324,
+        1509,
+        205,
+        293
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "70816",
+      "atlas": 1,
+      "rect": [
+        1143,
+        291,
+        90,
+        276
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "70826",
+      "atlas": 1,
+      "rect": [
+        291,
+        850,
+        117,
+        273
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "70836",
+      "atlas": 1,
+      "rect": [
+        1235,
+        291,
+        88,
+        276
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "70846",
+      "atlas": 1,
+      "rect": [
+        0,
+        573,
+        86,
+        275
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "70856",
+      "atlas": 5,
+      "rect": [
+        1397,
+        1932,
+        211,
+        27
+      ],
+      "source": "scene",
+      "category": "terrain",
+      "description": "trace de poussière horizontale",
+      "placement": "effet au sol",
+      "verified": true,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "70906",
+      "atlas": 4,
+      "rect": [
+        0,
+        1843,
+        270,
+        179
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "70916",
+      "atlas": 3,
+      "rect": [
+        1610,
+        0,
+        223,
+        257
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "70926",
+      "atlas": 3,
+      "rect": [
+        1361,
+        0,
+        247,
+        257
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "70936",
+      "atlas": 4,
+      "rect": [
+        0,
+        1263,
+        252,
+        195
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "70946",
+      "atlas": 1,
+      "rect": [
+        1023,
+        291,
+        58,
+        276
+      ],
+      "source": "scene",
+      "category": "arbre-mort",
+      "description": "tronc sec sans feuillage",
+      "placement": "terrain sec",
+      "verified": true,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "71066",
+      "atlas": 4,
+      "rect": [
+        1357,
+        1060,
+        257,
+        197
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "71076",
+      "atlas": 3,
+      "rect": [
+        272,
+        519,
+        233,
+        249
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "71086",
+      "atlas": 3,
+      "rect": [
+        507,
+        519,
+        157,
+        249
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "71126",
+      "atlas": 0,
+      "rect": [
+        316,
+        1194,
+        314,
+        313
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "71136",
+      "atlas": 0,
+      "rect": [
+        632,
+        1194,
+        313,
+        313
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "71146",
+      "atlas": 1,
+      "rect": [
+        1284,
+        0,
+        118,
+        284
+      ],
+      "source": "scene",
+      "category": "personnage-animation",
+      "description": "femme sportive vue de dos",
+      "placement": "cinématique",
+      "verified": true,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "71156",
+      "atlas": 1,
+      "rect": [
+        1404,
+        0,
+        126,
+        284
+      ],
+      "source": "scene",
+      "category": "personnage-animation",
+      "description": "femme sportive en marche profil",
+      "placement": "cinématique",
+      "verified": true,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "71166",
+      "atlas": 0,
+      "rect": [
+        947,
+        1194,
+        313,
+        313
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "71176",
+      "atlas": 0,
+      "rect": [
+        1262,
+        1194,
+        314,
+        313
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "71186",
+      "atlas": 0,
+      "rect": [
+        1690,
+        1194,
+        314,
+        300
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "71196",
+      "atlas": 0,
+      "rect": [
+        1262,
+        562,
+        313,
+        314
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "71206",
+      "atlas": 0,
+      "rect": [
+        95,
+        1509,
+        313,
+        298
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "71216",
+      "atlas": 1,
+      "rect": [
+        1689,
+        0,
+        83,
+        283
+      ],
+      "source": "scene",
+      "category": "personnage-animation",
+      "description": "femme sportive de face",
+      "placement": "cinématique",
+      "verified": true,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "71226",
+      "atlas": 0,
+      "rect": [
+        410,
+        1509,
+        314,
+        297
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "71236",
+      "atlas": 2,
+      "rect": [
+        815,
+        0,
+        87,
+        268
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "71246",
+      "atlas": 1,
+      "rect": [
+        1443,
+        850,
+        90,
+        271
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "71256",
+      "atlas": 1,
+      "rect": [
+        206,
+        1398,
+        92,
+        270
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "71266",
+      "atlas": 1,
+      "rect": [
+        1535,
+        850,
+        92,
+        271
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "71276",
+      "atlas": 1,
+      "rect": [
+        1134,
+        1670,
+        57,
+        269
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "71286",
+      "atlas": 1,
+      "rect": [
+        300,
+        1398,
+        57,
+        270
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "71296",
+      "atlas": 1,
+      "rect": [
+        359,
+        1398,
+        124,
+        270
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "71306",
+      "atlas": 1,
+      "rect": [
+        485,
+        1398,
+        103,
+        270
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "71316",
+      "atlas": 1,
+      "rect": [
+        590,
+        1398,
+        131,
+        270
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "71326",
+      "atlas": 1,
+      "rect": [
+        1629,
+        850,
+        154,
+        271
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "71336",
+      "atlas": 1,
+      "rect": [
+        1193,
+        1670,
+        119,
+        269
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "71346",
+      "atlas": 1,
+      "rect": [
+        723,
+        1398,
+        140,
+        270
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "71356",
+      "atlas": 1,
+      "rect": [
+        1532,
+        0,
+        155,
+        284
+      ],
+      "source": "scene",
+      "category": "personnage-animation",
+      "description": "femme avec coupe",
+      "placement": "cinématique podium",
+      "verified": true,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "71366",
+      "atlas": 2,
+      "rect": [
+        268,
+        1605,
+        123,
+        260
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "71376",
+      "atlas": 2,
+      "rect": [
+        0,
+        540,
+        151,
+        266
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "71386",
+      "atlas": 2,
+      "rect": [
+        153,
+        540,
+        120,
+        266
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "71396",
+      "atlas": 1,
+      "rect": [
+        1785,
+        850,
+        162,
+        271
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "71406",
+      "atlas": 1,
+      "rect": [
+        1314,
+        1670,
+        165,
+        269
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "71416",
+      "atlas": 1,
+      "rect": [
+        865,
+        1398,
+        130,
+        270
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "71426",
+      "atlas": 1,
+      "rect": [
+        1481,
+        1670,
+        92,
+        269
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "71436",
+      "atlas": 1,
+      "rect": [
+        997,
+        1398,
+        72,
+        270
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "71456",
+      "atlas": 0,
+      "rect": [
+        1913,
+        1509,
+        75,
+        289
+      ],
+      "source": "scene",
+      "category": "personnage-animation",
+      "description": "femme casquette verte de profil",
+      "placement": "cinématique",
+      "verified": true,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "71466",
+      "atlas": 1,
+      "rect": [
+        1949,
+        850,
+        96,
+        271
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "71476",
+      "atlas": 1,
+      "rect": [
+        1071,
+        1398,
+        104,
+        270
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "71506",
+      "atlas": 1,
+      "rect": [
+        0,
+        1125,
+        72,
+        271
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "71516",
+      "atlas": 1,
+      "rect": [
+        129,
+        0,
+        145,
+        287
+      ],
+      "source": "scene",
+      "category": "personnage-animation",
+      "description": "femme casquette verte inclinée",
+      "placement": "cinématique",
+      "verified": true,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "71526",
+      "atlas": 0,
+      "rect": [
+        726,
+        1509,
+        280,
+        294
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "71536",
+      "atlas": 1,
+      "rect": [
+        1732,
+        1125,
+        272,
+        270
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "71546",
+      "atlas": 1,
+      "rect": [
+        0,
+        1398,
+        204,
+        270
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "71556",
+      "atlas": 1,
+      "rect": [
+        276,
+        0,
+        202,
+        287
+      ],
+      "source": "scene",
+      "category": "personnage-animation",
+      "description": "homme lunettes en mouvement",
+      "placement": "cinématique",
+      "verified": true,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "71566",
+      "atlas": 1,
+      "rect": [
+        480,
+        0,
+        153,
+        287
+      ],
+      "source": "scene",
+      "category": "personnage-animation",
+      "description": "homme lunettes en mouvement variante",
+      "placement": "cinématique",
+      "verified": true,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "71576",
+      "atlas": 1,
+      "rect": [
+        635,
+        0,
+        91,
+        287
+      ],
+      "source": "scene",
+      "category": "personnage-animation",
+      "description": "homme lunettes debout",
+      "placement": "cinématique",
+      "verified": true,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "71586",
+      "atlas": 1,
+      "rect": [
+        1542,
+        291,
+        134,
+        275
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "71596",
+      "atlas": 0,
+      "rect": [
+        1578,
+        1194,
+        110,
+        301
+      ],
+      "source": "scene",
+      "category": "personnage-animation",
+      "description": "homme lunettes saluant",
+      "placement": "cinématique",
+      "verified": true,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "71606",
+      "atlas": 1,
+      "rect": [
+        1070,
+        0,
+        98,
+        285
+      ],
+      "source": "scene",
+      "category": "personnage-animation",
+      "description": "homme lunettes mains poches",
+      "placement": "cinématique",
+      "verified": true,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "71616",
+      "atlas": 1,
+      "rect": [
+        291,
+        291,
+        111,
+        279
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "71626",
+      "atlas": 1,
+      "rect": [
+        802,
+        291,
+        106,
+        278
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "71636",
+      "atlas": 1,
+      "rect": [
+        182,
+        850,
+        107,
+        273
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "71646",
+      "atlas": 1,
+      "rect": [
+        1678,
+        291,
+        111,
+        275
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "71656",
+      "atlas": 1,
+      "rect": [
+        1170,
+        0,
+        112,
+        285
+      ],
+      "source": "scene",
+      "category": "personnage-animation",
+      "description": "homme lunettes marchant",
+      "placement": "cinématique",
+      "verified": true,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "71666",
+      "atlas": 1,
+      "rect": [
+        1068,
+        573,
+        113,
+        274
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "71676",
+      "atlas": 1,
+      "rect": [
+        910,
+        291,
+        111,
+        277
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "71686",
+      "atlas": 1,
+      "rect": [
+        1791,
+        291,
+        118,
+        275
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "71696",
+      "atlas": 1,
+      "rect": [
+        1083,
+        291,
+        58,
+        276
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "71706",
+      "atlas": 1,
+      "rect": [
+        1911,
+        291,
+        86,
+        275
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "71716",
+      "atlas": 0,
+      "rect": [
+        0,
+        562,
+        314,
+        314
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "71726",
+      "atlas": 0,
+      "rect": [
+        316,
+        562,
+        313,
+        314
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "71736",
+      "atlas": 0,
+      "rect": [
+        631,
+        562,
+        313,
+        314
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "71746",
+      "atlas": 0,
+      "rect": [
+        946,
+        562,
+        314,
+        314
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "71756",
+      "atlas": 0,
+      "rect": [
+        948,
+        878,
+        314,
+        313
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "71766",
+      "atlas": 0,
+      "rect": [
+        1264,
+        878,
+        313,
+        313
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "71776",
+      "atlas": 0,
+      "rect": [
+        1579,
+        878,
+        313,
+        313
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "71786",
+      "atlas": 0,
+      "rect": [
+        0,
+        1194,
+        314,
+        313
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "72146",
+      "atlas": 1,
+      "rect": [
+        1474,
+        1398,
+        111,
+        270
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "72156",
+      "atlas": 1,
+      "rect": [
+        74,
+        1125,
+        114,
+        271
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "72166",
+      "atlas": 1,
+      "rect": [
+        1587,
+        1398,
+        118,
+        270
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "72176",
+      "atlas": 2,
+      "rect": [
+        1020,
+        1075,
+        99,
+        263
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "72186",
+      "atlas": 2,
+      "rect": [
+        1121,
+        1075,
+        97,
+        263
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "72196",
+      "atlas": 2,
+      "rect": [
+        235,
+        1341,
+        106,
+        262
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "72206",
+      "atlas": 2,
+      "rect": [
+        0,
+        1075,
+        103,
+        264
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "72216",
+      "atlas": 2,
+      "rect": [
+        372,
+        271,
+        103,
+        267
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "72226",
+      "atlas": 2,
+      "rect": [
+        697,
+        540,
+        85,
+        266
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "72236",
+      "atlas": 2,
+      "rect": [
+        784,
+        540,
+        125,
+        266
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "72246",
+      "atlas": 2,
+      "rect": [
+        477,
+        271,
+        189,
+        267
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "72256",
+      "atlas": 2,
+      "rect": [
+        668,
+        271,
+        161,
+        267
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "72266",
+      "atlas": 2,
+      "rect": [
+        911,
+        540,
+        167,
+        266
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "72276",
+      "atlas": 4,
+      "rect": [
+        252,
+        855,
+        246,
+        203
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "72286",
+      "atlas": 4,
+      "rect": [
+        1172,
+        438,
+        256,
+        205
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "72296",
+      "atlas": 1,
+      "rect": [
+        1425,
+        573,
+        236,
+        274
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "72306",
+      "atlas": 4,
+      "rect": [
+        265,
+        1460,
+        262,
+        192
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "72316",
+      "atlas": 4,
+      "rect": [
+        914,
+        438,
+        256,
+        205
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "72326",
+      "atlas": 2,
+      "rect": [
+        1080,
+        540,
+        237,
+        266
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "72336",
+      "atlas": 4,
+      "rect": [
+        0,
+        1060,
+        245,
+        201
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "72346",
+      "atlas": 4,
+      "rect": [
+        0,
+        0,
+        249,
+        221
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "72356",
+      "atlas": 1,
+      "rect": [
+        190,
+        1125,
+        236,
+        271
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "72366",
+      "atlas": 5,
+      "rect": [
+        1610,
+        1091,
+        267,
+        119
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "72376",
+      "atlas": 5,
+      "rect": [
+        542,
+        1091,
+        259,
+        130
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "72386",
+      "atlas": 1,
+      "rect": [
+        1183,
+        573,
+        240,
+        274
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "72396",
+      "atlas": 5,
+      "rect": [
+        273,
+        951,
+        270,
+        136
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "72406",
+      "atlas": 5,
+      "rect": [
+        265,
+        1224,
+        257,
+        115
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "72416",
+      "atlas": 5,
+      "rect": [
+        1089,
+        1798,
+        233,
+        68
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "72426",
+      "atlas": 4,
+      "rect": [
+        251,
+        649,
+        640,
+        204
+      ],
+      "source": "scene",
+      "category": "banniere-arrivee",
+      "description": "GOAL moitié gauche",
+      "placement": "arche d'arrivée",
+      "verified": true,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "72476",
+      "atlas": 4,
+      "rect": [
+        893,
+        649,
+        640,
+        204
+      ],
+      "source": "scene",
+      "category": "banniere-arrivee",
+      "description": "GOAL moitié droite",
+      "placement": "arche d'arrivée",
+      "verified": true,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "72576",
+      "atlas": 1,
+      "rect": [
+        0,
+        0,
+        127,
+        289
+      ],
+      "source": "scene",
+      "category": "personnage-course",
+      "description": "officiel en polo rouge saluant",
+      "placement": "bord de circuit",
+      "verified": true,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "72586",
+      "atlas": 0,
+      "rect": [
+        1615,
+        1509,
+        145,
+        290
+      ],
+      "source": "scene",
+      "category": "personnage-course",
+      "description": "officiel en polo rouge avec plateau",
+      "placement": "bord de circuit",
+      "verified": true,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "72596",
+      "atlas": 1,
+      "rect": [
+        812,
+        0,
+        256,
+        286
+      ],
+      "source": "scene",
+      "category": "personnage-cinematique",
+      "description": "homme assis avec radio",
+      "placement": "cinématique",
+      "verified": true,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "72606",
+      "atlas": 0,
+      "rect": [
+        1762,
+        1509,
+        149,
+        290
+      ],
+      "source": "scene",
+      "category": "personnage-cinematique",
+      "description": "cameraman sur trépied",
+      "placement": "cinématique",
+      "verified": true,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "72616",
+      "atlas": 0,
+      "rect": [
+        1531,
+        1509,
+        82,
+        291
+      ],
+      "source": "scene",
+      "category": "personnage-cinematique",
+      "description": "homme en t-shirt blanc",
+      "placement": "cinématique",
+      "verified": true,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "72626",
+      "atlas": 1,
+      "rect": [
+        1774,
+        0,
+        71,
+        282
+      ],
+      "source": "scene",
+      "category": "personnage-cinematique",
+      "description": "femme applaudissant",
+      "placement": "cinématique",
+      "verified": true,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "72636",
+      "atlas": 1,
+      "rect": [
+        728,
+        0,
+        82,
+        287
+      ],
+      "source": "scene",
+      "category": "personnage-cinematique",
+      "description": "homme bras croisés",
+      "placement": "cinématique",
+      "verified": true,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "72646",
+      "atlas": 0,
+      "rect": [
+        0,
+        1509,
+        93,
+        298
+      ],
+      "source": "scene",
+      "category": "personnage-cinematique",
+      "description": "homme saluant",
+      "placement": "cinématique",
+      "verified": true,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "72746",
+      "atlas": 5,
+      "rect": [
+        0,
+        1870,
+        263,
+        60
+      ],
+      "source": "scene",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "72796",
+      "atlas": 5,
+      "rect": [
+        1072,
+        1870,
+        549,
+        49
+      ],
+      "source": "scene",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "72806",
+      "atlas": 5,
+      "rect": [
+        1072,
+        1870,
+        549,
+        49
+      ],
+      "source": "scene",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": "72796",
+      "invalidBounds": false
+    },
+    {
+      "id": "72816",
+      "atlas": 5,
+      "rect": [
+        1072,
+        1870,
+        549,
+        49
+      ],
+      "source": "scene",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": "72796",
+      "invalidBounds": false
+    },
+    {
+      "id": "72826",
+      "atlas": 5,
+      "rect": [
+        1072,
+        1870,
+        549,
+        49
+      ],
+      "source": "scene",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": "72796",
+      "invalidBounds": false
+    },
+    {
+      "id": "72836",
+      "atlas": 5,
+      "rect": [
+        1072,
+        1870,
+        549,
+        49
+      ],
+      "source": "scene",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": "72796",
+      "invalidBounds": false
+    },
+    {
+      "id": "72846",
+      "atlas": 5,
+      "rect": [
+        1072,
+        1870,
+        549,
+        49
+      ],
+      "source": "scene",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": "72796",
+      "invalidBounds": false
+    },
+    {
+      "id": "72856",
+      "atlas": 5,
+      "rect": [
+        1072,
+        1870,
+        549,
+        49
+      ],
+      "source": "scene",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": "72796",
+      "invalidBounds": false
+    },
+    {
+      "id": "72866",
+      "atlas": 5,
+      "rect": [
+        1072,
+        1870,
+        549,
+        49
+      ],
+      "source": "scene",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": "72796",
+      "invalidBounds": false
+    },
+    {
+      "id": "72876",
+      "atlas": 5,
+      "rect": [
+        1072,
+        1870,
+        549,
+        49
+      ],
+      "source": "scene",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": "72796",
+      "invalidBounds": false
+    },
+    {
+      "id": "72886",
+      "atlas": 5,
+      "rect": [
+        1072,
+        1870,
+        549,
+        49
+      ],
+      "source": "scene",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": "72796",
+      "invalidBounds": false
+    },
+    {
+      "id": "72896",
+      "atlas": 5,
+      "rect": [
+        1072,
+        1870,
+        549,
+        49
+      ],
+      "source": "scene",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": "72796",
+      "invalidBounds": false
+    },
+    {
+      "id": "72906",
+      "atlas": 5,
+      "rect": [
+        1072,
+        1870,
+        549,
+        49
+      ],
+      "source": "scene",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": "72796",
+      "invalidBounds": false
+    },
+    {
+      "id": "72916",
+      "atlas": 5,
+      "rect": [
+        1072,
+        1870,
+        549,
+        49
+      ],
+      "source": "scene",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": "72796",
+      "invalidBounds": false
+    },
+    {
+      "id": "72926",
+      "atlas": 5,
+      "rect": [
+        1072,
+        1870,
+        549,
+        49
+      ],
+      "source": "scene",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": "72796",
+      "invalidBounds": false
+    },
+    {
+      "id": "72936",
+      "atlas": 5,
+      "rect": [
+        1072,
+        1870,
+        549,
+        49
+      ],
+      "source": "scene",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": "72796",
+      "invalidBounds": false
+    },
+    {
+      "id": "72956",
+      "atlas": 3,
+      "rect": [
+        1311,
+        1257,
+        270,
+        228
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "72966",
+      "atlas": 3,
+      "rect": [
+        234,
+        1488,
+        262,
+        227
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "72976",
+      "atlas": 4,
+      "rect": [
+        1430,
+        438,
+        257,
+        204
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "72986",
+      "atlas": 3,
+      "rect": [
+        793,
+        1488,
+        269,
+        225
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "72996",
+      "atlas": 3,
+      "rect": [
+        0,
+        1717,
+        259,
+        224
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "73006",
+      "atlas": 4,
+      "rect": [
+        1689,
+        438,
+        251,
+        204
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "73016",
+      "atlas": 3,
+      "rect": [
+        1064,
+        1488,
+        270,
+        225
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "73026",
+      "atlas": 3,
+      "rect": [
+        1336,
+        1488,
+        259,
+        225
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "73036",
+      "atlas": 4,
+      "rect": [
+        0,
+        649,
+        249,
+        204
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "73046",
+      "atlas": 3,
+      "rect": [
+        261,
+        1717,
+        268,
+        224
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "73056",
+      "atlas": 3,
+      "rect": [
+        1069,
+        1717,
+        260,
+        223
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "73066",
+      "atlas": 4,
+      "rect": [
+        0,
+        855,
+        250,
+        203
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "73076",
+      "atlas": 1,
+      "rect": [
+        428,
+        1125,
+        132,
+        271
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "73086",
+      "atlas": 1,
+      "rect": [
+        1856,
+        1670,
+        66,
+        269
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "73096",
+      "atlas": 1,
+      "rect": [
+        410,
+        850,
+        89,
+        273
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "73106",
+      "atlas": 2,
+      "rect": [
+        1047,
+        0,
+        102,
+        268
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "73116",
+      "atlas": 1,
+      "rect": [
+        562,
+        1125,
+        66,
+        271
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "73126",
+      "atlas": 1,
+      "rect": [
+        1707,
+        1398,
+        138,
+        270
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "73136",
+      "atlas": 2,
+      "rect": [
+        1319,
+        540,
+        95,
+        266
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "73146",
+      "atlas": 4,
+      "rect": [
+        1629,
+        1460,
+        266,
+        188
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "73166",
+      "atlas": 2,
+      "rect": [
+        1220,
+        1075,
+        124,
+        263
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "73176",
+      "atlas": 2,
+      "rect": [
+        846,
+        1341,
+        114,
+        261
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "73186",
+      "atlas": 2,
+      "rect": [
+        343,
+        1341,
+        100,
+        262
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "73196",
+      "atlas": 2,
+      "rect": [
+        1346,
+        1075,
+        107,
+        263
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "73206",
+      "atlas": 2,
+      "rect": [
+        962,
+        1341,
+        112,
+        261
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "73216",
+      "atlas": 2,
+      "rect": [
+        1455,
+        1075,
+        102,
+        263
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "73226",
+      "atlas": 2,
+      "rect": [
+        393,
+        1605,
+        103,
+        260
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "73236",
+      "atlas": 3,
+      "rect": [
+        229,
+        0,
+        118,
+        259
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "73246",
+      "atlas": 2,
+      "rect": [
+        498,
+        1605,
+        125,
+        260
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "73256",
+      "atlas": 2,
+      "rect": [
+        625,
+        1605,
+        128,
+        260
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "73266",
+      "atlas": 2,
+      "rect": [
+        1559,
+        1075,
+        91,
+        263
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "73276",
+      "atlas": 2,
+      "rect": [
+        1652,
+        1075,
+        58,
+        263
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "73286",
+      "atlas": 2,
+      "rect": [
+        1076,
+        1341,
+        118,
+        261
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "73296",
+      "atlas": 2,
+      "rect": [
+        445,
+        1341,
+        81,
+        262
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "73306",
+      "atlas": 2,
+      "rect": [
+        1712,
+        1075,
+        73,
+        263
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "73316",
+      "atlas": 2,
+      "rect": [
+        528,
+        1341,
+        115,
+        262
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "73326",
+      "atlas": 2,
+      "rect": [
+        1196,
+        1341,
+        90,
+        261
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "73336",
+      "atlas": 2,
+      "rect": [
+        645,
+        1341,
+        69,
+        262
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "73346",
+      "atlas": 1,
+      "rect": [
+        1211,
+        850,
+        118,
+        272
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "73356",
+      "atlas": 1,
+      "rect": [
+        1331,
+        850,
+        110,
+        272
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "73366",
+      "atlas": 1,
+      "rect": [
+        1924,
+        1670,
+        77,
+        269
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "73376",
+      "atlas": 2,
+      "rect": [
+        1416,
+        540,
+        92,
+        266
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "73386",
+      "atlas": 2,
+      "rect": [
+        0,
+        0,
+        100,
+        269
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "73396",
+      "atlas": 2,
+      "rect": [
+        102,
+        0,
+        103,
+        269
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "73406",
+      "atlas": 2,
+      "rect": [
+        207,
+        0,
+        107,
+        269
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "73416",
+      "atlas": 2,
+      "rect": [
+        316,
+        0,
+        102,
+        269
+      ],
+      "source": "final",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "car2-0",
+      "atlas": 0,
+      "rect": [
+        0,
+        0,
+        569,
+        560
+      ],
+      "source": "car",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "car2-1",
+      "atlas": 0,
+      "rect": [
+        571,
+        0,
+        638,
+        560
+      ],
+      "source": "car",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "car2-2",
+      "atlas": 0,
+      "rect": [
+        1211,
+        0,
+        640,
+        520
+      ],
+      "source": "car",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "lights0",
+      "atlas": 0,
+      "rect": [
+        1577,
+        562,
+        314,
+        314
+      ],
+      "source": "scene",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "lights1",
+      "atlas": 0,
+      "rect": [
+        0,
+        878,
+        314,
+        314
+      ],
+      "source": "scene",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "lights2",
+      "atlas": 0,
+      "rect": [
+        316,
+        878,
+        314,
+        314
+      ],
+      "source": "scene",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "lights3",
+      "atlas": 0,
+      "rect": [
+        632,
+        878,
+        314,
+        314
+      ],
+      "source": "scene",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "car1-0",
+      "atlas": 1,
+      "rect": [
+        630,
+        1125,
+        264,
+        271
+      ],
+      "source": "car",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "car1-1",
+      "atlas": 1,
+      "rect": [
+        0,
+        1670,
+        293,
+        270
+      ],
+      "source": "car",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "car1-2",
+      "atlas": 2,
+      "rect": [
+        831,
+        271,
+        311,
+        267
+      ],
+      "source": "car",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "car3-1",
+      "atlas": 3,
+      "rect": [
+        1122,
+        1017,
+        294,
+        232
+      ],
+      "source": "car",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "car3-2",
+      "atlas": 3,
+      "rect": [
+        1670,
+        1017,
+        316,
+        231
+      ],
+      "source": "car",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "car3-0",
+      "atlas": 3,
+      "rect": [
+        534,
+        1257,
+        265,
+        229
+      ],
+      "source": "car",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "car5-2",
+      "atlas": 3,
+      "rect": [
+        1583,
+        1257,
+        316,
+        228
+      ],
+      "source": "car",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "car5-1",
+      "atlas": 3,
+      "rect": [
+        498,
+        1488,
+        293,
+        226
+      ],
+      "source": "car",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "car5-0",
+      "atlas": 3,
+      "rect": [
+        1597,
+        1488,
+        266,
+        225
+      ],
+      "source": "car",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "car4-0",
+      "atlas": 4,
+      "rect": [
+        1624,
+        0,
+        278,
+        215
+      ],
+      "source": "car",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "car4-2",
+      "atlas": 4,
+      "rect": [
+        0,
+        223,
+        321,
+        213
+      ],
+      "source": "car",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "car4-1",
+      "atlas": 4,
+      "rect": [
+        858,
+        223,
+        323,
+        209
+      ],
+      "source": "car",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "car0-1",
+      "atlas": 4,
+      "rect": [
+        1374,
+        1654,
+        291,
+        181
+      ],
+      "source": "car",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "car0-2",
+      "atlas": 4,
+      "rect": [
+        1667,
+        1654,
+        314,
+        180
+      ],
+      "source": "car",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    },
+    {
+      "id": "car0-0",
+      "atlas": 4,
+      "rect": [
+        272,
+        1843,
+        272,
+        178
+      ],
+      "source": "car",
+      "category": null,
+      "description": null,
+      "placement": null,
+      "verified": false,
+      "duplicate": null,
+      "invalidBounds": false
+    }
+  ]
+}
