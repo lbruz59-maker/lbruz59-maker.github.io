@@ -1,0 +1,173 @@
+{
+  "version": "V247-audit-03",
+  "source": "spritesinventaire.zip / sprites.js",
+  "visuallyClassified": 32,
+  "unresolved": [
+    "69116",
+    "69126",
+    "69136"
+  ],
+  "notes": "arch.webp entries blank due atlas-coordinate mismatch: do not classify without rechecking. GOAL split banner verified; not yet integrated. No gameplay changes.",
+  "items": {
+    "69146": [
+      "structure",
+      "poteau fin rouillé",
+      "support de signalisation"
+    ],
+    "69196": [
+      "structure",
+      "poteau métallique clair",
+      "support de signalisation"
+    ],
+    "69246": [
+      "arbre-mort",
+      "tronc sec épais",
+      "terrain sec"
+    ],
+    "69296": [
+      "structure",
+      "poteau fin vert",
+      "support de signalisation"
+    ],
+    "69346": [
+      "arbre-mort",
+      "tronc sec étroit",
+      "terrain sec"
+    ],
+    "69396": [
+      "sport-nautique",
+      "personnage sur planche à voile",
+      "sur eau seulement"
+    ],
+    "69446": [
+      "structure-course",
+      "borne de circuit avec chevrons rouges",
+      "bord de circuit"
+    ],
+    "69586": [
+      "obstacle-course",
+      "baril métallique rouge et blanc",
+      "zone de circuit"
+    ],
+    "70856": [
+      "terrain",
+      "trace de poussière horizontale",
+      "effet au sol"
+    ],
+    "70946": [
+      "arbre-mort",
+      "tronc sec sans feuillage",
+      "terrain sec"
+    ],
+    "71146": [
+      "personnage-animation",
+      "femme sportive vue de dos",
+      "cinématique"
+    ],
+    "71156": [
+      "personnage-animation",
+      "femme sportive en marche profil",
+      "cinématique"
+    ],
+    "71216": [
+      "personnage-animation",
+      "femme sportive de face",
+      "cinématique"
+    ],
+    "71356": [
+      "personnage-animation",
+      "femme avec coupe",
+      "cinématique podium"
+    ],
+    "71456": [
+      "personnage-animation",
+      "femme casquette verte de profil",
+      "cinématique"
+    ],
+    "71516": [
+      "personnage-animation",
+      "femme casquette verte inclinée",
+      "cinématique"
+    ],
+    "71556": [
+      "personnage-animation",
+      "homme lunettes en mouvement",
+      "cinématique"
+    ],
+    "71566": [
+      "personnage-animation",
+      "homme lunettes en mouvement variante",
+      "cinématique"
+    ],
+    "71576": [
+      "personnage-animation",
+      "homme lunettes debout",
+      "cinématique"
+    ],
+    "71596": [
+      "personnage-animation",
+      "homme lunettes saluant",
+      "cinématique"
+    ],
+    "71606": [
+      "personnage-animation",
+      "homme lunettes mains poches",
+      "cinématique"
+    ],
+    "71656": [
+      "personnage-animation",
+      "homme lunettes marchant",
+      "cinématique"
+    ],
+    "72426": [
+      "banniere-arrivee",
+      "GOAL moitié gauche",
+      "arche d'arrivée"
+    ],
+    "72476": [
+      "banniere-arrivee",
+      "GOAL moitié droite",
+      "arche d'arrivée"
+    ],
+    "72576": [
+      "personnage-course",
+      "officiel en polo rouge saluant",
+      "bord de circuit"
+    ],
+    "72586": [
+      "personnage-course",
+      "officiel en polo rouge avec plateau",
+      "bord de circuit"
+    ],
+    "72596": [
+      "personnage-cinematique",
+      "homme assis avec radio",
+      "cinématique"
+    ],
+    "72606": [
+      "personnage-cinematique",
+      "cameraman sur trépied",
+      "cinématique"
+    ],
+    "72616": [
+      "personnage-cinematique",
+      "homme en t-shirt blanc",
+      "cinématique"
+    ],
+    "72626": [
+      "personnage-cinematique",
+      "femme applaudissant",
+      "cinématique"
+    ],
+    "72636": [
+      "personnage-cinematique",
+      "homme bras croisés",
+      "cinématique"
+    ],
+    "72646": [
+      "personnage-cinematique",
+      "homme saluant",
+      "cinématique"
+    ]
+  }
+}
