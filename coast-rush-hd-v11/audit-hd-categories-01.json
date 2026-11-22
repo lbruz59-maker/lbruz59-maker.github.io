@@ -1,0 +1,192 @@
+{
+  "version": "V247-audit-01",
+  "source": "spritesinventaire.zip / sprites.js",
+  "verified": 37,
+  "items": {
+    "63456": [
+      "vehicule",
+      "motard arrière",
+      "exclure décor"
+    ],
+    "63506": [
+      "vehicule",
+      "motard profil trois-quarts",
+      "exclure décor"
+    ],
+    "63556": [
+      "vehicule",
+      "motard autre animation",
+      "exclure décor"
+    ],
+    "64056": [
+      "decor-composite",
+      "arbre sur îlot fleuri",
+      "sol naturel seulement"
+    ],
+    "64066": [
+      "rocher-composite",
+      "falaise végétalisée",
+      "montagne/côte terrestre"
+    ],
+    "64076": [
+      "ruines",
+      "colonnes sur îlot fleuri",
+      "terrain sec"
+    ],
+    "64086": [
+      "montagne-composite",
+      "montagnes et massif fleuri",
+      "arrière-plan terrestre"
+    ],
+    "64096": [
+      "ruines",
+      "colonnes et fleurs",
+      "terrain sec"
+    ],
+    "64106": [
+      "ruines",
+      "aqueduc/arches en pierre",
+      "terrain sec"
+    ],
+    "64116": [
+      "rocher",
+      "dalles rocheuses",
+      "terrain sec"
+    ],
+    "64126": [
+      "batiment",
+      "station GAS et maisons",
+      "terrain sec"
+    ],
+    "64136": [
+      "rocher",
+      "plateforme rocheuse basse",
+      "terrain sec"
+    ],
+    "64146": [
+      "vegetation-composite",
+      "rangée d'arbres sur roche",
+      "terrain sec"
+    ],
+    "64156": [
+      "terrain-composite",
+      "rochers et fleurs",
+      "terrain sec"
+    ],
+    "64166": [
+      "vegetation",
+      "bosquet d'oliviers",
+      "terrain sec"
+    ],
+    "64176": [
+      "terrain-composite",
+      "rochers fleuris",
+      "terrain sec"
+    ],
+    "64186": [
+      "terrain-composite",
+      "mare avec roseaux",
+      "bord d'eau, pas sur mer"
+    ],
+    "64206": [
+      "arbre",
+      "olivier isolé",
+      "terrain sec"
+    ],
+    "64256": [
+      "arbre",
+      "cyprès",
+      "terrain sec"
+    ],
+    "64306": [
+      "vegetation",
+      "rangée de petits arbres",
+      "terrain sec"
+    ],
+    "64356": [
+      "vegetation",
+      "arbuste à fleurs roses",
+      "terrain sec"
+    ],
+    "64406": [
+      "vegetation",
+      "bosquet d'arbustes roses",
+      "terrain sec"
+    ],
+    "64456": [
+      "arbre",
+      "palmier haut",
+      "climat chaud"
+    ],
+    "64506": [
+      "arbre",
+      "grand pin parasol",
+      "climat méditerranéen"
+    ],
+    "64556": [
+      "arbre-groupe",
+      "deux pins parasols",
+      "climat méditerranéen"
+    ],
+    "64606": [
+      "arbre",
+      "grand arbre sans feuilles",
+      "terrain sec"
+    ],
+    "64656": [
+      "arbre-groupe",
+      "deux petits arbres",
+      "terrain sec"
+    ],
+    "64706": [
+      "arbre",
+      "palmier trapu",
+      "climat chaud"
+    ],
+    "64756": [
+      "arbre",
+      "arbre fleuri blanc",
+      "terrain sec"
+    ],
+    "64806": [
+      "vegetation",
+      "massif de figuiers de Barbarie",
+      "climat aride"
+    ],
+    "64856": [
+      "vegetation",
+      "grand cactus",
+      "désert"
+    ],
+    "64906": [
+      "vegetation",
+      "deux cactus",
+      "désert"
+    ],
+    "64956": [
+      "arbre",
+      "arbre mort ramifié",
+      "terrain sec"
+    ],
+    "65006": [
+      "ruines",
+      "ruine de pierre sur rochers",
+      "terrain sec"
+    ],
+    "65056": [
+      "arbre",
+      "tronc mort",
+      "terrain sec"
+    ],
+    "65106": [
+      "vegetation",
+      "buisson bas fleuri",
+      "terrain sec"
+    ],
+    "65156": [
+      "vegetation",
+      "buissons bas mixtes",
+      "terrain sec"
+    ]
+  }
+}
