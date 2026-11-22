@@ -66,14 +66,15 @@
 (function(){
  const marshal=new Set(['68526','68536','68546','68556','68566','68576','68586','68596','68606','68616']);
  let api=null,original=null;
+ function guarded(g,key,...args){
+  if(marshal.has(String(key))&&!(typeof state!=='undefined'&&state==='count'&&typeof stage!=='undefined'&&stage===1))return false;
+  return original.call(this,g,key,...args);
+ }
  function install(){
   const next=window.CRHD;
-  if(!next||typeof next.draw!=='function'||(next===api&&next.draw===guarded))return;
-  api=next;original=next.draw;
-  function guarded(g,key,...args){
-   if(marshal.has(String(key))&&!(typeof state!=='undefined'&&state==='count'&&typeof stage!=='undefined'&&stage===1))return false;
-   return original.call(this,g,key,...args);
-  }
+  if(!next||typeof next.draw!=='function'||next===api||next.draw===guarded)return;
+  api=next;
+  original=next.draw;
   next.draw=guarded;
  }
  install();
