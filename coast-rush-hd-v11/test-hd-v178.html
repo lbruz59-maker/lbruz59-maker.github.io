@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr"><head><script src='./ground-hd.js?v=101'></script><script src='./sprites.js?v=11'></script><script src='./coast-hd-v177.js?v=179'></script><script src='./outrun-original-data.js?v=15'></script><script src="./outrun-endings.js?v=15"></script><meta charset="utf-8"><title>Coast Rush HD V178 - Arches ON, nautique ON, fleurs et rochers</title>
+<html lang="fr"><head><script src='./ground-hd.js?v=101'></script><script src='./sprites.js?v=181'></script><script src='./coast-hd-v177.js?v=181'></script><script src='./outrun-original-data.js?v=15'></script><script src="./outrun-endings.js?v=15"></script><meta charset="utf-8"><title>Coast Rush HD V181 - Arches ON, nautique ON, fleurs et rochers</title>
 <meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Coast Rush"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="mobile-web-app-capable" content="yes"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
 <style>:root{--vw:1vw;--vh:1vh;--dvh:1dvh;--pw:100vw;--ph:100vh}html.crRot{--vw:1vh;--vh:1vw;--dvh:1dvw}
 html.crRot,html.crRot body{overflow:hidden!important}html.crRot body{position:fixed!important;top:0!important;left:var(--pw)!important;width:var(--ph)!important;height:var(--pw)!important;margin:0!important;transform:rotate(90deg)!important;transform-origin:0 0!important}
@@ -2865,18 +2865,17 @@ function cr47TunnelShell(a,b,s){
 
 const cr48MarshalFrames=['68526','68536','68546','68556','68566','68576','68586','68596','68606','68616'];
 window.CRHD=window.CRHD||{};
-// V180 : dimensions normalisees sur la silhouette de reference, pieds ancres au sol.
-const cr180MarshalBase=267;
+// V181 : dix frames, meme hauteur projetee, pieds au meme y.
+// Les tailles source varient de 252 a 267 px ; elles ne doivent jamais
+// changer l'echelle du personnage a chaque changement d'animation.
 window.CRHD.drawMarshal=function(g,x,y,h,t,active){
- const atlas=window.CRHD?.atlas, frames=atlas?.frames;
+ const frames=window.CRHD?.atlas?.frames;
  if(!frames||!Number.isFinite(h)||h<=0)return false;
  const index=active?Math.abs(Math.floor((Number(t)||0)*9))%cr48MarshalFrames.length:0;
- const key=cr48MarshalFrames[index],f=frames[key],ref=frames[cr48MarshalFrames[0]];
- if(!f||!ref)return false;
- // L'echelle du monde reste constante, la largeur vient de la frame reelle.
- const refH=Math.max(1,ref[4]), frameH=Math.max(1,f[4]), frameW=Math.max(1,f[3]);
- const targetH=h*cr180MarshalBase/refH;
- const targetW=targetH*frameW/frameH;
+ const key=cr48MarshalFrames[index],f=frames[key];
+ if(!f||!Number.isFinite(f[3])||!Number.isFinite(f[4])||f[4]<=0)return false;
+ const targetH=h;
+ const targetW=targetH*f[3]/f[4];
  return window.CRHD.draw(g,key,x,y,targetW,targetH);
 };
 const cr48Regional=cr42Regional;
@@ -4370,5 +4369,5 @@ if('serviceWorker' in navigator){
   navigator.serviceWorker.getRegistrations().then(rs=>Promise.all(rs.filter(r=>r.scope.includes('/coast-rush-hd-v11/')).map(r=>r.unregister()))).catch(()=>{});
  });
 }
-</script><div id="cr141Version" style="position:fixed;right:max(8px,env(safe-area-inset-right));bottom:max(5px,env(safe-area-inset-bottom));z-index:2147483647;color:#fff;background:rgba(0,0,0,.58);font:700 12px monospace;padding:3px 6px;border-radius:3px;pointer-events:none;user-select:none">HD V178</div>
+</script><div id="cr141Version" style="position:fixed;right:max(8px,env(safe-area-inset-right));bottom:max(5px,env(safe-area-inset-bottom));z-index:2147483647;color:#fff;background:rgba(0,0,0,.58);font:700 12px monospace;padding:3px 6px;border-radius:3px;pointer-events:none;user-select:none">HD V181</div>
 </body></html>
