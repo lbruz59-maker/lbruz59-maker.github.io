@@ -1,0 +1,202 @@
+{
+  "version": "V247-audit-10",
+  "source": "Original WebP from user ZIP and exact coordinates sprites.js",
+  "visuallyClassified": 36,
+  "invalidUnclassifiable": [
+    "68526",
+    "68536",
+    "68546",
+    "68556",
+    "68566",
+    "68576",
+    "68586",
+    "68596",
+    "68606",
+    "68616",
+    "69126",
+    "69136"
+  ],
+  "notes": "12 arch.webp coordinates are out of image bounds and cannot be visually classified; no guessing. No gameplay edits.",
+  "items": {
+    "67116": [
+      "panneau-sega",
+      "Enseigne SEGA bleue sur structure métallique",
+      "signalétique"
+    ],
+    "67136": [
+      "panneau-course",
+      "Enseigne Course 5 sur structure",
+      "signalétique"
+    ],
+    "67166": [
+      "rocher",
+      "Grand rocher vertical fleuri",
+      "terrain sec"
+    ],
+    "67216": [
+      "muret",
+      "Deux murets en pierres",
+      "terrain sec"
+    ],
+    "67266": [
+      "rocher",
+      "Rocher gris horizontal",
+      "terrain sec"
+    ],
+    "67316": [
+      "banniere-start",
+      "START moitié gauche ST",
+      "bannière départ validée V247"
+    ],
+    "67366": [
+      "banniere-start",
+      "START moitié droite ART",
+      "bannière départ validée V247"
+    ],
+    "67496": [
+      "panneaux-publicitaires",
+      "Empilement Marlboro Agip Hornicafe Corse Rallye",
+      "signalétique"
+    ],
+    "69116": [
+      "monument",
+      "Arc de Triomphe de Paris, partie gauche",
+      "monument urbain"
+    ],
+    "71676": [
+      "cinematique-homme",
+      "Homme en polo bleu et pantalon blanc, vue debout/profil",
+      "cinématique"
+    ],
+    "71686": [
+      "cinematique-homme",
+      "Homme en polo bleu et pantalon blanc, vue debout/profil",
+      "cinématique"
+    ],
+    "71696": [
+      "cinematique-homme",
+      "Homme en polo bleu et pantalon blanc, vue debout/profil",
+      "cinématique"
+    ],
+    "71706": [
+      "cinematique-homme",
+      "Homme en polo bleu et pantalon blanc, vue debout/profil",
+      "cinématique"
+    ],
+    "71716": [
+      "cinematique-trophee",
+      "Homme en polo bleu tenant puis levant une coupe, poses successives",
+      "cinématique"
+    ],
+    "71726": [
+      "cinematique-trophee",
+      "Homme en polo bleu tenant puis levant une coupe, poses successives",
+      "cinématique"
+    ],
+    "71736": [
+      "cinematique-trophee",
+      "Homme en polo bleu tenant puis levant une coupe, poses successives",
+      "cinématique"
+    ],
+    "71746": [
+      "cinematique-trophee",
+      "Homme en polo bleu tenant puis levant une coupe, poses successives",
+      "cinématique"
+    ],
+    "71756": [
+      "cinematique-trophee",
+      "Homme en polo bleu tenant puis levant une coupe, poses successives",
+      "cinématique"
+    ],
+    "71766": [
+      "cinematique-trophee",
+      "Homme en polo bleu tenant puis levant une coupe, poses successives",
+      "cinématique"
+    ],
+    "71776": [
+      "cinematique-trophee",
+      "Homme en polo bleu tenant puis levant une coupe, poses successives",
+      "cinématique"
+    ],
+    "71786": [
+      "cinematique-trophee",
+      "Homme en polo bleu tenant puis levant une coupe, poses successives",
+      "cinématique"
+    ],
+    "72146": [
+      "cinematique-femme",
+      "Femme blonde en tenue blanche, vue arrière et rotation",
+      "cinématique"
+    ],
+    "72156": [
+      "cinematique-femme",
+      "Femme blonde en tenue blanche, vue arrière et rotation",
+      "cinématique"
+    ],
+    "72166": [
+      "cinematique-femme",
+      "Femme blonde en tenue blanche, vue arrière et rotation",
+      "cinématique"
+    ],
+    "72176": [
+      "cinematique-femme",
+      "Femme blonde en tenue blanche, vue avant, mouvements des bras",
+      "cinématique"
+    ],
+    "72186": [
+      "cinematique-femme",
+      "Femme blonde en tenue blanche, vue avant, mouvements des bras",
+      "cinématique"
+    ],
+    "72196": [
+      "cinematique-femme",
+      "Femme blonde en tenue blanche, vue avant, mouvements des bras",
+      "cinématique"
+    ],
+    "72206": [
+      "cinematique-femme",
+      "Femme blonde en tenue blanche, vue avant, mouvements des bras",
+      "cinématique"
+    ],
+    "72216": [
+      "cinematique-femme",
+      "Femme brune en haut gris et pantalon blanc",
+      "cinématique"
+    ],
+    "72226": [
+      "cinematique-homme",
+      "Homme barbu en chemise bleue, gestes, avec drapeau italien sur une pose",
+      "cinématique"
+    ],
+    "72236": [
+      "cinematique-homme",
+      "Homme barbu en chemise bleue, gestes, avec drapeau italien sur une pose",
+      "cinématique"
+    ],
+    "72246": [
+      "cinematique-homme",
+      "Homme barbu en chemise bleue, gestes, avec drapeau italien sur une pose",
+      "cinématique"
+    ],
+    "72256": [
+      "cinematique-homme",
+      "Homme barbu en chemise bleue, gestes, avec drapeau italien sur une pose",
+      "cinématique"
+    ],
+    "72266": [
+      "cinematique-homme",
+      "Homme barbu en chemise bleue, gestes, avec drapeau italien sur une pose",
+      "cinématique"
+    ],
+    "72276": [
+      "cinematique-groupe",
+      "Trois hommes applaudissant, poses successives",
+      "cinématique"
+    ],
+    "72286": [
+      "cinematique-groupe",
+      "Trois hommes applaudissant, poses successives",
+      "cinématique"
+    ]
+  }
+}
