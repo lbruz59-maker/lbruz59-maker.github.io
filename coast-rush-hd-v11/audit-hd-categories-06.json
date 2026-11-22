@@ -1,0 +1,97 @@
+{
+  "version": "V247-audit-06",
+  "source": "Original OutRun HD atlas cropped images",
+  "visuallyClassified": 18,
+  "items": {
+    "car2-0": [
+      "vehicule-jouable",
+      "Volkswagen Coccinelle rouge, vue arrière ou trois-quarts 0",
+      "véhicule / garage / conduite"
+    ],
+    "car2-1": [
+      "vehicule-jouable",
+      "Volkswagen Coccinelle rouge, vue arrière ou trois-quarts 1",
+      "véhicule / garage / conduite"
+    ],
+    "car2-2": [
+      "vehicule-jouable",
+      "Volkswagen Coccinelle rouge, vue arrière ou trois-quarts 2",
+      "véhicule / garage / conduite"
+    ],
+    "car1-0": [
+      "vehicule-jouable",
+      "Pick-up rouge, vue arrière ou trois-quarts 0",
+      "véhicule / garage / conduite"
+    ],
+    "car1-1": [
+      "vehicule-jouable",
+      "Pick-up rouge, vue arrière ou trois-quarts 1",
+      "véhicule / garage / conduite"
+    ],
+    "car1-2": [
+      "vehicule-jouable",
+      "Pick-up rouge, vue arrière ou trois-quarts 2",
+      "véhicule / garage / conduite"
+    ],
+    "car3-0": [
+      "vehicule-jouable",
+      "BMW berline rouge, vue arrière ou trois-quarts 0",
+      "véhicule / garage / conduite"
+    ],
+    "car3-1": [
+      "vehicule-jouable",
+      "BMW berline rouge, vue arrière ou trois-quarts 1",
+      "véhicule / garage / conduite"
+    ],
+    "car3-2": [
+      "vehicule-jouable",
+      "BMW berline rouge, vue arrière ou trois-quarts 2",
+      "véhicule / garage / conduite"
+    ],
+    "car5-0": [
+      "vehicule-jouable",
+      "Porsche 911 Carrera rouge, vue arrière ou trois-quarts 0",
+      "véhicule / garage / conduite"
+    ],
+    "car5-1": [
+      "vehicule-jouable",
+      "Porsche 911 Carrera rouge, vue arrière ou trois-quarts 1",
+      "véhicule / garage / conduite"
+    ],
+    "car5-2": [
+      "vehicule-jouable",
+      "Porsche 911 Carrera rouge, vue arrière ou trois-quarts 2",
+      "véhicule / garage / conduite"
+    ],
+    "car4-0": [
+      "vehicule-jouable",
+      "Chevrolet Corvette rouge, vue arrière ou trois-quarts 0",
+      "véhicule / garage / conduite"
+    ],
+    "car4-1": [
+      "vehicule-jouable",
+      "Chevrolet Corvette rouge, vue arrière ou trois-quarts 1",
+      "véhicule / garage / conduite"
+    ],
+    "car4-2": [
+      "vehicule-jouable",
+      "Chevrolet Corvette rouge, vue arrière ou trois-quarts 2",
+      "véhicule / garage / conduite"
+    ],
+    "car0-0": [
+      "vehicule-jouable",
+      "Ferrari Testarossa décapotable, vue arrière ou trois-quarts 0",
+      "véhicule / garage / conduite"
+    ],
+    "car0-1": [
+      "vehicule-jouable",
+      "Ferrari Testarossa décapotable, vue arrière ou trois-quarts 1",
+      "véhicule / garage / conduite"
+    ],
+    "car0-2": [
+      "vehicule-jouable",
+      "Ferrari Testarossa décapotable, vue arrière ou trois-quarts 2",
+      "véhicule / garage / conduite"
+    ]
+  }
+}
