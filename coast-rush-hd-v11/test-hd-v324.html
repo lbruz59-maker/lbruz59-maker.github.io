@@ -12,11 +12,12 @@ window.CRHD_CIRCUIT_CATEGORIES={
 };
 window.CRHD_CATEGORIES_FOR_CIRCUIT=function(city,theme){const name=String(city||'').toUpperCase();return window.CRHD_CIRCUIT_CATEGORIES[name]||((theme?.snowy)?['Montagne / neige','Forêt / campagne']:(theme?.w)?['Plage / mer']:['Forêt / campagne']);};
 window.CRHD_GET_ASSIGNMENTS=function(){
+ if(window.__crhdAssignmentCache)return window.__crhdAssignmentCache;
  let saved={};try{saved=JSON.parse(localStorage.getItem('crhd_sprite_categories_v324')||'{}')||{};}catch(e){}
  const base=window.CRHD_USER_CATEGORIES||{},out={};
  for(const [id,cat] of Object.entries(base))out[id]=[cat];
  for(const [id,cats] of Object.entries(saved))if(Array.isArray(cats))out[id]=cats.filter(c=>window.CRHD_BIOMES.includes(c));
- return out;
+ return (window.__crhdAssignmentCache=out);
 };
 window.CRHD_SPRITE_ACCEPTS=function(id,categories){const selected=window.CRHD_GET_ASSIGNMENTS()[String(id)]||[];return selected.includes('Tous les circuits')||categories.some(c=>selected.includes(c));};
 </script><script>
