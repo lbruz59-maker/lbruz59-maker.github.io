@@ -1,0 +1,153 @@
+{
+  "source": "test-hd-v398.html",
+  "status": "propositions non intégrées au jeu",
+  "missing": [
+    {
+      "circuit": "MARRAKECH",
+      "proposed_landmark": "Koutoubia",
+      "status": "sprite HD à créer et intégrer"
+    },
+    {
+      "circuit": "NAIROBI",
+      "proposed_landmark": "Kenyatta International Convention Centre",
+      "status": "sprite HD à créer et intégrer"
+    },
+    {
+      "circuit": "LE CAP",
+      "proposed_landmark": "Table Mountain",
+      "status": "sprite HD à créer et intégrer"
+    },
+    {
+      "circuit": "DAKAR",
+      "proposed_landmark": "Monument de la Renaissance africaine",
+      "status": "sprite HD à créer et intégrer"
+    },
+    {
+      "circuit": "TUNIS",
+      "proposed_landmark": "Tour de l'Horloge",
+      "status": "sprite HD à créer et intégrer"
+    },
+    {
+      "circuit": "ADDIS-ABEBA",
+      "proposed_landmark": "Monument du Lion de Juda",
+      "status": "sprite HD à créer et intégrer"
+    },
+    {
+      "circuit": "ZANZIBAR",
+      "proposed_landmark": "House of Wonders",
+      "status": "sprite HD à créer et intégrer"
+    },
+    {
+      "circuit": "VICTORIA FALLS",
+      "proposed_landmark": "Victoria Falls",
+      "status": "sprite HD à créer et intégrer"
+    },
+    {
+      "circuit": "CASABLANCA",
+      "proposed_landmark": "Mosquée Hassan II",
+      "status": "sprite HD à créer et intégrer"
+    },
+    {
+      "circuit": "FIJI",
+      "proposed_landmark": "Temple Sri Siva Subramaniya",
+      "status": "sprite HD à créer et intégrer"
+    },
+    {
+      "circuit": "AUCKLAND",
+      "proposed_landmark": "Sky Tower",
+      "status": "sprite HD à créer et intégrer"
+    },
+    {
+      "circuit": "QUEENSTOWN",
+      "proposed_landmark": "The Remarkables",
+      "status": "sprite HD à créer et intégrer"
+    },
+    {
+      "circuit": "SÉOUL",
+      "proposed_landmark": "Lotte World Tower",
+      "status": "sprite HD à créer et intégrer"
+    },
+    {
+      "circuit": "BANGKOK",
+      "proposed_landmark": "Wat Arun",
+      "status": "sprite HD à créer et intégrer"
+    },
+    {
+      "circuit": "HANOÏ",
+      "proposed_landmark": "Tour de la Tortue",
+      "status": "sprite HD à créer et intégrer"
+    },
+    {
+      "circuit": "SINGAPOUR",
+      "proposed_landmark": "Marina Bay Sands",
+      "status": "sprite HD à créer et intégrer"
+    },
+    {
+      "circuit": "BALI",
+      "proposed_landmark": "Temple Tanah Lot",
+      "status": "sprite HD à créer et intégrer"
+    },
+    {
+      "circuit": "JAIPUR",
+      "proposed_landmark": "Hawa Mahal",
+      "status": "sprite HD à créer et intégrer"
+    },
+    {
+      "circuit": "KATMANDOU",
+      "proposed_landmark": "Stupa de Boudhanath",
+      "status": "sprite HD à créer et intégrer"
+    },
+    {
+      "circuit": "HONG KONG",
+      "proposed_landmark": "International Commerce Centre",
+      "status": "sprite HD à créer et intégrer"
+    },
+    {
+      "circuit": "GREAT BARRIER REEF",
+      "proposed_landmark": "Corail monumental",
+      "status": "sprite HD à créer et intégrer"
+    },
+    {
+      "circuit": "BORA BORA",
+      "proposed_landmark": "Mont Otemanu",
+      "status": "sprite HD à créer et intégrer"
+    },
+    {
+      "circuit": "TAHITI",
+      "proposed_landmark": "Mont Orohena",
+      "status": "sprite HD à créer et intégrer"
+    },
+    {
+      "circuit": "PORT MORESBY",
+      "proposed_landmark": "Parlement national",
+      "status": "sprite HD à créer et intégrer"
+    },
+    {
+      "circuit": "SAINT-POL-SUR-TERNOISE",
+      "proposed_landmark": "Église Saint-Paul",
+      "status": "sprite HD à créer et intégrer"
+    },
+    {
+      "circuit": "ÎLE DE LA RÉUNION",
+      "proposed_landmark": "Piton de la Fournaise",
+      "status": "sprite HD à créer et intégrer"
+    },
+    {
+      "circuit": "ALASKA",
+      "proposed_landmark": "Denali",
+      "status": "sprite HD à créer et intégrer"
+    },
+    {
+      "circuit": "SAMOA",
+      "proposed_landmark": "Cathédrale de l'Immaculée-Conception",
+      "status": "sprite HD à créer et intégrer"
+    }
+  ],
+  "existing_but_not_visible": [
+    {
+      "circuit": "DUBAÏ",
+      "key": "burj",
+      "status": "rendu à diagnostiquer"
+    }
+  ]
+}
