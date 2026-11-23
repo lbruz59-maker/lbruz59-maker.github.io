@@ -4,7 +4,7 @@ const CATS=["Tous les circuits","Forêt / campagne","Désert","Plage / mer","Tro
 const FRAMES=window.hdSprites?.frames||{},FILES=window.hdSprites?.images||[];
 const images=FILES.map(src=>{const im=new Image();im.src='./'+src;return im});
 let saved={};try{saved=JSON.parse(localStorage.getItem('crhd_sprite_categories_v324')||'{}')||{}}catch(e){}
-function categories(id,frame){if(saved[id])return saved[id];if(BASE[id])return [BASE[id]];const role=frame[9];return role==='final'?['Cinématique fin']:role==='scene'?['Forêt / campagne']:role==='traffic'||role==='riders'||role==='ferrari'||role==='car'?['Animation véhicule']:[];}
+function categories(id,frame){if(saved[id])return saved[id];if(BASE[id])return [BASE[id]];const role=frame[9];return role==='final'?['Cinématique fin']:role==='scene'?[]:role==='traffic'||role==='riders'||role==='ferrari'||role==='car'?['Animation véhicule']:[];}
 function save(id,vals){saved[id]=vals;try{localStorage.setItem('crhd_sprite_categories_v324',JSON.stringify(saved))}catch(e){alert('Stockage local saturé')}}
 const grid=document.getElementById('grid'),filter=document.getElementById('filter'),find=document.getElementById('find'),summary=document.getElementById('summary');
 CATS.forEach(c=>{const o=document.createElement('option');o.value=c;o.textContent=c;filter.appendChild(o)});
