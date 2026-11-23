@@ -1,0 +1,54 @@
+{
+  "version": 1,
+  "source": "Generated urban sprite artwork",
+  "sprites": {
+    "skyline_modern": {
+      "file": "skyline_modern.webp",
+      "width": 1774,
+      "height": 156,
+      "categories": [
+        "Ville"
+      ]
+    },
+    "residences": {
+      "file": "residences.webp",
+      "width": 1774,
+      "height": 130,
+      "categories": [
+        "Ville"
+      ]
+    },
+    "facades_mediterranee": {
+      "file": "facades_mediterranee.webp",
+      "width": 1774,
+      "height": 122,
+      "categories": [
+        "Ville"
+      ]
+    },
+    "monuments": {
+      "file": "monuments.webp",
+      "width": 1774,
+      "height": 176,
+      "categories": [
+        "Ville"
+      ]
+    },
+    "skyline_international": {
+      "file": "skyline_international.webp",
+      "width": 1774,
+      "height": 181,
+      "categories": [
+        "Ville"
+      ]
+    },
+    "mobilier_urbain": {
+      "file": "mobilier_urbain.webp",
+      "width": 1774,
+      "height": 122,
+      "categories": [
+        "Ville"
+      ]
+    }
+  }
+}
