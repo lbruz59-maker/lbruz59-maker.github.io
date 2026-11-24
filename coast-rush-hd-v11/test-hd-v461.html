@@ -1044,22 +1044,21 @@ segs.forEach(s=>{if(s.tun){s.sp=[{t:'T',o:0,port:true,inner:s.i!==s.tS&&s.i!==s.
    for(let ai=at-2;ai<=at+2;ai++){const q=segs[ai];if(q)delete q.overpass;}
   }
  }
- /* V461: standalone HD crossings outside original arch corridors. */
+ /* V453: every eligible route gets transverse structures; arch routes retain arches only. */
  if(archStart>=0){for(const q of segs){delete q.bridge;delete q.bk;delete q.bd;delete q.bcx;delete q.bc;delete q.overpass;}}
- if(MODE!==7){
- const limit=N-FORK-80,chosen=[];
- for(const q of segs)if(q.overpass===1)chosen.push(q.i);
- for(const fraction of [.18,.48,.78]){
- if(chosen.length>=3)break;
- const target=Math.floor(limit*fraction);
- for(let d=0;d<limit;d++){
- const at=target+(d%2?-1:1)*Math.ceil(d/2);
- if(at<80||at>=limit||chosen.some(k=>Math.abs(k-at)<90))continue;
- if(archStart>=0&&at>=archStart-30&&at<=archEnd+30)continue;
- if(Array.from({length:25},(_,j)=>segs[at-12+j]).some(q=>!q||q.tun||q.loop||q.bridge||q.sp?.some(o=>o.t==='A'||o.t==='ORA')))continue;
- chosen.push(at);for(let j=-2;j<=2;j++){segs[at+j].overpass=j===0?1:2;segs[at+j].cr461Standalone=true;}break;
- }
- }
+ else if(MODE!==7){
+  const limit=N-FORK-80,chosen=[];
+  for(const q of segs)if(q.overpass===1)chosen.push(q.i);
+  for(const fraction of [.28,.67]){
+   if(chosen.length>=2)break;
+   const target=Math.floor(limit*fraction);
+   for(let d=0;d<limit;d++){
+    const at=target+(d%2?-1:1)*Math.ceil(d/2);
+    if(at<100||at>=limit||chosen.some(k=>Math.abs(k-at)<115))continue;
+    if(Array.from({length:25},(_,j)=>segs[at-12+j]).some(q=>!q||q.tun||q.loop||q.bridge))continue;
+    chosen.push(at);for(let j=-2;j<=2;j++)segs[at+j].overpass=j===0?1:2;break;
+   }
+  }
  }
  segs.forEach(s=>{if(s.tun||s.bridge||s.loop||s.i>=N-FORK||s.i<80||s.sp.some(o=>o.t==='A'))return;const i=s.i;if(i%5===2){
  /* V419: pre-populated flower groves, 5–20 individual u sprites per cluster.
@@ -3015,7 +3014,7 @@ function __crGetDecoThemeKey(){
  }
  return __crDecoThemeKey;
 }
-const orArchImage=new Image();orArchImage.src='../outrun-hd-arcade-roll-v10/arch.webp';const crNewNature=new Image(),crNewBuildings=new Image();crNewNature.src='./coast-nature-hd.webp?v=19';crNewBuildings.src='./coast-buildings-hd.webp?v=19';
+const orArchImage=new Image();orArchImage.src='./arch-stone-hd.webp?v=461';const crNewNature=new Image(),crNewBuildings=new Image();crNewNature.src='./coast-nature-hd.webp?v=19';crNewBuildings.src='./coast-buildings-hd.webp?v=19';
 const crHDDiagnostic=document.createElement('div');crHDDiagnostic.style.cssText='position:fixed;left:8px;top:8px;z-index:99999;background:#102030;color:white;font:12px monospace;padding:5px;pointer-events:none';crHDDiagnostic.id='crHDDiagnostic';document.body.appendChild(crHDDiagnostic);setInterval(()=>{crHDDiagnostic.textContent='V99 HD | mode '+MODE+' | nature '+crNewNature.naturalWidth+' | bâtiments '+crNewBuildings.naturalWidth+' | neige '+(cr38Images['snow-chalet'].naturalWidth&&cr38Images['snow-pine'].naturalWidth?'HD':'standard')+' | sprites '+crHDHits;crHDHits=0;},1000);
 let crHDHits=0;const crNatureRects={p:[0,0,192,192],t:[192,0,192,192],eu:[384,0,192,192],n:[384,192,192,192],c:[192,192,192,192],a:[576,192,192,192],r:[0,384,192,192],u:[384,384,192,192]};
 const crBuildingRects={cot:[214,207,105,81],hau:[214,207,105,81],fair:[158,117,101,95],cf:[265,119,148,84],gs:[125,218,88,69],ch:[214,207,105,81],bs:[640,119,128,83],arch:[0,0,122,113],eiffel:[125,0,96,113],sagrada:[222,0,105,113],ben:[328,0,83,113],basil:[670,0,98,113],gym:[550,212,115,75],port:[0,117,157,85]};
@@ -3316,7 +3315,7 @@ function cr450TileFoot(im,a,u,v){
  cache.set(key,foot);return foot;
 }
 function crDrawNewHD(sp,x,y,sc){if(cr436Regional(sp,x,y,sc))return true;if(MODE!==7){const city=th.n,u=sc*160*roadW,t=sp.t;if(['DESERT','SAHARA','EGYPTE','ARIZONA','LE CAIRE','DUBAÏ'].includes(city)&&cr47Buildings.has(t))return true;const winter=!!th.snowy||wx==='snow';if(winter&&['t','eu','n','p','a'].includes(t))return cr51Image(cr38Images['snow-pine'],x,y,u*1.75);if(winter&&cr47Buildings.has(t)){const alpine=['ALPS','ALPES'].includes(city),french=['PARIS','LILLE','SAINT-POL-SUR-TERNOISE'].includes(city);if(alpine||french||city==='MOSCOU'){const k=alpine?'snow-chalet':({cf:'snow-cafe',ec:'snow-school',sc:'snow-school',ht:'snow-hotel',ho:'snow-hotel'})[t]||'snow-haussmann';return cr51Image(cr38Images[k],x,y,u*1.55);}}if(['t','eu','n'].includes(t))return cr51Image(cr39Image(winter?'regional_008':city==='TOKYO'||city==='KYOTO'?'regional_013':['ROME','BARCELONE'].includes(city)?'regional_007':'regional_009'),x,y,u*(city==='VENISE'?.88:1.75));if(t==='M'){const key=cr39Land[sp.k]||sp.k;if(!cr45Land[city]?.includes(key)){if(city==='MOSCOU'&&sp.k==='basil')return cr51Image(cr39Image('saint_basile'),x,y,u*6.37,sp.o<0?1:0);return true;}return cr51Image(cr39Image(key),x,y,u*6.37,sp.o<0?1:0);}if(t==='W'&&sp.o<-2.5&&city!=='VENISE'){const keys=['monde_017','monde_019','monde_020'],k=keys[Math.abs(Math.floor((sp.ph||0)*13))%3];return cr51Image(cr39Image(k),x,y,Math.min(H*.30,u*.95));}if(t==='ws'&&sp.o<-2.5&&city!=='VENISE'&&!winter)return cr51Image(cr39Image('mobilier_066'),x,y,Math.min(H*.23,u*.48));if(['W','ws','K'].includes(t)||(t==='D'&&sp.k==='gon'))return true;if(city==='NEW YORK'&&cr47Buildings.has(t))return cr51Image(cr38Images.hotel,x,y,u*2.2);if(cr47Buildings.has(t)){const seed=Math.abs((Math.imul((sp.cr44||0)+1,2654435761)>>>0)%11);if(city==='SAINT-POL-SUR-TERNOISE')return cr51Image(seed===0?cr38Images.school:seed===1?cr38Images.cafe:cr39Image('monde_001'),x,y,u*(seed===0?1.2:.85));if(city==='VENISE')return cr51Image(cr39Image(seed%4===0?'regional_004':'regional_003'),x,y,u*1.15);if(city==='LONDRES'&&seed%4!==0)return cr51Image(cr39Image(seed%2?'regional_009':'monde_001'),x,y,u*.95);if(['ROME','BARCELONE'].includes(city)&&seed%3===0)return cr51Image(cr39Image('monde_001'),x,y,u*.95);const french=['PARIS','LILLE','SAINT-POL-SUR-TERNOISE'].includes(city),winter=!!th.snowy||wx==='snow';if(french){const k=({gs:'gas',ec:'school',sc:'school',ap:'airport',ht:'hotel',ho:'hotel',cf:'cafe'})[t];if(k)return cr51Image(cr38Images[(winter&&cr38Images['snow-'+k])?'snow-'+k:k],x,y,u*1.5);return cr51Image(cr39Image('immeuble_paris'),x,y,u*1.6);}if(winter&&['ALPS','ALPES'].includes(city))return cr51Image(cr38Images['snow-chalet'],x,y,u*1.4);const regional=city==='LONDRES'?'regional_002':['ROME','BARCELONE'].includes(city)?(Math.abs(Math.floor((sp.o||0)*173))%3===0?'regional_004':'regional_003'):null;if(regional)return cr51Image(cr39Image(regional),x,y,u*1.5);return true;}}if(cr51Regional(sp,x,y,sc))return true;if(MODE!==7&&(th.snowy||wx==='snow')&&sp.t==='u')return true;if(cr42Regional(sp,x,y,sc))return true;if(sp.t==='D'&&['gon','leaf'].includes(sp.k))return false;if(cr39Draw(sp,x,y,sc))return true;if(cr38Draw(sp,x,y,sc))return true;if(MODE===7)return false;if(sp.t==='C'||sp.t==='P'||sp.pe||sp.t==='M'){if(cr33Draw(sp,x,y,sc))return true;if(sp.t!=='M')return true;}const rect=crNatureRects[sp.t],br=crBuildingRects[sp.k]||crBuildingRects[sp.t]||(['h','Z','ap','sc','ht','ho','ec','sk','sm','rt','cl'].includes(sp.t)?crBuildingRects[sp.variant||'cot']:sp.t==='D'?crBuildingRects[({cafe:'cf',frites:'cf',barn:'ch',cot:'cot',silo:'gs'})[sp.k]]:null);const a=rect||br, winter=!!th.snowy||wx==='snow', normal=rect?crNewNature:crNewBuildings, snowy=rect?cr36SnowNature:cr36SnowBuildings, im=winter&&snowy.complete&&snowy.naturalWidth&&snowy.naturalWidth===normal.naturalWidth&&snowy.naturalHeight===normal.naturalHeight?snowy:normal;if(!a||!im.complete||!im.naturalWidth){const t=sp.t;return ['Z','D','L','h','B','A','ch','p','t','n','eu','a','u','c','r','cl','py','ap','sc','ht','ho','ec','sk','sm','bs','gs','rt','cf','fa','an'].includes(t);}const u=im.naturalWidth/768,v=im.naturalHeight/(rect?576:384),h=sc*160*roadW*(rect?({p:0.85,t:.85,eu:.85,n:.95,c:.55,a:.72,r:.42,u:.30}[sp.t]||.5):({arch:3.1,eiffel:4.2,sagrada:3.75,ben:3.6,basil:2.85,gym:.55,port:.38}[sp.k]||1.005)),w=h*a[2]*u/(a[3]*v);if(h<2)return true;crHDHits++;const dx=sp.t==='M'?x+(sp.o<0?-w:0):cr445Fit(x,w,.5)-w/2;const foot=rect?cr450TileFoot(im,a,u,v):1;ctx.drawImage(im,a[0]*u,a[1]*v,a[2]*u,a[3]*v,dx,y-h*foot,w,h);return true;}
-function crDrawSquareArch(sp,x,y,sc){if(sp.t==='ORA'){const w=sc*160*roadW*3.3*(sp.roadWidth||1),h=w*.66;if(x+w/2<0||x-w/2>W||y<0||h<1)return;if(orArchImage.complete&&orArchImage.naturalWidth){const im=orArchImage,sw=im.naturalWidth,sh=im.naturalHeight,p=w*.11,b=h*.16,left=x-w/2,top=y-h;const sx=sw*.06,sy=sh*.35,tw=sw*.12,th=sh*.30;ctx.drawImage(im,sx,sy,tw,th,left,top+b,p,h-b);ctx.drawImage(im,sx,sy,tw,th,x+w/2-p,top+b,p,h-b);ctx.drawImage(im,sx,sy,tw,th,left,top,w,b);}return;}}
+function crDrawSquareArch(sp,x,y,sc){if(sp.t!=='ORA')return;const w=sc*160*roadW*3.3*(sp.roadWidth||1),im=orArchImage;if(!im.complete||!im.naturalWidth)return;const h=w*im.naturalHeight/im.naturalWidth;if(x+w/2<0||x-w/2>W||y<0||h<1)return;ctx.drawImage(im,x-w/2,y-h,w,h);}
 function cr435ArchitectureScale(sp){
  if(!sp||MODE===7)return 1;
  const k=String(sp.k||'');
@@ -3399,7 +3398,15 @@ function crSafeRoadside(sp,baseX,baseY,sc,boost){
  cr415DrawId(sp,x,baseY,sc);
 }
 function __crDrawDecoGroup(seg,baseX,baseY,sc,spriteBoost=1){
- /* V398: finale monuments must survive tunnel sprite filtering at the end of a course. */const allSprites=(seg.tun?(seg.sp||[]).filter(sp=>sp.t==='T'||sp.cr357Finale):(seg.sp||[]));const hasArch=allSprites.some(sp=>sp.t==='A'||sp.t==='ORA');if(hasArch&&!seg.bridge&&!seg.tun)crDrawSquareArch({t:'ORA',roadWidth:seg.orWidth||1},baseX,baseY,sc);const sprites=hasArch?allSprites.filter(sp=>sp.t!=='A'&&sp.t!=='ORA'):allSprites;if(MODE===7){for(const sp of sprites){if(sp.t==='OR'){const side=Math.sign(sp.o)||1,edge=seg.orWidth||1,offset=Math.max(edge+.035,Math.abs(sp.o));deco(sp,baseX+sc*side*offset*roadW*160,baseY,sc*spriteBoost);}else deco(sp,baseX+sc*sp.o*roadW*160,baseY,sc*spriteBoost);}return;}
+ /* V398: finale monuments must survive tunnel sprite filtering at the end of a course. */const allSprites=(seg.tun?(seg.sp||[]).filter(sp=>sp.t==='T'||sp.cr357Finale):(seg.sp||[]));const hasArch=allSprites.some(sp=>sp.t==='A'||sp.t==='ORA');if(hasArch&&!seg.bridge&&!seg.tun){
+ const id=cr458Map[th.n]||19;
+ let im=cr458Images.get(id);
+ if(!im){im=new Image();im.decoding='async';im.src='./structure_'+String(id).padStart(2,'0')+'.webp';cr458Images.set(id,im);}
+ if(im.complete&&im.naturalWidth&&seg.i%5===0&&MODE!==7){
+ const w=sc*roadW*160*9*(seg.orWidth||1),h=w*im.naturalHeight/im.naturalWidth;
+ if(w>2)ctx.drawImage(im,baseX-w/2,baseY-h,w,h);
+ }else crDrawSquareArch({t:'ORA',roadWidth:seg.orWidth||1},baseX,baseY,sc);
+ }const sprites=hasArch?allSprites.filter(sp=>sp.t!=='A'&&sp.t!=='ORA'):allSprites;if(MODE===7){for(const sp of sprites){if(sp.t==='OR'){const side=Math.sign(sp.o)||1,edge=seg.orWidth||1,offset=Math.max(edge+.035,Math.abs(sp.o));deco(sp,baseX+sc*side*offset*roadW*160,baseY,sc*spriteBoost);}else deco(sp,baseX+sc*sp.o*roadW*160,baseY,sc*spriteBoost);}return;}
  if(!sprites.length)return;
  /* V392: render EVERY final landmark directly at the center of the road,
     outside all roadside clipping and TV sprite caching. */
@@ -3717,7 +3724,6 @@ function __crDrawOverpasses(vis,playerSegment){
  for(let n=0;n<vis.length;n++){
   const s=vis[n];if(s.overpass!==1||!s.a||!s.b)continue;
   if(cr458Structure(s))continue;
-  if(s.cr461Standalone)continue;
   // Le pont ne doit plus être rendu comme un objet devant la voiture une fois
   // que celle-ci arrive dessous : sinon l'arche et les voitures semblent
   // descendre dans la chaussée au lieu de passer au-dessus de la caméra.
