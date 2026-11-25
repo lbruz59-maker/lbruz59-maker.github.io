@@ -1,0 +1,19 @@
+{
+  "name": "Coast Rush HD",
+  "short_name": "Coast Rush HD",
+  "start_url": "./test-hd-v588.html?v=588",
+  "scope": "./",
+  "display": "fullscreen",
+  "orientation": "landscape",
+  "background_color": "#080d18",
+  "theme_color": "#080d18",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ],
+  "id": "./"
+}
