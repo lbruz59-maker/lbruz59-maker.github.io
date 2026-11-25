@@ -193,11 +193,15 @@ class CoastWebGL2 {
   this.metrics.bytes=this.bytes;
   const hardBudget=this.budget*1.2;
   if(this.bytes>hardBudget||(this.bytes>this.budget&&this.serial%30===0)){
-   for(const t of this.pages.slice().sort((a,b)=>a.last-b.last)){
-    const age=this.serial-t.last;
-    if(this.bytes<=this.budget||age<=1||(this.bytes<=hardBudget&&age<90))break;
-    this.gl.deleteTexture(t.handle);t.handle=null;this.bytes-=t.bytes;
-    if(t.key)this.ramps.delete(t.key);
+   // Bound texture destruction per frame; avoid sorting the entire GPU cache.
+   for(let removed=0;removed<2&&this.bytes>this.budget;removed++){
+    const minAge=this.bytes>hardBudget?2:90;
+    let oldest=null;
+    for(const t of this.pages)if(t.handle&&this.serial-t.last>=minAge&&(!oldest||t.last<oldest.last))oldest=t;
+    if(!oldest)break;
+    this.gl.deleteTexture(oldest.handle);oldest.handle=null;this.bytes-=oldest.bytes;
+    if(oldest.key)this.ramps.delete(oldest.key);
+    for(let i=0;i<this.bound.length;i++)if(this.bound[i]===oldest)this.bound[i]=null;
    }
    this.pages=this.pages.filter(t=>t.handle);
   }
@@ -355,7 +359,7 @@ class CoastWebGL2 {
    g.clearRect(0,0,1,1);g.fillStyle='#000';g.fillStyle=value;g.fillRect(0,0,1,1);
    c=Array.from(g.getImageData(0,0,1,1).data,v=>v/255);
   }
-  if(this.colors.size>=4096)this.colors.clear();
+  if(this.colors.size>=4096)this.colors.delete(this.colors.keys().next().value);
   this.colors.set(value,c);return c;
  }
  ramp(style){
