@@ -2455,6 +2455,24 @@ function paintedSprite(g,color,kind,draw){
 const cr498LampLayout={
 0:[[.15,.46,.19,.10],[.85,.46,.19,.10]],1:[[.13,.57,.11,.15],[.87,.57,.11,.15]],2:[[.18,.51,.23,.12],[.82,.51,.23,.12]],3:[[.17,.43,.23,.13],[.83,.43,.23,.13]],4:[[.055,.49,.075,.23],[.945,.49,.075,.23]],5:[[.075,.48,.08,.26],[.925,.48,.08,.26]],6:[[.098,.525,.174,.066],[.902,.525,.174,.066]],7:[[.17,.46,.19,.14],[.83,.46,.19,.14]],8:[[.14,.50,.14,.19],[.86,.50,.14,.19]],9:[[.30,.51,.07,.09],[.70,.51,.07,.09]],10:[[.25,.31,.07,.09],[.75,.31,.07,.09]],11:[[.50,.60,.065,.13]],12:[[.50,.51,.20,.08]],13:[[.50,.58,.19,.12]],14:[[.50,.65,.24,.13]],15:[[.50,.48,.18,.065]],16:[[.50,.52,.17,.08]],17:[[.27,.61,.15,.11],[.73,.54,.22,.035]]};
 function cr495Stop(x,y,w,h,v,pose=1){if(w<2)return;const lamps=cr498LampLayout[v];if(!lamps)return;ctx.save();ctx.globalCompositeOperation='screen';for(const [fx,fy,rw,rh] of lamps){const shift=pose===0?-.025:pose===2?.025:0;const lx=x+(fx-.5+shift)*w,ly=y+(fy-1)*h;ctx.fillStyle='rgba(255,35,12,.66)';ctx.fillRect(lx-w*rw/2,ly-h*rh/2,w*rw,h*rh);}ctx.restore();}
+const cr602Centers=new WeakMap();
+function cr602Center(im,sx,sy,sw,sh){
+ let cache=cr602Centers.get(im);if(!cache){cache=new Map();cr602Centers.set(im,cache);}
+ const key=[sx,sy,sw,sh].join(':');if(cache.has(key))return cache.get(key);
+ let offset=0,gl,tex,fb;
+ try{
+  const surface=document.createElement('canvas');surface.width=1;surface.height=1;
+  gl=surface.getContext('webgl2',{alpha:true,antialias:false});if(!gl)throw Error('WebGL2 unavailable');
+  tex=gl.createTexture();gl.bindTexture(gl.TEXTURE_2D,tex);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MIN_FILTER,gl.NEAREST);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MAG_FILTER,gl.NEAREST);
+  gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL,false);gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA,gl.RGBA,gl.UNSIGNED_BYTE,im);
+  fb=gl.createFramebuffer();gl.bindFramebuffer(gl.FRAMEBUFFER,fb);gl.framebufferTexture2D(gl.FRAMEBUFFER,gl.COLOR_ATTACHMENT0,gl.TEXTURE_2D,tex,0);
+  if(gl.checkFramebufferStatus(gl.FRAMEBUFFER)!==gl.FRAMEBUFFER_COMPLETE)throw Error('Incomplete framebuffer');
+  const p=new Uint8Array(sw*sh*4);gl.readPixels(sx,sy,sw,sh,gl.RGBA,gl.UNSIGNED_BYTE,p);
+  let l=sw,r=-1;for(let yy=0;yy<sh;yy++)for(let xx=0;xx<sw;xx++)if(p[(yy*sw+xx)*4+3]>160){l=Math.min(l,xx);r=Math.max(r,xx);}
+  if(r>=l)offset=((l+r+1)/2-sw/2)/sw;
+ }catch(e){console.warn('V602 sprite center',e);}finally{if(gl){if(fb)gl.deleteFramebuffer(fb);if(tex)gl.deleteTexture(tex);gl.getExtension('WEBGL_lose_context')?.loseContext();}}
+ cache.set(key,offset);return offset;
+}
 function cr82Vehicle(x,y,w,v,pose,phase=0,color=myCol){
  const name=cr82Models[v],sizes=coastSpriteData.models[name];
  if(v===6||!sizes)return false;
@@ -2462,6 +2480,7 @@ function cr82Vehicle(x,y,w,v,pose,phase=0,color=myCol){
  const [bw,bh]=sizes[1],[sw,sh]=sizes[pose];
  let layout=cr586Layouts.get(name);if(!layout){layout=[Math.max(...sizes.map(p=>p[0]))+2,Math.max(...sizes.map(p=>p[1]))+2];cr586Layouts.set(name,layout);}const [slotW,slotH]=layout;if(image.naturalWidth<(Math.floor(phase)&3)*slotW+sw||image.naturalHeight<pose*slotH+sh)return false;
  const scale=v===17?.95:v>=12?.86:1.30;const dh=w*scale*bh/bw,dw=dh*sw/sh;
+ if(pose===1&&v===myV&&speed===0&&(state==='count'||state==='wait'||state==='play'))x-=dw*cr602Center(image,(Math.floor(phase)&3)*slotW,pose*slotH,sw,sh);
  paintedSprite(ctx,color,v>=12?6:5,()=>ctx.drawImage(image,(Math.floor(phase)&3)*slotW,pose*slotH,sw,sh,x-dw/2,y-dh,dw,dh));
  if(BRK)cr495Stop(x,y,dw,dh,v,pose);
  return true;
