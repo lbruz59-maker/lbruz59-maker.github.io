@@ -4144,6 +4144,17 @@ function render(){
 
  maxY=b.y}
  for(let ti=vis.length-1;ti>=0;ti--){const q=vis[ti];if(q.tun)cr47TunnelShell(q.a,q.b,q);}
+ // V498: extend the textured shell to the camera near plane.
+ if(inTunnel){
+  const q=vis.find(v=>v.tun);
+  if(q&&q.a.w>q.b.w){
+   const a=q.a,b=q.b,d=a.w-b.w;
+   const target=Math.max(a.w*2,W*4,H*5);
+   const f=(target-a.w)/d;
+   const near={x:a.x+(a.x-b.x)*f,y:a.y+(a.y-b.y)*f,w:target};
+   cr47TunnelShell(near,a,{...q,i:q.i-1});
+  }
+ }
  __crBridges(vis,bs);
  __crDrawOverpasses(vis,ps.i);
  if(ps.tun&&(state==='play'||state==='count')&&crash<=0){const bm=[];let pi=-1;for(const q of vis){if(q.i<ps.i)continue;if(pi>=0&&q.i!==pi+1)break;if(q.i-ps.i>18)break;bm.push(q);pi=q.i}
