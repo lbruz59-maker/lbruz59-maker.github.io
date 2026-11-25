@@ -14,6 +14,7 @@ function inverse(m) {
  return d ? [m[3]/d,-m[1]/d,-m[2]/d,m[0]/d,(m[2]*m[5]-m[3]*m[4])/d,(m[1]*m[4]-m[0]*m[5])/d] : ID;
 }
 function triangles(points) {
+ if(points.length===3&&!same(points[0],points[1])&&!same(points[1],points[2])&&!same(points[0],points[2]))return points;
  const p=points.filter((v,i)=>!same(v,points[i-1]));
  if(same(p[0],p[p.length-1]))p.pop();
  if(p.length<3)return [];
@@ -395,6 +396,7 @@ class CoastWebGL2 {
   if(!vertices.length||this.lost||color[3]<=0)return;
   this.setBlend(this.state.globalCompositeOperation);
   const d=this.data,{bounds:[left,top,right,bottom],clipTransform:m}=this.state,a=color[3],r=color[0]*a,g=color[1]*a,b=color[2]*a;
+  const identity=m===ID,rad0=radial?.[0]??0,rad1=radial?.[1]||0,rad2=radial?.[2]||0,rad3=radial?.[3]||0;
   let slot=-1;
   const bindSlot=()=>{
    if(!t)return -1;
@@ -410,10 +412,10 @@ class CoastWebGL2 {
     d[k++]=p[0];d[k++]=p[1];d[k++]=v?.[0]||0;d[k++]=v?.[1]||0;
     d[k++]=r;d[k++]=g;d[k++]=b;d[k++]=a;
     d[k++]=slot;d[k++]=mode;
-    d[k++]=weights?.[j]??radial?.[0]??0;d[k++]=radial?.[1]||0;d[k++]=radial?.[2]||0;d[k++]=radial?.[3]||0;
+    d[k++]=weights?.[j]??rad0;d[k++]=rad1;d[k++]=rad2;d[k++]=rad3;
     d[k++]=left;d[k++]=top;d[k++]=right;d[k++]=bottom;
-    d[k++]=m===ID?p[0]:m[0]*p[0]+m[2]*p[1]+m[4];
-    d[k++]=m===ID?p[1]:m[1]*p[0]+m[3]*p[1]+m[5];
+    d[k++]=identity?p[0]:m[0]*p[0]+m[2]*p[1]+m[4];
+    d[k++]=identity?p[1]:m[1]*p[0]+m[3]*p[1]+m[5];
     this.used=k;
    }
   }
