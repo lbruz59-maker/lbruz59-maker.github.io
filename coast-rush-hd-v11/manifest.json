@@ -1,54 +1,56 @@
 {
-  "version": 1,
-  "source": "Generated urban sprite artwork",
-  "sprites": {
-    "skyline_modern": {
-      "file": "skyline_modern.webp",
-      "width": 1774,
-      "height": 156,
-      "categories": [
-        "Ville"
-      ]
-    },
-    "residences": {
-      "file": "residences.webp",
-      "width": 1774,
-      "height": 130,
-      "categories": [
-        "Ville"
-      ]
-    },
-    "facades_mediterranee": {
-      "file": "facades_mediterranee.webp",
-      "width": 1774,
-      "height": 122,
-      "categories": [
-        "Ville"
-      ]
-    },
-    "monuments": {
-      "file": "monuments.webp",
-      "width": 1774,
-      "height": 176,
-      "categories": [
-        "Ville"
-      ]
-    },
-    "skyline_international": {
-      "file": "skyline_international.webp",
-      "width": 1774,
-      "height": 181,
-      "categories": [
-        "Ville"
-      ]
-    },
-    "mobilier_urbain": {
-      "file": "mobilier_urbain.webp",
-      "width": 1774,
-      "height": 122,
-      "categories": [
-        "Ville"
-      ]
-    }
+  "derapage": {
+    "bank": 2,
+    "start": 0,
+    "end_exclusive": 768,
+    "rate": 3500
+  },
+  "collision1": {
+    "bank": 2,
+    "start": 2304,
+    "end_exclusive": 8192,
+    "rate": 8000
+  },
+  "collision2": {
+    "bank": 2,
+    "start": 15360,
+    "end_exclusive": 23552,
+    "rate": 16000
+  },
+  "rebond": {
+    "bank": 2,
+    "start": 8192,
+    "end_exclusive": 15360,
+    "rate": 20000
+  },
+  "foule": {
+    "bank": 1,
+    "start": 16384,
+    "end_exclusive": 32768,
+    "rate": 10000
+  },
+  "checkpoint": {
+    "bank": 0,
+    "start": 26368,
+    "end_exclusive": 32000,
+    "rate": 9000
+  },
+  "congratulations": {
+    "bank": 3,
+    "start": 0,
+    "end_exclusive": 9728,
+    "rate": 9000
+  },
+  "get_ready": {
+    "bank": 0,
+    "start": 22016,
+    "end_exclusive": 26368,
+    "rate": 9000
+  },
+  "moteur": {
+    "bank": 1,
+    "start": 130,
+    "end_exclusive": 1792,
+    "rate": 8000
   }
 }
