@@ -395,13 +395,16 @@ class CoastWebGL2 {
   if(!vertices.length||this.lost||color[3]<=0)return;
   this.setBlend(this.state.globalCompositeOperation);
   const d=this.data,{bounds:[left,top,right,bottom],clipTransform:m}=this.state,a=color[3],r=color[0]*a,g=color[1]*a,b=color[2]*a;
+  let slot=-1;
+  const bindSlot=()=>{
+   if(!t)return -1;
+   let i=this.slots.indexOf(t);
+   if(i<0){if(this.slots.length===8)this.flush();i=this.slots.length;this.slots.push(t);}
+   return i;
+  };
+  slot=bindSlot();
   for(let i=0;i<vertices.length;i+=3){
-   if(this.used+3*STRIDE>d.length)this.flush();
-   let slot=t?this.slots.indexOf(t):-1;
-   if(t&&slot<0){
-    if(this.slots.length===8)this.flush();
-    slot=this.slots.length;this.slots.push(t);
-   }
+   if(this.used+3*STRIDE>d.length){this.flush();slot=bindSlot();}
    for(let j=i;j<i+3;j++){
     const p=vertices[j],v=uv?.[j];let k=this.used;
     d[k++]=p[0];d[k++]=p[1];d[k++]=v?.[0]||0;d[k++]=v?.[1]||0;
@@ -667,6 +670,7 @@ class CoastWebGL2 {
   const style=stroke?s.strokeStyle:s.fillStyle;
   const key=JSON.stringify([text,s.font,s.textBaseline,stroke?s.lineWidth:0,factor]);
   let e=this.text.get(key);
+  if(e){this.text.delete(key);this.text.set(key,e);}
   if(!e){
    const metrics=this.measureText(text),pad=stroke?s.lineWidth+2:2;
    const left=Math.ceil(Math.max(metrics.actualBoundingBoxLeft,0))+pad;
