@@ -1843,7 +1843,7 @@ let ac,master,mus,step=0,nxt=0,eng,eng2,eg,sk,rb,nb,engB,ef,tb,tbg,rev,PB,rn,SFX
 const crPCM=Object.create(null),crPCMLoops=Object.create(null);let crPCMLoaded=false,crPCMPrev='',crPCMCrash=0;
 function crPCMInit(){if(crPCMLoaded||!ac)return;crPCMLoaded=true;for(const n of ['moteur','derapage','collision1','collision2','rebond','foule','checkpoint','congratulations','get_ready','signal1','signal2'])fetch('./'+n+'.wav').then(r=>{if(!r.ok)throw Error(r.status);return r.arrayBuffer()}).then(b=>ac.decodeAudioData(b)).then(b=>{crPCM[n]=b;if(n==='moteur'||n==='derapage'){const src=ac.createBufferSource(),g=ac.createGain();src.buffer=b;src.loop=true;g.gain.value=0;src.connect(g);g.connect(n==='moteur'?window.__crEngineDry:SFX);src.start();crPCMLoops[n]={src,g};}}).catch(e=>console.warn('PCM '+n,e));}
 function crPCMPlay(n,v=.7){if(!ac||!crPCM[n]||!SFX)return false;const src=ac.createBufferSource(),g=ac.createGain();src.buffer=crPCM[n];g.gain.value=v;src.connect(g);g.connect(SFX);src.onended=()=>{src.disconnect();g.disconnect()};src.start();return true;}
-function crPCMFrame(rpm,run,sl){const t=ac.currentTime,active=(run||state==='count')&&!document.hidden;const m=crPCMLoops.moteur,d=crPCMLoops.derapage;if(m){m.src.playbackRate.setTargetAtTime(.65+rpm*1.6,t,.06);m.g.gain.setTargetAtTime(active?.8:0,t,.05);eg.gain.value=0;if(window.__crEngineHighGain)window.__crEngineHighGain.gain.value=0;tbg.gain.value=0;}if(d){d.g.gain.setTargetAtTime(run?Math.min(.65,Math.max(sl*2,drift*.6)):0,t,.06);sk.gain.value=0;if(window.__driftSqueal)window.__driftSqueal.gain.value=0;}if(state==='count'&&crPCMPrev!=='count'){crPCMPlay('get_ready');crPCMPlay('foule',.35);}if(run&&crash>0&&crPCMCrash<=0)crPCMPlay('rebond',.3);crPCMCrash=crash;crPCMPrev=state;}
+function crPCMFrame(rpm,run,sl){const t=ac.currentTime,active=(run||state==='count')&&!document.hidden;const m=crPCMLoops.moteur,d=crPCMLoops.derapage;if(m){cr539AudioTarget(m.src.playbackRate,.65+rpm*1.6,t,.06,.003);cr539AudioTarget(m.g.gain,active?.8:0,t,.05);eg.gain.value=0;if(window.__crEngineHighGain)window.__crEngineHighGain.gain.value=0;tbg.gain.value=0;}if(d){cr539AudioTarget(d.g.gain,run?Math.min(.65,Math.max(sl*2,drift*.6)):0,t,.06);sk.gain.value=0;if(window.__driftSqueal)window.__driftSqueal.gain.value=0;}if(state==='count'&&crPCMPrev!=='count'){crPCMPlay('get_ready');crPCMPlay('foule',.35);}if(run&&crash>0&&crPCMCrash<=0)crPCMPlay('rebond',.3);crPCMCrash=crash;crPCMPrev=state;}
 
 function initAudio(){
  unlockIOS();
@@ -2429,13 +2429,22 @@ function __crDrawVehPoseRaster(x,y,w,c,v,pose,ph){
  }
  ctx.restore();ctx.globalAlpha=1;
 }
+let cr539OppAudioAt=-Infinity,cr539OppAudioState='';
+const cr539AudioTargets=new WeakMap();
+function cr539AudioTarget(param,value,now,tau,epsilon=.001){
+ const previous=cr539AudioTargets.get(param);
+ if(previous!==undefined&&Math.abs(previous-value)<epsilon)return;
+ param.cancelScheduledValues(now);
+ param.setTargetAtTime(value,now,tau);
+ cr539AudioTargets.set(param,value);
+}
 const __oppV=[],OPPB=[70,62,58,92,48,50,74,66,95,60,46,140,118,96,82,112,102,88];
-function __crOppEngines(){if(!ac)return;const now=ac.currentTime,NV=window.__CR_LITE?1:3,me=pos+playerZ,near=[];
+function __crOppEngines(){if(!ac)return;const now=ac.currentTime;if(cr539OppAudioState===state&&now-cr539OppAudioAt<.05)return;cr539OppAudioAt=now;cr539OppAudioState=state;const NV=window.__CR_LITE?1:3,me=pos+playerZ,near=[];
  if(state=='play'&&crash<=0){for(const c of cars){if(c.dead)continue;const d=(MODE===5&&c.dzr!=null)?c.dzr:c.z-me;if(d>-segL*18&&d<segL*55&&!(c.hit>0))near.push([Math.abs(d),c,d])}near.sort((a,b)=>a[0]-b[0])}
  while(__oppV.length<NV){const o=ac.createOscillator(),o2=ac.createOscillator(),f=ac.createBiquadFilter(),g=ac.createGain(),p=ac.createStereoPanner?ac.createStereoPanner():null;o.type='sawtooth';o2.type='square';f.type='lowpass';f.frequency.value=2400;g.gain.value=0;o.connect(f);o2.connect(f);f.connect(g);if(p){g.connect(p);p.connect(BUS||SFX||master)}else g.connect(BUS||SFX||master);o.start();o2.start();__oppV.push({o,o2,g,p})}
- for(let i=0;i<__oppV.length;i++){const v=__oppV[i],e=near[i];if(!e||i>=NV){v.g.gain.setTargetAtTime(0,now,.08);continue}
+ for(let i=0;i<__oppV.length;i++){const v=__oppV[i],e=near[i];if(!e||i>=NV){cr539AudioTarget(v.g.gain,0,now,.08);continue}
   const[ad,c,d]=e,k=Math.pow(Math.max(0,1-ad/(segL*55)),1.3),vt=c.v|0,base=c.T?44:(OPPB[vt]||70),rpm=Math.min(1.2,c.sp/MAX),clos=Math.max(-1,Math.min(1,(speed-c.sp)/MAX)),fr=base*2.2*(.7+rpm*1.3)*(1+(d>0?1:-1)*clos*.07);
-  if(!v||!v.o||!v.o2||!v.g)continue;v.o.frequency.setTargetAtTime(fr,now,.05);v.o2.frequency.setTargetAtTime(fr*.5,now,.05);v.g.gain.setTargetAtTime((c.T?.16:(vt>=12&&vt<=16?.12:.1))*k,now,.06);if(v.p)v.p.pan.setTargetAtTime(Math.max(-1,Math.min(1,(c.o-px)*.9)),now,.06)}}
+  if(!v||!v.o||!v.o2||!v.g)continue;cr539AudioTarget(v.o.frequency,fr,now,.05,.5);cr539AudioTarget(v.o2.frequency,fr*.5,now,.05,.25);cr539AudioTarget(v.g.gain,(c.T?.16:(vt>=12&&vt<=16?.12:.1))*k,now,.06);if(v.p)cr539AudioTarget(v.p.pan,Math.max(-1,Math.min(1,(c.o-px)*.9)),now,.06,.005)}}
 
 function __crNewVeh(x,y,w,c,v,ln,ph){const u=w/16,X=a=>x+a*u,Y=b=>y-b*u;
  const R=(a,b,ww,h,r,f)=>{rrp(X(a),Y(b+h),ww*u,h*u,r*u);ctx.fillStyle=f;ctx.fill()},G=(t2,b,c1,c2)=>LG(Y(t2),Y(b),c1,c2),
