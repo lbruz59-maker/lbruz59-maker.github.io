@@ -1,4 +1,4 @@
-const C='coast-rush-hd-v11-pwa-v538', START=new URL('./test-hd-v538.html?v=538',self.registration.scope).href;
+const C='coast-rush-hd-v11-pwa-v593', START=new URL('./test-hd-v593.html?v=593',self.registration.scope).href;
 self.addEventListener('install',e=>e.waitUntil(caches.open(C).then(c=>c.add(new Request(START,{cache:'reload'}))).then(()=>self.skipWaiting())));
 self.addEventListener('activate',e=>e.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k.startsWith('coast-rush-hd-v11')&&k!==C).map(k=>caches.delete(k)))).then(()=>self.clients.claim())));
 self.addEventListener('fetch',e=>{const r=e.request;if(r.method!=='GET'||!r.url.startsWith(self.registration.scope))return;if(r.mode==='navigate'){const u=new URL(r.url), root=new URL(self.registration.scope);if(u.pathname===root.pathname||u.pathname===root.pathname+'index.html'){e.respondWith(Response.redirect(START,302));return;}e.respondWith(fetch(r,{cache:'no-cache'}).catch(async()=>await caches.match(r)||Response.error()));return;} });
