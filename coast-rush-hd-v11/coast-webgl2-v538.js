@@ -202,7 +202,7 @@ class CoastWebGL2 {
     if(!oldest)break;
     this.gl.deleteTexture(oldest.handle);oldest.handle=null;this.bytes-=oldest.bytes;
     if(oldest.key)this.ramps.delete(oldest.key);
-    for(let i=0;i<this.bound.length;i++)if(this.bound[i]===oldest)this.bound[i]=null;
+    for(let i=0;i<this.bound.length;i++)if(this.bound[i]===oldest){this.gl.activeTexture(this.gl.TEXTURE0+i);this.gl.bindTexture(this.gl.TEXTURE_2D,this.white.handle);this.bound[i]=this.white;}
    }
    this.pages=this.pages.filter(t=>t.handle);
   }
@@ -210,10 +210,12 @@ class CoastWebGL2 {
  flush(){
   if(!this.used)return;
   const gl=this.gl;
-  for(let i=0;i<8;i++){
-   const t=this.slots[i]||this.white;
+  // Unused sampler units already have complete textures; only update active slots.
+  for(let i=0;i<this.slots.length;i++){
+   const t=this.slots[i];
    if(this.bound[i]!==t){gl.activeTexture(gl.TEXTURE0+i);gl.bindTexture(gl.TEXTURE_2D,t.handle);this.bound[i]=t;}
   }
+  if(this.slots.length<8&&this.bound[7]===null){gl.activeTexture(gl.TEXTURE0+7);gl.bindTexture(gl.TEXTURE_2D,this.white.handle);this.bound[7]=this.white;}
   const count=this.used/STRIDE;
   // Append until wrap, then replace the backing store so queued draws can finish
   // reading the previous one without waiting for this upload.
