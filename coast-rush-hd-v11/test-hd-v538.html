@@ -3276,9 +3276,9 @@ function cr537Schedule(){
   cr537IdlePending=false;
   if(!['play','count'].includes(state))return;
   const sheet=cr537Sheets.values().next().value;
-  if(sheet&&(deadline.didTimeout||deadline.timeRemaining()>=3)){cr537Sheets.delete(sheet);crRenderer.prepareSource(sheet);return;}
-  const idle=deadline.timeRemaining()>=1;
-  const room=deadline.didTimeout&&crRenderMs<8&&ema<.019;
+  if(sheet&&deadline.timeRemaining()>=3){cr537Sheets.delete(sheet);crRenderer.prepareSource(sheet);return;}
+  const idle=deadline.timeRemaining()>=4;
+  const room=false;
   if((idle||room)&&crRenderer.serial>=cr538NextUpload){
    for(const [key,{im,crop}] of cr538Crops){
     if(!crRenderer.preparedSources.get(im)||(!idle&&crop[2]*crop[3]>96000))continue;
@@ -3298,12 +3298,17 @@ function cr537Schedule(){
   }
  },{timeout:300});
 }
+let cr539ScanCursor=0,cr539ScanEnd=0,cr539ScanTrack=null;
 function cr537ReadAhead(index){
- if(crRenderer.serial>=cr537NextScan){
+ if(cr539ScanTrack!==segs||crRenderer.serial>=cr537NextScan){
+  cr539ScanTrack=segs;
   cr537NextScan=crRenderer.serial+15;
-  const api=window.CRHD,end=Math.min(segs.length,index+drawN+100);
+  cr539ScanCursor=Math.max(0,index);cr539ScanEnd=Math.min(segs.length,index+drawN+100);
   cr538Crops.clear();
-  for(let i=Math.max(0,index);i<end;i++){
+ }
+ {
+  const api=window.CRHD,end=Math.min(cr539ScanEnd,cr539ScanCursor+Math.max(24,Math.ceil((drawN+100)/12)));
+  for(let i=cr539ScanCursor;i<end;i++){
    for(const sprite of segs[i].sp||[]){
     if(sprite.t!=='CRHD_ATLAS'&&sprite.t!=='HD57')continue;
     const key=String(sprite.k),frame=api?.atlas?.frames?.[key],im=frame&&api.images?.[frame[0]];
@@ -3318,6 +3323,7 @@ function cr537ReadAhead(index){
        (cr356VegetationGroups[key]&&!cr356VegetationCache.has(key)))cr537Groups.add(key);
    }
   }
+  cr539ScanCursor=end;
  }
  if(cr537Sheets.size||cr537Groups.size||(cr538Crops.size&&crRenderer.serial>=cr538NextUpload))cr537Schedule();
 }
