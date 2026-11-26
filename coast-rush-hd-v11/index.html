@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr"><!-- V656: add Mercedes-AMG Coupé and Porsche 911 STR II as optimized sprite vehicles. --><!-- V655: increase world travel speed by 25 percent, cap HUD at 293 km/h. --><!-- V654: enlarge projected opponent sprites by 25 percent only. --><!-- V653: targeted player sizing and minimum atlas normalization width. --><!-- V652: restore Ferrari brake lamps, increase player Ferrari scale 8%, strengthen all mapped brake lamps. --><!-- V651: hide F50, enlarge Beetle and separate motorcycle lean from drift. --><!-- V650: restore selected vehicle crop measurement without blocking startup; adjust undersized cars and F50 tint. --><!-- V649: remove blocking race-start vehicle roster preload; retain crop fallback. --><!-- V648: reduce non-original car sprites by 10 percent, motorcycles and original Ferrari unchanged. --><!-- V647: restore V632 brake lights for all vehicles, retain V646 cropping and sizing. --><!-- V646: vehicle alpha component crop and per-model sizing; original Ferrari unchanged. --><!-- V645: per-model F50 brake lamps placed on the rear light clusters; V643 sizing, wheel rotation, regional portals and WebGL2 surface retained. --><!-- V638: preload vehicle sprites and preserve each vehicle body through rollover. --><!-- V633: HD regional tunnel entrance sprites integrated across the 45 circuit set; V632 remains unchanged. --><!-- V380: BIPIN traffic angle/mirror test based on V357; HD city landmark finales and expanded cached vegetation; V353 reference preserved --><head><link rel="preload" as="image" href="./poses-v584/f50gt-v643.png?v=643"><script>(function(){'use strict';const audit=window.__CR_CANVAS_AUDIT__={blocked2D:0,blockedOther:0,webgl2:0};function guard(proto){if(!proto||typeof proto.getContext!=='function')return;const original=proto.getContext;proto.getContext=function(type,...args){const kind=String(type).toLowerCase();if(kind!=='webgl2'){if(kind==='2d')audit.blocked2D++;else audit.blockedOther++;return null;}audit.webgl2++;return original.call(this,type,...args);};}guard(HTMLCanvasElement.prototype);if(typeof OffscreenCanvas!=='undefined')guard(OffscreenCanvas.prototype);})();</script><script src="./sprite-data-v584.js"></script><script src="./vehicle-assets-v656.js?v=656"></script><script>/* V331: load newly uploaded urban WebP sprite banks. */
+<html lang="fr"><!-- V656.1: synchronously assemble source-ready WebGL2 foliage and rock groups; retain their legacy roadside anchors. --><!-- V656: add Mercedes-AMG Coupé and Porsche 911 STR II as optimized sprite vehicles. --><!-- V655: increase world travel speed by 25 percent, cap HUD at 293 km/h. --><!-- V654: enlarge projected opponent sprites by 25 percent only. --><!-- V653: targeted player sizing and minimum atlas normalization width. --><!-- V652: restore Ferrari brake lamps, increase player Ferrari scale 8%, strengthen all mapped brake lamps. --><!-- V651: hide F50, enlarge Beetle and separate motorcycle lean from drift. --><!-- V650: restore selected vehicle crop measurement without blocking startup; adjust undersized cars and F50 tint. --><!-- V649: remove blocking race-start vehicle roster preload; retain crop fallback. --><!-- V648: reduce non-original car sprites by 10 percent, motorcycles and original Ferrari unchanged. --><!-- V647: restore V632 brake lights for all vehicles, retain V646 cropping and sizing. --><!-- V646: vehicle alpha component crop and per-model sizing; original Ferrari unchanged. --><!-- V645: per-model F50 brake lamps placed on the rear light clusters; V643 sizing, wheel rotation, regional portals and WebGL2 surface retained. --><!-- V638: preload vehicle sprites and preserve each vehicle body through rollover. --><!-- V633: HD regional tunnel entrance sprites integrated across the 45 circuit set; V632 remains unchanged. --><!-- V380: BIPIN traffic angle/mirror test based on V357; HD city landmark finales and expanded cached vegetation; V353 reference preserved --><head><link rel="preload" as="image" href="./poses-v584/f50gt-v643.png?v=643"><script>(function(){'use strict';const audit=window.__CR_CANVAS_AUDIT__={blocked2D:0,blockedOther:0,webgl2:0};function guard(proto){if(!proto||typeof proto.getContext!=='function')return;const original=proto.getContext;proto.getContext=function(type,...args){const kind=String(type).toLowerCase();if(kind!=='webgl2'){if(kind==='2d')audit.blocked2D++;else audit.blockedOther++;return null;}audit.webgl2++;return original.call(this,type,...args);};}guard(HTMLCanvasElement.prototype);if(typeof OffscreenCanvas!=='undefined')guard(OffscreenCanvas.prototype);})();</script><script src="./sprite-data-v584.js"></script><script src="./vehicle-assets-v656.js?v=656"></script><script>/* V331: load newly uploaded urban WebP sprite banks. */
 window.CRHD_URBAN_BANKS={};
 ['skyline_modern','skyline_international','residences','facades_mediterranee','monuments','mobilier_urbain'].forEach(name=>{
  const img=new Image();img.decoding='async';img.src='./'+name+'.webp?v=331';
@@ -3041,8 +3041,7 @@ function cr355RockChain(key,prepare=false){
  const api=window.CRHD,f=api?.atlas?.frames?.[k],img=f&&api.images?.[f[0]];
  if(!f||!img?.complete||!img.naturalWidth)return null;
  if(cr355RockCache.has(k))return cr355RockCache.get(k);
- if(!prepare){cr537RequestGroup(k);return null;}
- const foot=cr450TileFoot(img,[f[1],f[2],f[3],f[4]],1,1);if(foot===null)return null;
+ const foot=cr450TileFoot(img,[f[1],f[2],f[3],f[4]],1,1);if(foot===null){if(!prepare)cr537RequestGroup(k);return null;}
  const canvas={width:768,height:320,parts:[]};
  const positions=k==='67166'?[[.18,.68,.53],[.50,.76,.72],[.82,.66,.49]]:[[.17,.66,.49],[.48,.77,.74],[.81,.7,.55]];
  for(const [cx,base,scale] of positions){
@@ -3074,13 +3073,12 @@ function cr356VegetationChain(key,prepare=false){
  const k=String(key),ids=cr356VegetationGroups[k];
  if(!ids)return null;
  if(cr356VegetationCache.has(k))return cr356VegetationCache.get(k);
- if(!prepare){cr537RequestGroup(k);return null;}
  const api=window.CRHD,frames=api?.atlas?.frames,imgs=api?.images;
- if(!frames||!imgs)return null;
+ if(!frames||!imgs){if(!prepare)cr537RequestGroup(k);return null;}
  const entries=ids.map(id=>{const f=frames[id],im=f&&imgs[f[0]];return f&&im?.complete&&im.naturalWidth?{f,im}:null;});
- if(entries.some(e=>!e))return null;
+ if(entries.some(e=>!e)){if(!prepare)cr537RequestGroup(k);return null;}
  const feet=entries.map(({f,im})=>cr450TileFoot(im,[f[1],f[2],f[3],f[4]],1,1));
- if(feet.some(foot=>foot===null))return null;
+ if(feet.some(foot=>foot===null)){if(!prepare)cr537RequestGroup(k);return null;}
  const canvas={width:768,height:320,parts:[]};
  const low=k==='65106'||k==='65156',cactus=k==='64806';
  const placements=low?[[.19,.90,.62],[.50,.98,.77],[.81,.90,.60]]:cactus?[[.20,.96,.73],[.52,.99,.89],[.83,.96,.72]]:[[.18,.98,.76],[.50,1,.96],[.82,.98,.76]];
@@ -3158,7 +3156,7 @@ function cr537ReadAhead(index){
  }
  if(cr537Sheets.size||cr537Groups.size||(cr538Crops.size&&crRenderer.serial>=cr538NextUpload))cr537Schedule();
 }
-function cr445Fit(x,w,anchor){const m=cr445RoadMask;const v=!m?x:m.side>0?Math.max(x,m.edge+m.margin+w*anchor):Math.min(x,m.edge-m.margin-w*(1-anchor));const d=cr548Drawing;if(d&&d.unit>0&&w>0)cr548Bounds.set(d.sp,{center:(v+w*(.5-anchor)-d.baseX)/d.unit,radius:w/(2*d.unit)});return v;}
+function cr445Fit(x,w,anchor,preservePosition=false){const m=cr445RoadMask;const v=(!m||preservePosition)?x:m.side>0?Math.max(x,m.edge+m.margin+w*anchor):Math.min(x,m.edge-m.margin-w*(1-anchor));const d=cr548Drawing;if(d&&d.unit>0&&w>0)cr548Bounds.set(d.sp,{center:(v+w*(.5-anchor)-d.baseX)/d.unit,radius:w/(2*d.unit)});return v;}
 const crGpuStatus=document.getElementById('pauseGpuBtn');
 crGpuStatus.textContent='RENDU : WEBGL 2 NATIF';
 crGpuStatus.disabled=true;
@@ -3178,15 +3176,16 @@ if(['DESERT','SAHARA','EGYPTE','ARIZONA','LE CAIRE','DUBAÏ'].includes(th.n)&&at
  if(/^(72596|72606|72616|72626|72636|72646|72746)$/.test(key))h*=.48;
  if(key==='68726')h*=.24; /* V417: smaller desert walker with staff */
 }
-const vegetation=atlasKey&&cr356VegetationChain(atlasKey);
- if(vegetation){const vw=h*vegetation.width/vegetation.height,vx=cr445Fit(x,vw,anchor)-vw*anchor;if(vx<W&&vx+vw>0&&y-h<H&&y>0){cr519Draw(vegetation,vx,y-h,vw,h);crHDHits++;}return true;}
+const preserveSourcePosition=!!(atlasKey&&(cr356VegetationGroups[String(atlasKey)]||String(atlasKey)==='67166'||String(atlasKey)==='67266'));
+const vegetation=preserveSourcePosition&&cr356VegetationGroups[String(atlasKey)]?cr356VegetationChain(atlasKey):null;
+ if(vegetation){const vw=h*vegetation.width/vegetation.height,vx=cr445Fit(x,vw,anchor,preserveSourcePosition)-vw*anchor;if(vx<W&&vx+vw>0&&y-h<H&&y>0){cr519Draw(vegetation,vx,y-h,vw,h);crHDHits++;}return true;}
  const chain=atlasKey&&cr355RockChain(atlasKey);
- if(chain){const chainW=h*chain.width/chain.height,chainX=cr445Fit(x,chainW,anchor)-chainW*anchor;if(chainX<W&&chainX+chainW>0&&y-h<H&&y>0){cr519Draw(chain,chainX,y-h,chainW,h);crHDHits++;}return true;}
+ if(chain){const chainW=h*chain.width/chain.height,chainX=cr445Fit(x,chainW,anchor,preserveSourcePosition)-chainW*anchor;if(chainX<W&&chainX+chainW>0&&y-h<H&&y>0){cr519Draw(chain,chainX,y-h,chainW,h);crHDHits++;}return true;}
  if(!atlasKey&&/\/monde_036\.png(?:\?|$)/i.test(source?.currentSrc||source?.src||''))h*=.5;
  const atlas=atlasKey?window.CRHD?.atlas?.frames?.[atlasKey]:null;
  const iw=atlas?atlas[3]:source?.naturalWidth,ih=atlas?atlas[4]:source?.naturalHeight;
  if(!iw||!ih||(!atlas&&(!source?.complete)))return true;
- /* Same source dimensions, anchor and perspective for image and atlas sprites. Never clamp h or w. */const w=h*iw/ih,dx=cr445Fit(x,w,anchor)-w*anchor;
+ /* Same source dimensions, anchor and perspective for image and atlas sprites. Never clamp h or w. */const w=h*iw/ih,dx=cr445Fit(x,w,anchor,preserveSourcePosition)-w*anchor;
  if(dx>=W||dx+w<=0||y-h>=H||y<=0)return true;
  if(atlas){const im=window.CRHD?.images?.[atlas[0]];const foot=im?.complete&&im.naturalWidth?(cr450TileFoot(im,[atlas[1],atlas[2],atlas[3],atlas[4]],1,1)??1):1;window.CRHD.draw(ctx,atlasKey,dx+w*.5,y+h*(1-foot),w,h,false);}
  else {
