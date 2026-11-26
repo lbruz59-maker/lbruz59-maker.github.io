@@ -676,7 +676,7 @@ body.cr-cinematic .drive-control,body.cr-cinematic #pauseBtn{visibility:hidden!i
 <button class="st" id="h1">1) Je crée la partie (hôte)</button><br>Code à envoyer :<br><textarea id="o1" rows="3" style="width:95%"></textarea><br><button class="st" id="c1">Copier</button><br>Réponse de l'ami :<br><textarea id="a1" rows="3" style="width:95%"></textarea><br><button class="st" id="k1">Connecter ce joueur</button><hr>
 <b>Je rejoins</b> : colle le code de l'hôte<br><textarea id="o2" rows="3" style="width:95%"></textarea><br><button class="st" id="j2">Générer ma réponse</button><br><textarea id="a2" rows="3" style="width:95%"></textarea><br><button class="st" id="c2">Copier ma réponse</button><br><button class="st" id="x1" style="background:#157a4a">Fermer (puis DÉMARRER)</button></div>
 <script>window.__CR_LITE=window.__CR_LITE||/[?&]lite/.test(location.search)</script>
-<script src="./coast-diagnostics-v583.js"></script><script src="./coast-webgl2-v643.js"></script><script>
+<script src="./coast-diagnostics-v583.js"></script><script src="./coast-webgl2-v660.js?v=660"></script><script>
 const __crBridgePalettes={stone:['#b7a58a','#65584a','#d1bea0','#a99c88'],urban:['#aab6c2','#465563','#dce4ec','#555e68'],coast:['#d7e0e8','#59636c','#657582','#505a64'],desert:['#c6a06b','#715338','#e4c18c','#8c6948'],wood:['#92704b','#493b2b','#c49a65','#66513a'],neon:['#5b91a8','#263b55','#8bd4e8','#273648'],suspension:['#7f929c','#34434c','#c2d0d8','#3e4d56'],steel:['#8796a5','#34414d','#c2d0d8','#3c4957'],modern:['#aeb8c2','#46515c','#edf1f5','#56616c']};
 
 const SRC='<!DOCTYPE html>'+document.documentElement.outerHTML;const $=id=>document.getElementById(id),cv=$('c');let ctx,W=320,H=224;
@@ -2498,9 +2498,9 @@ function cr82Vehicle(x,y,w,v,pose,phase=0,color=myCol){
  if(!cr606Alignment.has(name)&&!image.__cr650Measured){image.__cr650Measured=true;try{cr606Measure(name,image);}catch(e){console.warn('Vehicle crop',name,e);}}
  const boxes=cr606Alignment.get(name),box=boxes?.[pose]?.[f]||{l:0,t:0,w:sw,h:sh};
  const base=boxes?.[1]?.[0]||{w:bw,h:bh};
- const scale=[1.12,1.02,1.12,1.12,1.05,.69,1,1.12,1.15,.85,.92,.91,.80,.80,.76,.80,.80,.86,1.16,1.16,1.16][v]||.86;
+ const scale=[1.12,1.02,1.12,1.12,1.05,.69,1,1.12,1.15,.85,.92,.91,.80,.80,.76,.80,.80,.86,1.25,1.25,1.25][v]||.86;
  const sizeFactor=(v<12&&v!==6) ? .90 : 1,unit=w*scale*sizeFactor/Math.max(base.w,bw*.70),dw=box.w*unit,dh=box.h*unit;
- paintedSprite(ctx,v===3&&/^#[0-9a-f]{6}$/i.test(color||'')?mixc(color,'#ffffff',.30):color,(v>=12&&v<=17)?6:5,()=>ctx.drawImage(image,f*slotW+box.l,pose*slotH+box.t,box.w,box.h,x-dw/2,y-dh,dw,dh));
+ paintedSprite(ctx,v===3&&/^#[0-9a-f]{6}$/i.test(color||'')?mixc(color,'#ffffff',.30):color,v>=18?7:(v>=12&&v<=17?6:5),()=>ctx.drawImage(image,f*slotW+box.l,pose*slotH+box.t,box.w,box.h,x-dw/2,y-dh,dw,dh));
  if(BRK)cr495Stop(x,y,dw,dh,v,pose);
  return true;
 }
