@@ -1,4 +1,3 @@
-Warning: fs was declared with const; use let for reassignable variables.
 Coast Rush HD V669
 
 Sprites Clio, Golf GTI Mk1 et Mercedes-Benz E55 AMG W211 reconstruits.
@@ -10,4 +9,4 @@ Sprites Clio, Golf GTI Mk1 et Mercedes-Benz E55 AMG W211 reconstruits.
 - L’animation originale de la Ferrari OutRun reste inchangée.
 
 Game URL:
-https://lbruz59-maker.github.io/coast-rush-hd-v11/test-hd-v669.html?release=20261126f
+https://lbruz59-maker.github.io/coast-rush-hd-v11/test-hd-v669.html?release=20261126g
