@@ -87,7 +87,7 @@ window.CRHD_519_REGISTRY=Object.freeze({
 })();
 </script><script>
 /* V322: disable recursive atlas draw wrapper; guard marshal at its dedicated entry point. */
-</script><script src='./outrun-original-data.js?v=15'></script><script src="./outrun-endings.js?v=15"></script><meta charset="utf-8"><title>Coast Rush HD V660 - WebGL 2 natif</title>
+</script><script src='./outrun-original-data.js?v=15'></script><script src="./outrun-endings.js?v=15"></script><meta charset="utf-8"><title>Coast Rush HD V660.1 - WebGL 2 natif</title>
 <meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Coast Rush"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="mobile-web-app-capable" content="yes"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
 <style>:root{--vw:1vw;--vh:1vh;--dvh:1dvh;--pw:100vw;--ph:100vh}html.crRot{--vw:1vh;--vh:1vw;--dvh:1dvw}
 html.crRot,html.crRot body{overflow:hidden!important}html.crRot body{position:fixed!important;top:0!important;left:var(--pw)!important;width:var(--ph)!important;height:var(--pw)!important;margin:0!important;transform:rotate(90deg)!important;transform-origin:0 0!important}
@@ -2498,7 +2498,7 @@ function cr82Vehicle(x,y,w,v,pose,phase=0,color=myCol){
  if(!cr606Alignment.has(name)&&!image.__cr650Measured){image.__cr650Measured=true;try{cr606Measure(name,image);}catch(e){console.warn('Vehicle crop',name,e);}}
  const boxes=cr606Alignment.get(name),box=boxes?.[pose]?.[f]||{l:0,t:0,w:sw,h:sh};
  const base=boxes?.[1]?.[0]||{w:bw,h:bh};
- const scale=[1.568,1.02,1.12,1.12,1.05,.69,1,1.12,1.15,.85,.92,.91,.80,.80,.76,.80,.80,.86,1.25,1.25,1.25][v]||.86;
+ const scale=[1.8032,1.02,1.12,1.12,1.05,.69,1,1.12,1.15,.85,.92,.91,.80,.80,.76,.80,.80,.86,1.25,1.25,1.25][v]||.86;
  const sizeFactor=(v<12&&v!==6) ? .90 : 1,unit=w*scale*sizeFactor/Math.max(base.w,bw*.70),dw=box.w*unit,dh=box.h*unit;
  paintedSprite(ctx,v===3&&/^#[0-9a-f]{6}$/i.test(color||'')?mixc(color,'#ffffff',.30):color,v>=18?7:(v>=12&&v<=17?6:5),()=>ctx.drawImage(image,f*slotW+box.l,pose*slotH+box.t,box.w,box.h,x-dw/2,y-dh,dw,dh));
  if(BRK)cr495Stop(x,y,dw,dh,v,pose);
@@ -4899,7 +4899,14 @@ const crShowModes=()=>{
  const cols=single?1:special?3:10,rows=single||special?1:3,col=single?0:special?garagePose:idx,row=single||special?0:garagePose;
  const frame=document.createElement('div');frame.style.cssText='position:relative;overflow:hidden;flex:none';preview.replaceChildren(frame);
  const art=new Image();art.style.cssText='position:absolute;max-width:none;max-height:none;display:block';frame.appendChild(art);
- art.onload=()=>{if(!frame.isConnected)return;const cw=art.naturalWidth/cols,ch=art.naturalHeight/rows;const k=Math.min(preview.clientWidth*.9/cw,preview.clientHeight*.94/ch);frame.style.width=cw*k+'px';frame.style.height=ch*k+'px';art.style.width=art.naturalWidth*k+'px';art.style.height=art.naturalHeight*k+'px';art.style.left=-col*cw*k+'px';art.style.top=-row*ch*k+'px';};art.src=url;
+ art.onload=()=>{if(!frame.isConnected)return;const cw=Math.floor(art.naturalWidth/cols),ch=Math.floor(art.naturalHeight/rows);let l=0,t=0,w=cw,h=ch;
+ try{const gl=crRenderer.gl,active=gl.getParameter(gl.ACTIVE_TEXTURE);gl.activeTexture(gl.TEXTURE0+7);const old=gl.getParameter(gl.TEXTURE_BINDING_2D),fbOld=gl.getParameter(gl.FRAMEBUFFER_BINDING),tex=gl.createTexture(),fb=gl.createFramebuffer();
+ try{gl.bindTexture(gl.TEXTURE_2D,tex);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MIN_FILTER,gl.NEAREST);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MAG_FILTER,gl.NEAREST);gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA,gl.RGBA,gl.UNSIGNED_BYTE,art);gl.bindFramebuffer(gl.FRAMEBUFFER,fb);gl.framebufferTexture2D(gl.FRAMEBUFFER,gl.COLOR_ATTACHMENT0,gl.TEXTURE_2D,tex,0);
+ if(gl.checkFramebufferStatus(gl.FRAMEBUFFER)===gl.FRAMEBUFFER_COMPLETE){const p=new Uint8Array(cw*ch*4);gl.readPixels(col*cw,row*ch,cw,ch,gl.RGBA,gl.UNSIGNED_BYTE,p);const seen=new Uint8Array(cw*ch),q=new Int32Array(cw*ch);let best=0;
+ for(let j=0;j<seen.length;j++){if(seen[j]||p[j*4+3]<48)continue;let head=0,end=1,x0=cw,y0=ch,x1=0,y1=0;q[0]=j;seen[j]=1;while(head<end){const n=q[head++],x=n%cw,y=Math.floor(n/cw);x0=Math.min(x0,x);x1=Math.max(x1,x);y0=Math.min(y0,y);y1=Math.max(y1,y);for(const z of [x?n-1:-1,x<cw-1?n+1:-1,y?n-cw:-1,y<ch-1?n+cw:-1]){if(z<0||seen[z]||p[z*4+3]<48)continue;seen[z]=1;q[end++]=z;}}if(end>best){best=end;l=x0;t=y0;w=x1-x0+1;h=y1-y0+1;}}}
+ }finally{gl.bindFramebuffer(gl.FRAMEBUFFER,fbOld);gl.bindTexture(gl.TEXTURE_2D,old);gl.deleteFramebuffer(fb);gl.deleteTexture(tex);gl.activeTexture(active);}
+ }catch(e){console.warn('Garage alpha crop',e);}
+ const k=Math.min(preview.clientWidth*.86/w,preview.clientHeight*.86/h);frame.style.width=w*k+'px';frame.style.height=h*k+'px';art.style.width=art.naturalWidth*k+'px';art.style.height=art.naturalHeight*k+'px';art.style.left=-(col*cw+l)*k+'px';art.style.top=-(row*ch+t)*k+'px';};art.src=url;
  label.textContent=(myV+1)+' / '+VEH.length+' · '+(VEH[myV]||'Véhicule')+'  ·  '+__vpTxt();colorCaption.textContent='Couleur : '+colorName(myCol);Array.from(palette.children).forEach(z=>z.classList.toggle('is-selected',z.dataset.color===myCol))};
   const nav=document.createElement('div');nav.style.cssText='display:flex;gap:8px;margin:4px 0';card.insertBefore(nav,colorCaption);const selectVeh=i=>{myV=(i+VEH.length)%VEH.length;if(myV===3)myV=i<3||i<0?2:4;try{localStorage.setItem('cr_veh',String(myV))}catch(e){}if(gameButtons[myV])gameButtons[myV].click();buttons.forEach((z,j)=>z.style.background=j===myV?'#176a83':'#263c5a');paint()};nav.append(btn('◀ PRÉCÉDENT',()=>selectVeh(myV-1)),btn('SUIVANT ▶',()=>selectVeh(myV+1)));const angles=document.createElement('div');angles.style.cssText='display:flex;gap:6px;margin:4px 0';card.insertBefore(angles,preview);['GAUCHE','DROIT','DROITE'].forEach((name,i)=>angles.append(btn(name,()=>{garagePose=i;paint()})));const buttons=[];VEH.forEach((v,i)=>{const x=btn(v,()=>{myV=i;try{localStorage.setItem('cr_veh',String(i))}catch(e){}if(gameButtons[i])gameButtons[i].click();buttons.forEach((z,j)=>z.style.background=j===i?'#176a83':'#263c5a');paint()},false);x.style.minHeight='44px';if(cr82Models[i]){const thumb=document.createElement('img');thumb.src=cr82Models[i]==='f50gt'?'./poses-v584/f50gt-garage-v643.png?v=643':cr82Models[i]==='mercedes'?window.CRHD_V658_ASSETS.mercedesThumb:cr82Models[i]==='porsche911'?window.CRHD_V658_ASSETS.porscheThumb:cr82Models[i]==='golfgti'?window.CRHD_V658_ASSETS.golfThumb:'./v88-vehicles/'+cr82Models[i]+'-1.webp';thumb.alt='';thumb.style.cssText='width:48px;height:36px;object-fit:contain;margin-right:5px;pointer-events:none';x.prepend(thumb)}buttons.push(x);if(i!==3)choices.appendChild(x)});
   colors.forEach(([name,color])=>{const x=document.createElement('button');x.type='button';x.className='cr-color-swatch';x.dataset.color=color;x.title=name;x.setAttribute('aria-label',name);x.style.setProperty('--swatch-color',color);x.onclick=()=>{myCol=color;try{localStorage.setItem('cr_color',color)}catch(e){}paint()};palette.appendChild(x)});
@@ -5603,7 +5610,7 @@ requestAnimationFrame(loop);
 if('serviceWorker' in navigator && window.top===window){
  window.addEventListener('load',()=>{navigator.serviceWorker.getRegistrations().then(rs=>Promise.all(rs.filter(r=>r.scope.includes('/coast-rush-hd-v11/')).map(r=>r.unregister()))).catch(console.warn);},{once:true});
 }
-</script><div id="cr141Version" style="position:fixed;right:max(8px,env(safe-area-inset-right));bottom:max(5px,env(safe-area-inset-bottom));z-index:2147483647;color:#fff;background:rgba(0,0,0,.58);font:700 12px monospace;padding:3px 6px;border-radius:3px;pointer-events:none;user-select:none">HD V660</div>
+</script><div id="cr141Version" style="position:fixed;right:max(8px,env(safe-area-inset-right));bottom:max(5px,env(safe-area-inset-bottom));z-index:2147483647;color:#fff;background:rgba(0,0,0,.58);font:700 12px monospace;padding:3px 6px;border-radius:3px;pointer-events:none;user-select:none">HD V660.1</div>
 <div style="position:fixed;left:8px;bottom:6px;z-index:2147483646"><a href="./sprite-categories-v325.html" style="display:inline-block;background:#163a54;color:white;padding:5px 9px;border-radius:5px;font:12px Arial;text-decoration:none">Catégories sprites</a></div><script>
 let crRadioTimer=0,crRadioPad=0,crRadioAnim=0;
 function crRadioOpen(){
