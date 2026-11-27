@@ -87,7 +87,7 @@ window.CRHD_519_REGISTRY=Object.freeze({
 })();
 </script><script>
 /* V322: disable recursive atlas draw wrapper; guard marshal at its dedicated entry point. */
-</script><script src='./outrun-original-data.js?v=15'></script><script src="./outrun-endings.js?v=15"></script><meta charset="utf-8"><title>Coast Rush HD V660.7 - WebGL 2 natif</title>
+</script><script src='./outrun-original-data.js?v=15'></script><script src="./outrun-endings.js?v=15"></script><meta charset="utf-8"><title>Coast Rush HD V660.8 - WebGL 2 natif</title>
 <meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Coast Rush"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="mobile-web-app-capable" content="yes"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
 <style>:root{--vw:1vw;--vh:1vh;--dvh:1dvh;--pw:100vw;--ph:100vh}html.crRot{--vw:1vh;--vh:1vw;--dvh:1dvw}
 html.crRot,html.crRot body{overflow:hidden!important}html.crRot body{position:fixed!important;top:0!important;left:var(--pw)!important;width:var(--ph)!important;height:var(--pw)!important;margin:0!important;transform:rotate(90deg)!important;transform-origin:0 0!important}
@@ -5498,7 +5498,7 @@ function update(dt){const cr500OldX=px;const N=segs.length,ps=segs[Math.floor((p
   // Les projectiles continuent leur déplacement; collisions et interactions reprennent dans la zone active.
   if(Math.abs(b.z-(pos+playerZ))>segL*55){
    if(b.k==='s'||b.k==='g')b.z+=b.sp*dt;
-   if(b.z>=trackLen||(b.tt&&flash-b.tt>(b.k==='x'?.5:b.k==='g'?1.5:15))||(b.k!=='b'&&b.k!=='o'&&b.k!=='x'&&b.z<pos-segL*5))objs.splice(i,1);
+   if(b.z>=trackLen||(b.tt&&flash-b.tt>(b.k==='x'?.5:b.k==='g'?1.5:15))||(b.k!=='b'&&b.k!=='o'&&b.k!=='y'&&b.k!=='x'&&b.z<pos-segL*5))objs.splice(i,1);
    continue;
   }
   if(b.k=='t'){b.z+=segL*1.07*dt/(b.life||.72);if(flash-b.born>(b.life||.72))dead=true}
@@ -5530,8 +5530,8 @@ function update(dt){const cr500OldX=px;const N=segs.length,ps=segs[Math.floor((p
   }
   if(b.k=='g'){const z0=b.z;b.z+=b.sp*dt;for(const c of cars)if(c.z>0&&!(c.hit>0&&!c.b)&&c.z>=z0-segL*.5&&c.z<=b.z+segL*.5&&Math.abs(c.o-b.o)<(c.b?.22:.18)){hitCar(c,4,Math.sign(c.o-b.o)||1);dead=true;break}}
   if((b.k!='b'&&b.k!='o'&&b.k!='y'&&b.k!='x'&&b.z<pos-segL*5)||b.z>=trackLen||(b.tt&&flash-b.tt>(b.k=='x'?.5:b.k=='g'?1.5:15)))dead=true;
-  if(!dead&&(b.k=='b'||b.k=='o'||b.k=='y')){const oil=b.k=='o',glue=b.k=='y';for(const c of cars)if(c.z>0&&!(c.hit>0)&&Math.abs(c.z-b.z)<30&&Math.abs(c.o-b.o)<(glue?.3:oil?.28:.2)){if(glue){if(c.rp)atq.push({to:c.peer,id:Date.now()+Math.random(),kind:'glue'});else{c.glueT=.85;c.glueBaseSp=c.sp;c.sp=0}}else if(!c.rp){if(oil){c.oilT=1.35;c.oilDir=(c.o>=0?1:-1);c.sp*=.55;c.hit=0;c.vo=0;c.noTp=0;c.shr=4.5}else hitCar(c,1)}if(!oil)dead=true;break}
-   if(!dead&&b.owner!==myId&&state=='play'&&!crash&&musk<=0&&star<=0&&Math.abs(b.z-(pos+playerZ))<30&&Math.abs(px-b.o)<(glue?.3:oil?.28:.17)){if(glue){crDamageFlash();glueT=.85;speed=0;crash=0;msg='GLUE ! ARRÊT';msgT=1.2;dead=true}else if(oil){if(slip<=0){crDamageFlash();slip=1.6;squeal();shake=.2}}else{crDamageFlash();crash=.9;bang();voice();shake=.3;dead=true}}}
+  if(!dead&&(b.k=='b'||b.k=='o'||b.k=='y')){const oil=b.k=='o',glue=b.k=='y';for(const c of cars)if(c.z>0&&!(c.hit>0)&&!(oil&&c.oilT>0)&&b.z>=c.z-Math.max(0,c.sp*dt)-30&&b.z<=c.z+30&&Math.abs(c.o-b.o)<(glue?.3:oil?.28:.22)){if(glue){if(c.rp)atq.push({to:c.peer,id:Date.now()+Math.random(),kind:'glue'});else{c.glueT=.85;c.glueBaseSp=c.sp;c.sp=0}}else if(!c.rp){if(oil){c.oilT=1.35;c.oilDir=(c.o>=0?1:-1);c.sp*=.55;c.hit=0;c.vo=0;c.noTp=0;c.shr=4.5}else hitCar(c,1)}if(!oil)dead=true;break}
+   if(!dead&&(b.ai||b.owner!==myId)&&state=='play'&&!crash&&musk<=0&&star<=0&&b.z>=Math.min(old,pos)+playerZ-30&&b.z<=Math.max(old,pos)+playerZ+30&&Math.abs((cr500OldX+(px-cr500OldX)*Math.max(0,Math.min(1,(b.z-playerZ-old)/(pos-old||1))))-b.o)<(glue?.3:oil?.28:.22)+(VW[myV]||.18)*.5){if(glue){crDamageFlash();glueT=.85;speed=0;crash=0;msg='GLUE ! ARRÊT';msgT=1.2;dead=true}else if(oil){if(slip<=0){crDamageFlash();slip=1.6;squeal();shake=.2}}else{crDamageFlash();crash=.9;bang();voice();shake=.3;dead=true}}}
   if(dead)objs.splice(i,1);else __crAddSegmentCar(Math.floor(b.z/segL),b)}
  __crOppEngines();const __crAudioOffRoad=offRoad();
  if(eng&&eng2&&engB&&ef&&tb&&tbg&&eg&&sk&&rb){const gm=gear?1:.62,rpm=Math.min(1.1,sp/gm),run=state=='play';if(window.__crEngineHighGain)window.__crEngineHighGain.gain.setTargetAtTime(run?.22:0,ac.currentTime,.025);eng.frequency.value=48+rpm*190;eng2.frequency.value=24+rpm*95;engB.frequency.value=48+rpm*190;ef.frequency.value=500+rpm*2600;tb.frequency.value=900+rpm*1300;tbg.gain.value=(state=='play'&&(inp.g||gpad.g)&&sp>.15)?.003+.006*rpm:0;eg.gain.value=(run?.12+.14*((inp.g||gpad.g)?1:.4)*Math.min(1,sp*2+.2):0)*.5;
@@ -5638,7 +5638,7 @@ requestAnimationFrame(loop);
 if('serviceWorker' in navigator && window.top===window){
  window.addEventListener('load',()=>{navigator.serviceWorker.getRegistrations().then(rs=>Promise.all(rs.filter(r=>r.scope.includes('/coast-rush-hd-v11/')).map(r=>r.unregister()))).catch(console.warn);},{once:true});
 }
-</script><div id="cr141Version" style="position:fixed;right:max(8px,env(safe-area-inset-right));bottom:max(5px,env(safe-area-inset-bottom));z-index:2147483647;color:#fff;background:rgba(0,0,0,.58);font:700 12px monospace;padding:3px 6px;border-radius:3px;pointer-events:none;user-select:none">HD V660.7</div>
+</script><div id="cr141Version" style="position:fixed;right:max(8px,env(safe-area-inset-right));bottom:max(5px,env(safe-area-inset-bottom));z-index:2147483647;color:#fff;background:rgba(0,0,0,.58);font:700 12px monospace;padding:3px 6px;border-radius:3px;pointer-events:none;user-select:none">HD V660.8</div>
 <div style="position:fixed;left:8px;bottom:6px;z-index:2147483646"><a href="./sprite-categories-v325.html" style="display:inline-block;background:#163a54;color:white;padding:5px 9px;border-radius:5px;font:12px Arial;text-decoration:none">Catégories sprites</a></div><script>
 let crRadioTimer=0,crRadioPad=0,crRadioAnim=0;
 function crRadioOpen(){
