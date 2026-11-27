@@ -87,7 +87,7 @@ window.CRHD_519_REGISTRY=Object.freeze({
 })();
 </script><script>
 /* V322: disable recursive atlas draw wrapper; guard marshal at its dedicated entry point. */
-</script><script src='./outrun-original-data.js?v=15'></script><script src="./outrun-endings.js?v=15"></script><meta charset="utf-8"><title>Coast Rush HD V660.3 - WebGL 2 natif</title>
+</script><script src='./outrun-original-data.js?v=15'></script><script src="./outrun-endings.js?v=15"></script><meta charset="utf-8"><title>Coast Rush HD V660.4 - WebGL 2 natif</title>
 <meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Coast Rush"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="mobile-web-app-capable" content="yes"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
 <style>:root{--vw:1vw;--vh:1vh;--dvh:1dvh;--pw:100vw;--ph:100vh}html.crRot{--vw:1vh;--vh:1vw;--dvh:1dvw}
 html.crRot,html.crRot body{overflow:hidden!important}html.crRot body{position:fixed!important;top:0!important;left:var(--pw)!important;width:var(--ph)!important;height:var(--pw)!important;margin:0!important;transform:rotate(90deg)!important;transform-origin:0 0!important}
@@ -1710,7 +1710,7 @@ if(MODE!==7){
    const k=String(o.k||''),side=o.o<0?0:1,sign=side?1:-1;
    const tree=['t','eu','n','p','a'].includes(o.t)||treeKeys.has(k)||/^vegetation_|pine|birch|arbre/i.test(k);
    const hash=(Math.imul(j+1,2654435761)>>>0);
-   if(tree){const gap=18+(hash%11);if(j-lastTree[side]<gap)return false;lastTree[side]=j;o.o=sign*(1.8+(hash%7)*.19);return true;}
+   if(tree){const gap=6+(hash%4);if(j-lastTree[side]<gap)return false;lastTree[side]=j;o.o=sign*(1.8+(hash%7)*.19);return true;}
    if(o.t==='CR452_STRUCTURE')return true;
    if(['CR438_PROP','CRHD_URBAN','CRHD_ATLAS','HD57','D','h','Z'].includes(o.t)){
     const big=(o.h||0)>=.85||o.t==='h'||o.t==='Z'||o.t==='CRHD_URBAN';
@@ -1739,6 +1739,13 @@ if(MODE!==7)for(let j=0;j<segs.length;j++){const q=segs[j];if(!q?.sp)continue;co
  const safe=q=>q&&q.sp&&!q.tun&&!q.bridge&&!q.overpass&&!q.loop&&!q.sea&&!(archStart>=0&&q.i>=archStart-12&&q.i<archEnd+12);
  const sources=[];for(let j=90;j<segs.length-100;j++){const q=segs[j];if(!safe(q))continue;for(const o of q.sp)if(['CR438_PROP','CRHD_ATLAS','CRHD_URBAN','CR452_STRUCTURE'].includes(o.t)&&o.k&&Math.abs(o.o)>=1.65&&!o.cr357Finale&&!o.crStartOnly)sources.push({j,o});}
  for(const {j,o} of sources){for(let tier=1;tier<=2;tier++){const k=j+(tier===1?9:-9),q=segs[k];if(k<90||k>=Math.min(N-FORK-45,segs.length-100)||!safe(q))continue;if(!safe(segs[k-7])||!safe(segs[k+7]))continue;const side=Math.sign(o.o);if(q.sp.some(v=>Math.sign(v.o)===side)||q.sp.length>=3)continue;const copy={...o,o:side*Math.max(2.2,Math.abs(o.o)),cr660Extra:tier,cr44:k};q.sp.push(copy);}}
+ }
+ /* V660.4: duplicate existing local vegetation without changing its size. */
+ if(MODE!==7){
+ const safe=q=>q&&q.sp&&!q.tun&&!q.bridge&&!q.overpass&&!q.loop&&!(archStart>=0&&q.i>=archStart-8&&q.i<archEnd+8);
+ const vegetation=o=>!o.cr357Finale&&!o.crHDRealCrowd&&!o.crStartOnly&&Math.abs(o.o)>=1.65&&(['t','eu','n','p','a'].includes(o.t)||/^vegetation_|pine|birch|arbre|palm|flower|cactus/i.test(String(o.k||'')));
+ const list=[];for(let j=85;j<Math.min(N-FORK-50,segs.length-90);j++){const q=segs[j];if(safe(q))for(const o of q.sp)if(vegetation(o))list.push({j,o});}
+ for(const {j,o} of list){for(let tier=1;tier<=2;tier++){const k=j+(tier===1?3:-3),q=segs[k];if(k<85||k>=N-FORK-50||!safe(q)||q.sea&&o.o<0||q.sp.length>=6)continue;if(q.sp.some(v=>Math.sign(v.o)===Math.sign(o.o)&&Math.abs(v.o-o.o)<.5))continue;q.sp.push({...o,cr660Extra:tier,cr44:k});}}
  }
  /* V405: looping hoops are roadway exceptions and remain at offset zero. */
 if(MODE===7)for(const q of segs)q.sp=q.sp.filter(o=>o.t!=='I');cars=[];objs.length=0;for(const k in prox)delete prox[k];for(let i=0;i<(MODE===5?0:Math.ceil((DF[dfi].k+stage*2)*1.5));i++){const T=i%5==4,v=T?undefined:OPPV[(i*7+id)%OPPV.length],aiSpeed=[0,8,11,15,16].includes(v)?1.12:[2,3,12].includes(v)?1.07:1;cars.push({ai:1,orTraffic:i,item:0,aiUseCd:2+R()*3,z:1500+R()*(trackLen-(FORK+60)*segL),o:[-.55,0,.55][i%3]+(R()-.5)*.1,T,w:T?.3:.18,sp:MAX*(.60+R()*.37),c:cols[T?i%7:v%7],v})}cars.forEach(c=>c.lane=c.o);if(MODE===5)brSetup(R);if(MODE==2){
@@ -5618,7 +5625,7 @@ requestAnimationFrame(loop);
 if('serviceWorker' in navigator && window.top===window){
  window.addEventListener('load',()=>{navigator.serviceWorker.getRegistrations().then(rs=>Promise.all(rs.filter(r=>r.scope.includes('/coast-rush-hd-v11/')).map(r=>r.unregister()))).catch(console.warn);},{once:true});
 }
-</script><div id="cr141Version" style="position:fixed;right:max(8px,env(safe-area-inset-right));bottom:max(5px,env(safe-area-inset-bottom));z-index:2147483647;color:#fff;background:rgba(0,0,0,.58);font:700 12px monospace;padding:3px 6px;border-radius:3px;pointer-events:none;user-select:none">HD V660.3</div>
+</script><div id="cr141Version" style="position:fixed;right:max(8px,env(safe-area-inset-right));bottom:max(5px,env(safe-area-inset-bottom));z-index:2147483647;color:#fff;background:rgba(0,0,0,.58);font:700 12px monospace;padding:3px 6px;border-radius:3px;pointer-events:none;user-select:none">HD V660.4</div>
 <div style="position:fixed;left:8px;bottom:6px;z-index:2147483646"><a href="./sprite-categories-v325.html" style="display:inline-block;background:#163a54;color:white;padding:5px 9px;border-radius:5px;font:12px Arial;text-decoration:none">Catégories sprites</a></div><script>
 let crRadioTimer=0,crRadioPad=0,crRadioAnim=0;
 function crRadioOpen(){
