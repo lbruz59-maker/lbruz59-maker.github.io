@@ -1813,7 +1813,7 @@ if(MODE!==7)for(let j=0;j<segs.length;j++){const q=segs[j];if(!q?.sp)continue;co
    if(crIsRoadsideRock(sprite))sprite.crRockScale=crRoadsideRockScale(segment.i,index);
   }
  }
- crPlaceHDPassage(id);
+ crPlaceHDPassage(id,N);
  /* V405: looping hoops are roadway exceptions and remain at offset zero. */
 if(MODE===7)for(const q of segs)q.sp=q.sp.filter(o=>o.t!=='I');cars=[];objs.length=0;for(const k in prox)delete prox[k];for(let i=0;i<(MODE===5?0:Math.ceil((DF[dfi].k+stage*2)*1.5));i++){const T=i%5===4,truckType=T&&MODE!==7?crTrafficTruckType(i,id):null,v=T?undefined:OPPV[(i*7+id)%OPPV.length],aiSpeed=[0,8,11,15,16].includes(v)?1.12:[2,3,12].includes(v)?1.07:1;cars.push({ai:1,orTraffic:i,item:0,aiUseCd:2+R()*3,z:1500+R()*(trackLen-(FORK+60)*segL),o:[-.55,0,.55][i%3]+(R()-.5)*.1,T,truckType,w:T?(truckType===0?.25:.3):.18,sp:MAX*(.60+R()*.37),c:MODE===7?cols[T?i%7:v%7]:crTrafficColor(NET()?rng(id*271+i*131+37):Math.random),v})}cars.forEach(c=>c.lane=c.o);if(MODE===5)brSetup(R);if(MODE==2){
   // Chase HQ : le même suspect reste en fuite pendant les deux circuits.
@@ -3701,7 +3701,7 @@ function crHDPassageImage(sheet){
  }
  return image;
 }
-function crPlaceHDPassage(id){
+function crPlaceHDPassage(id,N){
  const key=id>=100?id:THI[id];
  const sprite=crHDPassages[key];
  if(!sprite)return;
